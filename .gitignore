@@ -1,3 +1,5 @@
+# ignoring all the extra latex files
+
 *.aux
 *.glo
 *.idx
@@ -21,3 +23,14 @@
 *.mtc1
 *.out
 *.synctex.gz
+
+# ignoring extra python garbage
+
+python/.idea/
+python/__pycache__/
+python/venv/
+
+# ignoring python input/output files
+
+python/latex/
+python/input/
