@@ -7,6 +7,7 @@ from pylatex.package import Package
 import numpy as np
 from percolate import Grid
 import math
+import pyperclip
 
 
 def read_file(filename):
@@ -210,6 +211,7 @@ def dialog():
                 print("ABORTING without diagram")
                 return
     print(f"diagram saved to: figures/{chapter}/{filename}.pdf")
+    pyperclip.copy(f"figures/{chapter}/{filename}.pdf")
     return
 
 
