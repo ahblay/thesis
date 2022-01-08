@@ -23,6 +23,9 @@
 *.mtc1
 *.out
 *.synctex.gz
+*.nav
+*.snm
+*.fls
 
 # ignoring extra python garbage
 
