@@ -13,7 +13,7 @@ def read_file(filename):
     output = []
     with open(f'input/{filename}.txt', 'r') as f:
         output = f.readlines()
-    print(output)
+    #print(output)
     result = []
     layer = []
     for row in output:
@@ -35,9 +35,9 @@ def read_file(filename):
     l = len(result)
     r = len(result[0])
     c = len(result[0][0])
-    print(result)
+    #print(result)
 
-    print(l, c, r)
+    #print(l, c, r)
 
     ss = []
     for i in range(l):
@@ -49,7 +49,7 @@ def read_file(filename):
 
 
 # takes a numpy ndarray (representing a particular starting infection) as an argument
-def build_frames(grids, scale, filename, gradient=False, circle_node=True):
+def build_frames(grids, scale, filename, chapter, gradient=False, circle_node=True):
     class Frame(Environment):
         packages = [Package('frame')]
 
@@ -110,17 +110,18 @@ def build_frames(grids, scale, filename, gradient=False, circle_node=True):
                                 else:
                                     pass
 
-                    doc.append(pause)
+                    if counter > 0:
+                        doc.append(pause)
                     for item in to_draw:
                         pic.append(item)
                     counter += 1
 
-    doc.generate_pdf(f'latex/{filename}', clean_tex=False)
+    doc.generate_pdf(f'/Users/abel/Documents/School/Grad School/Research?/Bootstrap Percolation/Thesis/figures/{chapter}/{filename}', clean_tex=False)
     return
 
 
 # takes a numpy ndarray (representing a particular starting infection) as an argument
-def heatmap(grids, scale, filename):
+def heatmap(grids, scale, filename, chapter):
     class Frame(Environment):
         packages = [Package('frame')]
 
@@ -164,12 +165,57 @@ def heatmap(grids, scale, filename):
                 for item in to_draw:
                     pic.append(item)
 
-    doc.generate_pdf(f'latex/{filename}_heatmap', clean_tex=False)
+    doc.generate_pdf(f'/Users/abel/Documents/School/Grad School/Research?/Bootstrap Percolation/Thesis/figures/{chapter}/{filename}_heatmap', clean_tex=False)
+    return
+
+
+def dialog():
+    neighbors = int(input('neighbors:'))
+    scale = float(input('scale:'))
+    filename = input('filename:')
+    chapter = input('chapter:')
+    nodes = input('circle nodes? [y/n]:')
+    h = input('heatmap? [y/n]:')
+    if nodes == 'y':
+        circles = True
+    else:
+        circles = False
+
+    ss, shape, result = read_file(filename)
+    g = Grid(shape)
+    success, steps = g.percolate(neighbors, ss)
+
+    step_amount = input("all steps? [y/n]:")
+
+    if step_amount == 'y':
+        if h == 'y':
+            heatmap(steps, scale, filename, chapter)
+        else:
+            build_frames(steps, scale, filename, chapter, circle_node=circles)
+    else:
+        step_amount = input('first step? [y/n]:')
+        if step_amount == 'y':
+            if h == 'y':
+                heatmap(steps[0:1], scale, filename, chapter)
+            else:
+                build_frames(steps[0:1], scale, filename, chapter, circle_node=circles)
+        else:
+            step_amount = input('first two steps? [y/n]:')
+            if step_amount == 'y':
+                if h == 'y':
+                    heatmap(steps[0:2], scale, filename, chapter)
+                else:
+                    build_frames(steps[0:2], scale, filename, chapter, circle_node=circles)
+            else:
+                print("ABORTING without diagram")
+                return
+    print(f"diagram saved to: figures/{chapter}/{filename}.pdf")
     return
 
 
 if __name__ == '__main__':
 
+    '''
     neighbors = 3
     scale = .5
     filename = '18x33x2'
@@ -180,3 +226,6 @@ if __name__ == '__main__':
     print(steps[0])
     #heatmap(steps, scale, filename)
     build_frames(steps[1:2], scale, filename, circle_node=True)
+    '''
+
+    dialog()

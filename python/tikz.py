@@ -173,7 +173,6 @@ def seven_cubes():
     return
 
 
-
 if __name__ == '__main__':
 
     neighbors = 3
