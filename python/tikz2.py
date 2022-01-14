@@ -1,7 +1,7 @@
 from pylatex import (Document, TikZ, TikZNode,
                      TikZDraw, TikZCoordinate,
                      TikZUserPath, TikZOptions,
-                     NewLine, Center)
+                     NewLine, Center, HFill, HorizontalSpace)
 from pylatex.base_classes import Environment, CommandBase, Command
 from pylatex.package import Package
 import numpy as np
@@ -50,7 +50,7 @@ def read_file(filename):
 
 
 # takes a numpy ndarray (representing a particular starting infection) as an argument
-def build_frames(grids, scale, filename, chapter, gradient=False, circle_node=True):
+def build_frames_beamer(grids, scale, filename, chapter, gradient=False, circle_node=True):
     class Frame(Environment):
         packages = [Package('frame')]
 
@@ -167,6 +167,73 @@ def heatmap(grids, scale, filename, chapter):
                     pic.append(item)
 
     doc.generate_pdf(f'/Users/abel/Documents/School/Grad School/Research?/Bootstrap Percolation/Thesis/figures/{chapter}/{filename}_heatmap', clean_tex=False)
+    return
+
+
+# takes a numpy ndarray (representing a particular starting infection) as an argument
+# builds frames in better format
+def build_frames(grids, scale, filename, chapter, gradient=False, circle_node=True):
+
+    # create document
+    doc = Document(documentclass="standalone")
+
+    shape = grids[0].shape
+
+    # these may be wrong....
+    layers = shape[0]
+    rows = shape[1]
+    cols = shape[2]
+
+    counter = 0
+
+    scale_args = {"scale": scale}
+    for grid in grids:
+        if counter > 0:
+            doc.append(HorizontalSpace("1in"))
+        with doc.create(TikZ(options=TikZOptions(**scale_args))) as pic:
+            to_draw = []
+            for l in range(layers):
+                for r in range(rows):
+                    for c in range(cols):
+                        node_kwargs = {}
+                        circle = TikZDraw([TikZCoordinate(c, 0 - (r + (l * (rows + 1)))), 'circle'],
+                                          options=TikZOptions(radius='5pt',
+                                                              **node_kwargs))
+                        if not circle_node:
+                            circle = TikZDraw([TikZCoordinate(c, 0 - (r + (l * (rows + 1)))),
+                                               'rectangle',
+                                               TikZCoordinate(c + 1, 1 - (r + (l * (rows + 1))))],
+                                              options=TikZOptions('draw',
+                                                                  **node_kwargs))
+                        # add to tikzpicture
+                        pic.append(circle)
+                        if grid[l][r][c] == 1:
+                            if gradient:
+                                node_kwargs = {'fill': f'red!{70*counter/len(grids) + 30}',}
+                            else:
+                                node_kwargs = {'fill': f'red',}
+                            circle = TikZDraw([TikZCoordinate(c, 0 - (r + (l * (rows + 1)))), 'circle'],
+                                              options=TikZOptions(radius='5pt',
+                                                                  **node_kwargs))
+                            if not circle_node:
+                                circle = TikZDraw([TikZCoordinate(c, 0 - (r + (l * (rows + 1)))),
+                                                   'rectangle',
+                                                   TikZCoordinate(c + 1, 1 - (r + (l * (rows + 1))))],
+                                                  options=TikZOptions('draw',
+                                                                      **node_kwargs))
+                            to_draw.append(circle)
+                        else:
+                            pass
+
+            for item in to_draw:
+                pic.append(item)
+            counter += (2 + cols)
+        if counter > 25:
+            # add newline
+            doc.append(NewLine())
+            counter = 1
+
+    doc.generate_pdf(f'/Users/abel/Documents/School/Grad School/Research?/Bootstrap Percolation/Thesis/figures/{chapter}/{filename}', clean_tex=False)
     return
 
 

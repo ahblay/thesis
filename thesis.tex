@@ -160,17 +160,9 @@
 
 % Start writing here! This is the main body of the document. Some folks like to type everything here, in one document; you could also use an \input (verbatim inclusion of a file into this one) or \include (adds page breaks, etc; you would \include a chapter file, for example, which would allow you to \includeonly some of your chapters when compiling) to fill in your content.
 
-\chapter{Introduction} % Use \chapter*{} if you don't want the chapter numbered; similarly for sub/sections.
-
-\section{Problem Overview}
-
-\section{Literature Review}
-
-\section{Outline of ...}
+\include{chapters/1/introduction}
 
 \include{chapters/3/tight_bound_divisibility}
-
-\chapter{Chapter on the Next Thing}
 
 % etc.
 
@@ -182,6 +174,6 @@
 \backmatter % Makes the Bibliography an unnumbered section (and implements appropriate page breaks).
 	\addtoToC{Bibliography}
 	\bibliographystyle{abbrv} % Choose the style that you want to use (or your supervisor wants you to use).
-	\bibliography{} % Use your bibtex file. 
+	\bibliography{bibliography/refs.bib} % Use your bibtex file. 
 
 \end{document}
