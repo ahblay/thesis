@@ -24,6 +24,8 @@ Let $(n,n)$ represent the $n \times n$ lattice, given by $G = P_n \times P_n$. W
 
 \section{Minimum percolating sets and bounds}
 
+\subsection{Foundations}
+
 Let us build some intuition for the behavior of percolating sets on the two-dimensional lattice. Figure \ref{fig:5x5x1} illustrates the percolation time-steps for an arbitrary initial infection on the graph $G=P_5 \times P_5$, where $r=2$. (In general, we shall refer to the $d$-dimensional lattice with sides $a_1, \dots, a_d$ as the $d$-tuple $(a_1, \dots, a_d)$. The standard notation is $\prod_{i=1}^d a_i$.) 
 
 \begin{figure}[]
@@ -56,10 +58,10 @@ The $(n,n)$ construction can be generalized to any dimension. Specifically, we h
 For all $n,d \geq 1$, 
 $$m([n]^d, d) \leq n^{d-1}.$$
 \end{prop}
-
 This result has been known since at least Pete \cite{pete:1997}, although the particular constructions are difficult to render in general. The following proof (appearing in \cite{przykucki:2019}, but known in bootstrap percolation ``folklore" for much longer) elegantly shows that this bound is tight.
 
 \begin{thm}
+\label{thm:tight_perimeter}
 For all $n,d \geq 1$, 
 $$m([n]^d, d) = n^{d-1}.$$
 \end{thm}
@@ -72,6 +74,45 @@ Since a lethal set will infect the entire grid, and therefore have a final perim
 The same argument generalizes nicely to higher dimensions. Simply observe that for a given hypercube cell to become infected, it must donate at least $d$ of its $2d$ hyperplane faces to the infected region, thereby at most maintaining the current $(d-1)$-perimeter of infection.
 \end{proof}
 
+We note that the perimeter argument extends directly to rectangular grids; however, the problem of obtaining tight constructions, should they exist, is largely unsolved and will be the main focus of this thesis. The following proposition, which we refer to informally as the \emph{surface area bound} or \emph{S.A. bound}, provides a lower bound on the size of lethal sets for $d$-dimensional rectangular grids where $r=d$.
 
+\begin{prop}
+\label{prop:SA_bound}
+For $d \geq 1$ and $a_1, \dots, a_d \geq 1$,
+$$m(a_1, \dots, a_d, d) \leq \frac{\sum_{i=1}^d \prod_{j \neq i} a_j}{d}.$$
+\end{prop}
 
+\begin{proof}
+Observe that the expression
+$$\frac{\sum_{i=1}^d \prod_{j \neq i} a_j}{d}$$
+is precisely the high-dimensional perimeter of the grid graph $(a_1, \dots, a_d)$. The bound follows from the perimeter argument in theorem \ref{thm:tight_perimeter}. 
+\end{proof}
+
+In \{some chapter of this thesis\}, we will prove that this bound is tight in the case where $d=3$ and $d_1,d_2,d_3 \geq 8$. We fully expect that this bound can be incrementally diminished; however, we feel that such small improvements do not at this time justify the effort required to obtain additional constructions. 
+
+In the remainder of this section, we shall present a number of additional bootstrap percolation results for different classes of grid graphs.
+
+\subsection{Additional results}
+
+Recall from the previous section that $m(n,n,2) = n$, where the tight construction for the lower bound is given by a diagonal infection expanding laterally outwards. In a paper by Balogh and Bollobas \cite{balogh:2006}, this result is generalized to all $d$-dimensional hypercubes $(a_1, \dots, a_d)$, $a_i \geq 1$. 
+
+\begin{thm}
+For $d \geq 1$ and $a_1, \dots, a_d \geq 1$, 
+$$m(a_1, \dots, a_d, 2) = \ceil*{\frac{\sum_{i=1}^d (a_i-1)}{2}}+1.$$
+\end{thm}
+
+\begin{proof}
+\end{proof}
+
+As suggested by table \ref{tab:known_bounds}, general results become quite sparse for $r \notin \{2,d\}$. A nice result from Morrison and Noel resolves the question of $r=3$ for hypercubes $P_2^d$ of dimension $d \geq 3$. 
+
+\begin{thm}
+For $d \geq 3$ and $a_1 = \dots = a_d = 2$, 
+$$m(a_1, \dots, a_d, 3) = \ceil*{\frac{d(d+3)}{6}}.$$
+\end{thm}
+
+\begin{proof}
+\end{proof}
+
+However, the issue of determining $m(a_1, \dots, a_d, r)$ is largely unresolved. Furthermore, good lower bounds for $r \neq d$ are conspicuously absent. 
 

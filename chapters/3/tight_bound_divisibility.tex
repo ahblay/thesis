@@ -12,7 +12,24 @@ By applying the recursion, $(a,b,c)+(x,y,z)$ percolates at the lower bound when 
 \end{enumerate}
 \end{rem}
 
-We shall call a thickness ``complete" if it can be shown that all divisibility cases in that thickness percolate at the lower bound. In this section, we demonstrate that thickness 5, thickness 6 and thickness 7 are all complete. As these belong to the residue classes 2, 0, and 1 modulo 3, respectively, we then use a recursive construction to show that all larger grids are also complete. 
+We shall call a thickness ``complete" if it can be shown that all divisibility cases in that thickness percolate at the lower bound. In this section, we demonstrate that thickness 6, thickness 7 and thickness 8 are all complete. As these belong to the residue classes 0, 1, and 2 modulo 3, respectively, we then use a recursive construction to show that all larger grids are also complete. 
+
+\section{Completeness of Thickness 6}
+We shall show that all grids of thickness 6 can be obtained recursively from $(3, 3n,m)$, where $n,m \equiv 1 \pmod 2$ (see construction \{something\}), and one of $\{(3,3,3), (6,3,3), (6,6,3)\}$. As the following proof requires examining a number of cases, we separate thickness 6 into three categories, and show that each of these categories is complete. 
+
+\begin{figure}[]
+\centering
+\includegraphics[width=\textwidth]{figures/3/thickness_6_case_1.pdf}
+\caption{Thickness 6 grids with perfect percolating sets as obtained in lemma \ref{lem:thickness_6_case_1} (left), and divisibility cases of thickness 6 (right).}
+\label{fig:thickness_6_case_1}
+\end{figure}
+
+\begin{lem}
+\label{lem:thickness_6_case_1}
+All grids of the form $(a,b,6)$, where $a \equiv 0 \pmod 6$ and $b \equiv 0 \pmod 2$, or $b \equiv 0 \pmod 6$ and $a \equiv 0 \pmod 2$, percolate at the lower bound.
+\end{lem}
+
+\section{Completeness of Thickness 7}
 
 \section{Completeness of Thickness 5}
 Leveraging \{lemmas from earlier chapters yet to be written\}, we show that all divisibility cases in thickness 5 percolate at the lower bound. 
@@ -29,11 +46,6 @@ By item (1) of the remark, in order to show that $(a,b,2) + (6,3,3)$ percolates 
 Applying an analogous argument to $(a,b,2) + (6,6,3)$, we must demonstrate that $(a,b,2), (a,6,3), (6,b,3), (6,6,2)$ all percolate at the lower bound. By \{some other constructions\}, we again find that this holds for all $x,y \in \{0,2,3,5\}$, where $x \neq y$ and $a,b > 1$. This gives all thickness 5 tuples $(a',b', 5)$ with $a'$ and $b'$ in different residue classes modulo $6$, where $a',b' \geq 8$. 
 
 SOMETHING IS DIFFERENT
-
-\begin{figure}[]
-\centering
-\includegraphics[height=1in]{figures/3/7x28x1.pdf}
-\end{figure}
 
 \end{proof}
 
