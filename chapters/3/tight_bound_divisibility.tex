@@ -1,19 +1,19 @@
 \chapter{A Tight Bound on Grids of Size $\geq$ 5}
 
 \section{Introduction and Definitions}
-Let the ordered tuple $(a,b,c)$ represent the $a \times b \times c$ grid $G$ where $a \geq b \geq c$. We refer to $c$ as the ``thickness" of $G$. For example, the tuple $(5,3,3)$ represents a $5 \times 3 \times 3$ grid of thickness 3. We refer to a tuple as ``divisible", or a ``divisibility case", if and only if $ab+bc+ca \equiv 0 \pmod 3$. Observe that the divisibility cases are precisely those grids with integral lower bounds. The divisibility cases of thicknesses belonging to the three residue classes modulo 3 are illustrated in \{Figure something\}.
+Let the ordered tuple $(a,b,c)$ represent the $a \times b \times c$ grid $G$ where $a \geq b \geq c$. We refer to $c$ as the \emph{thickness} of $G$. For example, the tuple $(5,3,3)$ represents a $5 \times 3 \times 3$ grid of thickness 3. We refer to a tuple as \emph{divisible}, or a \emph{divisibility case}, if and only if $ab+bc+ca \equiv 0 \pmod 3$. If a tuple is divisible and percolates at the lower bound, we refer to it as \emph{perfect}. Observe that the divisibility cases are precisely those grids with integral lower bounds. The divisibility cases of thicknesses belonging to the three residue classes modulo 3 are illustrated in \{Figure something\}.
 
 In the following lemmas, we use the notation $(a,b,c)+(x,y,z) = (a+x, b+y, c+z)$ to represent respective increases of $x$, $y$, and $z$ to the side lengths $a$, $b$, and $c$ of $G$. We note the following: 
 \begin{rem}
 \label{rem:recursion_pieces}
 By applying the recursion, $(a,b,c)+(x,y,z)$ percolates at the lower bound when either:
 \begin{enumerate}
-\item $(a,b,c), (a,y,z), (x,b,z), (x,y,c)$ all percolate at the lower bound, or;
+\item $(a,b,c), (a,y,z), (x,b,z), (x,y,c)$ all percolate at the lower bound; or
 \item $(x,y,z), (x,b,c), (a,y,c), (a,b,z)$ all percolate at the lower bound.
 \end{enumerate}
 \end{rem}
 
-We shall call a thickness ``complete" if it can be shown that all divisibility cases in that thickness percolate at the lower bound. In this section, we demonstrate that thickness 5, thickness 6 and thickness 7 are all complete. As these belong to the residue classes 2, 0, and 1 modulo 3, respectively, we then use a recursive construction to show that all larger grids are also complete. 
+We shall call a thickness \emph{complete} if it can be shown that all divisibility cases in that thickness are perfect. In this section, we demonstrate that thickness 5, thickness 6 and thickness 7 are all complete. As these belong to the residue classes 2, 0, and 1 modulo 3, respectively, we then use a recursive construction to show that all larger grids are also complete. 
 
 \section{Completeness of Thickness 5}
 Leveraging \{lemmas from earlier chapters yet to be written\}, we show that all divisibility cases in thickness 5 percolate at the lower bound. 
@@ -21,7 +21,7 @@ Leveraging \{lemmas from earlier chapters yet to be written\}, we show that all 
 NOTE: THE FOLLOWING LEMMAS HOLD ASSUMING WE HAVE A GENERAL CONSTRUCTION FOR $(2,3,3k)$ FOR ALL $k$.
 \begin{lem}
 \label{lem:width_5}
-All divisibility cases for grids of the form $(k,5,5)$ percolate at the lower bound.
+All divisibility cases for grids of the form $(k,5,5)$ are perfect.
 \end{lem}
 
 \begin{proof}
@@ -48,11 +48,13 @@ By item (1) of the remark, in order to show that $(a,b,2) + (6,3,3)$ percolates 
 
 Applying an analogous argument to $(a,b,2) + (6,6,3)$, we must demonstrate that $(a,b,2), (a,6,3), (6,b,3), (6,6,2)$ all percolate at the lower bound. By \{some other constructions\}, we again find that this holds for all $x,y \in \{0,2,3,5\}$, where $x \neq y$ and $a,b > 1$. This gives all thickness 5 tuples $(a',b', 5)$ with $a'$ and $b'$ in different residue classes modulo $6$, where $a',b' \geq 8$. 
 
-Combining these results, we have completeness for all grids of thickness 5 except those of the form $(5,5,k)$ and $(5,6,k)$. By lemmas \ref{lem:width_5} and \ref{lem:width_6}, these cases are also complete, and so thickness 5 is complete. This completes the proof. 
+Combining these results, we have completeness for all grids of thickness 5 except those of the form $(5,5,k)$ and $(5,6,k)$, and the singular grid $(8,8,5)$. By lemmas \ref{lem:width_5} and \ref{lem:width_6}, and \{some construction for $(8,85)$\}, these cases are also complete, and so thickness 5 is complete. This completes the proof. 
 \end{proof}
 
 \section{Completeness of Thickness 6}
-We shall show that all grids of thickness 6 can be obtained recursively from $(3, 3n,m)$, where $n,m \equiv 1 \pmod 2$ (see construction \{something\}), and one of $\{(3,3,3), (6,3,3), (6,6,3)\}$. As the following proof requires examining a number of cases, we separate thickness 6 into three categories, and show that each of these categories is complete. 
+We shall show that all grids of thickness 6 can be obtained recursively from $(3n, m, 3)$, where $n,m \equiv 1 \pmod 2$ (this is that general thickness 3 construction), and one of $\{(3,3,3), (6,6,3), (6,3,3), (3,6,3)\}$. We examine each of these cases separately and show that each is complete. 
+
+(NOTE (to Peter and Jon): I have struggled a bit with the canonical way to describe grids. I like the tuple representation $(a,b,c)$ where WLOG $a \leq b \leq c$. However, this becomes a bit mucky in the following proofs, because $(3n,m,3)$ potentially violates this rule if $n$ is large and $m$ is small. To accommodate this, I have written ``grids of the form $(a,b,6)$, where $a \equiv 0 \pmod 6$ and $b \equiv 0 \pmod 2$, or $b \equiv 0 \pmod 6$ and $a \equiv 0 \pmod 2$," in an attempt to address the circumstance where the ordering of the tuple is flipped because $n$ is large and $m$ is small. However, I think this may just muddy the waters.)
 
 \begin{figure}[]
 \centering
@@ -67,7 +69,7 @@ All grids of the form $(a,b,6)$, where $a \equiv 0 \pmod 6$ and $b \equiv 0 \pmo
 \end{lem}
 
 \begin{proof}
-We consider $(3,3n,m) + (3,3,3)$, for $n,m \equiv 1 \pmod 2$. Observe that the resulting grid is of the form $(6, 3k, l)$, where $k,l \equiv 0 \pmod 2$. This, in turn, is precisely the set of grids described above. By remark \ref{rem:recursion_pieces}, we have that $(3,3n,m) + (3,3,3)$ percolates if $(3,3n,m), (3,3,3), (3,3n,3),(3,3,m)$ all percolate. By construction \{yet to be named\}, all grids $(a,3,3)$ are perfect. Therefore, $(3,3n,m) + (3,3,3)$ is perfect. This completes the proof.
+We consider $(3n,m,3) + (3,3,3)$, for $n,m \equiv 1 \pmod 2$. By remark \ref{rem:recursion_pieces}, we have that $(3n,m,3) + (3,3,3)$ percolates if $(3n,m,3), (3n,3,3), (3,m,3),(3,3,3)$ all percolate. By construction \{yet to be named\}, all grids $(a,3,3)$ are perfect. Therefore, $(3,3n,m) + (3,3,3)$ is perfect. Note that this grid is of the form $(3k, l, 6)$, where $k,l \equiv 0 \pmod 2$. This is equivalent to grids of the form $(a,b,6)$, where $a \equiv 0 \pmod 6$ and $b \equiv 0 \pmod 2$, or $b \equiv 0 \pmod 6$ and $a \equiv 0 \pmod 2$. This completes the proof.
 \end{proof}
 
 \begin{lem}
@@ -76,16 +78,25 @@ All grids of the form $(a,b,6)$, where $a \equiv 3 \pmod 6$ and $b \equiv 1 \pmo
 \end{lem}
 
 \begin{proof}
-Same argument as above, but add $(3,6,6)$. 
+We apply the same argument as above, this time considering $(3n,m,3) + (6,6,3)$, for $n,m \equiv 1 \pmod 2$. Again, by remark \ref{rem:recursion_pieces}, it is sufficient to show that $(3n,m,3), (3n,6,3), (6,m,3), (6,6,3)$ are all perfect. By \{more thickness 3 constructions\}, each of these grids percolates at the lower bound. The resulting grid, $(3n,m,3) + (6,6,3)$, for $n,m \equiv 1 \pmod 2$, is of the form $(a,b,6)$, for $a \equiv 3 \pmod 6$ and $b \equiv 1 \pmod 2$, or $b \equiv 3 \pmod 6$ and $a \equiv 1 \pmod 2$. This completes the proof.
 \end{proof}
 
 \begin{lem}
 \label{lem:thickness_6_case_3}
-All remaining grids for thickness 6 work.
+All grids of the form $(a,b,6)$, where $a \equiv 3 \pmod 6$ and $b \equiv 0 \pmod 2$, or $b \equiv 3 \pmod 6$ and $a \equiv 0 \pmod 2$, percolate at the lower bound.
 \end{lem}
 
 \begin{proof}
-Add $(3,6,3)$ or $(3,3,6)$.
+Similarly to the previous proofs, we consider $(3n,m,3) + (6,3,3)$, for $n,m \equiv 1 \pmod 2$. We show that $(3n,m,3), (3n,3,3), (6,m,3), (6,3,3)$ are all perfect. By the same thickness 3 constructions, each of these grids percolates at the lower bound. Therefore, by remark \ref{rem:recursion_pieces}, $(3n,m,3) + (6,3,3)$ is perfect. Furthermore, observe that $(3n,m,3) + (6,3,3)$ is of the form $(a,b,6)$, where $a \equiv 3 \pmod 6$ and $b \equiv 0 \pmod 2$. This completes the proof.
+\end{proof}
+
+\begin{lem}
+\label{lem:thickness_6_case_4}
+All grids of the form $(a,b,6)$, where $a \equiv 0 \pmod 6$ and $b \equiv 1 \pmod 2$, or $b \equiv 0 \pmod 6$ and $a \equiv 1 \pmod 2$, percolate at the lower bound.
+\end{lem}
+
+\begin{proof}
+We consider $(3n,m,3) + (3,6,3)$, for $n,m \equiv 1 \pmod 2$. We show that $(3n,m,3)$, $(3n,6,3)$, $(3,m,3), (3,6,3)$ are all perfect. By \{thickness 3 constructions\} and remark \ref{rem:recursion_pieces}, $(3n,m,3) + (3,6,3)$ is perfect. Observe that $(3n,m,3) + (3,6,3)$ is of the form $(a,b,6)$, where $a \equiv 0 \pmod 6$ and $b \equiv 1 \pmod 2$. This completes the proof.
 \end{proof}
 
 \begin{lem}
@@ -93,7 +104,7 @@ Thickness 6 is complete.
 \end{lem}
 
 \begin{proof}
-Lemmas \ref{lem:thickness_6_case_1}, \ref{lem:thickness_6_case_2}, and \ref{lem:thickness_6_case_3} cover all divisibility cases for thickness 6. The result follows.
+All divisibility cases for thickness 6 are grids of the form $(x,y,6)$ such that at least one of $\{x,y\}$ is congruent to 0 modulo 3. Lemmas \ref{lem:thickness_6_case_1}, \ref{lem:thickness_6_case_2}, and \ref{lem:thickness_6_case_3} cover all such cases. The result follows.
 \end{proof}
 
 \section{Completeness of Thickness 7}
@@ -121,7 +132,7 @@ All grids of the form $(x,y,7)$ for $x,y \in \{1,4\}$ and $x \not\equiv y \pmod 
 \end{lem}
 
 \begin{proof}
-Consider the construction $(a,b,2) + (5,5,5)$ for $a,b \in \{2,5\}$ and $a \not\equiv b \pmod 6$. The same argument as above shows that this construction is perfect.
+Consider the construction $(a,b,2) + (5,5,5)$ for $a,b \in \{2,5\}$ and $a \not\equiv b \pmod 6$. Observe that this construction obtains all grids of the form described in (2) above. We consider the grids $(a,b,2), (a,5,5), (5,b,5), (5,5,2)$. By \{known constructions and completeness of thickness 5\}, each of these grids is perfect, and so by remark \ref{rem:recursion_pieces}, $(a,b,2) + (5,5,5)$ percolates at the lower bound. This completes the proof.
 \end{proof}
 
 \begin{lem}
@@ -130,7 +141,7 @@ All grids of the form $(x,y,7)$ for $x,y \in \{0,3\}$ and $x \equiv y \pmod 6$ a
 \end{lem}
 
 \begin{proof}
-Consider the construction $(a,b,2) + (5,6,9)$ for $a,b \in \{0,3\}$ and $a \not\equiv b \pmod 6$. Same idea.
+Consider the construction $(a,b,2) + (6,9,5)$ for $a,b \in \{0,3\}$ and $a \not\equiv b \pmod 6$. Observe that this construction contains all grids described in (3) above. We consider the grids $(a,b,2), (a,9,5), (6,b,5), (6,9,2)$. Observe that $(3,9,5)$ is perfect by construction, and $(a,9,5)$ is perfect in general for $a>3$. Similarly, $(6,3,5)$ is perfect by construction, and $(6,b,5)$ is perfect for all other $b>3$. Finally, $(a,b,2)$ and $(6,9,2)$ are perfect by construction. Therefore, by remark \ref{rem:recursion_pieces}, $(a,b,2) + (5,5,5)$ percolates at the lower bound. This completes the proof.
 \end{proof}
 
 \begin{lem}
@@ -139,7 +150,7 @@ All grids of the form $(x,y,7)$ for $x,y \in \{0,3\}$ and $x \not\equiv y \pmod 
 \end{lem}
 
 \begin{proof}
-Consider the construction $(a,b,2) + (5,6,6)$ for $a,b \in \{0,3\}$ and $a \not\equiv b \pmod 6$. Same idea.
+Consider the construction $(a,b,2) + (6,6,5)$ for $a,b \in \{0,3\}$ and $a \not\equiv b \pmod 6$. Observe that this construction contains all grids described in (4) above. We consider the grids $(a,b,2), (a,6,5), (6,b,5), (6,6,2)$. Observe that $(3,6,5)$ is perfect by construction, and $(a,6,5)$ is perfect in general for $a>3$. Similarly, $(6,3,5)$ is perfect by construction, and $(6,b,5)$ is perfect for all other $b>3$. Finally, $(a,b,2)$ and $(6,6,2)$ are perfect by construction. Therefore, by remark \ref{rem:recursion_pieces}, $(a,b,2) + (5,5,5)$ percolates at the lower bound. This completes the proof.
 \end{proof}
 
 \begin{lem}
@@ -152,7 +163,7 @@ By lemmas \ref{lem:thickness_7_case_1}, \ref{lem:thickness_7_case_2}, \ref{lem:t
 
 \section{Completeness of Grids of Size $\geq$ 5}
 
-We can get completeness in every residue class modulo 3 by simply considering the grids obtained from $(x,y,z)+(3,3,3)$. TA-DA!
+We can get completeness in every residue class modulo 3 by simply considering the grids obtained from $(x,y,z)+(3,3,3)$.
 
 
 
