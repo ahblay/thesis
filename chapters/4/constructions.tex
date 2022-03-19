@@ -10,15 +10,135 @@ We shall call a thickness \emph{semi-complete} if all divisibility cases are opt
 
 We shall see that similar patterns and structures appear with some regularity in optimal sets. These structures always infect entire regions, and it will be helpful to recognize them within larger grids when they appear. 
 
+\begin{lem}
+\label{lem:forest}
+Let $G = P_a \Osq P_b$ be a graph and $S \subseteq V(G)$ be a subset of the vertices of $G$. Let $G[\overline{S}]$ be the subgraph of $G$ induced by vertices not in $S$. Then $S$ is a lethal set if and only if $G[\overline{S}]$ is cycle-free, and has no paths between any two boundary vertices. 
+\end{lem}
+
+\begin{lem}
+\label{lem:three_walls}
+Let $G$ be the grid $(a,b,c)$. If a set $S$ is lethal on the three perpendicular planes $ab, bc, ca$, then $S$ is lethal on $G$.
+\end{lem}
+
+\begin{lem}
+\label{lem:unfold}
+Let $G$ be the grid $(a,b,c)$. Let $H$ be a subgraph induced by the vertices of $G$. If the projection of $H$ in the $x$ direction gives the graph $(b,c)$, in the $y$ direction gives $(a,c)$, and in the $z$ direction gives $(a,b)$, and $H$ percolates, then $G$ percolates.
+\end{lem}
+
+\begin{proof}
+The projection condition guarantees that $G$ has lethal sets on three perpendicular planes. The result follows from lemma \ref{lem:three_walls}.
+\end{proof}
+
+\begin{defn}
+Let a \emph{proper unfolding} of a rectangular prism $G$ be a planar embedding of $H$.
+\end{defn}
+
+\begin{cor}
+\label{cor:unfold}
+Something about unfolding $H$ and its planar embedding. Imagine $H$ as a set of folded up pieces of paper. Let $\mathcal{N}$ be the family of unfolded nets comprising $H$. To show that $G$ percolates, it is sufficient to show that all nets $N \in \mathcal{N}$ harbor lethal infections.
+\end{cor}
+
+\section{Thickness 1}
+
+There are two general constructions in thickness 1 that percolate at the surface area bound. The first construction is perfect for all $(2^n-1, 2^n-1, 1)$ grids, and originates in a 2021 paper by Benevides et al. \cite{benevides:2021}. The second construction is optimal for all grids $(a,b,1)$, where $a \equiv 5 \pmod 6$, $b \equiv 1 \pmod 2$. As such grids constitute non-divisibility cases, this construction is not perfect.
+
+% Purina constructions that percolate at the S.A. bound
+\subsection{Purina}
+
+\begin{con}
+\label{con:purina}
+All grids of the form $(2^n-1, 2^n-1, 1)$ are perfect.
+\end{con}
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.1\textwidth]{figures/4/3x3x1.pdf}
+\caption{A perfect percolating set for $(3,3,1)$.}
+\label{fig:3x3x1}
+\end{figure} 
+
+This is a recursive construction built from the base component piece shown in figure \ref{fig:3x3x1}. Note that this $(3,3,1)$ construction is lethal under the 3-neighbor bootstrap process, and that it meets the surface area bound:
+$$\frac{1}{3} \cdot (ab+bc+ca) = \frac{1}{3} \cdot (9 + 3 + 3) = 5.$$
+For larger grids of size $(2^n-1, 2^n-1, 1)$, join four copies of $(2^{n-1}-1, 2^{n-1}, 1)$ about two perpendicular corridors, and infect the vertex at their intersection (figure \ref{fig:15x15x1}). Observe that the resulting set is lethal: each of the four smaller grids is lethal by hypothesis, and the remaining vertices induce a forest with disconnected boundary points, which percolates by lemma \ref{lem:forest}. Furthermore, note that
+$$\text{S.A.}(2^n-1,2^n-1,1) = \frac{1}{3} \cdot (2^{2n}-1) = 4 \cdot \frac{1}{3} \cdot (2^{2n-2} -1) + 1 = 4 \cdot \text{S.A.}(2^{n-1}-1, 2^{n-1}, 1) + 1,$$
+and therefore this construction is perfect.
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/4/15x15x1.pdf}
+\caption{A perfect percolating set for $(15,15,1)$.}
+\label{fig:15x15x1}
+\end{figure} 
+
+% (odd)x(odd) constructions that percolate at the S.A. bound
+\subsection{Snakes}
+
+\begin{con}
+\label{con:snake}
+All grids of the form $(a,b,1)$, $a \equiv 5 \pmod 6$, $b \equiv 1 \pmod 2$ are optimal.
+\end{con}
+
+For grids of the form $(a,b,1)$, $a \equiv 5 \pmod 6$, $b \equiv 1 \pmod 2$, we construct an optimal infected set and show that it percolates by lemma \ref{lem:forest}. For the base case, consider the $(5,3,1)$ grid $G$ illustrated in figure \ref{fig:5x3x1}. Observe that this construction is optimal. Now consider the grid $G'$ resulting from the insertion of a $(5, 2k, 1)$ block, as shown in figure \ref{fig:5x13x1}. Note that the subgraph induced by the uninfected vertices of $G'$ satisfies the conditions of lemma \ref{lem:forest}. Furthermore, note that if any $(5, n, 1)$ grid is optimal, the $(5,n+2,1)$ grid resulting from such a construction has surface area bound $\text{S.A.}(5,n,1) + 4$, which agrees with the number of infected vertices.
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.1\textwidth]{figures/4/5x3x1.pdf}
+\caption{An optimal percolating set for $(5,3,1)$.}
+\label{fig:5x3x1}
+\end{figure} 
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.5\textwidth]{figures/4/5x13x1.pdf}
+\caption{An optimal percolating set for $(5,13,1)$.}
+\label{fig:5x13x1}
+\end{figure} 
+
+To extend this construction in the vertical direction, we introduce a kink in the snaking infection. This kink requires six rows to produce a repeating pattern. The structure of this design is shown in figure \ref{fig:11x13x1}. For grids of smaller width, the same construction gives optimal percolating sets; however, the snaking pattern is increasingly difficult to recognize in thin grids.
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/4/11x13x1.pdf}
+\caption{An optimal percolating set for $(11,13,1)$.}
+\label{fig:11x13x1}
+\end{figure} 
+
+% Maybe other (divisibility) constructions that percolate at 1 over the bound (if they exist)?
+
 \section{Thickness 2}
+
+% (3k, 3, 2) 
 
 \begin{con}
 All $(a,b,2)$ grids with $a,b \in \{0,3\} \pmod 6$ and $a \neq b \pmod 6$ are perfect. 
 \end{con}
 
 \begin{proof}
-We proceed by induction. For the base case, consider the grid $(6,9,2)$ (figure \ref{fig:6x9x2}).
+Consider the $(21,12,2)$ grid $G$ shown in figure \ref{fig:12x21x2}. We claim that this grid percolates by corollary \ref{cor:unfold}. Let $H$ be a proper unfolding of $G$ (figure \ref{fig:12x21x2_unfolded}). We show that $H$ admits a lethal set of size $\text{S.A.}(12,21,2) = 106$. Consider such a set, as shown in figure \ref{fig:12x21x2_unfolded_lethal}. (Observe that this is the same set as shown in figure \ref{fig:12x21x2}.) By lemma \ref{lem:forest}, this set percolates with the exception of two $C_4$s in the top and bottom of the grid. However, notice that one of these cells is a duplicate of an already infected cell. (This duplication is a consequence of the proper unfolding of $G$.) Therefore, $H$ admits a lethal set, and by corollary \ref{cor:unfold}, $G$ is perfect.
+
+For all larger grids, observe that the snaking corridor in the left side $G$ can be extended by multiples of 6 in both the $x$ and $y$ directions. These resulting grid still percolates under lemma \ref{lem:forest}. A simple calculation verifies that such an alteration produces initial infections at the surface area bound. 
 \end{proof}
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/4/12x21x2.pdf}
+\caption{A perfect percolating set for $(12,21,2)$.}
+\label{fig:12x21x2}
+\end{figure} 
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/4/12x21x2_unfolded.pdf}
+\caption{A proper unfolding of $G= (12,21,2)$. Colored rectangles indicate faces of $G$. Dashed lines indicate that cells appear on different layers. }
+\label{fig:12x21x2_unfolded}
+\end{figure} 
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/4/12x21x2_unfolded_lethal.pdf}
+\caption{A percolating set on the proper unfolding of $G= (12,21,2)$.}
+\label{fig:12x21x2_unfolded_lethal}
+\end{figure} 
 
 \begin{figure}[]
 \centering
@@ -33,3 +153,17 @@ We proceed by induction. For the base case, consider the grid $(6,9,2)$ (figure 
 \caption{}
 \label{fig:6x9x2}
 \end{figure} 
+
+% (5, 3, 3)
+
+% (5, 2, 2) 
+
+% (5, 5, 5)
+
+% (8, 5, 5)
+
+% (a, 3, 3)
+
+% (6, 3, 3)
+
+% (6, 3, 2)

@@ -1,34 +1,90 @@
 \chapter{Introduction}
 
-We shall begin this thesis with a puzzle. Consider the lattice depicted in figure \ref{fig:simple_puzzle}. We refer to the elements of this lattice as \emph{cells}. Suppose we have the capacity to infect some cells with a disease, and that this disease will, over a period of time, propagate through uninfected cells of the lattice. Let uninfected cells become infected if they are exposed to at least two infected neighboring cells in the vertical and/or horizontal directions. We say that the initial infection is \emph{lethal} if the entire lattice ultimately becomes infected. Here is the puzzle:
+We shall begin this thesis with a puzzle. Consider the lattice depicted in the leftmost diagram of figure \ref{fig:simple_puzzle}. We refer to the elements of this lattice as \emph{cells}. Suppose we have the capacity to infect some cells (colored red) with a disease, and that this disease will, over a period of time, propagate through uninfected cells of the lattice. Let uninfected cells become infected if they are exposed to at least two infected neighboring cells in the vertical and/or horizontal directions. We say that the initial infection is \emph{lethal} if the entire lattice ultimately becomes infected. Here is the puzzle:
 
 \begin{question}
 \label{que:simple_puzzle}
 What is the fewest number of infected cells necessary to spawn a lethal infection?
 \end{question}
 
-Before we present the solution (which is particularly elegant and satisfying, and the reader is encouraged to play around with this problem on their own and get a feel for the behavior), let us take a moment to examine some properties of infectious sets and attempt to characterize what attributes might correspond to lethality. It should not take too long to observe that if an initial infection is in some way ``spread too thin," it will be unable to jump between infected areas, leading to gaps in infection, which we refer to as \emph{immune regions}. The perimeter of the lattice is particularly susceptible to this possibility, as those vertices have fewer neighbors from whom they might be exposed. Heuristically, then, a lethal set must have the ability to effectively span the entire lattice, and must be particularly virulent along the perimeter. 
+\begin{figure}[]
+\centering
+\includegraphics[width=\textwidth]{figures/1/simple_puzzle.pdf}
+\caption{An arbitrary set of initially infected cells in the $10 \times 10$ lattice, and the stages of infection.}
+\label{fig:simple_puzzle}
+\end{figure} 
 
-At this point, we are able to make some educated guesses regarding the specific structure of sets that are likely to be lethal. In particular, we would like to consider the two starting infections illustrated in figure \ref{fig:two_infections}. Notice that while figure \ref{fig:two_infections} (b) has far fewer perimeter infections, both (a) and (b) manage to form continuous bands of infected cells that appear to span the entire lattice after one step. Indeed, this holds with our notion of immune regions (or lack thereof), and we see that both infections will continue to propagate outwards from these bands until all cells become infected.
+Before we present the solution (which is particularly elegant and satisfying, and the reader is encouraged to play around with this problem on their own and get a feel for the behavior), let us take a moment to examine some properties of infectious sets and attempt to characterize what attributes might correspond to lethality. It should not take too long to observe that if an initial infection is in some way ``spread too thin," it will be unable to jump between infected areas, leading to gaps in infection, which we refer to as \emph{immune regions}. The perimeter of the lattice is particularly susceptible to this, as vertices there have fewer neighbors from whom they might be exposed. Heuristically, then, a lethal set must have the ability to effectively span the entire lattice, and must be particularly virulent along the perimeter. 
 
-It is clear from figure \ref{fig:two_infections} that we may obtain lethal sets on the $n \times n$ lattice of size $n$ by simply infecting the diagonal. What is less obvious is whether it is possible to improve upon this result. Perhaps the most natural first attempt is to remove an infection from one of the cells along the diagonal. However, this seems to form an immune region around the removed cell. After some experimentation, one begins to believe it impossible to simultaneously satisfy the heuristic that a starting infection must span the lattice, while also using fewer than $n$ initial infections. The question therefore becomes: how do we prove it?
+At this point, we are able to make some educated guesses regarding the specific structure of sets that are likely to be lethal. In particular, we would like to consider the two starting infections illustrated in figure \ref{fig:two_infections}. Notice that while figure \ref{fig:two_infections} (\subref{fig:two_infections_b}) has far fewer perimeter infections, both (\subref{fig:two_infections_a}) and (\subref{fig:two_infections_b}) manage to form continuous bands of infected cells that appear to span the entire lattice after one step. Indeed, this holds with our notion of immune regions (or lack thereof), and we see that both infections will continue to propagate outwards from these bands until all cells become infected.
+
+\begin{figure}[]
+\centering
+\begin{subfigure}{0.45\textwidth}
+	\includegraphics[width=\textwidth]{figures/1/two_infections_a.pdf}
+	\caption{Perimeter construction.}
+	\label{fig:two_infections_a}
+\end{subfigure} \hfill%
+\begin{subfigure}{0.45\textwidth}
+	\includegraphics[width=\textwidth]{figures/1/two_infections_b.pdf}
+	\caption{Diagonal construction.}
+	\label{fig:two_infections_b}
+\end{subfigure}
+\caption{Two lethal sets and their resulting infections after one time-step.}
+\label{fig:two_infections}
+\end{figure} 
+
+It is clear from figure \ref{fig:two_infections} that we may obtain lethal sets on the $n \times n$ lattice of size $n$ by simply infecting the diagonal. What is less obvious is whether it is possible to improve upon this result. Perhaps the most natural first attempt at this is to remove an infection from one of the cells along the diagonal. However, this seems to form an immune region around the removed cell. After some experimentation, one begins to believe it impossible to simultaneously satisfy the heuristic that a starting infection must span the lattice, while also using fewer than $n$ initial infections. The question therefore becomes: how do we prove it?
 
 \section{Formalizing these observations}
 
 Before presenting a proof, let us take a moment to formally define the process described above and develop some useful notation. The study of such cellular infection spread in grids (and more generally in graphs) is known in the literature as \emph{bootstrap percolation}, and was introduced in the 1970s by Chalupa et al. \cite{chalupa:1979} as a simplified model for the behavior of ferromagnetic fields. In their original 1979 paper, the authors research the stable structure of probabilistically selected initial infections. While this differs from the problem posed in question \ref{que:simple_puzzle}, the rules for the spread of infection and its broad behavior remain the same. It is worth noting that a large portion of contemporary research on bootstrap problems is focused on questions of probabilistic nature; while these problems are certainly of merit and quite interesting, they do not fall within the scope of this thesis. Rather, we shall focus on those problems where we have specific control over the structure of the initial infections; in particular, we aim to determine the smallest lethal set on a variety of graph classes. 
 
 Let us define our problem in concrete terms. Let $G$ be a graph and $A_0 \subseteq V(G)$ be a set of initially infected vertices. Iteratively, we infect those vertices of $G$ with at least $r$ infected neighbors. For all $t > 0$, let $A_t$ be the set of infected vertices at time step $t$. We then have
-$$A_t = A_{t-1} \cup \{v \in V(G) : |N_G(v) \cap A_{t-1} \geq r\},$$
+$$A_t = A_{t-1} \cup \{v \in V(G) : |N_G(v) \cap A_{t-1}| \geq r\},$$
 where $N_G(v)$ is the set of vertices adjacent to $v$ in $G$. We define the \emph{closure} of $A_0$ under $r$-neighbor bootstrap percolation to be $[A_0] = \bigcup_{t=0}^{\infty} A_t$. We say that $A_0$ \emph{percolates} or is \emph{lethal} if $[A_0] = V(G)$. We define the smallest percolating set on a graph $G$ under $r$-neighbor bootstrap percolation by the quantity $m(r,G)$. We note that under these rules, it is not possible for vertices to become uninfected.
 
 In the context of question \ref{que:simple_puzzle}, $G = P_{10} \Osq P_{10}$, and our diagonal construction shows us that $m(2,G) \leq 10$. In general, we have observed that for $G = P_n \Osq P_n$, $m(2, G) \leq n$. Now, let us prove that the bound is, in fact, tight. 
 
+\begin{prop}
+\label{prop:tight_perimeter}
+For all $n \geq 1$, 
+$$m([n]^2, 2) = n.$$
+\end{prop}
 
+\begin{proof}
+The upper bound follows from our diagonal construction in figure \ref{fig:two_infections} (\subref{fig:two_infections_b}). The lower bound is given by the famous ``perimeter argument". Consider the $n\times n$ grid $G$, given by $G = P_n \Osq P_n$. Let $A_0 \subseteq V(G)$ be a set of initially infected cells. We claim that the total perimeter of all infected regions in $G$ is monotonically decreasing as a function of the time-step $t$. Consider an arbitrary healthy cell $c$. In order for $c$ to become infected, at least two of its edges must abut infected cells. However, this implies that (upon infection of $c$) these edges are absorbed within the newly expanded infected region, thereby reducing the perimeter of infection by two. As $c$ contains at most two un-absorbed edges, the perimeter of infection cannot increase. 
+
+Since a lethal set will infect the entire grid, and therefore have a final perimeter of infection of $4n$, it follows that the perimeter of infection of $A_0$ must be at least $4n$, and so $m([n]^2, 2) \geq n.$
+\end{proof}
+
+This proof appears in \cite{przykucki:2019}, although it has been an established result in bootstrap percolation ``folklore" for considerably longer. We should like to make a few additional observations. 
+
+First, note that we have used the following three expressions to describe the same graph $G$:
+
+\begin{center}
+\begin{enumerate*}[label=\roman*),itemjoin={\qquad}]
+\item $n \times n$
+\item $P_n \Osq P_n$
+\item $[n]^2.$
+\end{enumerate*}
+\end{center}
+\vspace{0.2in}
+
+\noindent The notation in (i) is useful when discussing the shape of low dimensional, asymmetric grids. We use the notation in (ii) to remind readers that the fundamental structure in bootstrap percolation problems is a graph, and to suggest possible extensions of the problem discussed in this thesis to other similar objects. The notation in (iii) is the standard way to describe the vertex set of a grid graph, and can readily be generalized to any dimension $d$ by writing $[n]^d$. In a slight abuse of notation, we use $[n]^d$ to represent the entire graph $G$, and draw edges between vertices that differ by exactly one in exactly one coordinate. 
+
+Second, the fact that we have used the notation $[n]^2$ in Proposition \ref{prop:tight_perimeter} suggests that we can generalize to higher dimensional grids $[n]^d$. Indeed, simply observe that for a given hypercube cell to become infected, it must donate at least $d$ of its $2d$ hyperplane faces to the infected region, thereby at most maintaining the current $(d-1)$-perimeter of infection. The following theorem summarizes this result, which we refer to informally as the \emph{surface area bound} or \emph{S.A. bound}.  
+
+\begin{thm}
+\label{thm:tight_perimeter}
+For all $n,d \geq 1$, 
+$$m([n]^d, d) = n^{d-1}.$$
+\end{thm}
 
 % proof of perimeter bound and generalization to surface area bound
 % "So we have a goal, and now the question becomes whether or not it is possible to obtain this goal in all cases through constructions."
 
-% "We shall see that generally (and especially for large grids), it is possible to find constructions that percolate at the lower bound. However, some smaller cases seem to unavoidable regions of immunity."
+% "We shall see that generally (and especially for large grids), it is possible to find constructions that percolate at the lower bound. However, some smaller cases seem to contain unavoidable regions of immunity."
 % For this reason, it will be helpful to expand on our observations about immune regions and perimeter infections."
 % discussion about the notion of immune regions
 
@@ -43,7 +99,7 @@ In the context of question \ref{que:simple_puzzle}, $G = P_{10} \Osq P_{10}$, an
 % 4. All cases
 % 5. Thickness 1
 % 6. Constructions
-% 7. Vizualization tool??
+% 7. Visualization tool??
 % 8. The torus?
 
 The problem of bootstrap percolation was first introduced in the 1970s by Chalupa et al. \cite{chalupa:1979} as a simplified model for the behavior of ferromagnetic fields. In their original paper, the authors describe bootstrap percolation as the stabilization of a probabilistically occupied lattice, where each occupied site must be adjacent to at least $m$ occupied neighbors. A re-rendering of the examples given in the original 1979 paper is presented in figures 1 and 2. 

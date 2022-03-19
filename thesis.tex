@@ -46,6 +46,8 @@
 \usepackage{verbatim} % Used to typeset, for example, code snippets or pseudo-code for algorithms.
 \usepackage{dsfont} % Extra fontset for helpful mathematics symbols, e.g. \mathds{1}
 \usepackage{etoolbox} % Used to allow boolean variables for use in the title page
+\usepackage{subcaption} % For subfigures
+\usepackage[inline]{enumitem} % For in-line lists
 
 % The underlying document class ------ loads the following packages: setspace, titlesec, fancyhdr, textcase, tocloft.
 
@@ -167,6 +169,8 @@
 % Start writing here! This is the main body of the document. Some folks like to type everything here, in one document; you could also use an \input (verbatim inclusion of a file into this one) or \include (adds page breaks, etc; you would \include a chapter file, for example, which would allow you to \includeonly some of your chapters when compiling) to fill in your content.
 
 \include{chapters/1/introduction}
+
+\include{chapters/2/recursion}
 
 \include{chapters/3/tight_bound_divisibility}
 

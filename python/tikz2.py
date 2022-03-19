@@ -494,10 +494,10 @@ def dialog():
 
 if __name__ == '__main__':
 
-    neighbors = 3
-    scale = 1
-    filename = 'test'
-    chapter = '3'
+    #neighbors = 3
+    #scale = 1
+    #filename = 'test'
+    #chapter = '3'
 
     #ss, shape, result = read_file(filename)
     #g = Grid(shape)
@@ -505,6 +505,6 @@ if __name__ == '__main__':
     #heatmap(steps, scale, filename)
     #build_graph(steps, scale, filename, chapter)
 
-    #dialog()
+    dialog()
 
-    grid_diagram(19, 19, 6, filename, chapter, x_forbidden_mod=(1,3,5), y_forbidden_mod=(0,2,4))
+    #grid_diagram(19, 19, 6, filename, chapter, x_forbidden_mod=(1,3,5), y_forbidden_mod=(0,2,4))

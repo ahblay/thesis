@@ -1,5 +1,5 @@
 #!/bin/bash
 # A script that compiles my document and opens the new pdf.
 
-pdflatex thesis.tex
+pdflatex -halt-on-error thesis.tex
 open thesis.pdf
