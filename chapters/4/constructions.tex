@@ -16,14 +16,48 @@ Let $G = P_a \Osq P_b$ be a graph and $S \subseteq V(G)$ be a subset of the vert
 \end{lem}
 
 \begin{lem}
-\label{lem:three_walls}
-Let $G$ be a rectangular prism $(a,b,c)$. If a set $S$ is lethal on three mutually orthogonal faces of $G$, then $S$ is lethal on $G$.
+\label{lem:walls}
+Let $G$ be the grid graph $(a,b,c)$ and let $A$ be a set of infected vertices in $G$. Let $H = G[\overline{A}]$ be the subgraph of $G$ induced by uninfected vertices. Let $\{F, F'\} \subseteq V(G)$ be orthogonal faces of $G$. If $H$ does not contain a path between vertices $v \in F, v' \in F'$, then $G$ percolates.
 \end{lem}
+
+\begin{proof}
+We proceed by induction on $|V(H)| = abc - |A|$. If $|V(H)| = 0$, then all vertices of $G$ are infected and we are done. Suppose $|V(H)| > 0$, and consider a connected component $Y$ of $H$. By hypothesis, $Y$ does not contain a path between any two orthogonal faces of $G$. Therefore, without loss of generality, there exists a face $X = \{a\} \times \{1, \dots b\} \times \{1, \dots, c\}$ such that $V(Y) \cap X = \emptyset$. Take the largest $i$ such that $X_i = \{a\} \times \{1, \dots b\} \times \{1, \dots, c\}$ contains a vertex of $Y$. Repeat this process to obtain maximal faces $Y_j$ and $Z_k$ in the $b$ and $c$ directions, respectively. 
+
+Observe that this construction gives a vertex $v = (i,j,k) \in V(Y)$, and planes $X_{i+1}, Y_{j+1}, Z_{k+1}$ such that $(X_{i+1} \cup Y_{j+1} \cup Z_{k+1}) \cap  V(Y) = \emptyset$. In particular, note that $(i+1,j,k), (i,j+1,k),(i,j,k+1) \in N(v)$. Since these three vertices belong to $A$ and $v \notin A$, $v$ becomes infected. Furthermore, since $|V(H) \setminus \{v\}| < |V(H)|$, the resulting graph percolates by induction. This completes the proof.
+\end{proof}
 
 \begin{cor}
 \label{cor:three_walls}
-Let $G$ be a grid assembled from sub-grids $G_1, \dots, G_k$. Let $H_1, \dots, H_k$ be sets satisfying the conditions of lemma \ref{lem:three_walls} for sub-grids $G_1, \dots, G_k$, respectively. Then $H = H_1 \cup \dots \cup H_k$ is a lethal set in $G$.
+Let $G$ be the grid graph $(a,b,c)$. If a set $A$ is lethal on three mutually orthogonal faces of $G$, then $A$ is lethal on $G$.
 \end{cor}
+
+\begin{proof}
+Let $X, Y, Z$ be three mutually orthogonal faces of $G$. By hypothesis, $X \cup Y \cup Z \subseteq A_t$ for some time $t$. Therefore, the graph $H = G[\overline{A_t}]$ cannot contain a path between vertices on orthogonal faces of $G$. By lemma \ref{lem:walls}, $G$ percolates.
+\end{proof}
+
+\begin{defn}
+\label{def:manifold}
+Let a \emph{manifold} $M$ of the grid graph $G = (a,b,c)$ be any union of planes $P_i \Osq P_j$ such that $H = V(G) \setminus V(M)$ satisfies the conditions of lemma \ref{lem:walls}.
+\end{defn}
+
+\begin{defn}
+\label{def:proper_unfolding}
+Let a \emph{proper unfolding} of $G = (a,b,c)$ be a planar representation of the manifold of $G$. This can be thought of as a special type of folding net of $G$, such that when assembled the resulting structure satisfies the conditions of lemma \ref{lem:walls}.
+\end{defn}
+
+\begin{cor}
+\label{cor:ortho_walls}
+Let $M$ be the proper unfolding of a manifold of $G = (a,b,c)$, and let $A$ be a lethal set on $M$. Then $A$ is lethal on $G$.
+\end{cor}
+
+\begin{proof}
+The proof follows directly from definitions \ref{def:manifold} and \ref{def:proper_unfolding}.
+\end{proof}
+
+%\begin{cor}
+%\label{cor:three_walls}
+%Let $G$ be a grid assembled from sub-grids $G_1, \dots, G_k$. Let $H_1, \dots, H_k$ be sets satisfying the conditions of lemma \ref{lem:three_walls} for sub-grids $G_1, \dots, G_k$, respectively. Then $H = H_1 \cup \dots \cup H_k$ is a lethal set in $G$.
+%\end{cor}
 
 %\begin{lem}
 %\label{lem:unfold}
@@ -34,7 +68,7 @@ Let $G$ be a grid assembled from sub-grids $G_1, \dots, G_k$. Let $H_1, \dots, H
 %The projection condition guarantees that $G$ has lethal sets on three perpendicular planes. The result follows from lemma \ref{lem:three_walls}.
 %\end{proof}
 
-We refer to the union of mutually orthogonal faces of sub-grids $G_1, \dots, G_k$ as a \emph{manifold} of $G$. Therefore, corollary \ref{cor:three_walls} says that if a set $H$ is lethal on the manifold of $G$, then $H$ is lethal in $G$. Furthermore, we define a \emph{proper unfolding} of $G$ as a planar representation of the manifold of $G$. This can be thought of as a special type of folding net of $G$, such that when assembled the resulting structure satisfies the conditions of corollary \ref{cor:three_walls}. 
+%We refer to the union of mutually orthogonal faces of sub-grids $G_1, \dots, G_k$ as a \emph{manifold} of $G$. Therefore, corollary \ref{cor:three_walls} says that if a set $H$ is lethal on the manifold of $G$, then $H$ is lethal in $G$. Furthermore, we define a \emph{proper unfolding} of $G$ as a planar representation of the manifold of $G$. This can be thought of as a special type of folding net of $G$, such that when assembled the resulting structure satisfies the conditions of corollary \ref{cor:three_walls}. 
 
 %\begin{cor}
 %\label{cor:unfold}
@@ -139,7 +173,7 @@ All $(a,3,2)$ grids with $a \equiv 0 \pmod 6$ are perfect.
 
 \begin{figure}[]
 \centering
-%\includegraphics[width=0.6\textwidth]{figures/4/3x12x2_manifold.pdf}
+\includegraphics[width=0.6\textwidth]{figures/4/3x12x2_manifold.pdf}
 \caption{A proper unfolding of $G= (3,12,2)$. Colored rectangles indicate faces of $G$. Dashed lines indicate that cells appear on different layers. }
 \label{fig:3x12x2_manifold}
 \end{figure} 
@@ -204,7 +238,7 @@ All $(a,b,2)$ grids with $a,b \in \{0,3\} \pmod 6$ and $a \neq b \pmod 6$ are pe
 \end{con}
 
 \begin{proof}
-Consider the $(21,12,2)$ grid $G$ shown in figure \ref{fig:12x21x2}. Let $H$ be a unfolding of $G$ (figure \ref{fig:12x21x2_unfolded}). Observe that $H$ is proper: three mutually orthogonal faces of $G_1$ are shown by blue, green and dashed red regions, and mutually orthogonal faces of $G_2$ are shown by the red, green and dashed blue regions. We show that $H$ admits a lethal set of size $\text{S.A.}(12,21,2) = 106$. Consider such a set, as shown in figure \ref{fig:12x21x2_unfolded_lethal}. (Observe that this is the same set as shown in figure \ref{fig:12x21x2}.) By lemma \ref{lem:forest}, this set percolates with the exception of two $C_4$s in the top and bottom of the grid. However, notice that one of these cells is a duplicate of an already infected cell. (This duplication is a consequence of the proper unfolding of $G$.) Therefore, $H$ admits a lethal set, and by corollary \ref{cor:three_walls}, $G$ is perfect.
+Consider the $(21,12,2)$ grid $G$ shown in figure \ref{fig:12x21x2}. Let $H$ be a unfolding of $G$ (figure \ref{fig:12x21x2_unfolded}). Observe that $H$ is proper: three mutually orthogonal faces of $G_1$ are shown by blue, green and dashed red regions, and mutually orthogonal faces of $G_2$ are shown by the red, green and dashed blue regions. We show that $H$ admits a lethal set of size $\text{S.A.}(12,21,2) = 106$. Consider such a set, as shown in figure \ref{fig:12x21x2_unfolded_lethal}. (Observe that this is the same set as shown in figure \ref{fig:12x21x2}.) By lemma \ref{lem:forest}, this set percolates with the exception of two $C_4$s in the top and bottom of the grid. However, notice that one of these cells is a duplicate of an already infected cell. (This duplication is a consequence of the proper unfolding of $G$.) Therefore, $H$ admits a lethal set, and by corollary \ref{cor:ortho_walls}, $G$ is perfect.
 
 For all larger grids, observe that the snaking corridor in the left side $G$ can be extended by multiples of 6 in both the $x$ and $y$ directions. These resulting grid still percolates under lemma \ref{lem:forest}. A simple calculation verifies that such an alteration produces initial infections at the surface area bound. 
 \end{proof}
@@ -239,7 +273,7 @@ All $(a,b,3)$ grids $G$ with $a \equiv 3 \pmod 6$ and $b \equiv 1 \pmod 2$ are p
 \begin{proof}
 Consider the grid $H=(a+2,b+2,1)$, and observe that such a grid admits an optimal percolating set by construction \ref{con:snake}. Note that
 $$\text{SA}(a,b,3) = \ceil{\text{SA}(a+2,b+2,1)} - 3.$$
-We show that an unfolding of $G$ can be obtained from a simple augmentation of $H$. Let $H'$ be the grid obtained by deleting the four vertices in the bottom, right-most corner of $H$ (see figure \ref{fig:17x25x1_unfolded}). Consider the folding pattern illustrated in figure \ref{fig:17x25x1_manifold}, and observe that the pairs of vertices adjacent to the deleted region are duplicates of each other. (In other words, consider folding up the red and green regions in figure \ref{fig:17x25x1_manifold}, and notice that this operation causes vertices to overlap.) Taking this into account, the unfolding of $G$ percolates by lemma \ref{lem:forest}. Since $H$ admits an optimal percolating set of size $\ceil{\text{SA}(a+2,b+2,1)}$, and precisely 3 of the vertices deleted from $H$ to obtain $H'$ were infected, it follows that the unfolding of $G$ percolates at the lower bound. Finally, by lemma \ref{lem:three_walls}, since the unfolding of $G$ is proper and percolates at the lower bound, $G$ is perfect.
+We show that an unfolding of $G$ can be obtained from a simple augmentation of $H$. Let $H'$ be the grid obtained by deleting the four vertices in the bottom, right-most corner of $H$ (see figure \ref{fig:17x25x1_unfolded}). Consider the folding pattern illustrated in figure \ref{fig:17x25x1_manifold}, and observe that the pairs of vertices adjacent to the deleted region are duplicates of each other. (In other words, consider folding up the red and green regions in figure \ref{fig:17x25x1_manifold}, and notice that this operation causes vertices to overlap.) Taking this into account, the unfolding of $G$ percolates by lemma \ref{lem:forest}. Since $H$ admits an optimal percolating set of size $\ceil{\text{SA}(a+2,b+2,1)}$, and precisely 3 of the vertices deleted from $H$ to obtain $H'$ were infected, it follows that the unfolding of $G$ percolates at the lower bound. Finally, by lemma \ref{cor:ortho_walls}, since the unfolding of $G$ is proper and percolates at the lower bound, $G$ is perfect.
 \end{proof}
 
 \begin{figure}[]

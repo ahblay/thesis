@@ -1,0 +1,19 @@
+\chapter{Torus}
+
+\section{Introduction}
+
+I know I shouldn't be working on this now but I have some ideas. We can use Benevides proof of the lower bound for the torus, which states the following:
+
+\begin{lem}
+Let $T = C_n \Osq C_m$ be the $n \times n$ torus. Let $A$ be a lethal set on $T$. Then $|A| \geq \frac{nm + c}{3}$, where $c$ is the number of components in the graph $T[\overline{A}]$. 
+\end{lem}
+
+There are some nice observations to be made here. First, in much the same way that loss of surface area contributes to fractional increases in the surface area bound for grid graphs, the number of components can be understood to indicate sub-optimality in the torus. As a particular example, the torus $T = C_18 \Osq C_12$ has lower bound of $72.33$. This can be obtained from an optimal (but not perfect) thickness one grid construction for $(17,11,1)$, with an additional vertex in the bottom rightmost corner. 
+
+There's something interesting happening here. In this particular case, $T[\overline{A}]$ has three components. Assuming the best case scenario (where it has one component), we get the lower bound of 72.33. However, if we instead consider three components, the lower bound sits precisely as 73. As the construction of $T$ simple involves adding an additional vertex to an optimal (not perfect) grid construction, it appears as though the inadequacies of the grid construction (namely, cells that are infected by 4 neighbors) somehow translate directly to inadequacies of the torus construction (multiple components in the complement). 
+
+Oh wait, is this just because the surface area argument is fundamentally an argument about the number of components in the complement? I think it is. Every time you lose surface area, you've deleted a tree from the forest (because in order to remove the final vertex in a tree, you need an inefficiency--unless the tree sits on the boundary). Therefore, it makes sense that the best solutions on the torus have exactly one component in the complement.
+
+How does the surface area argument map to an argument about components? Knowing this should allow us to construct a lower bound on the 4D torus.
+
+There are other questions regarding some form of algebraic or numerical equivalence between expressions for the lower bounds of tori and grids. It is clear that 
