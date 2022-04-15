@@ -35,14 +35,23 @@ Let $G$ be the grid graph $(a,b,c)$. If a set $A$ is lethal on three mutually or
 Let $X, Y, Z$ be three mutually orthogonal faces of $G$. By hypothesis, $X \cup Y \cup Z \subseteq A_t$ for some time $t$. Therefore, the graph $H = G[\overline{A_t}]$ cannot contain a path between vertices on orthogonal faces of $G$. By lemma \ref{lem:walls}, $G$ percolates.
 \end{proof}
 
+\begin{cor}
+\label{cor:manifold}
+Let $G$ be the grid graph $(a,b,c)$ and let $A$ be a set of infected vertices of $G$. Let $\{R_1, \dots, R_k\} $ be a partition of $V(G) \setminus A$ into sub-grids $(a_1,b_1,c_1), \dots, (a_k,b_k,c_k)$ such that each $R_i$ is bounded by a lethal infection on three mutually orthogonal faces. Then $A$ is lethal on $G$.
+\end{cor}
+
+\begin{proof}
+By hypothesis and corollary \ref{cor:three_walls}, $A$ is lethal on each $R_i$. Since $A \cup R_1 \cup \dots \cup R_k = V(G)$ and each $R_i$ becomes infected, $A$ must be lethal.
+\end{proof}
+
 \begin{defn}
 \label{def:manifold}
-Let a \emph{manifold} $M$ of the grid graph $G = (a,b,c)$ be any union of planes $P_i \Osq P_j$ such that $H = V(G) \setminus V(M)$ satisfies the conditions of lemma \ref{lem:walls}.
+Let a \emph{manifold} $M$ of the grid graph $G = (a,b,c)$ be any set of vertices $A$ satisfying the conditions of corollary \ref{cor:manifold}.
 \end{defn}
 
 \begin{defn}
 \label{def:proper_unfolding}
-Let a \emph{proper unfolding} of $G = (a,b,c)$ be a planar representation of the manifold of $G$. This can be thought of as a special type of folding net of $G$, such that when assembled the resulting structure satisfies the conditions of lemma \ref{lem:walls}.
+Let a \emph{proper unfolding} of $G = (a,b,c)$ be a planar representation of the manifold of $G$. This can be thought of as a special type of folding net of $G$, such that when assembled the resulting structure satisfies the conditions of corollary \ref{cor:manifold}.
 \end{defn}
 
 \begin{cor}
@@ -160,10 +169,6 @@ To extend this construction in the vertical direction, we introduce a kink in th
 In this section we examine four infinite families of perfect grids. We show that each has a manifold that admits a lethal set of perfect size. We note that such lethal sets are likely to exist for nearly all divisibility cases in thickness two; however, constructions are elusive and those presented here are sufficient to prove the main result of this thesis.
 
 % (0 mod 6, 3, 2)
-\begin{con}
-All $(a,3,2)$ grids with $a \equiv 0 \pmod 6$ are perfect. 
-\end{con}
-
 \begin{figure}[]
 \centering
 \includegraphics[width=0.8\textwidth]{figures/4/3x12x2.pdf}
@@ -185,12 +190,16 @@ All $(a,3,2)$ grids with $a \equiv 0 \pmod 6$ are perfect.
 \label{fig:3x12x2_unfolded_lethal}
 \end{figure} 
 
+\begin{con}
+All $(a,3,2)$ grids with $a \equiv 0 \pmod 6$ are perfect. 
+\end{con}
+
 \begin{proof}
-Let $G$ be an $(a,3,2)$ grid with $a \equiv 0 \pmod 6$, and let $H$ be an unfolding of $G$ (see figure \ref{fig::3x12x2_manifold}). We show that $H$ is proper and that it admits a perfect lethal set. 
+Let $G$ be an $(a,3,2)$ grid with $a \equiv 0 \pmod 6$, and let $H$ be an unfolding of $G$ (see figure \ref{fig:3x12x2_manifold}). We show that $H$ is proper and that it admits a perfect lethal set. 
 
-(HOW TO SHOW THAT AN UNFOLDING IS PROPER???)
+Observe that $V(G) \setminus V(H)$ can be partitioned into two sets $R_1$ and $R_2$, bounded by vertices delineated by red, dashed blue and green lines, and dashed red, blue and green lines, respectively (see figure \ref{fig:3x12x2_manifold}). Therefore, $V(H)$ satisfies the conditions of \ref{cor:manifold}, and is a proper unfolding of $G$. Furthermore, consider the initial infection $A$ of $H$ illustrated in figure \ref{fig:3x12x2_unfolded_lethal}. Observe that $A$ infects all vertices of $H$ by \ref{lem:forest}, with the exception of two regions on the far left and far right. However, note that upon refolding, the two cells marked with an ``X" in $H$ represent the same cell in $G$. This is sufficient to infect the remaining regions of $H$, and by corollary \ref{cor:ortho_walls}, $A$ is lethal on $G$. Finally, a simple calculation reveals that $|A|$ matches the surface area bound, and therefore is perfect.
 
-
+We can extend this construction in the $x$ direction by inserting the repeated structure of six columns; this augmentation percolates by lemma \ref{lem:forest} and agrees with the surface area bound for all larger grids. This completes the proof.
 \end{proof}
 
 % (3 mod 6, 3, 2)
