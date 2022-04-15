@@ -186,14 +186,20 @@ All $(a,3,2)$ grids with $a \equiv 0 \pmod 6$ are perfect.
 \end{figure} 
 
 \begin{proof}
+Let $G$ be an $(a,3,2)$ grid with $a \equiv 0 \pmod 6$, and let $H$ be an unfolding of $G$ (see figure \ref{fig::3x12x2_manifold}). We show that $H$ is proper and that it admits a perfect lethal set. 
+
+(HOW TO SHOW THAT AN UNFOLDING IS PROPER???)
+
+
 \end{proof}
 
 % (3 mod 6, 3, 2)
 \begin{con}
-All $(a,3,2)$ grids with $a \equiv 0 \pmod 6$ are perfect. 
+All $(a,3,2)$ grids with $a \equiv 3 \pmod 6$ are perfect. 
 \end{con}
 
 \begin{proof}
+(This construction is the same as the previous one, except the the final four columns are augmented slightly to accommodate the $0 \pmod 3$ requirement. Instead of deriving a proper unfolding, it is probably easier to simply show that this small change is sufficient to guarantee lethality, and agrees with the S.A. bound.)
 \end{proof}
 
 % (2 mod 6, 5 mod 6, 2)
@@ -290,13 +296,45 @@ We show that an unfolding of $G$ can be obtained from a simple augmentation of $
 \label{fig:17x25x1_manifold}
 \end{figure}
 
-% (5, 3, 3)
+\section{Individual constructions}
 
-% (5, 2, 2) 
+In this section, we diagram lethal set constructions for single grids. The initial infection $A$ is colored red, and all other cells are labeled with the time $t$ that they are first infected. 
+
+% (5, 2, 2)
+\begin{con}
+The grid $(5,2,2)$ is perfect.
+\end{con}
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.2\textwidth]{figures/4/2x5x2_numbered_heatmap.pdf}
+\caption{}
+\label{fig:2x5x2_numbered_heatmap.pdf}
+\end{figure} 
 
 % (5, 5, 5)
+\begin{con}
+The grid $(5,5,5)$ is perfect.
+\end{con}
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.2\textwidth]{figures/4/5x5x5_numbered_heatmap.pdf}
+\caption{}
+\label{fig:5x5x5_numbered_heatmap.pdf}
+\end{figure}
 
 % (8, 5, 5)
+\begin{con}
+The grid $(8,5,5)$ is perfect.
+\end{con}
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.2\textwidth]{figures/4/5x8x5_numbered_heatmap.pdf}
+\caption{}
+\label{fig:5x8x5_numbered_heatmap.pdf}
+\end{figure}
 
 % (a, 3, 3)
 

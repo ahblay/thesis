@@ -16,14 +16,14 @@
             \draw[] (\x,\y) circle (0.2);
         }
     }
-    \foreach \y in {3} {
+    \foreach \y in {0,1} {
         \draw[] (13,\y) circle (0.2);
     }
-    \foreach \y in {0} {
+    \foreach \y in {2,3} {
         \draw[] (0,\y) circle (0.2);
     }
-    \draw[color=red, rounded corners] (-0.5,-0.5) rectangle (1.5,0.5);
-    \draw[color=red, dashed, rounded corners] (11.5,2.5) rectangle (13.5,3.5);
+    \draw[color=red, rounded corners] (-0.5,1.5) rectangle (1.5,3.5);
+    \draw[color=red, dashed, rounded corners] (11.5,-0.5) rectangle (13.5,1.5);
     
     \draw[color=green, rounded corners] (0.5,0.5) rectangle (12.5,2.5);
     \draw[color=blue, rounded corners] (0.5,-0.5) rectangle (12.5,1.5);
