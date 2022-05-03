@@ -1,0 +1,36 @@
+\documentclass{standalone}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{lastpage}%
+\usepackage{tikz, tikz-3dplot}%
+%
+%
+%
+\begin{document}%
+\normalsize%
+
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[tdplot_main_coords, scale=2] 
+
+\draw (0,0,0) -- (1,0,0);
+\node at (1,0,0) {X};
+\draw (0,0,0) -- (0,1,0);
+\node at (0,1,0) {Y};
+\draw (0,0,0) -- (0,0,1);
+\node at (0,0,1) {Z};
+
+\draw [fill=red, fill opacity=0.2, draw=red, very thick] (8,0,0) -- (8,0,2) -- (11,0,2) -- (11,0,0) -- cycle;
+
+\draw [fill=red, fill opacity=0.2, draw=red, very thick] (0,20,0) -- (0,20,2) -- (8,20,2) -- (8,20,0) -- cycle;
+
+\draw [fill=blue, fill opacity=0.2, draw=blue, very thick] (0,0,0) -- (8,0,0) -- (8,20,0) -- (0,20,0) -- cycle;
+
+\draw [fill=green, fill opacity=0.2, draw=green, very thick] (8,0,0) -- (8,0,2) -- (8,20,2) -- (8,20,0) -- cycle;
+
+\draw [fill=blue, fill opacity=0.2, draw=blue, very thick] (8,0,2) -- (11,0,2) -- (11,20,2) -- (8,20,2) -- cycle;
+
+\end{tikzpicture}
+
+\end{document}
