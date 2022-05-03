@@ -168,9 +168,9 @@ To extend this construction in the vertical direction, we introduce a kink in th
 
 In this section we examine four infinite families of perfect grids. We show that each has a manifold that admits a lethal set of perfect size. We note that such lethal sets are likely to exist for nearly all divisibility cases in thickness two; however, constructions are elusive and those presented here are sufficient to prove the main result of this thesis.
 
-Unlike those presented in the previous section, the following proofs all leverage lemma \ref{lem:walls}. As a consequence, their argumentative structure remains broadly the same, even as the constructions themselves appear quite different. For this reason, we shall outline the structure here, before examining the specific proofs. 
+Unlike those presented in the previous section, the following proofs all leverage lemma \ref{lem:walls}. As a consequence, their argumentative structure remains broadly the same, even as the constructions themselves appear quite different. For this reason, we shall outline this structure here, before examining the specific proofs. 
 
-We begin by demonstrating that a grid $G$ admits a manifold with unfolding $H$. To show that $H$ is proper, we identify the regions $R_1, \dots, R_k$ that partition $V(G) \setminus V(H)$. In our diagrams, these regions 
+We begin by demonstrating that a grid $G$ admits a manifold $M$. To show so, we identify the regions $R_1, \dots, R_k$ that partition $V(G) \setminus M$. In our diagrams, these regions are represented by the volumes enclosed by three perpendicular blue, green, and red walls. We then identify a proper unfolding $H$ of $M$ and show that $H$ admits a lethal set $A$, where $|A| = \text{SA}(G)$. Finally, we apply corollary \ref{cor:ortho_walls} to prove that $G$ is perfect. 
 
 % (0 mod 6, 3, 2)
 \begin{figure}[]
@@ -208,9 +208,9 @@ All $(a,3,2)$ grids with $a \equiv 0 \pmod 6$ are perfect.
 \end{con}
 
 \begin{proof}
-Let $G$ be an $(a,3,2)$ grid with $a \equiv 0 \pmod 6$, and let $H$ be an unfolding of $G$ (see figure \ref{fig:3x12x2_manifold}). We show that $H$ is proper and that it admits a perfect lethal set. 
+Let $G$ be an $(a,3,2)$ grid with $a \equiv 0 \pmod 6$, and let $M$ be a manifold of $G$ and $H$ be its proper unfolding (see figure \ref{fig:3x12x2_manifold}). Observe that $M$ is indeed a manifold: it partitions $V(G) \setminus M$ into two sets $R_1$ and $R_2$, both bounded by mutually orthogonal red, green, and blue faces (see figure \ref{fig:3x12x2_manifold}). Furthermore, note that $H$ is obtained from $M$ by cutting along seams between red and green faces, and flattening the figure. It follows that $H$ is a proper unfolding of $G$. We show that $H$ admits a perfect lethal set. 
 
-Observe that $V(G) \setminus V(H)$ can be partitioned into two sets $R_1$ and $R_2$, bounded by vertices delineated by red, dashed blue and green lines, and dashed red, blue and green lines, respectively (see figure \ref{fig:3x12x2_manifold}). Therefore, $V(H)$ satisfies the conditions of \ref{cor:manifold}, and is a proper unfolding of $G$. Furthermore, consider the initial infection $A$ of $H$ illustrated in figure \ref{fig:3x12x2_unfolded_lethal}. Observe that $A$ infects all vertices of $H$ by \ref{lem:forest}, with the exception of two regions on the far left and far right. However, note that upon refolding, the two cells marked with an ``X" in $H$ represent the same cell in $G$. This is sufficient to infect the remaining regions of $H$, and by corollary \ref{cor:ortho_walls}, $A$ is lethal on $G$. Finally, a simple calculation reveals that $|A|$ matches the surface area bound, and therefore is perfect.
+Consider the initial infection $A$ of $H$ illustrated in figure \ref{fig:3x12x2_unfolded_lethal}. Observe that $A$ infects all vertices of $H$ by lemma \ref{lem:forest}, with the exception of two regions on the far left and far right. However, note that upon refolding, the two cells marked with an ``X" in $H$ represent the same cell in $G$. This is sufficient to infect the remaining regions of $H$, and by corollary \ref{cor:ortho_walls}, $A$ is lethal on $G$. Finally, a simple calculation reveals that $|A|$ matches the surface area bound, and therefore is perfect.
 
 We can extend this construction in the $x$ direction by inserting the repeated structure of six columns; this augmentation percolates by lemma \ref{lem:forest} and agrees with the surface area bound for all larger grids. This completes the proof.
 \end{proof}
