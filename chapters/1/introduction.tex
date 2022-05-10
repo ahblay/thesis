@@ -73,13 +73,77 @@ First, note that we have used the following three expressions to describe the sa
 
 \noindent The notation in (i) is useful when discussing the shape of low dimensional, asymmetric grids. We use the notation in (ii) to remind readers that the fundamental structure in bootstrap percolation problems is a graph, and to suggest possible extensions of the problem discussed in this thesis to other similar objects. The notation in (iii) is the standard way to describe the vertex set of a grid graph, and can readily be generalized to any dimension $d$ by writing $[n]^d$. In a slight abuse of notation, we use $[n]^d$ to represent the entire graph $G$, and draw edges between vertices that differ by exactly one in exactly one coordinate. 
 
-Second, the fact that we have used the notation $[n]^2$ in Proposition \ref{prop:tight_perimeter} suggests that we can generalize to higher dimensional grids $[n]^d$. Indeed, simply observe that for a given hypercube cell to become infected, it must donate at least $d$ of its $2d$ hyperplane faces to the infected region, thereby at most maintaining the current $(d-1)$-perimeter of infection. The following theorem summarizes this result, which we refer to informally as the \emph{surface area bound} or \emph{S.A. bound}.  
+Second, the fact that we have used the notation $[n]^2$ in Proposition \ref{prop:tight_perimeter} suggests that we can generalize to higher dimensional grids $[n]^d$. Indeed, simply observe that for a given hypercube cell to become infected, it must donate at least $d$ of its $2d$ hyperplane faces to the infected region, thereby at most maintaining the current $(d-1)$-perimeter of infection. The following theorem summarizes this result.  
 
 \begin{thm}
-\label{thm:tight_perimeter}
+\label{thm:square_sa_bound}
 For all $n,d \geq 1$, 
-$$m([n]^d, d) = n^{d-1}.$$
+$$m([n]^d, d) \geq n^{d-1}.$$
 \end{thm}
+
+More generally, denote by $(a_1, \dots, a_n)$ the grid graph with vertex set $V = \{(i_1,\dots,i_n) \mid i_1 \in [a_1], \dots, i_n \in [a_n]\}$, and edge set $E = \{uv \mid u,v \text{ differ by one in exactly one coordinate}\}$. The following theorem provides a general lower bound on the size of lethal sets for all such graphs. 
+
+\begin{thm}
+\label{thm:general_sa_bound}
+Let $G = (a_1, \dots, a_d)$, for $a_1, \dots, a_d, d \geq 1$. Then:
+$$m(G, d) \geq \text{ sum of products of all subsets of size d-1, divided by d}.$$
+\end{thm}
+
+\begin{proof}
+The proof follows the same high-dimensional surface area argument outlined above. 
+\end{proof}
+
+We highlight the three-dimensional instance of Theorem \ref{thm:general_sa_bound} in Corollary \ref{cor:sa_bound}, as it will prove particularly useful in the following chapters. We refer to this bound as the \emph{surface area} or \emph{S.A. bound}.
+
+\begin{cor}
+\label{cor:sa_bound}
+Let $G = (a, b, c)$, for $a, b, c \geq 1$. Then:
+$$m(G, 3) \geq \ceil*{\frac{ab + bc + ca}{3}}.$$
+\end{cor}
+
+\begin{proof}
+Follows directly from Theorem \ref{thm:general_sa_bound}.
+\end{proof}
+
+While it has been shown that tight constructions exist for grids of the form $[n]^d$, where $r=d$, the problem of determining the existence of similar constructions for rectangular grids remains unsolved. In this thesis, we focus our attention on the particular case of $d=3$ and show that $m(a,b,c, 3) = \ceil*{\frac{ab + bc + ca}{3}}$ for all $a,b,c \geq 11$. 
+
+\section{Conceptual Tools for Understanding Bootstrap Percolation}
+
+As outlined above, it appears that lethal sets in grid graphs appear to adhere to certain fixed rules. We examine these rules here, and explain why they are necessary and helpful for understanding the problem of bootstrap percolation.
+
+\subsection{A different characterization}
+
+We shall find it useful to think about the problem of bootstrap percolation in terms of the graph induced by the set of uninfected vertices $V \setminus A_i$ at some time-step $t_i$. 
+
+\subsection{Attributes of $G[V \setminus A]$}
+
+No cycles, no paths between opposite faces. Reference to Benevides.
+
+\subsection{Surface area, optimality, trees, and components}
+
+The surface area bound is not always integral. In cases where it is not, this sub-optimality can be traced to a particular time-step where an uninfected cell is infected by more than $r$ neighbors. The proof of the lower bound on the torus considers the number of components in $T[V \setminus A]$, as each such component necessarily collapses in on a vertex where this occurs. In the grid, this circumstance can be avoided by permitting components to abut the perimeter. What is the relationship here?
+
+\subsection{The bipartition (and when to violate it)}
+
+Discuss the heuristic of placing infections on one side of the bipartition and when this technique fails. 
+
+\section{Structure of this Thesis}
+
+In the following chapter, we lay out in formal terms those lemmas necessary to understand and prove Theorem \ref{thm:main_result}. In particular, we discuss the recursive technique that permits the construction of lethal sets on grids of arbitrary large size, as well as a number of characteristics of lethal sets. We distinguish between two types of grids--those with integral \emph{SA bound}, and those without--and show that it is possible obtain tight constructions on non-integral grids from integral grids. 
+
+In Chapter 3, we prove that there exist lethal sets at the S.A. bound for all integral grids of size at least 5. This chapter makes significant use of a number of existing constructions, described in Chapter 6, as well as the recursive strategy introduced in Chapter 2. 
+
+Chapter 4 extends the results of Chapter 3 to all grids of size at least 11 with non-integral surface area bound. 
+
+Chapter 5 considers the specific case of grids of the form $(a,b,1)$, and answers a question posed in Benevides et al. \cite{benevides:2022} regarding the existence of tight lethal sets on non-square grids. 
+
+Chapter 6 is dedicated to presenting and proving the lethality of sets on a number of grids, and families of grids. 
+
+Chapter 7 discusses some of the programmatic techniques used to evaluate, examine and explore the behavior of percolating sets. 
+
+Chapter 8 examines the problem of bootstrap percolation on the 3- and 4-torus, and presents a class of constructions within constant size of the lower bound. 
+
+Chapter 9 presents open questions related to the results presented in this thesis, and provides some suggestions for future research.
 
 % proof of perimeter bound and generalization to surface area bound
 % "So we have a goal, and now the question becomes whether or not it is possible to obtain this goal in all cases through constructions."
@@ -102,6 +166,8 @@ $$m([n]^d, d) = n^{d-1}.$$
 % 7. Visualization tool??
 % 8. The torus?
 
+% vvv ONE GIANT COMMENT vvv
+\begin{comment}
 The problem of bootstrap percolation was first introduced in the 1970s by Chalupa et al. \cite{chalupa:1979} as a simplified model for the behavior of ferromagnetic fields. In their original paper, the authors describe bootstrap percolation as the stabilization of a probabilistically occupied lattice, where each occupied site must be adjacent to at least $m$ occupied neighbors. A re-rendering of the examples given in the original 1979 paper is presented in figures 1 and 2. 
 
 In this original problem, the authors are interested in the structural patterns of these stable arrangements. Put differently, given a set of randomly distributed occupants on a $d$-dimensional lattice, what configuration can we expect these occupied sites to fall into, subject to the constraint that each occupied site is adjacent to at least $m$ other occupants? In this construction, a probabilistically populated lattice is iteratively de-populated until it reaches a stable state. 
@@ -217,4 +283,6 @@ $$m(a_1, \dots, a_d, 3) = \ceil*{\frac{d(d+3)}{6}}.$$
 \end{proof}
 
 However, the issue of determining $m(a_1, \dots, a_d, r)$ is largely unresolved. Furthermore, good lower bounds for $r \neq d$ are conspicuously absent. 
+\end{comment}
+% ^^^ ONE GIANT COMMENT ^^^
 
