@@ -42,6 +42,8 @@ Consider the cumulative perimeter of infected regions. For a given infectious se
 
 If we suppose that $A_0$ is a lethal set, then at some point in time, the entire grid will become infected. This infection will have a perimeter $4n$. Since this perimeter did not increase, $A_0$ must have originally had a perimeter of at least $4n$. Since each cell in $A_0$ can contribute at most $4$ to this perimeter, it must be the case that $|A_0| \geq n$. Our diagonal construction shows that $|A_0| \leq n$, and so we are able to conclude that $n$ is best possible.
 
+This proof is an instance of the famous \emph{perimeter argument}, which has belonged to bootstrap percolation folklore since at least the work of Pete \cite{pete:1997}. In the following section, we present generalizations of this argument to higher dimensional rectangular grids.
+
 \section{Bootstrap Percolation}
 
 %Before presenting a proof, let us take a moment to formally define the process described above and develop some useful notation. 
@@ -99,8 +101,26 @@ $$m(a,b,2) = \ceil*{\frac{a+b-2}{2}}+1.$$
 \end{thm}
 
 \begin{proof}
-We apply the perimeter argument to obtain a lower bound, and then show that this lower bound is tight by generalizing the diagonal construction presented above.
+We obtain a lower bound on $m(a,b,2)$ by applying the perimeter argument. Note that the perimeter of the $a \times b$ grid is $2(a+b)$, and so the $m(a,b,2) \geq \ceil*{\frac{a+b}{2}} = \ceil*{\frac{a+b-2}{2}}+1$. (We take the ceiling because the size of infected sets must be integral.) For the upper bound, we generalize the construction illustrated in Figure \ref{fig:two_infections_a} to rectangular grids. Consider two cases: $a+b \equiv 0 \pmod 2$ and $a+b \equiv 1 \pmod 2$ (see Figure \ref{fig:sa_construction_2d}). Note that in both cases, the initial infectious set $A_0$ is lethal. Furthermore, note that in Figure \ref{fig:sa_construction_2d_a}, $|A_0| = \frac{a+b}{2}$, and in Figure \ref{fig:sa_construction_2d_b}, $|A_0| = \ceil*{\frac{a+b}{2}}$. In both cases, this agrees with the perimeter bound.
 \end{proof}
+
+It is worth noting that the integrality condition on the perimeter bound corresponds exactly to the non-existence of cells that are infected by more than two neighbors. In Figure \ref{fig:sa_construction_2d_a}, each cell is infected by exactly two neighboring cells; this condition ensures that $P(A_i) = P([A_0])$ for all $i$. Conversely, in Figure \ref{fig:sa_construction_2d_b}, the cell demarcated with an ``X" experiences infection on three sides. The existence of such a cell is guaranteed by the fact the perimeter bound in this case is non-integral. 
+
+\begin{figure}[]
+\centering
+\begin{subfigure}{0.4\textwidth}
+	\includegraphics[width=\textwidth]{figures/1/5x7x1.pdf}
+	\caption{$a+b \equiv 0 \pmod 2$}
+	\label{fig:sa_construction_2d_a}
+\end{subfigure} \hfill%
+\begin{subfigure}{0.45\textwidth}
+	\includegraphics[width=\textwidth]{figures/1/5x8x1.pdf}
+	\caption{$a+b \equiv 1 \pmod 2$}
+	\label{fig:sa_construction_2d_b}
+\end{subfigure}
+\caption{Tight constructions for lethal sets on the $[a] \times [b]$ grid.}
+\label{fig:sa_construction_2d}
+\end{figure} 
 
 \subsubsection{Grid: $P_a \square P_b \square \dots \square P_d$}
 
@@ -111,9 +131,6 @@ For $d \geq 1$ and $a_1, \dots, a_d \geq 1$,
 $$m(a_1, \dots, a_d, 2) = \ceil*{\frac{\sum_{i=1}^d (a_i-1)}{2}}+1.$$
 \end{thm}
 
-\begin{proof}
-\end{proof}
-
 % r=3
 \subsection{$m(G,3)$} 
 
@@ -122,6 +139,11 @@ We discuss a further generalization of the perimeter argument to higher dimensio
 \subsubsection{Grid: $P_a \square P_b$}
 
 Either present the surface area argument, or the adaptation of the Benevides argument for the torus. Note that the question of whether this is tight is posed by Benevides and answered in Chapter 5.
+
+\begin{thm}
+For $a, b \geq 1$,
+$$m(a,b,2) = \ceil*{\frac{a+b-2}{2}}+1.$$
+\end{thm}
 
 \subsubsection{Grid: $P_a \square P_b \square P_c$}
 
