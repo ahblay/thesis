@@ -1,6 +1,6 @@
 \chapter{Introduction}
 
-We shall begin this thesis with a puzzle. Consider the lattice depicted in the leftmost diagram of Figure \ref{fig:simple_puzzle}. We refer to the elements of this lattice as \emph{cells}. Suppose we have the capacity to infect some cells (colored red) with a disease, and that this disease will, over a period of time, propagate through uninfected cells of the lattice. Let uninfected cells become infected if they are exposed to at least two infected neighboring cells in the vertical and/or horizontal directions. We say that the initial infection is \emph{lethal} if the entire lattice ultimately becomes infected. Here is the puzzle:
+Here is a puzzle. Consider the lattice depicted in the leftmost diagram of Figure \ref{fig:simple_puzzle}. We refer to the elements of this lattice as \emph{cells}. Suppose we have the capacity to infect some cells (colored red) with a disease, and that this disease will, over a period of time, propagate through uninfected cells of the lattice. Let uninfected cells become infected if they are exposed to at least two infected neighboring cells in the vertical and/or horizontal directions. We say that the initial infection is \emph{lethal} if the entire lattice ultimately becomes infected. Here is the puzzle:
 
 \begin{question}
 \label{que:simple_puzzle}
@@ -38,20 +38,23 @@ With this criteria in mind, we are able to make some educated guesses regarding 
 
 It is clear from Figure \ref{fig:two_infections} that we may obtain lethal sets on the $n \times n$ lattice of size $n$ by simply infecting the diagonal. What is less obvious is whether it is possible to improve upon this result. Perhaps the most natural first attempt at this is to remove an infection from one of the cells along the diagonal. However, this seems to form an immune region around the removed cell. After some experimentation, one begins to believe it impossible to simultaneously satisfy the heuristic that a starting infection must span the lattice, while also using fewer than $n$ initial infections. The question therefore becomes: how do we prove it?
 
-Consider the cumulative perimeter of infected regions. For a given initial infection $A_0$, each cell in $A_0$ contributes at most $4$ to this perimeter, one for each of its sides. (This number may be lower, if two infected cells are adjacent. In such a case, one side of each cell lies within the infected region, and cannot contribute to the infection's perimeter.) Observe that for any uninfected cell to become infected, it must abut at least two infected cells. Upon infection, the edges abutting these cells no longer lie on the infection's perimeter; additionally, the remaining edges of this newly infected cell contribute at most $2$ to the perimeter of infection. All told, after infection, the resulting perimeter cannot increase. 
+Consider the cumulative perimeter of infected regions. For a given infectious set $A$, let $P(A)$ be the total perimeter of the infected regions of $A$. Let $A_0$ be an initial infection, and observe that $P(A_0) \leq 4 |A_0|$. (This bound is only tight if no two infected cells are adjacent. Otherwise, the edge between such cells lies within the infected region, and cannot contribute to the infection's perimeter.) Observe that for any uninfected cell to become infected, it must abut at least two infected cells. Upon infection, the edges adjacent to these cells no longer lie on the infection's perimeter; additionally, the remaining edges of this newly infected cell contribute at most $2$ to this perimeter. All told, after infection, $P(A_1) \leq P(A_0)$. 
 
-If we suppose that $A_0$ is a lethal set, then at some point in time, the entire grid will become infected. This infection will have a perimeter of $4n$. Since this perimeter cannot have increased, $A_0$ must have originally had a perimeter of at least $4n$. Since each cell in $A_0$ can contribute at most $4$ to this perimeter, it must be the case that $|A_0| \geq n$. Our diagonal construction shows that $|A_0| \leq n$, and so we are able to conclude that $n$ is best possible.
+If we suppose that $A_0$ is a lethal set, then at some point in time, the entire grid will become infected. This infection will have a perimeter $4n$. Since this perimeter did not increase, $A_0$ must have originally had a perimeter of at least $4n$. Since each cell in $A_0$ can contribute at most $4$ to this perimeter, it must be the case that $|A_0| \geq n$. Our diagonal construction shows that $|A_0| \leq n$, and so we are able to conclude that $n$ is best possible.
 
 \section{Bootstrap Percolation}
 
 %Before presenting a proof, let us take a moment to formally define the process described above and develop some useful notation. 
-The study of such cellular infection spread in grids (and more generally in graphs) is known in the literature as \emph{bootstrap percolation}, and was introduced in the 1970s by Chalupa et al. \cite{chalupa:1979} as a simplified model for the behavior of ferromagnetic fields. In their original 1979 paper, the authors research the stable structure of probabilistically selected initial infections. While this differs from the problem posed in question \ref{que:simple_puzzle}, the rules for the spread of infection and its broad behavior remain the same. It is worth noting that a large portion of contemporary research on bootstrap problems is focused on questions of probabilistic nature; while these problems are certainly of merit and interesting, they do not fall within the scope of this thesis. Rather, we shall focus on those problems where we have specific control over the structure of the initial infections; in particular, we aim to determine the smallest lethal set on a variety of graph classes. 
+The study of such cellular infection spread in grids (and more generally in graphs) is known in the literature as \emph{bootstrap percolation}, and was introduced in the 1970s by Chalupa et al. \cite{chalupa:1979} as a simplified model for the behavior of ferromagnetic fields. In their original 1979 paper, the authors research the stable structure of probabilistically selected initial infections. While this differs from the problem posed in Question \ref{que:simple_puzzle}, the rules for the spread of infection and its broad behavior remain the same. It is worth noting that a large portion of contemporary research on bootstrap problems is focused on questions of probabilistic nature; while these problems are certainly interesting and of merit, they do not fall within the scope of this thesis. Rather, we shall focus on those problems where we have specific control over the structure of the initial infections; in particular, we aim to determine the smallest lethal set on the Cartesian product of paths and cycles. 
 
 We define the problem in concrete terms. Let $G$ be a graph and $A_0 \subseteq V(G)$ be a set of initially infected vertices. Iteratively, infect those vertices of $G$ with at least $r$ infected neighbors. For all $t > 0$, let $A_t$ be the set of infected vertices at time step $t$. We then have
 $$A_t = A_{t-1} \cup \{v \in V(G) : |N_G(v) \cap A_{t-1}| \geq r\},$$
 where $N_G(v)$ is the set of vertices adjacent to $v$ in $G$. We define the \emph{closure} of $A_0$ under $r$-neighbor bootstrap percolation to be $[A_0] = \bigcup_{t=0}^{\infty} A_t$. We say that $A_0$ \emph{percolates} or is \emph{lethal} if $[A_0] = V(G)$. We define the smallest percolating set on a graph $G$ under $r$-neighbor bootstrap percolation by the quantity $m(G,r)$. We note that under these rules, it is not possible for vertices to become uninfected.
 
-There are a number of natural generalizations of the problem posed in Question \ref{que:simple_puzzle}. Of primary interest to the author are those obtained by varying the structure of $G$ and the value of $r$. Below, we outline some of the existing results for graphs that are the Cartesian product of paths and cycles, and $r \in \{0, 1, 2, 3\}$. These results are summarized in Table \ref{tab:known_bounds}.
+While it is possible to study bootstrap percolation on any graph $G$, most contemporary research focuses on multidimensional grids \cite{something}. We therefore introduce the following notation. For all $n \in \mathbb{N}$, let $[n] = \{1, 2, \dots, n\}$. Let the grid graph with vertex set $\prod_i^d [a_i]$ be denoted by $\prod_i^d [a_i]$. Note that $\prod_i^d [a_i] = P_{a_1} \square \cdots \square P_{a_d}$. Furthermore, define:
+$$m(a_1, \dots, a_d, r) = m(\prod_i^d [a_i], r).$$
+
+There are a number of natural generalizations of the problem posed in Question \ref{que:simple_puzzle}. In this thesis, we discuss those obtained by varying the structure of $G$ and the value of $r$. Below, we outline some of the existing results for graphs that are the Cartesian product of paths and cycles, and $r \in \{0, 1, 2, 3\}$. These results are summarized in Table \ref{tab:known_bounds}.
 
 \begin{table}[]
 \centering
@@ -63,10 +66,10 @@ There are a number of natural generalizations of the problem posed in Question \
 % r=0 and r=1
 \subsection{$m(G,0)$ and $m(G,1)$} 
 
-In the case where $r \in \{0,1\}$, the structure of $G$ is less important. We have the following results:
+In the case where $r \in \{0,1\}$, the specific structure of $G$ is unimportant. We have the following results:
 
 \begin{thm}
-For all undirected, simple $G$, $m(G,0) = 0$.
+For all undirected, simple graphs $G$, $m(G,0) = 0$.
 \end{thm}
 
 \begin{proof}
@@ -88,11 +91,11 @@ We consider three classes of generalizations: the Cartesian product of paths, th
 
 \subsubsection{Grid: $P_a \square P_b$}
 
-Recall from the discussion of Question \ref{que:simple_puzzle} that $m(P_n \square P_n,2) = n$, where the tight construction for the lower bound is given by a diagonal infection expanding laterally outwards. We generalize this result to all rectangular grids.
+Recall from the discussion of Question \ref{que:simple_puzzle} that $m(n, n,2) = n$, where the tight construction for the lower bound is given by a diagonal infection expanding laterally outwards. We generalize this result to all rectangular grids.
 
 \begin{thm}
 For $a, b \geq 1$,
-$$m(P_a \square P_b,2) = \ceil*{\frac{a+b-2}{2}}+1.$$
+$$m(a,b,2) = \ceil*{\frac{a+b-2}{2}}+1.$$
 \end{thm}
 
 \begin{proof}
