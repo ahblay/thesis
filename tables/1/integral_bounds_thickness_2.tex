@@ -1,0 +1,26 @@
+\documentclass[varwidth=\maxdimen]{standalone}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{mathtools}
+\usepackage{array}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+
+\begin{document}
+\begin{center}
+\begin{tabular}{ m{1cm} | m{1cm} | m{1cm} | m{1cm} |} 
+  mod 3 & $a_1 \equiv 0$ & $a_1 \equiv 1$ & $a_1 \equiv 2$ \\
+  \hline
+  $a_2 \equiv 0$ & \cellcolor{green!30} & \cellcolor{red!30} & \cellcolor{red!30} \\ 
+  \hline
+  $a_2 \equiv 1$ & \cellcolor{red!30} & \cellcolor{red!30} & \cellcolor{red!30} \\ 
+  \hline
+  $a_2 \equiv 2$ & \cellcolor{red!30} & \cellcolor{red!30} & \cellcolor{green!30} \\ 
+  \hline
+\end{tabular}
+\end{center}
+\end{document}

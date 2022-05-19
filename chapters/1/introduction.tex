@@ -142,7 +142,7 @@ In 2021, Benevides et al. proved that
 $$m(n,n,3) = \ceil*{\frac{n^2+2n+4}{3}}$$
 for even $n$, and 
 $$\ceil*{\frac{n^2+2n}{3}} \leq m(n,n,3) \leq \ceil*{\frac{n^2+2n}{3}} + 1$$
-for odd $n$. Additionally, they showed that these bounds are tight for odd $n$: if $n = 5 \pmod 6$, or $n = 2^k - 1$ for some $k \in \mathbb{N}$, then $m(n,n,3) = \ceil{\frac{n^2+2n}{3}}$; and if $n \in \{9,13\}$, then $m(n,n,3) = \ceil{\frac{n^2+2n}{3}} + 1$. Constructions that achieve this bound are illustrated in Chapter 5. We add to this picture with the following theorem and corollary:
+for odd $n$. Additionally, they showed that these bounds are tight for odd $n$: if $n = 5 \pmod 6$, or $n = 2^k - 1$ for some $k \in \mathbb{N}$, then $m(n,n,3) = \ceil{\frac{n^2+2n}{3}}$; and if $n \in \{9,13\}$, then $m(n,n,3) = \ceil{\frac{n^2+2n}{3}} + 1$. Constructions that achieve this bound are illustrated in Chapter 5. We add to this picture with the following theorem, proven in Chapter X, and corollary:
 
 \begin{thm}
 \label{thm:2d_rectangle}
@@ -167,9 +167,12 @@ $$
 The first three cases follow from Theorem 1 of \cite{benevides:2021} and the observation that if $n \equiv 5 \pmod 6$, then $\ceil{\frac{n^2+2n}{3}} = \frac{n^2+2n+1}{3}$. In the final case, $n$ is congruent to either 1 or 3 modulo 6. This implies that $n^2 + 2n$ is divisible by three. From Theorem 1 of \cite{benevides:2021}, we have that $m(n,n,3) \leq \frac{n^2+2n+3}{3}$. Furthermore, since $n$ is not of the form $2^k-1$, it follows from Theorem \ref{thm:2d_rectangle} that $m(n,n,3) > \frac{n^2+2n}{3}$. Therefore, $m(n,n,3) = \frac{n^2+2n+3}{3}$.
 \end{proof}
 
+This result resolves the question of the minimum lethal set for two dimensional square grids. For the more general case of rectangular grids, the problem remains unsolved. However, we are able to achieve an upper bound of $m(a,b,3) \leq \ceil{\frac{ab+a+b+6}{3}}$ for all $a,b > 1$. Further discussion of these results can be found in Chapter X.
+
 \subsubsection{Grid: $P_a \square P_b \square P_c$}
 
-Observe that the surface area bound presented above applies directly to 3-dimensional grids. State the main theorem of this thesis. 
+%Observe that the surface area bound presented above applies directly to 3-dimensional grids. State the main theorem of this thesis. 
+Surprisingly, it is possible to extend the perimeter argument to higher dimensions \cite{przykucki:2019}. This provides a lower bound on $m(a_1,a_2,a_3,3)$ of $\ceil{\frac{a_1a_2+a_2a_3+a_1a_3}{3}}$. We refer to this quantity as the \emph{surface area bound}. In Chapters 2 and 3, we use a recursive strategy to prove that the surface area bound is met for all sufficiently large grids. 
 
 \begin{thm}
 \label{thm:main_result}
@@ -183,7 +186,7 @@ Do we have a bound here?
 
 \subsubsection{Torus: $C_a \square C_b$}
 
-A lower bound for the Cartesian product of two cycles is given in Benevides.
+A lower bound for the Cartesian product of two cycles is given in Benevides \cite{benevides:2021}. 
 
 \begin{thm}
 For $a, b \geq 1$,
@@ -206,6 +209,31 @@ In this section, we provide a cursory overview of some other related areas of st
 \section{Conceptual Tools for Understanding Bootstrap Percolation}
 
 As outlined above, it appears that lethal sets in grid graphs appear to adhere to certain fixed rules. We examine these rules here, and explain why they are necessary and helpful for understanding the problem of bootstrap percolation.
+
+\subsection{Integrality of bounds}
+
+Not all grids have integral perimeter, or surface area, bounds. These grids are listed in Table \ref{tab:integral_bounds}. In such cases, we are guaranteed the existence of at least one cell that is infected by more than $r$ neighbors. 
+
+\begin{table}[]
+\centering
+\begin{subfigure}{0.3\textwidth}
+	\includegraphics[width=\textwidth]{tables/1/integral_bounds_thickness_1.pdf}
+	\caption{$a_3 \equiv 1 \pmod 3$}
+	\label{tab:integral_bounds_a}
+\end{subfigure} \hfill%
+\begin{subfigure}{0.3\textwidth}
+	\includegraphics[width=\textwidth]{tables/1/integral_bounds_thickness_2.pdf}
+	\caption{$a_3 \equiv 2 \pmod 3$}
+	\label{tab:integral_bounds_b}
+\end{subfigure} \hfill%
+\begin{subfigure}{0.3\textwidth}
+	\includegraphics[width=\textwidth]{tables/1/integral_bounds_thickness_3.pdf}
+	\caption{$a_3 \equiv 0 \pmod 3$}
+	\label{tab:integral_bounds_c}
+\end{subfigure}
+\caption{Integrality of grids by congruence class. Green indicates integral surface area bound.}
+\label{tab:integral_bounds}
+\end{table} 
 
 \subsection{A different characterization}
 
