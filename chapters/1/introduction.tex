@@ -186,15 +186,30 @@ Do we have a bound here?
 
 \subsubsection{Torus: $C_a \square C_b$}
 
-A lower bound for the Cartesian product of two cycles is given in Benevides \cite{benevides:2021}. 
+A lower bound for the Cartesian product of two cycles is given in Benevides \cite{benevides:2021}. Their proof is included here for completeness.
 
 \begin{thm}
+\label{thm:torus_lb}
 For $a, b \geq 1$,
 $$m(C_a \square C_b,3) \geq \ceil*{\frac{ab +1}{3}}.$$
 \end{thm}
 
 \begin{proof}
+Let $G = C_a \square C_b$, and let $I$ be a lethal set on $G$. Let $H = V(G) \setminus I$, and note that $|H| = ab - |I|$. Let $m_{H}$ be the number of edges in the subgraph of $G$ induced by $H$, and $m_{IH}$ be the number of edges between vertices in $I$ and vertices in $H$. Note that $m_{IH}$ is similar to the notion of perimeter on a grid.
+
+Observe that $G[H]$ must be cycle-free: cycles in $G[H]$ constitute immune regions, and contradict the lethality of $I$. Therefore, $G[H]$ is a forest, and so $m_H = |H| - c$, where $c$ is the number of components in $G[H]$. Additionally, note that $m_{IH} \leq 4|I|$, since $G$ is $4$-regular. Finally, observe that the total degree of $G[H]$ is $2m_H = 4|H| - m_{IH}$.
+
+Chaining together these inequalities, we obtain:
+\begin{align*}
+4|I| \geq m_{IH} &= 4|H| - 2m_H \\
+&= 4|H| - 2(|H| -c) = 2|H| + 2c \\
+&= 2(ab-|I|) + 2c
+\end{align*}
+Combining like terms and simplifying, we have
+$$|I| \geq \frac{ab +c}{3} \geq \frac{ab +1}{3}.$$
 \end{proof}
+
+Observe that the conditions $c \geq 1$ and $m_{IH} \leq 4|I|$ prevent us from obtaining strict equality. Specifically, if $I$ is lethal, $G[H]$ has one component, and no vertices in $I$ are adjacent, then $|I|$ is minimized. 
 
 \subsubsection{Torus: $C_a \square C_b \square C_c$}
 
@@ -208,11 +223,17 @@ In this section, we provide a cursory overview of some other related areas of st
 % some notes on notation and a glossary of frequently used terms
 \section{Conceptual Tools for Understanding Bootstrap Percolation}
 
-As outlined above, it appears that lethal sets in grid graphs appear to adhere to certain fixed rules. We examine these rules here, and explain why they are necessary and helpful for understanding the problem of bootstrap percolation.
+As outlined above, it appears that lethal sets in grid graphs adhere to certain fixed rules. We examine these rules here, and explain why they are necessary and helpful for understanding the problem of bootstrap percolation.
 
 \subsection{Integrality of bounds}
 
-Not all grids have integral perimeter, or surface area, bounds. These grids are listed in Table \ref{tab:integral_bounds}. In such cases, we are guaranteed the existence of at least one cell that is infected by more than $r$ neighbors. 
+Not all grids have integral surface area bounds. We refer to such grids as \emph{non-divisibility cases}. The non-divisibility cases for three-dimensional grids where $r=3$ are illustrated in red in Table \ref{tab:integral_bounds}. 
+
+Percolation in non-divisible grids is inefficient in one of two ways: either each vertex in $A_0$ contributes, on average, less than $2d$ units to the final surface area, or at some time-step $i$, there exists a vertex $v \in V \setminus A_i$ such that $N_{A_i}(v) > r$. In the first case, the inefficiency is a consequence of two adjacent vertices in $A_0$; heuristically, we may view this as poor distribution of infection across the grid. In the second case, the inefficiency results from excessive infection in a particular region; a vertex is over-exposed. 
+
+It is insightful to consider this behavior in the context of Theorem \ref{thm:torus_lb}. Instead of thinking of $m_{IH}$ at the number of edges between $I$ and $H$, we shall consider it to represent the perimeter, or surface area, of the initial infection $I$. 
+%In particular, the existence of adjacent vertices in $A_0$ corresponds precisely to inequality in $m_{IH} \leq 2d|I| - 2(ab+bc+ca)$, where $2(ab+bc+ca)$ is the surface area of the grid. 
+%In these cases, we are guaranteed the existence of at least one cell that is infected by more than $r$ neighbors. This is a direct consequence of the surface area argument; since the final surface area of infection is non-integral and surface area is non-increasing
 
 \begin{table}[]
 \centering
