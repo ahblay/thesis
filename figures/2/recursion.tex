@@ -17,7 +17,8 @@
 			cube/.style={very thick,black},
 			grid/.style={very thin,gray},
 			axis/.style={red,<->,thick},
-			lbl/.style={red,scale=1.8}]
+			lbl/.style={red,scale=1.8},
+			face/.style={fill=red, opacity=0.3}]
 			
 	%draw the axes
 	% X
@@ -27,16 +28,27 @@
 	\node[lbl] at (4.5,1.1,0) {$a_{1,2}$};
 	
 	% Y
-	\draw[axis] (0,0.1,-0.15) -- (0,3,-0.15);
-	\node[lbl] at (0,1.5,-.5) {$a_{2,1}$};
-	\draw[axis] (0,3.1,-0.15) -- (0,6.6, -0.15);
-	\node[lbl] at (0,4.5,-.5) {$a_{2,2}$};
+	\draw[axis] (0,0.1,-0.15) -- (0,4,-0.15);
+	\node[lbl] at (0,2,-.5) {$a_{2,1}$};
+	\draw[axis] (0,4.1,-0.15) -- (0,6.6, -0.15);
+	\node[lbl] at (0,5,-.5) {$a_{2,2}$};
 	
 	% Z
 	\draw[axis] (-0.2,0,0) -- (-0.2,0,3);
 	\node[lbl] at (-1.3,0,1.2) {$a_{3,1}$};
 	\draw[axis] (-0.2,0,3.1) -- (-0.2, 0,4.8);
 	\node[lbl] at (-1.3,0,3.8) {$a_{3,2}$};
+	
+	%draw smaller cube
+	%varying x
+	\draw[face] (0,7,5) -- (0,4,5) -- (0,4,3) -- (0,7,3) -- cycle;
+	\draw[face] (3,7,5) -- (3,4,5) -- (3,4,3) -- (3,7,3) -- cycle;
+	%varying y
+	\draw[face] (0,7,5) -- (3,7,5) -- (3,7,3) -- (0,7,3) -- cycle;
+	\draw[face] (0,4,5) -- (3,4,5) -- (3,4,3) -- (0,4,3) -- cycle;
+	%varying z
+	%\draw[face] (0,7,5) -- (3,7,5) -- (3,4,5) -- (0,4,5) -- cycle;
+	%\draw[face] (0,7,3) -- (3,7,3) -- (3,4,3) -- (0,4,3) -- cycle;
 
 	%draw the top and bottom of the cube
 	\draw[cube] (0,0,0) -- (0,7,0) -- (6,7,0) -- (6,0,0) -- cycle;
