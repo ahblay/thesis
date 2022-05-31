@@ -1,12 +1,12 @@
-\chapter{A Recursive Technique}
+\chapter{Two Recursive Techniques}
 
-In this chapter, we shall present a technique for constructing large \emph{perfect} grids from smaller perfect grids. 
+In this chapter, we shall present two techniques for constructing large \emph{perfect} grids from smaller perfect grids. The first is a recursive technique that builds $d$-dimensional sets from $(d-1)$-dimensional components, while the second builds $d$-dimensional sets from smaller blocks of the same dimension. 
 
 \section{The Three Walls Lemma}
 
 \begin{lem}
 \label{lem:walls}
-Let $S$ be an infected set on $G = \prod_{i=1}^d [a_i]$. Let $\overline{S} = V(G) \setminus S$, and let $H = G[\overline{S}]$ be the subgraph of $G$ induced by $\overline{S}$. For $1 \leq k \leq a_j$, let $F_{j,k} = \prod_{i=1}^{j-1} [a_i] \times \{k\} \times \prod_{i=j+1}^{d}$ be the $k$th face of $G$ in the $j$th dimension. If $H$ does not contain a path between $F_{j,1}$ and $F_{j,a_j}$, for all $1 \leq j \leq d$, then $G$ percolates.
+Let $S$ be an infected set on $G = \prod_{i=1}^d [a_i]$. Let $\overline{S} = V(G) \setminus S$, and let $H = G[\overline{S}]$ be the subgraph of $G$ induced by $\overline{S}$. For $1 \leq k \leq a_j$, let $F_{j,k} = \prod_{i=1}^{j-1} [a_i] \times \{k\} \times \prod_{i=j+1}^{d} [a_i]$ be the $k$th face of $G$ in the $j$th dimension. If $H$ does not contain a path between $F_{j,1}$ and $F_{j,a_j}$, for all $1 \leq j \leq d$, then $G$ percolates.
 \end{lem}
 
 \begin{proof}
@@ -16,19 +16,41 @@ For each $j \in [d]$, let $x_j$ be the maximum value such that $V(Y) \cap F_{j,x
 
 Consider the vertex $\vec{x} = (x_1, \dots, x_d) \in V(Y)$, and observe that 
 $$\{\bigcup_{j \in [d]} F_{j,x_j+1}\} \cap  V(Y) = \emptyset.$$
-In particular, note that $(x_1+1, x_2, \dots, x_d), \dots, (x_1, \dots, x_d+1) \in N(\vec{x})$. Since each of these vertices is in $S$, $\vec{x}$ becomes infected. Furthermore, since $|V(H) \setminus \{\vec{x}\}| < |V(H)|$, the resulting graph percolates by induction. This completes the proof.
+In particular, note that $(x_1+1, x_2, \dots, x_d), \dots, (x_1, \dots, x_d+1) \in N_S(\vec{x})$. Therefore, $\vec{x}$ becomes infected. Furthermore, since $|V(H) \setminus \{\vec{x}\}| < |V(H)|$, the resulting graph percolates by induction. This completes the proof.
 \end{proof}
 
 \begin{cor}
-\label{cor:three_walls}
-Let $G$ be the grid graph $(a,b,c)$. If a set $A$ is lethal on three mutually orthogonal faces of $G$, then $A$ is lethal on $G$.
+\label{cor:walls}
+Let $G$ be the grid graph $\prod_{i=1}^d [a_i]$. For each $j \in [d]$ and some $1 \leq k \leq a_j$, let 
+$$M = \bigcup_{j,k} F_{j,k}$$
+be a subset of the vertices of $G$ formed by the union of mutually orthogonal faces. If a set $S$ is lethal on $M$, then it is lethal on $G$. 
+%Let $G$ be the grid graph $(a,b,c)$. If a set $A$ is lethal on three mutually orthogonal faces of $G$, then $A$ is lethal on $G$.
 \end{cor}
 
 \begin{proof}
-Let $X, Y, Z$ be three mutually orthogonal faces of $G$. By hypothesis, $X \cup Y \cup Z \subseteq A_t$ for some time $t$. Therefore, the graph $H = G[\overline{A_t}]$ cannot contain a path between vertices on orthogonal faces of $G$. By lemma \ref{lem:walls}, $G$ percolates.
+Since $S$ is lethal on $M$, there exists a time $t$ where $M \subseteq A_t$. Therefore, for all $j \in [d]$, the graph $G[\overline{A_t}]$ cannot contain a path between $F_{j,1}$ and $F_{j,a_j}$. By Lemma \ref{lem:walls}, $S$ is lethal on $G$. 
+%Let $X, Y, Z$ be three mutually orthogonal faces of $G$. By hypothesis, $X \cup Y \cup Z \subseteq A_t$ for some time $t$. Therefore, the graph $H = G[\overline{A_t}]$ cannot contain a path between vertices on orthogonal faces of $G$. By lemma \ref{lem:walls}, $G$ percolates.
 \end{proof}
 
-\section{A Helpful Lemma}
+Corollary \ref{cor:walls} provides a general characterization of lethal sets on $d$-dimensional grids in terms of their $(d-1)$-dimensional faces, provided these faces are mutually orthogonal. Here, we return to the notion first introduced in Chapter 1 of the capacity of a lethal set to ``span" a grid. In particular, we see that the set in Figure \ref{} is comprised of lethal sets on the two one-dimensional orthogonal faces $F_{1,1}$ and $F_{2,1}$ of $[10]^2$. In this regard, the problem of obtaining perfect $r$-neighbor lethal sets on $d$-dimensional grids is reduced to the problem of determining a ``good" union $M$ of mutually orthogonal $(d-1)$-dimensional faces. Once found, each face in $M$ can itself be infected by this same recursive process. In Chapter \{CONSTRUCTIONS\}, we apply this idea to obtain an infinite family of three-dimensional grids from three orthogonal two-dimensional faces. However, we caution that the challenge of determining a ``good" union $M$ is non-trivial in general.
+
+The following corollary (taken as a particular instance of Corollary \ref{cor:walls}) will be useful in our discussion of lethal sets on three-dimensional grids $(a_1,a_2,a_3)$. 
+
+\begin{cor}
+\label{cor:three_walls}
+Let $G$ be the grid graph $(a_1,a_2,a_3)$. If a set $S$ is lethal on $F_{1,1} \cup F_{2,1} \cup F_{3,1}$, then $S$ is lethal on $G$.
+\end{cor}
+
+\begin{proof}
+By hypothesis, $S$ is lethal on $F_{1,1} \cup F_{2,1} \cup F_{3,1}$. Therefore, there exists some time $t$ for which $F_{1,1} \cup F_{2,1} \cup F_{3,1} \subseteq A_t$, and so $G[\overline{A_t}]$ satisfies the conditions of Lemma \ref{lem:walls}. We conclude that $S$ is lethal on $G$.
+\end{proof}
+
+\section{Manifolds}
+
+As discussed above, the capacity to generate ``good" sets $M$ is critical for building perfect lethal sets recursively. 
+%The set $M$, obtained from the union of mutually orthogonal faces of $G$, 
+
+\section{Block Recursion}
 
 Note that there are certain broad structures in a cube that, if present, immediately guarantee it become fully infected. Of greatest importance here is the observation that certain configurations of fully infected sub-cubes (which we shall call blocks) will cause the larger brick to become infected. 
 
@@ -61,7 +83,7 @@ and edges between vertices that differ by one in exactly one coordinate. Figure 
 
 For each $\vec{x} \in S$, let $A_{\vec{x}}$ be the vertices of $G_{\vec{x}}$ corresponding to the vertices of $T_{\vec{x}}$ under isomorphism from $\prod_{i=1}^d [a_{i,x_i}]$ to $G_{\vec{x}}$, and let $A_0 = \cup A_{\vec{x}}$. Observe that $|A_0| = \sum_{\vec{x} \in S} |T_{\vec{x}}|$. We show that $A_0$ is lethal on $\prod_{i=1}^d [b_{i}]$.
 
-By the definition of $T_{\vec{x}}$, for each $\vec{x} \in S$, $A_{\vec{x}}$ is lethal on $G_{\vec{x}}$. Imagine running the $d$-neighbor process until all blocks $G_{\vec{x}}$ are fully infected. We claim that this is sufficient to infect all remaining vertices of $\prod_{i=1}^d [b_{i}]$. Consider the remaining blocks $G_{\vec{x}}$, for $\vec{x} \in [n]^d \setminus S$. Since $S$ is lethal under the modified process, each $G_{\vec{x}}$ is adjacent to fully infected blocks in all $d$ directions. In particular, if we consider expanding out the faces of $G_{\vec{x}}$ towards these infected blocks, the resulting cube has $d$ fully infected faces that share a common corner. It is clear that this structure will infect all the vertices of $G_{\vec{x}}$. Repeating this process on each uninfected region of $\prod_{i=1}^d [b_{i}]$ (as they are exposed under the modified process) ultimately results in all vertices becoming infected. This completes the proof. 
+By the definition of $T_{\vec{x}}$, for each $\vec{x} \in S$, $A_{\vec{x}}$ is lethal on $G_{\vec{x}}$. Imagine running the $d$-neighbor process until all blocks $G_{\vec{x}}$ are fully infected. We claim that this is sufficient to infect all remaining vertices of $\prod_{i=1}^d [b_{i}]$. Consider the remaining blocks $G_{\vec{x}}$, for $\vec{x} \in [n]^d \setminus S$. Since $S$ is lethal under the modified process, each $G_{\vec{x}}$ is adjacent to fully infected blocks in all $d$ directions. In particular, if we consider expanding out the faces of $G_{\vec{x}}$ towards these infected blocks, the resulting cube has $d$ fully infected faces that share a common corner. By Corollary \ref{cor:three_walls}, this structure will infect all the vertices of $G_{\vec{x}}$. Repeating this process on each uninfected region of $\prod_{i=1}^d [b_{i}]$ (as they are exposed under the modified process) ultimately results in all vertices becoming infected. This completes the proof. 
 \end{proof}
 
 % Corollary that shows the recursion produces tight bounds on the size of lethal sets, IF all of the constituent blocks are divisibility cases
