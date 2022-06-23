@@ -1,0 +1,32 @@
+\documentclass{standalone}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{lastpage}%
+\usepackage{tikz, tikz-3dplot}%
+%
+%
+%
+\begin{document}%
+\normalsize%
+
+\tdplotsetmaincoords{70}{210}
+\begin{tikzpicture}[tdplot_main_coords, scale=2] 
+
+\draw[dashed] (0,2,1) -- (2,2,1);
+%\node at (1,0,0) {X};
+\draw [dashed](1,0,1) -- (1,4,1);
+%\node at (0,1,0) {Y};
+\draw[dashed] (1,2,0) -- (1,2,2);
+%\node at (0,0,1) {Z};
+
+\draw [fill=blue, fill opacity=0.2, draw=blue, very thick] (0,0,1) -- (2,0,1) -- (2,4,1) -- (0,4,1) -- cycle;
+
+\draw [fill=red, fill opacity=0.2, draw=red, very thick] (1,0,0) -- (1,0,2) -- (1,4,2) -- (1,4,0) -- cycle;
+
+\draw [fill=green, fill opacity=0.2, draw=green, very thick] (2,2,0) -- (2,2,2) -- (0,2,2) -- (0,2,0) -- cycle;
+
+\end{tikzpicture}
+
+\end{document}

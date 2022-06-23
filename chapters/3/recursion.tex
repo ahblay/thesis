@@ -6,7 +6,7 @@ In this chapter, we shall present two techniques for constructing large \emph{pe
 
 \begin{lem}
 \label{lem:walls}
-Let $S$ be an infected set on $G = \prod_{i=1}^d [a_i]$. Let $\overline{S} = V(G) \setminus S$, and let $H = G[\overline{S}]$ be the subgraph of $G$ induced by $\overline{S}$. For $1 \leq k \leq a_j$, let $F_{j,k} = \prod_{i=1}^{j-1} [a_i] \times \{k\} \times \prod_{i=j+1}^{d} [a_i]$ be the $k$th face of $G$ in the $j$th dimension. If $H$ does not contain a path between $F_{j,1}$ and $F_{j,a_j}$, for all $1 \leq j \leq d$, then $G$ percolates.
+Let $S$ be an infected set on $G = \prod_{i=1}^d [a_i]$. Let $\overline{S} = V(G) \setminus S$, and let $H = G[\overline{S}]$ be the subgraph of $G$ induced by $\overline{S}$. For $1 \leq k \leq a_j$, let $F_{j,k} = \prod_{i=1}^{j-1} [a_i] \times \{k\} \times \prod_{i=j+1}^{d} [a_i]$ be the $k$th face of $G$ in the $j$th dimension. If $H$ does not contain a path between $F_{j,1}$ and $F_{j,a_j}$, for all $1 \leq j \leq d$, then $S$ is lethal on $G$ under $d$-neighbor percolation.
 \end{lem}
 
 \begin{proof}
@@ -32,7 +32,9 @@ Since $S$ is lethal on $M$, there exists a time $t$ where $M \subseteq A_t$. The
 %Let $X, Y, Z$ be three mutually orthogonal faces of $G$. By hypothesis, $X \cup Y \cup Z \subseteq A_t$ for some time $t$. Therefore, the graph $H = G[\overline{A_t}]$ cannot contain a path between vertices on orthogonal faces of $G$. By lemma \ref{lem:walls}, $G$ percolates.
 \end{proof}
 
-Corollary \ref{cor:walls} provides a general characterization of lethal sets on $d$-dimensional grids in terms of their $(d-1)$-dimensional faces, provided these faces are mutually orthogonal. Here, we return to the notion first introduced in Chapter 1 of the capacity of a lethal set to ``span" a grid. In particular, we see that the set in Figure \ref{} is comprised of lethal sets on the two one-dimensional orthogonal faces $F_{1,1}$ and $F_{2,1}$ of $[10]^2$. In this regard, the problem of obtaining perfect $r$-neighbor lethal sets on $d$-dimensional grids is reduced to the problem of determining a ``good" union $M$ of mutually orthogonal $(d-1)$-dimensional faces. Once found, each face in $M$ can itself be infected by this same recursive process. In Chapter \{CONSTRUCTIONS\}, we apply this idea to obtain an infinite family of three-dimensional grids from three orthogonal two-dimensional faces. However, we caution that the challenge of determining a ``good" union $M$ is non-trivial in general.
+Corollary \ref{cor:walls} provides a general characterization of lethal sets on $d$-dimensional grids in terms of their $(d-1)$-dimensional faces, provided these faces are mutually orthogonal. Here, we return to the notion first introduced in Chapter 1 of the capacity of a lethal set to ``span" a grid. In particular, we see that the set in Figure \ref{fig:two_infections_a} is comprised of lethal sets on the two one-dimensional orthogonal faces $F_{1,1}$ and $F_{2,1}$ of $[10]^2$. In this regard, the problem of obtaining perfect $d$-neighbor lethal sets on $d$-dimensional grids is reduced to the problem of determining a ``good" union $M$ of mutually orthogonal $(d-1)$-dimensional faces. 
+%Once found, each face in $M$ can itself be infected by this same recursive process. 
+In Chapter \{CONSTRUCTIONS\}, we apply this idea to obtain an infinite family of three-dimensional grids from three orthogonal two-dimensional faces. However, we caution that the challenge of determining a ``good" union $M$ is non-trivial in general.
 
 The following corollary (taken as a particular instance of Corollary \ref{cor:walls}) will be useful in our discussion of lethal sets on three-dimensional grids $(a_1,a_2,a_3)$. 
 
@@ -47,8 +49,62 @@ By hypothesis, $S$ is lethal on $F_{1,1} \cup F_{2,1} \cup F_{3,1}$. Therefore, 
 
 \section{Manifolds}
 
-As discussed above, the capacity to generate ``good" sets $M$ is critical for building perfect lethal sets recursively. 
+We refer to unions $M$ of perpendicular faces as manifolds. As suggested in the previous section, there are a wide variety of possible manifold structures for a given grid. We highlight two particular structures in Figure \ref{fig:manifold_types}. The following two lemmas show that it is possible to obtain perfect lethal sets on these structures from existing perfect sets on grids of thickness one. 
+
+%As discussed above, the capacity to generate ``good" sets $M$ is critical for building perfect lethal sets recursively. QUESTION: If we apply the above recursive process to faces, do the bounds match up? We shall examine the particular case of orthogonal faces on three-dimensional grids.
+
+% I KNOW THIS ISN'T QUITE RIGHT. 
+% The idea is that the three faces minus their pairwise intersections, plus their complete intersection matches the lower bound on (a,b,c)
+\begin{lem}
+\label{lem:manifold_a}
+Let $G$ be the grid graph $(a_1,a_2,a_3)$ and 
+$$M = F_{1,1} \triangle F_{2,1} \triangle F_{3,1}.$$
+Note that $G[M]$ is isomorphic to the disjoint union of grids $(a_1 -1, a_2 -1, 1), (a_2 -1, a_3 -1, 1), (a_3 -1, a_1 -1, 1)$. Let $S_{1,2}, S_{2,3}, S_{3,1}$ be perfect lethal sets under 3-neighbor percolation on each of these grids, respectively. Let $S$ be the set of vertices $S_{1,2} \cup S_{2,3} \cup S_{3,1}$ under isomorphism from $(a_1 -1, a_2 -1, 1) \cup (a_2 -1, a_3 -1, 1) \cup (a_3 -1, a_1 -1, 1)$ to $G[H]$. Then $S \cup (1,1,1)$ is lethal and perfect on $G$.
+%Note that $F_{j,k}$ is isomorphic to $\prod_{i \in [d], i \neq j} [a_i]$. If a set $S$ is lethal and perfect on each of $[a_1-1] \times [a_2-1], [a_2-1] \times [a_3-1], [a_3-1] \times [a_1-1]$ under 3-neighbor percolation, then $S \cup (0,0,0)$ is lethal on $G$. 
+\end{lem}
+
+\begin{proof}
+This proof is just algebra. Assume that each of the three faces has a lethal set at the surface area bound, add them all up, and observe that the resulting sum is precisely the surface area bound on the grid, minus one point. 
+\end{proof}
+
+WHOOPS! THE FOLLOWING PROOF DOESN'T QUITE WORK. SHOULD ADD 4/3 OF A POINT, NOT 2 POINTS.
+
+\begin{lem}
+\label{lem:manifold_b}
+Let $G$ be the grid graph $(a_1,a_2,a_3)$ and let $M$ be the symmetric difference of vertex sets on the red, green and blue faces illustrated in Figure \ref{fig:manifold_b}. Let $S$ be a perfect lethal set under 3-neighbor percolation on $G[M]$. Then $S \cup \{\text{ opposite corners of the green face }\}$ is perfect and lethal on $G$.
+\end{lem}
+
+\begin{proof}
+A bunch of basic algebra shows that the bound match up. The two points on the green face are sufficient to guarantee the lethality of $S$ on the entire manifold. 
+\end{proof}
+
+QUESTION: Does this extend to $d$-neighbor percolation on $d$-dimensional grids?
+
+QUESTION: The above lemma applies to the circumstance where $M$ is half of the surface area of $G$. What if $M$ is a different set of mutually orthogonal faces? How do we write this is general, where none of the faces lie on the surface of the grid?
+
+QUESTION: What is the relationship between that case (mentioned above) and the block recursion? 
+
+%Consider the symmetric difference of orthogonal faces, and let $S$ be a lethal set on this structure. 
+%We can use the above lemma in conjunction with the block recursion. In particular, each block is lethal on 
+
+\begin{figure}[]
+\centering
+\begin{subfigure}{0.45\textwidth}
+	\includegraphics[width=\textwidth]{figures/3/manifold_a.pdf}
+	\caption{Three perpendicular walls.}
+	\label{fig:manifold_a}
+\end{subfigure} \hfill%
+\begin{subfigure}{0.45\textwidth}
+	\includegraphics[width=\textwidth]{figures/3/manifold_b.pdf}
+	\caption{Five perpendicular walls.}
+	\label{fig:manifold_b}
+\end{subfigure}
+\caption{Two types of manifold used in our constructions.}
+\label{fig:manifold_types}
+\end{figure} 
+
 %The set $M$, obtained from the union of mutually orthogonal faces of $G$, 
+It bears mention that many lethal sets on manifolds are discovered through trial and error. One strategy is to imagine these manifolds as folded pieces of paper, and to identify lethal sets on their unfolded nets. This technique is discussed in more detail in Chapter \{CONSTRUCTIONS\}. 
 
 \section{Block Recursion}
 
@@ -65,7 +121,7 @@ In particular, the lemma considers composite grids $[n]^d$ where each vertex $x 
 
 \begin{figure}[]
 \centering
-\includegraphics[width=0.4\textwidth]{figures/2/recursion.pdf}
+\includegraphics[width=0.4\textwidth]{figures/3/recursion.pdf}
 \caption{A recursively constructed $[b_1] \times [b_2] \times [b_3]$ grid, for $n = 2$, $d = 3$.}
 \label{fig:recursion}
 \end{figure} 
