@@ -65,6 +65,222 @@ There are a number of natural generalizations of the problem posed in Question \
 \label{tab:known_bounds}
 \end{table} 
 
+\subsection{Results on grids and tori}
+
+In this section, we highlight major bootstrap percolation results on grids and tori. Some of the following bounds are not tight and require supplemental constructions, which are often difficult to obtain. We further sub-divide this discussion into results on the grid (of which there are many), and results on the torus (of which there are few).
+
+\subsubsection{Grids}
+
+From the puzzle posed in Question \ref{que:simple_puzzle}, we readily obtain variant problems by altering three parameters: the size and shape of the grid $G$, the grid's dimension $d$, and the threshold number of neighbors $r$. We examine each of these problems in turn.
+
+In the prior discussion of the perimeter argument, we showed that for square grids $[n]^2$, $m([n]^2, 2) \geq n$, and verified this to be tight with a diagonal construction. The following result (attributed to Pete) generalizes this result to all rectangular grids $[a_1] \times [a_2]$. A proof is included for completeness. 
+
+\begin{thm}
+\label{thm:perimeter_rects}
+For $a_1, a_2 \geq 1$,
+$$m(a_1,a_2,2) = \ceil*{\frac{a_1+a_2-2}{2}}+1.$$
+\end{thm}
+
+\begin{proof}
+We obtain a lower bound on $m(a_1,a_2,2)$ by applying the perimeter argument. Note that the perimeter of the $a_1 \times a_2$ grid is $2(a_1+a_2)$, and so the $m(a_1,a_2,2) \geq \ceil*{\frac{a_1+a_2}{2}}$. (We take the ceiling because the size of infected sets must be integral. See Figure \ref{fig:sa_construction_2d}.) For the upper bound, we proceed by induction on $a_1+a_2$. For $a_1+a_2 \leq 4$, the lethal sets in Figure \ref{fig:base_cases} match the lower bounds given by the perimeter argument (1, 2, 2, and 2, respectively). For $a_1+a_2 > 4$, suppose without loss of generality that $a_1 \leq a_2$, and so $a_2 \geq 3$. By hypothesis, $[a_1] \times [a_2-2]$ admits a lethal set $A_0$ at the perimeter bound. We show that $A_0$, plus the addition of any infection in the final column of $[a_1] \times [a_2]$, is lethal and matches the perimeter bound. 
+
+Observe that $A_0$ infects all vertices of $[a_1] \times [a_2]$, apart from the final two columns. The additional vertex in the final column is then sufficient to infect all remaining healthy vertices. Finally, by incrementing $a_2$ by two, the perimeter bound is incremented by exactly one. This completes the proof.
+\end{proof}
+
+\begin{figure}[]
+\centering
+\begin{subfigure}{0.03\textwidth}
+	\includegraphics[width=\textwidth]{figures/1/1x1x1.pdf}
+\end{subfigure} \hfill%
+\begin{subfigure}{0.064\textwidth}
+	\includegraphics[width=\textwidth]{figures/1/1x2x1.pdf}
+\end{subfigure} \hfill%
+\begin{subfigure}{0.1\textwidth}
+	\includegraphics[width=\textwidth]{figures/1/1x3x1.pdf}
+\end{subfigure} \hfill%
+\begin{subfigure}{0.06\textwidth}
+	\includegraphics[width=\textwidth]{figures/1/2x2x1.pdf}
+\end{subfigure}
+\caption{Tight constructions for lethal sets where $a_1+a_2 \leq 4$.}
+\label{fig:base_cases}
+\end{figure} 
+
+Let us take a moment to examine the issue of integrality in the perimeter bound. Non-integrality occurs either when adjacent vertices are infected in the same generation, or when a vertex is infected by more than $r$ neighbors. Note that in both cases, this decreases the perimeter of infection. One way to think about this is to consider each vertex as having ``infectious potential": vertices $v \in A_0$ can infect up to $d(v)$ healthy vertices, whereas vertices $v \in A_i$ for $i > 0$ can infect at most $d(v) - r$. An integral perimeter bound mandates that each vertex realize its potential, whereas a non-integral bound leaves a small margin for error. Figure \ref{fig:sa_construction_2d_a} illustrates the integral case, where each cell is infected by exactly two neighboring cells; this condition ensures that $P(A_i) = P([A_0])$ for all $i$. Conversely, in Figure \ref{fig:sa_construction_2d_b}, the cell demarcated with an ``X" experiences infection on three sides, thereby reducing its infectious potential. The existence of such a cell is guaranteed by the fact the perimeter bound in this case is non-integral. 
+
+\begin{figure}[]
+\centering
+\begin{subfigure}{0.4\textwidth}
+	\includegraphics[width=\textwidth]{figures/1/5x7x1.pdf}
+	\caption{$a+b \equiv 0 \pmod 2$}
+	\label{fig:sa_construction_2d_a}
+\end{subfigure} \hfill%
+\begin{subfigure}{0.45\textwidth}
+	\includegraphics[width=\textwidth]{figures/1/5x8x1.pdf}
+	\caption{$a+b \equiv 1 \pmod 2$}
+	\label{fig:sa_construction_2d_b}
+\end{subfigure}
+\caption{Tight constructions for lethal sets on the $[a] \times [b]$ grid.}
+\label{fig:sa_construction_2d}
+\end{figure} 
+
+There is a more complete result for the case of $r=2$. In 2006, Balogh and Bollobas \cite{balogh:2006} proved the following general form of Theorem \ref{thm:perimeter_rects} for all $d$-dimensional hypercubes $(a_1, \dots, a_d)$, $a_i \geq 1$:
+
+\begin{thm}[Balogh]
+\label{thm:complete_r_2}
+For $d \geq 1$ and $a_1, \dots, a_d \geq 1$, 
+$$m(a_1, \dots, a_d, 2) = \ceil*{\frac{\sum_{i=1}^d (a_i-1)}{2}}+1.$$
+\end{thm}
+
+Theorem \ref{thm:complete_r_2} completes the picture for infections with a threshold of two on grids. The next question is whether similar results exist for larger $r$. 
+
+Unfortunately, while generalizing to $d$-dimensional grids yields nice results for $r=2$, attempts to obtain a holistic understanding of $m(a_1, \dots, a_d, r)$ for arbitrary $r$ have been largely fruitless. Even the case of $r=3$ remains stubbornly inaccessible for nearly all large $d$. However, certain breakthroughs have been made in the following circumstances: $d=2$, $d=3$, and $G=[2]^d$.
+
+We first consider 3-neighbor percolation on two-dimensional square grids. In 2021, Benevides et al. proved that 
+$$m(n,n,3) = \ceil*{\frac{n^2+2n+4}{3}}$$
+for even $n$, and 
+$$\ceil*{\frac{n^2+2n}{3}} \leq m(n,n,3) \leq \ceil*{\frac{n^2+2n}{3}} + 1$$
+for odd $n$. Additionally, they showed that these bounds are tight for odd $n$: if $n = 5 \pmod 6$, or $n = 2^k - 1$ for some $k \in \mathbb{N}$, then $m(n,n,3) = \ceil{\frac{n^2+2n}{3}}$; and if $n \in \{9,13\}$, then $m(n,n,3) = \ceil{\frac{n^2+2n}{3}} + 1$. Constructions that achieve this bound are illustrated in Chapter 7. We add to this picture with the following theorem, proven in Chapter 6, and corollary:
+
+\begin{thm}
+\label{thm:2d_rectangle}
+Suppose that $a, b \geq 1$ such that
+$$m(a,b,3) = \frac{2ab+a+b}{3}.$$
+Then there exists $k \geq 1$ such that $a=b=2^k-1$.
+\end{thm}
+
+\begin{cor}
+For all $n \geq 1$,
+$$ m(n,n,3) =
+\begin{cases} 
+      \ceil*{\frac{n^2+2n+4}{3}} & n \equiv 0 \pmod 2 \\
+      \frac{n^2+2n}{3} & n = 2^k-1, \; k \in \mathbb{N} \\
+      \frac{n^2+2n+1}{3} & n \equiv 5 \pmod 6 \\
+      \frac{n^2+2n+3}{3} & \text{otherwise.}
+   \end{cases}
+$$
+\end{cor}
+
+\begin{proof}
+The first three cases follow from Theorem 1 of \cite{benevides:2021} and the observation that if $n \equiv 5 \pmod 6$, then $\ceil{\frac{n^2+2n}{3}} = \frac{n^2+2n+1}{3}$. In the final case, $n$ is congruent to either 1 or 3 modulo 6. This implies that $n^2 + 2n$ is divisible by three. From Theorem 1 of \cite{benevides:2021}, we have that $m(n,n,3) \leq \frac{n^2+2n+3}{3}$. Furthermore, since $n$ is not of the form $2^k-1$, it follows from Theorem \ref{thm:2d_rectangle} that $m(n,n,3) > \frac{n^2+2n}{3}$. Therefore, $m(n,n,3) = \frac{n^2+2n+3}{3}$.
+\end{proof}
+
+This result resolves the question of the minimum lethal set for two dimensional square grids. For the more general case of rectangular grids, the problem remains unsolved. However, we are able to achieve an upper bound of $m(a,b,3) \leq \ceil{\frac{ab+a+b+6}{3}}$ and a lower bound (described below) of $m(a,b,3) \geq \ceil{\frac{ab+a+b}{3}}$, for all $a,b > 1$. Further discussion of these results can be found in Chapter 6.
+
+One significant and well-known result for 3-neighbor percolation on two- and three-dimensional grids is the following lower bound, taken as a three-dimensional analogue of the perimeter bound. This result is referenced frequently throughout this document, and referred to interchangeably as the \emph{surface area} or \emph{SA bound}. We prove the statement in full generality, while noting that we only make use of the case where $d=3$. We also note that, like the perimeter bound, the following proof belongs to bootstrap percolation folklore, and appears to have been first published in 1997 by Balogh and Pete \cite{balogh_and_pete}.
+
+\begin{thm}
+\label{thm:sa_bound}
+For any $d \geq 1$ and $a_1, a_2, \dots, a_d \geq 1$, 
+$$m(a_1,a_2, \dots, a_d,d) \geq \frac{\sum_{j=1}^d \prod_{i \neq j} a_i}{d}.$$
+\end{thm}
+
+\begin{proof}
+We apply the same invariant strategy presented in the perimeter argument. For simplicity, consider $\prod_{i=1}^d[a_i]$ to be embedded within the larger graph $\prod_{i=1}^d \{0, \dots, a_i + 1\}$. Note that in $\prod_{i=1}^d \{0, \dots, a_i + 1\}$, each vertex $v \in \prod_{i=1}^d[a_i]$ has degree $2d$. Let $A_0$ be a lethal set in $\prod_{i=1}^d[a_i]$ under the $d$-neighbor bootstrap process. Let $A_t$ be the set of infected vertices in $\prod_{i=1}^d[a_i]$ at generation $t$. Denote by $m_t$ the number of edges between vertices $u \in A_t$ and $v \in \prod_{i=1}^d[a_i] \setminus A_t$. %We show that the sequence $m_0, m_1, m_2, \dots$ is monotonically decreasing. 
+We show that $m_{t-1} \geq m_t$ for all $t> 0$. 
+
+%Let $N = |A_t - A_{t-1}|$, and let $v_1, \dots, v_N$ be an arbitrary ordering on the vertices of $A_t \setminus A_{t-1}$. 
+By definition, each vertex $v \in A_t \setminus A_{t-1}$ has at least $d$ neighbors in $A_{t-1}$. Therefore, since $d(v) = 2d$, $v$ has no more than $d$ neighbors outside of $A_t$. This implies that the number of edges from $A_{t-1} \cup \{v\}$ to $\prod_{i=1}^d[a_i] \setminus A_{t-1} \cup \{v\}$ cannot exceed $m_{t-1}$. Furthermore, this holds for every vertex $v \in A_{t-1}$, and so $m_{t-1} \geq m_t$. 
+
+Since $A_0$ is lethal, we have that 
+$$2d|A_0| \geq m_0 \geq m_1 \geq \dots \geq 2 \sum_{j=1}^d \prod_{i \neq j} a_i,$$ 
+where the final expression gives the total number of edges between the fully infected grid and the surrounding larger grid. Dividing through by $2d$ gives the result.
+\end{proof}
+
+We note that the prior argument is precisely the same as the so-called perimeter argument outlined on Page 2. Here, the quantity $m_t$ is a $d$-dimensional analogue of the perimeter of infection $P(A_t)$ at time-step $t$, and the lower bound
+$$\frac{\sum_{j=1}^d \prod_{i \neq j} a_i}{d}$$
+is the $d$-dimensional ``perimeter" of the grid. Again, observe that equality can only be obtained when no vertices of $A_0$ are adjacent, and all vertices $v \in A_{t>0}$ are infected by exactly $d$ neighbors. Any imprecision causes a reduction in ``perimeter" of two units, corresponding to a $1/d$ increase in the bound. 
+
+The primary aim of this thesis is to prove that the surface area bound is tight for sufficiently large grids when $r=3$. This process employs a number of general constructions (discussed in Chapter 7), as well as a recursive strategy (Chapter 3). In Chapter 5, we prove the following result:
+
+\begin{thm}
+\label{thm:main_result}
+For all $a_1, a_2, a_3 \geq 11$, 
+$$m(a_1,a_2,a_3,3) = \ceil*{\frac{a_1a_2+a_2a_3+a_1a_3}{3}}.$$
+\end{thm}
+
+Unfortunately, the complete resolution of the $r=3$ case on grids remains elusive. Tight constructions exist for cubes $[n]^3$ and hypercubes $[2]^d$, but in general even bounds are difficult to obtain. Worse, for $r>3$, the only result beyond the surface area bound addresses the very specific case of $r$-dimensional cubes. Open problems abound.
+
+\subsubsection{Tori}
+
+In addition to varying the parameters $r$ and $d$, we might also change the very structure of $G$. It is natural to shift from grids (the Cartesian product of paths) to tori (the Cartesian product of cycles). In fact, it could be argued that bootstrap percolation on the torus is \emph{more} natural than the grid, since tori are regular and grids are not. This problem has been studied by Benevides et al. In 2021, they obtained the following lower bound for the Cartesian product of two cycles \cite{benevides:2021}. Their proof is included here for completeness.
+
+\begin{thm}
+\label{thm:torus_lb}
+For $a, b \geq 1$,
+$$m(C_a \square C_b,3) \geq \ceil*{\frac{ab +1}{3}}.$$
+\end{thm}
+
+\begin{proof}
+Let $G = C_a \square C_b$, and let $I$ be a lethal set on $G$. Let $H = V(G) \setminus I$, and note that $|H| = ab - |I|$. Let $m_{H}$ be the number of edges in the subgraph of $G$ induced by $H$, and $m_{IH}$ be the number of edges between vertices in $I$ and vertices in $H$. Note that $m_{IH}$ is similar to the notion of perimeter on a grid.
+
+Observe that $G[H]$ must be cycle-free: cycles in $G[H]$ constitute immune regions, and contradict the lethality of $I$. Therefore, $G[H]$ is a forest, and so $m_H = |H| - c$, where $c$ is the number of components in $G[H]$. Additionally, note that $m_{IH} \leq 4|I|$, since $G$ is $4$-regular. Finally, observe that the total degree of $G[H]$ is $2m_H = 4|H| - m_{IH}$.
+
+Chaining together these inequalities, we obtain:
+\begin{align*}
+4|I| \geq m_{IH} &= 4|H| - 2m_H \\
+&= 4|H| - 2(|H| -c) = 2|H| + 2c \\
+&= 2(ab-|I|) + 2c
+\end{align*}
+Combining like terms and simplifying, we have
+$$|I| \geq \frac{ab +c}{3} \geq \frac{ab +1}{3}.$$
+\end{proof}
+
+Observe that the conditions $c \geq 1$ and $m_{IH} \leq 4|I|$ prevent us from obtaining strict equality. Specifically, if $I$ is lethal, $G[H]$ has one component, and no vertices in $I$ are adjacent, then $|I|$ is minimized. 
+
+% other semi-related problems in bootstrap percolation
+\section{Other Problems}
+
+In this section, we provide a cursory overview of some other related areas of study in bootstrap percolation. We highlight problems regarding the number of iterations necessary to infect all vertices on a graph.
+
+\section{Structure of this Thesis}
+
+In the following chapter, we lay out in formal terms those lemmas necessary to understand and prove Theorem \ref{thm:main_result}. In particular, we discuss the recursive technique that permits the construction of lethal sets on grids of arbitrary large size, as well as a number of characteristics of lethal sets. We distinguish between two types of grids--those with integral \emph{SA bound}, and those without--and show that it is possible obtain tight constructions on non-integral grids from integral grids. 
+
+In Chapter 3, we prove that there exist lethal sets at the S.A. bound for all integral grids of size at least 5. This chapter makes significant use of a number of existing constructions, described in Chapter 6, as well as the recursive strategy introduced in Chapter 2. 
+
+Chapter 4 extends the results of Chapter 3 to all grids of size at least 11 with non-integral surface area bound. 
+
+Chapter 5 considers the specific case of grids of the form $(a,b,1)$, and answers a question posed in Benevides et al. \cite{benevides:2022} regarding the existence of tight lethal sets on non-square grids. 
+
+Chapter 6 is dedicated to presenting and proving the lethality of sets on a number of grids, and families of grids. 
+
+Chapter 7 discusses some of the programmatic techniques used to evaluate, examine and explore the behavior of percolating sets. 
+
+Chapter 8 examines the problem of bootstrap percolation on the 3- and 4-torus, and presents a class of constructions within constant size of the lower bound. 
+
+Chapter 9 presents open questions related to the results presented in this thesis, and provides some suggestions for future research.
+
+% proof of perimeter bound and generalization to surface area bound
+% "So we have a goal, and now the question becomes whether or not it is possible to obtain this goal in all cases through constructions."
+
+% "We shall see that generally (and especially for large grids), it is possible to find constructions that percolate at the lower bound. However, some smaller cases seem to contain unavoidable regions of immunity."
+% For this reason, it will be helpful to expand on our observations about immune regions and perimeter infections."
+% discussion about the notion of immune regions
+
+% Possible discussion of existing results, where our results fit into the literature and presentation of the table??
+
+% Lay out the structure of this paper. 
+% "We show that through a clever recursive construction we are able to obtain percolating sets at the lower bound for all grids of size at least 11, and at least 5 for divisibility cases."
+% "We establish a set of cases for which the lower bound cannot be met, and present a best upper bound for these cases."
+% 1. Introduction
+% 2. Recursion
+% 3. Divisibility cases
+% 4. All cases
+% 5. Thickness 1
+% 6. Constructions
+% 7. Visualization tool??
+% 8. The torus?
+
+% vvv ONE GIANT COMMENT vvv
+% COMMENT
+% COMMENT
+% COMMENT
+% COMMENT
+% COMMENT
+% COMMENT
+% COMMENT
+% COMMENT
+\begin{comment}
 % r=0 and r=1
 \subsection{$m(G,0)$ and $m(G,1)$} 
 
@@ -215,112 +431,6 @@ Observe that the conditions $c \geq 1$ and $m_{IH} \leq 4|I|$ prevent us from ob
 
 Present the lower bound and note that we are able to obtain constructions within constant distance of this bound for arbitrarily large grids.
 
-% other semi-related problems in bootstrap percolation
-\section{Other Problems}
-
-In this section, we provide a cursory overview of some other related areas of study in bootstrap percolation. We highlight problems regarding the number of iterations necessary to infect all vertices on a graph.
-
-% some notes on notation and a glossary of frequently used terms
-\section{Conceptual Tools for Understanding Bootstrap Percolation}
-
-As outlined above, it appears that lethal sets in grid graphs adhere to certain fixed rules. We examine these rules here, and explain why they are necessary and helpful for understanding the problem of bootstrap percolation.
-
-\subsection{Integrality of bounds}
-
-Not all grids have integral surface area bounds. We refer to such grids as \emph{non-divisibility cases}. The non-divisibility cases for three-dimensional grids where $r=3$ are illustrated in red in Table \ref{tab:integral_bounds}. 
-
-Percolation in non-divisible grids is inefficient in one of two ways: either each vertex in $A_0$ contributes, on average, less than $2d$ units to the final surface area, or at some time-step $i$, there exists a vertex $v \in V \setminus A_i$ such that $N_{A_i}(v) > r$. In the first case, the inefficiency is a consequence of two adjacent vertices in $A_0$; heuristically, we may view this as poor distribution of infection across the grid. In the second case, the inefficiency results from excessive infection in a particular region; a vertex is over-exposed. 
-
-It is insightful to consider this behavior in the context of Theorem \ref{thm:torus_lb}. Instead of thinking of $m_{IH}$ at the number of edges between $I$ and $H$, we shall consider it to represent the perimeter, or surface area, of the initial infection $I$. 
-%In particular, the existence of adjacent vertices in $A_0$ corresponds precisely to inequality in $m_{IH} \leq 2d|I| - 2(ab+bc+ca)$, where $2(ab+bc+ca)$ is the surface area of the grid. 
-%In these cases, we are guaranteed the existence of at least one cell that is infected by more than $r$ neighbors. This is a direct consequence of the surface area argument; since the final surface area of infection is non-integral and surface area is non-increasing
-
-\begin{table}[]
-\centering
-\begin{subfigure}{0.3\textwidth}
-	\includegraphics[width=\textwidth]{tables/1/integral_bounds_thickness_1.pdf}
-	\caption{$a_3 \equiv 1 \pmod 3$}
-	\label{tab:integral_bounds_a}
-\end{subfigure} \hfill%
-\begin{subfigure}{0.3\textwidth}
-	\includegraphics[width=\textwidth]{tables/1/integral_bounds_thickness_2.pdf}
-	\caption{$a_3 \equiv 2 \pmod 3$}
-	\label{tab:integral_bounds_b}
-\end{subfigure} \hfill%
-\begin{subfigure}{0.3\textwidth}
-	\includegraphics[width=\textwidth]{tables/1/integral_bounds_thickness_3.pdf}
-	\caption{$a_3 \equiv 0 \pmod 3$}
-	\label{tab:integral_bounds_c}
-\end{subfigure}
-\caption{Integrality of grids by congruence class. Green indicates integral surface area bound.}
-\label{tab:integral_bounds}
-\end{table} 
-
-\subsection{A different characterization}
-
-We shall find it useful to think about the problem of bootstrap percolation in terms of the graph induced by the set of uninfected vertices $V \setminus A_i$ at some time-step $t_i$. 
-
-\subsection{Attributes of $G[V \setminus A]$}
-
-No cycles, no paths between opposite faces. Reference to Benevides.
-
-\subsection{The lower bound}
-
-Let us reconsider the our proof of the lower bound in this new framework. 
-
-\subsection{Surface area, optimality, trees, and components}
-
-The surface area bound is not always integral. In cases where it is not, this sub-optimality can be traced to a particular time-step where an uninfected cell is infected by more than $r$ neighbors. The proof of the lower bound on the torus considers the number of components in $T[V \setminus A]$, as each such component necessarily collapses in on a vertex where this occurs. In the grid, this circumstance can be avoided by permitting components to abut the perimeter. What is the relationship here?
-
-\subsection{The bipartition (and when to violate it)}
-
-Discuss the heuristic of placing infections on one side of the bipartition and when this technique fails. 
-
-\subsection{A potentially interesting proof framework}
-
-A discussion on the broad structure of the proof of the lower bound on the torus as presented in Benevides. Note that this proof relies on a sequence of inequalities, and that two of these inequalities characterize precise conditions that are necessary for a set to be lethal. Discuss how the proof might change as a function of the dimension of the grid. 
-
-\section{Structure of this Thesis}
-
-In the following chapter, we lay out in formal terms those lemmas necessary to understand and prove Theorem \ref{thm:main_result}. In particular, we discuss the recursive technique that permits the construction of lethal sets on grids of arbitrary large size, as well as a number of characteristics of lethal sets. We distinguish between two types of grids--those with integral \emph{SA bound}, and those without--and show that it is possible obtain tight constructions on non-integral grids from integral grids. 
-
-In Chapter 3, we prove that there exist lethal sets at the S.A. bound for all integral grids of size at least 5. This chapter makes significant use of a number of existing constructions, described in Chapter 6, as well as the recursive strategy introduced in Chapter 2. 
-
-Chapter 4 extends the results of Chapter 3 to all grids of size at least 11 with non-integral surface area bound. 
-
-Chapter 5 considers the specific case of grids of the form $(a,b,1)$, and answers a question posed in Benevides et al. \cite{benevides:2022} regarding the existence of tight lethal sets on non-square grids. 
-
-Chapter 6 is dedicated to presenting and proving the lethality of sets on a number of grids, and families of grids. 
-
-Chapter 7 discusses some of the programmatic techniques used to evaluate, examine and explore the behavior of percolating sets. 
-
-Chapter 8 examines the problem of bootstrap percolation on the 3- and 4-torus, and presents a class of constructions within constant size of the lower bound. 
-
-Chapter 9 presents open questions related to the results presented in this thesis, and provides some suggestions for future research.
-
-% proof of perimeter bound and generalization to surface area bound
-% "So we have a goal, and now the question becomes whether or not it is possible to obtain this goal in all cases through constructions."
-
-% "We shall see that generally (and especially for large grids), it is possible to find constructions that percolate at the lower bound. However, some smaller cases seem to contain unavoidable regions of immunity."
-% For this reason, it will be helpful to expand on our observations about immune regions and perimeter infections."
-% discussion about the notion of immune regions
-
-% Possible discussion of existing results, where our results fit into the literature and presentation of the table??
-
-% Lay out the structure of this paper. 
-% "We show that through a clever recursive construction we are able to obtain percolating sets at the lower bound for all grids of size at least 11, and at least 5 for divisibility cases."
-% "We establish a set of cases for which the lower bound cannot be met, and present a best upper bound for these cases."
-% 1. Introduction
-% 2. Recursion
-% 3. Divisibility cases
-% 4. All cases
-% 5. Thickness 1
-% 6. Constructions
-% 7. Visualization tool??
-% 8. The torus?
-
-% vvv ONE GIANT COMMENT vvv
-\begin{comment}
 %In the context of question \ref{que:simple_puzzle}, $G = P_{10} \Osq P_{10}$, and our diagonal construction shows us that $m(2,G) \leq 10$. In general, we have observed that for $G = P_n \Osq P_n$, $m(2, G) \leq n$. Now, let us prove that the bound is, in fact, tight. 
 
 \begin{prop}
@@ -385,6 +495,11 @@ Follows directly from Theorem \ref{thm:general_sa_bound}.
 While it has been shown that tight constructions exist for grids of the form $[n]^d$, where $r=d$, the problem of determining the existence of similar constructions for rectangular grids remains unsolved. In this thesis, we focus our attention on the particular case of $d=3$ and show that $m(a,b,c, 3) = \ceil*{\frac{ab + bc + ca}{3}}$ for all $a,b,c \geq 11$. 
 
 % Separation of two commented out sections
+% COMMENT
+% COMMENT
+% COMMENT
+% COMMENT
+% COMMENT
 
 The problem of bootstrap percolation was first introduced in the 1970s by Chalupa et al. \cite{chalupa:1979} as a simplified model for the behavior of ferromagnetic fields. In their original paper, the authors describe bootstrap percolation as the stabilization of a probabilistically occupied lattice, where each occupied site must be adjacent to at least $m$ occupied neighbors. A re-rendering of the examples given in the original 1979 paper is presented in figures 1 and 2. 
 
@@ -503,4 +618,9 @@ $$m(a_1, \dots, a_d, 3) = \ceil*{\frac{d(d+3)}{6}}.$$
 However, the issue of determining $m(a_1, \dots, a_d, r)$ is largely unresolved. Furthermore, good lower bounds for $r \neq d$ are conspicuously absent. 
 \end{comment}
 % ^^^ ONE GIANT COMMENT ^^^
+% COMMENT
+% COMMENT
+% COMMENT
+% COMMENT
+% COMMENT
 
