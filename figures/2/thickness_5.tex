@@ -1,0 +1,53 @@
+\documentclass{standalone}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{lastpage}%
+\usepackage{tikz, tikz-3dplot}%
+\usepackage{ifthen}
+%
+%
+%usage: \LabGrid[colour]{CAPITAL letter for last row/column}
+\newcommand\Grid[2][purple]{%
+    \begin{tikzpicture}[xscale=1]
+        \foreach \row [count=\r,remember=\r] in {5,...,#2} {
+           \draw[fill=#1!10!white](0,-\r) rectangle ++(2,1);
+           \node at (1,0.5-\r){$\row$};
+           \foreach \c in {1,...,\r} {
+              \draw[gray, fill=gray!30](2*\c,-\r) rectangle ++(2,1);
+           }
+        }
+        \draw[fill=#1!10!white](0,-1-\r) rectangle ++(2,1);
+        \foreach \row [count=\c] in {5,...,#2} {
+            \draw[fill=#1!10!white](2*\c,-1-\r) rectangle ++(2,1);
+            \node at (2*\c+1,-0.5-\r) {\row};
+        }
+        \foreach \col in {2, 4, 8, 10, 14, 16, 20, 22, 26, 28, 32, 34, 38, 40} {
+       		\foreach \row in {0, 3, 6, 9, ..., 17} {	  		
+			\ifnum \numexpr-\col/2-\row > -19
+				\draw[gray, fill=white](\col,-\col/2-\row) rectangle ++(2,1);
+			\fi
+        		}
+        }
+    
+        % col 1
+        \draw[gray, fill=red](2,-1) rectangle ++(2,1);
+        \node at (3, -0.5) {$1$};
+        \draw[gray, fill=red](2,-4) rectangle ++(2,1);
+        \node at (3, -3.5) {$2$};
+        % col 2
+        \draw[gray, fill=red](4,-2) rectangle ++(2,1);
+        \node at (5, -1.5) {$3$};
+        % col 4
+        \draw[gray, fill=red](8,-4) rectangle ++(2,1);
+        \node at (9, -3.5) {$4$};
+        
+    \end{tikzpicture}%
+}
+
+\begin{document}
+
+  \Grid[white]{21}
+
+\end{document}

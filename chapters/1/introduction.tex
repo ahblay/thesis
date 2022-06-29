@@ -66,6 +66,7 @@ There are a number of natural generalizations of the problem posed in Question \
 \end{table} 
 
 \subsection{Results on grids and tori}
+\label{sec:result_summary}
 
 In this section, we highlight major bootstrap percolation results on grids and tori. Some of the following bounds are not tight and require supplemental constructions, which are often difficult to obtain. We further sub-divide this discussion into results on the grid (of which there are many), and results on the torus (of which there are few).
 
@@ -123,7 +124,7 @@ Let us take a moment to examine the issue of integrality in the perimeter bound.
 \label{fig:sa_construction_2d}
 \end{figure} 
 
-There is a more complete result for the case of $r=2$. In 2006, Balogh and Bollobas \cite{balogh:2006} proved the following general form of Theorem \ref{thm:perimeter_rects} for all $d$-dimensional hypercubes $(a_1, \dots, a_d)$, $a_i \geq 1$:
+We can further generalize for the case of $r=2$. In 2006, Balogh and Bollobas \cite{balogh:2006} proved the following general form of Theorem \ref{thm:perimeter_rects} for all $d$-dimensional hypercubes $(a_1, \dots, a_d)$, $a_i \geq 1$:
 
 \begin{thm}[Balogh]
 \label{thm:complete_r_2}
@@ -131,9 +132,7 @@ For $d \geq 1$ and $a_1, \dots, a_d \geq 1$,
 $$m(a_1, \dots, a_d, 2) = \ceil*{\frac{\sum_{i=1}^d (a_i-1)}{2}}+1.$$
 \end{thm}
 
-Theorem \ref{thm:complete_r_2} completes the picture for infections with a threshold of two on grids. The next question is whether similar results exist for larger $r$. 
-
-Unfortunately, while generalizing to $d$-dimensional grids yields nice results for $r=2$, attempts to obtain a holistic understanding of $m(a_1, \dots, a_d, r)$ for arbitrary $r$ have been largely fruitless. Even the case of $r=3$ remains stubbornly inaccessible for nearly all large $d$. However, certain breakthroughs have been made in the following circumstances: $d=2$, $d=3$, and $G=[2]^d$.
+Theorem \ref{thm:complete_r_2} completes the picture for infections with a threshold of two on grids. The next question is whether similar results exist for larger $r$. Unfortunately, while generalizing to $d$-dimensional grids yields nice results for $r=2$, attempts to obtain a holistic understanding of $m(a_1, \dots, a_d, r)$ for arbitrary $r$ have been largely fruitless. Even the case of $r=3$ remains stubbornly inaccessible for nearly all large $d$. However, certain breakthroughs have been made in the following circumstances: $d=2$, $d=3$, and $G=[2]^d$.
 
 We first consider 3-neighbor percolation on two-dimensional square grids. In 2021, Benevides et al. proved that 
 $$m(n,n,3) = \ceil*{\frac{n^2+2n+4}{3}}$$
@@ -187,7 +186,7 @@ where the final expression gives the total number of edges between the fully inf
 \end{proof}
 
 We note that the prior argument is precisely the same as the so-called perimeter argument outlined on Page 2. Here, the quantity $m_t$ is a $d$-dimensional analogue of the perimeter of infection $P(A_t)$ at time-step $t$, and the lower bound
-$$\frac{\sum_{j=1}^d \prod_{i \neq j} a_i}{d}$$
+$$2\sum_{j=1}^d \prod_{i \neq j} a_i$$
 is the $d$-dimensional ``perimeter" of the grid. Again, observe that equality can only be obtained when no vertices of $A_0$ are adjacent, and all vertices $v \in A_{t>0}$ are infected by exactly $d$ neighbors. Any imprecision causes a reduction in ``perimeter" of two units, corresponding to a $1/d$ increase in the bound. 
 
 The primary aim of this thesis is to prove that the surface area bound is tight for sufficiently large grids when $r=3$. This process employs a number of general constructions (discussed in Chapter 7), as well as a recursive strategy (Chapter 3). In Chapter 5, we prove the following result:
@@ -198,7 +197,7 @@ For all $a_1, a_2, a_3 \geq 11$,
 $$m(a_1,a_2,a_3,3) = \ceil*{\frac{a_1a_2+a_2a_3+a_1a_3}{3}}.$$
 \end{thm}
 
-Unfortunately, the complete resolution of the $r=3$ case on grids remains elusive. Tight constructions exist for cubes $[n]^3$ and hypercubes $[2]^d$, but in general even bounds are difficult to obtain. Worse, for $r>3$, the only result beyond the surface area bound addresses the very specific case of $r$-dimensional cubes. Open problems abound.
+Unfortunately, the complete resolution of the $r=3$ case on grids remains elusive. Tight constructions exist for cubes $[n]^3$ and hypercubes $[2]^d$, but in general bounds are difficult to obtain. Worse, for $r>3$, the only additional result beyond the surface area bound addresses the very specific case of $r$-dimensional cubes. Open problems abound.
 
 \subsubsection{Tori}
 
@@ -225,7 +224,7 @@ Combining like terms and simplifying, we have
 $$|I| \geq \frac{ab +c}{3} \geq \frac{ab +1}{3}.$$
 \end{proof}
 
-Observe that the conditions $c \geq 1$ and $m_{IH} \leq 4|I|$ prevent us from obtaining strict equality. Specifically, if $I$ is lethal, $G[H]$ has one component, and no vertices in $I$ are adjacent, then $|I|$ is minimized. 
+Observe that the conditions $c \geq 1$ and $m_{IH} \leq 4|I|$ prevent us from obtaining strict equality. Specifically, if $I$ is lethal, $G[H]$ has one component, and no vertices in $I$ are adjacent, then $|I|$ is minimized. Note that these conditions are quite similar to those on grids; the specific difference is that equality in the bound on grids mandates that no vertex be infected by more than $r$ neighbors, whereas equality on three-dimensional tori requires this inefficiency be centered on one particular vertex. 
 
 % other semi-related problems in bootstrap percolation
 \section{Other Problems}
@@ -234,21 +233,15 @@ In this section, we provide a cursory overview of some other related areas of st
 
 \section{Structure of this Thesis}
 
-In the following chapter, we lay out in formal terms those lemmas necessary to understand and prove Theorem \ref{thm:main_result}. In particular, we discuss the recursive technique that permits the construction of lethal sets on grids of arbitrary large size, as well as a number of characteristics of lethal sets. We distinguish between two types of grids--those with integral \emph{SA bound}, and those without--and show that it is possible obtain tight constructions on non-integral grids from integral grids. 
+As stated by Theorem \ref{thm:main_result}, the primary goal of this thesis is to prove a tight bound for 3-neighbor bootstrap percolation on three-dimensional grids of sufficiently large size. This task requires the use of two major lemmas, as well as both original and previously published ideas and constructions. In an effort to present this material in a coherent manner, the paper is structured as follows. 
 
-In Chapter 3, we prove that there exist lethal sets at the S.A. bound for all integral grids of size at least 5. This chapter makes significant use of a number of existing constructions, described in Chapter 6, as well as the recursive strategy introduced in Chapter 2. 
+Chapters 2 and 3 are dedicated to building a conceptual and intuitive framework upon which to prove Theorem \ref{thm:main_result}. In Chapter 2, we categorize and present percolating sets on both divisible and non-divisible grids, and discuss the differences between these cases. In Chapter 3, we prove two lemmas allowing us to develop large families of lethal sets that match the surface area bound. 
 
-Chapter 4 extends the results of Chapter 3 to all grids of size at least 11 with non-integral surface area bound. 
+Chapters 4 and 5 leverage the results of Chapter 3 to prove Theorem \ref{thm:main_result}. In Chapter 4, we show that all divisible grids $(a_1,a_2,a_3)$, $a_1 \leq a_2 \leq a_3$ admit lethal sets matching the SA bound, and in Chapter 5, we extend this result to all grids of size 11. Chapter 6 further builds on this, highlighting some new results for 3-neighbor percolation on grids of the form $(a_1,a_2,1)$.
 
-Chapter 5 considers the specific case of grids of the form $(a,b,1)$, and answers a question posed in Benevides et al. \cite{benevides:2022} regarding the existence of tight lethal sets on non-square grids. 
+Chapter 7 proves the constructions presented in Chapter 2.
 
-Chapter 6 is dedicated to presenting and proving the lethality of sets on a number of grids, and families of grids. 
-
-Chapter 7 discusses some of the programmatic techniques used to evaluate, examine and explore the behavior of percolating sets. 
-
-Chapter 8 examines the problem of bootstrap percolation on the 3- and 4-torus, and presents a class of constructions within constant size of the lower bound. 
-
-Chapter 9 presents open questions related to the results presented in this thesis, and provides some suggestions for future research.
+Finally, Chapters 8, 9 and 10 wrap up the discussion with a summary of the programmatic techniques used to discover lethal sets, helpful software resources for future research, how the results of this thesis may be helpful in pursuit of results on the torus, and recommendations for future research in similar and related problems. 
 
 % proof of perimeter bound and generalization to surface area bound
 % "So we have a goal, and now the question becomes whether or not it is possible to obtain this goal in all cases through constructions."
@@ -281,6 +274,24 @@ Chapter 9 presents open questions related to the results presented in this thesi
 % COMMENT
 % COMMENT
 \begin{comment}
+In the following chapter, we lay out in formal terms those lemmas necessary to understand and prove Theorem \ref{thm:main_result}. In particular, we discuss the recursive technique that permits the construction of lethal sets on grids of arbitrary large size, as well as a number of characteristics of lethal sets. We distinguish between two types of grids--those with integral \emph{SA bound}, and those without--and show that it is possible obtain tight constructions on non-integral grids from integral grids. 
+
+In Chapter 3, we prove that there exist lethal sets at the S.A. bound for all integral grids of size at least 5. This chapter makes significant use of a number of existing constructions, described in Chapter 6, as well as the recursive strategy introduced in Chapter 2. 
+
+Chapter 4 extends the results of Chapter 3 to all grids of size at least 11 with non-integral surface area bound. 
+
+Chapter 5 considers the specific case of grids of the form $(a,b,1)$, and answers a question posed in Benevides et al. \cite{benevides:2022} regarding the existence of tight lethal sets on non-square grids. 
+
+Chapter 6 is dedicated to presenting and proving the lethality of sets on a number of grids, and families of grids. 
+
+Chapter 7 discusses some of the programmatic techniques used to evaluate, examine and explore the behavior of percolating sets. 
+
+Chapter 8 examines the problem of bootstrap percolation on the 3- and 4-torus, and presents a class of constructions within constant size of the lower bound. 
+
+Chapter 9 presents open questions related to the results presented in this thesis, and provides some suggestions for future research.
+
+% COMMENT
+
 % r=0 and r=1
 \subsection{$m(G,0)$ and $m(G,1)$} 
 

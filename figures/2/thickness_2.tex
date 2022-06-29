@@ -1,0 +1,90 @@
+\documentclass{standalone}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{lastpage}%
+\usepackage{tikz, tikz-3dplot}%
+\usepackage{ifthen}
+%
+%
+%usage: \LabGrid[colour]{CAPITAL letter for last row/column}
+\newcommand\Grid[2][purple]{%
+    \begin{tikzpicture}[xscale=1]
+        \foreach \row [count=\r,remember=\r] in {2,...,#2} {
+           \draw[fill=#1!10!white](0,-\r) rectangle ++(2,1);
+           \node at (1,0.5-\r){$\row$};
+           \foreach \c in {1,...,\r} {
+              \draw[gray, fill=gray!30](2*\c,-\r) rectangle ++(2,1);
+           }
+        }
+        \draw[fill=#1!10!white](0,-1-\r) rectangle ++(2,1);
+        \foreach \row [count=\c] in {2,...,#2} {
+            \draw[fill=#1!10!white](2*\c,-1-\r) rectangle ++(2,1);
+            \node at (2*\c+1,-0.5-\r) {\row};
+        }
+        \foreach \col in {2, 4, 8, 10, 14, 16, 20, 22, 26, 28, 32, 34, 38, 40} {
+       		\foreach \row in {0, 3, 6, 9, ..., 17} {	  		
+			\ifnum \numexpr-\col/2-\row > -21
+				\draw[gray, fill=white](\col,-\col/2-\row) rectangle ++(2,1);
+			\fi
+        		}
+        }
+    
+        % col 1
+        \draw[gray, fill=red](2,-4) rectangle ++(2,1);
+        \node at (3, -3.5) {$1$};
+        %col 2
+        \foreach \row in {5, 8, 11, 14, 17, 20} {
+        		\draw[gray, fill=green](4,-\row) rectangle ++(2,1);
+        }
+        % col 3
+        \foreach \row in {7, 13, 19} {
+        		\draw[gray, fill=blue](8,-\row) rectangle ++(2,1);
+        }
+        % col 4
+        \foreach \row in {8, 14, 20} {
+        		\draw[gray, fill=blue](10,-\row) rectangle ++(2,1);
+	\draw[gray, fill=red](10,-5) rectangle ++(2,1);
+	\node at (11, -4.5) {$2$};
+        }
+        % col 6
+        \foreach \row in {10, 16} {
+        		\draw[gray, fill=blue](14,-\row) rectangle ++(2,1);
+        }
+        % col 7
+        \foreach \row in {11, 17} {
+        		\draw[gray, fill=blue](16,-\row) rectangle ++(2,1);
+        }
+        % col 9
+        \foreach \row in {13, 19} {
+        		\draw[gray, fill=blue](20,-\row) rectangle ++(2,1);
+        }
+        % col 10
+        \foreach \row in {14, 20} {
+        		\draw[gray, fill=blue](22,-\row) rectangle ++(2,1);
+        }
+        % col 12
+        \foreach \row in {16} {
+        		\draw[gray, fill=blue](26,-\row) rectangle ++(2,1);
+        }
+        % col 13
+        \foreach \row in {17} {
+        		\draw[gray, fill=blue](28,-\row) rectangle ++(2,1);
+        }
+        % col 15
+        \foreach \row in {19} {
+        		\draw[gray, fill=blue](32,-\row) rectangle ++(2,1);
+        }
+        % col 16
+        \foreach \row in {20} {
+        		\draw[gray, fill=blue](34,-\row) rectangle ++(2,1);
+        }
+    \end{tikzpicture}%
+}
+
+\begin{document}
+
+  \Grid[white]{21}
+
+\end{document}
