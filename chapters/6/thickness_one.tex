@@ -88,13 +88,54 @@ Note that this is precisely the surface area bound for the $(\frac{a_1-1}{2}, \f
 We prove that the blue tiles form a lethal set in $G'$. We begin with the following observation:
 
 \begin{prop}
+\label{prop:bottom_left}
 All white tiles have their $A_0$-vertex in the bottom left corner.
 \end{prop}
 
 \begin{proof}
-For contradiction, suppose that there exists a white tile $T_0$ with one infected vertex in the upper right. By Proposition \ref{prop:one_border_vertex}, there exists a path in $G[\overline{A_0}]$ from $T_0 \setminus A_0$ to the border. We consider the sequence of white tiles $T_0...T_n$ containing this path. 
+For contradiction, suppose that there exists a white tile $T_0$ with one infected vertex in the upper right. By Proposition \ref{prop:one_border_vertex}, there exists a path in $G[\overline{A_0}]$ from $T_0 \setminus A_0$ to the border. We consider the sequence of white tiles $T_0, \dots, T_n$ containing this path. 
 
 Consider two consecutive tiles $T_i, T_{i+1}$ in this sequence. Note that $T_i$ and $T_{i+1}$ cannot be diagonally adjacent, as such a configuration creates a 4-cycle in $G[\overline{A_0}]$ (see Figure \ref{fig:tile_cycle}). Additionally, by Proposition \ref{prop:alternating_border}, observe that $T_n$ has its infected vertex in the bottom left corner. Therefore, since $T_0$ contains an infection in the top right by assumption, there exist tiles $T_i, T_{i+1}$ such that $T_i$ has an infection in the top right, and $T_{i+1}$ has an infection in the bottom left. 
 
 We consider two cases. If $T_{i+1}$ is below or to the left of $T_i$, we obtain a 4-cycle. On the other hand, if $T_{i+1}$ is above or to the right of $T_i$, there is no path in $G[\overline{A_0}]$ between them (see Figure \ref{fig:tile_cases}). We therefore conclude that $T_0$ must have an infected vertex in the bottom left.
 \end{proof}
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.15\textwidth]{figures/6/tile_cycle.pdf}
+\caption{Diagonal white tiles and the resulting 4-cycle.}
+\label{fig:tile_cycle}
+\end{figure} 
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.5\textwidth]{figures/6/tile_cases.pdf}
+\caption{Possible configurations of adjacent white tiles.}
+\label{fig:tile_cases}
+\end{figure} 
+
+We are now prepared to prove that the blue tiles form a lethal set in $G'$.
+
+\begin{lem}
+\label{lem:blue_lethal}
+The set of blue tiles is lethal and perfect in $[(a_1-1)/2] \times [(a_2-1)/2]$ under 3-neighbor percolation.
+\end{lem}
+
+\begin{proof}
+In Equation \ref{eq:tile_bound_2}, we saw that the number of blue tiles matches the lower bound for 3-neighbor percolation in $[(a_1-1)/2] \times [(a_2-1)/2]$. We now show that the 3-neighbor process infects white tiles if and only if they are adjacent to at least 3 blue tiles.
+
+For sufficiency, consider the four cases illustrated in Figure \ref{fig:tile_infection}. In each of these configurations, the upper right vertex of the white tile (labeled with a ``2") becomes infected after two iterations. Each case requires the assistance of one to two extra infections outside of the three blue tiles. However, these infections constitute the bottom left vertex in adjoining tiles, which is always infected.
+
+For necessity, we show that any cycle or border-to-border path in the white tiles of $G'$ implies a cycle or border-to-border path in $G[\overline{A_0}]$. Observe that, by Proposition \ref{prop:bottom_left}, the vertices $(T_i \cup T_{j}) \setminus A_0$ of any adjacent white tiles $T_i, T_j$ induce a connected component in $G$. Therefore, any cycle or border-to-border path in $G'$ implies the existence of a cycle or border-to-border path in $G[\overline{A_0}]$. We conclude that the blue tiles form a perfect lethal set in $[(a_1-1)/2] \times [(a_2-1)/2]$ under 3-neighbor percolation.
+\end{proof}
+
+\begin{figure}[]
+\centering
+\includegraphics[width=\textwidth]{figures/6/tile_infection.pdf}
+\caption{The four configurations of blue tiles leading to infection.}
+\label{fig:tile_infection}
+\end{figure} 
+
+\subsection{Conclusion}
+
+In the prior sections, we have shown that the existence of a perfect lethal set on $[a_1] \times [a_2]$ implies the existence of a perfect lethal set on $[(a_1-1)/2] \times [(a_2-1)/2)]$. Proposition \ref{prop:odd_by_odd} mandates that all perfect lethal sets on $[a_1] \times [a_2]$ be odd-by-odd. Together, these statements require that $a_1 = 2^{k_1}-1$ and $a_2 = 2^{k_2}-1$ for some $k_1,k_2 > 0$, respectively. By repeated applications of Lemma \ref{lem:blue_lethal}, we ultimately obtain a grid $[a_0] \times [1]$ that admits a perfect lethal set. Clearly, the only such grid is the single vertex $[1]$. We therefore conclude that the only two-dimensional grids that admit perfect lethal sets under 3-neighbor percolation are square grids of the form $[2^n-1]^2$. The construction that achieves this is published in Benevides et al \cite{benevides}, and reproduced as Construction \ref{con:purina} in Chapter 7.

@@ -1,0 +1,46 @@
+\documentclass{standalone}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{lastpage}%
+\usepackage{tikz}%
+%
+%
+%
+\begin{document}%
+\normalsize%
+\begin{tikzpicture}[scale=1.0]%
+\draw[] (1,-1)--(0,-1)--(0,0)--(1,0);
+\draw[] (2,0)--(3,0)--(3,-1)--(2,-1);
+\draw[] (5,-1) rectangle (6,0);
+\draw[] (7,-1) rectangle (8,0);
+\draw[dashed] (1,-1) rectangle (2,0);
+
+\node at (0.5,0.5) {$T_{i+1}$};
+\node at (2.5,0.5) {$T_{i}$};
+\node at (5.5,0.5) {$T_{i}$};
+\node at (7.5,0.5) {$T_{i+1}$};
+
+\path[draw,radius=5pt, fill=white] (0.0,0.0) circle;%
+\path[draw,radius=5pt, fill=white] (1.0,0.0) circle;%
+\path[draw,radius=5pt, fill=white] (2.0,0.0) circle;%
+\path[draw,radius=5pt, fill=white] (3.0,0.0) circle;%
+\path[draw,radius=5pt, fill=white] (5.0,0.0) circle;%
+\path[draw,radius=5pt, fill=white] (6.0,0.0) circle;%
+\path[draw,radius=5pt, fill=white] (7.0,0.0) circle;%
+\path[draw,radius=5pt, fill=white] (8.0,0.0) circle;%
+\path[draw,radius=5pt, fill=white] (0.0,-1.0) circle;%
+\path[draw,radius=5pt, fill=white] (1.0,-1.0) circle;%
+\path[draw,radius=5pt, fill=white] (2.0,-1.0) circle;%
+\path[draw,radius=5pt, fill=white] (3.0,-1.0) circle;%
+\path[draw,radius=5pt, fill=white] (5.0,-1.0) circle;%
+\path[draw,radius=5pt, fill=white] (6.0,-1.0) circle;%
+\path[draw,radius=5pt, fill=white] (7.0,-1.0) circle;%
+\path[draw,radius=5pt, fill=white] (8.0,-1.0) circle;%
+\path[draw,radius=5pt,fill=red] (3.0,0.0) circle;%
+\path[draw,radius=5pt,fill=red] (6.0,0.0) circle;%
+\path[draw,radius=5pt,fill=red] (0.0,-1.0) circle;%
+\path[draw,radius=5pt,fill=red] (7.0,-1.0) circle;%
+\end{tikzpicture}%
+\end{document}
