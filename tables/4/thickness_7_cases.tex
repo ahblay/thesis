@@ -1,0 +1,81 @@
+\documentclass{standalone}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{lastpage}%
+\usepackage{tikz, tikz-3dplot}%
+\usepackage{ifthen}
+%
+%
+%usage: \LabGrid[colour]{CAPITAL letter for last row/column}
+\newcommand\Grid[2][purple]{%
+    \begin{tikzpicture}[xscale=1]
+        \foreach \row [count=\r,remember=\r] in {7,...,#2} {
+           %\draw[fill=#1!10!white](0,-\r) rectangle ++(2,1);
+           \node at (1,0.5-\r){$\row$};
+           \foreach \c in {1,...,\r} {
+              \draw[gray, fill=gray!30](2*\c,-\r) rectangle ++(2,1);
+           }
+        }
+        %\draw[fill=#1!10!white](0,-1-\r) rectangle ++(2,1);
+        \foreach \row [count=\c] in {7,...,#2} {
+            %\draw[fill=#1!10!white](2*\c,-1-\r) rectangle ++(2,1);
+            \node at (2*\c+1,-0.5-\r) {\row};
+        }
+        \foreach \col in {2, 6,8,12,14,18,20,24,26,30,32} {
+       		\foreach \row in {0, 3, 6, 9, ..., 21} {	  		
+			\ifnum \numexpr-\col/2-\row > -14
+				\draw[gray, fill=white](\col,-\col/2-\row) rectangle ++(2,1);
+			\fi
+        		}
+        }
+    
+        % same {1,4} mod 6
+        \foreach \col in {2,8,14,20,26,32} {
+       		\foreach \row in {0, 6, 12,18} {	  		
+			\ifnum \numexpr-\col/2-\row > -16
+				\draw[gray, fill=blue!30](\col,-\col/2-\row) rectangle ++(2,1);
+				\node at (\col+1, -\col/2-\row+0.5) {$1$};
+			\fi
+        		}
+        }
+        % different {1,4} mod 6
+        \foreach \col in {2,8,14,20,26,32} {
+       		\foreach \row in {3, 9, 15,21} {	  		
+			\ifnum \numexpr-\col/2-\row > -16
+				\draw[gray, fill=green!30](\col,-\col/2-\row) rectangle ++(2,1);
+				\node at (\col+1, -\col/2-\row+0.5) {$2$};
+			\fi
+        		}
+        }
+        % same {0,3} mod 6
+        \foreach \col in {6,12,18,24,30,36} {
+       		\foreach \row in {0,6,12} {	  		
+			\ifnum \numexpr-\col/2-\row > -14
+				\draw[gray, fill=red!30](\col,-\col/2-\row) rectangle ++(2,1);
+				\node at (\col+1, -\col/2-\row+0.5) {$3$};
+			\fi
+        		}
+        }
+        
+        % different {0,3} mod 6
+        \foreach \col in {6,12,18,24,30,36} {
+       		\foreach \row in {3,9,15} {	  		
+			\ifnum \numexpr-\col/2-\row > -14
+				\draw[gray, fill=yellow!30](\col,-\col/2-\row) rectangle ++(2,1);
+				\node at (\col+1, -\col/2-\row+0.5) {$4$};
+			\fi
+        		}
+        }
+        
+        %\draw[] (2,0) -- (2,-20);
+        %\draw[] (42,-20) -- (2,-20);
+    \end{tikzpicture}%
+}
+
+\begin{document}
+
+  \Grid[white]{19}
+
+\end{document}

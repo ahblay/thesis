@@ -6,84 +6,6 @@ In this chapter, we present diagrammed proofs of lethal sets that percolate at t
 
 We shall call a thickness \emph{semi-complete} if all divisibility cases are optimal.
 
-\section{Useful lemmas and observations}
-
-We shall see that similar patterns and structures appear with some regularity in optimal sets. These structures always infect entire regions, and it will be helpful to recognize them within larger grids when they appear. 
-
-\begin{lem}
-\label{lem:forest}
-Let $G = P_a \Osq P_b$ be a graph and $S \subseteq V(G)$ be a subset of the vertices of $G$. Let $G[\overline{S}]$ be the subgraph of $G$ induced by vertices not in $S$. Then $S$ is a lethal set if and only if $G[\overline{S}]$ is cycle-free, and has no paths between any two boundary vertices. 
-\end{lem}
-
-\begin{lem}
-\label{lem:walls}
-Let $G$ be the grid graph $(a,b,c)$ and let $A$ be a set of infected vertices in $G$. Let $H = G[\overline{A}]$ be the subgraph of $G$ induced by uninfected vertices. Let $\{F, F'\} \subseteq V(G)$ be orthogonal faces of $G$. If $H$ does not contain a path between vertices $v \in F, v' \in F'$, then $G$ percolates.
-\end{lem}
-
-\begin{proof}
-We proceed by induction on $|V(H)| = abc - |A|$. If $|V(H)| = 0$, then all vertices of $G$ are infected and we are done. Suppose $|V(H)| > 0$, and consider a connected component $Y$ of $H$. By hypothesis, $Y$ does not contain a path between any two orthogonal faces of $G$. Therefore, without loss of generality, there exists a face $X = \{a\} \times \{1, \dots b\} \times \{1, \dots, c\}$ such that $V(Y) \cap X = \emptyset$. Take the largest $i$ such that $X_i = \{a\} \times \{1, \dots b\} \times \{1, \dots, c\}$ contains a vertex of $Y$. Repeat this process to obtain maximal faces $Y_j$ and $Z_k$ in the $b$ and $c$ directions, respectively. 
-
-Observe that this construction gives a vertex $v = (i,j,k) \in V(Y)$, and planes $X_{i+1}, Y_{j+1}, Z_{k+1}$ such that $(X_{i+1} \cup Y_{j+1} \cup Z_{k+1}) \cap  V(Y) = \emptyset$. In particular, note that $(i+1,j,k), (i,j+1,k),(i,j,k+1) \in N(v)$. Since these three vertices belong to $A$ and $v \notin A$, $v$ becomes infected. Furthermore, since $|V(H) \setminus \{v\}| < |V(H)|$, the resulting graph percolates by induction. This completes the proof.
-\end{proof}
-
-\begin{cor}
-\label{cor:three_walls}
-Let $G$ be the grid graph $(a,b,c)$. If a set $A$ is lethal on three mutually orthogonal faces of $G$, then $A$ is lethal on $G$.
-\end{cor}
-
-\begin{proof}
-Let $X, Y, Z$ be three mutually orthogonal faces of $G$. By hypothesis, $X \cup Y \cup Z \subseteq A_t$ for some time $t$. Therefore, the graph $H = G[\overline{A_t}]$ cannot contain a path between vertices on orthogonal faces of $G$. By lemma \ref{lem:walls}, $G$ percolates.
-\end{proof}
-
-\begin{cor}
-\label{cor:manifold}
-Let $G$ be the grid graph $(a,b,c)$ and let $A$ be a set of infected vertices of $G$. Let $\{R_1, \dots, R_k\} $ be a partition of $V(G) \setminus A$ into sub-grids $(a_1,b_1,c_1), \dots, (a_k,b_k,c_k)$ such that each $R_i$ is bounded by a lethal infection on three mutually orthogonal faces. Then $A$ is lethal on $G$.
-\end{cor}
-
-\begin{proof}
-By hypothesis and corollary \ref{cor:three_walls}, $A$ is lethal on each $R_i$. Since $A \cup R_1 \cup \dots \cup R_k = V(G)$ and each $R_i$ becomes infected, $A$ must be lethal.
-\end{proof}
-
-\begin{defn}
-\label{def:manifold}
-Let a \emph{manifold} $M$ of the grid graph $G = (a,b,c)$ be any set of vertices $A$ satisfying the conditions of corollary \ref{cor:manifold}.
-\end{defn}
-
-\begin{defn}
-\label{def:proper_unfolding}
-Let a \emph{proper unfolding} of $G = (a,b,c)$ be a planar representation of the manifold of $G$. This can be thought of as a special type of folding net of $G$, such that when assembled the resulting structure satisfies the conditions of corollary \ref{cor:manifold}.
-\end{defn}
-
-\begin{cor}
-\label{cor:ortho_walls}
-Let $M$ be the proper unfolding of a manifold of $G = (a,b,c)$, and let $A$ be a lethal set on $M$. Then $A$ is lethal on $G$.
-\end{cor}
-
-\begin{proof}
-The proof follows directly from definitions \ref{def:manifold} and \ref{def:proper_unfolding}.
-\end{proof}
-
-%\begin{cor}
-%\label{cor:three_walls}
-%Let $G$ be a grid assembled from sub-grids $G_1, \dots, G_k$. Let $H_1, \dots, H_k$ be sets satisfying the conditions of lemma \ref{lem:three_walls} for sub-grids $G_1, \dots, G_k$, respectively. Then $H = H_1 \cup \dots \cup H_k$ is a lethal set in $G$.
-%\end{cor}
-
-%\begin{lem}
-%\label{lem:unfold}
-%Let $G$ be the grid $(a,b,c)$. Let $H$ be a subgraph induced by the vertices of $G$. If the projection of $H$ in the $x$ direction gives the graph $(b,c)$, in the $y$ direction gives $(a,c)$, and in the $z$ direction gives $(a,b)$, and $H$ percolates, then $G$ percolates.
-%\end{lem}
-
-%\begin{proof}
-%The projection condition guarantees that $G$ has lethal sets on three perpendicular planes. The result follows from lemma \ref{lem:three_walls}.
-%\end{proof}
-
-%We refer to the union of mutually orthogonal faces of sub-grids $G_1, \dots, G_k$ as a \emph{manifold} of $G$. Therefore, corollary \ref{cor:three_walls} says that if a set $H$ is lethal on the manifold of $G$, then $H$ is lethal in $G$. Furthermore, we define a \emph{proper unfolding} of $G$ as a planar representation of the manifold of $G$. This can be thought of as a special type of folding net of $G$, such that when assembled the resulting structure satisfies the conditions of corollary \ref{cor:three_walls}. 
-
-%\begin{cor}
-%\label{cor:unfold}
-%Something about unfolding $H$ and its planar embedding. Imagine $H$ as a set of folded up pieces of paper. Let $\mathcal{N}$ be the family of unfolded nets comprising $H$. To show that $G$ percolates, it is sufficient to show that all nets $N \in \mathcal{N}$ harbor lethal infections.
-%\end{cor}
-
 \section{Thickness 1}
 
 There are two general constructions in thickness 1 that percolate at the surface area bound. The first construction is perfect for all $(2^n-1, 2^n-1, 1)$ grids, and originates in a 2021 paper by Benevides et al. \cite{benevides:2021}. The second construction is optimal for all grids $(a,b,1)$, where $a \equiv 5 \pmod 6$, $b \equiv 1 \pmod 2$, and $a,b \geq 5$. As such grids constitute non-divisibility cases, this construction is not perfect.
@@ -405,4 +327,89 @@ See figure \ref{fig:5x8x5_numbered_heatmap}.
 
 % (6, 3, 2)
 
+% COMMENT
+% COMMENT
+% COMMENT
+% COMMENT
 
+\begin{comment}
+
+\section{Useful lemmas and observations}
+
+We shall see that similar patterns and structures appear with some regularity in optimal sets. These structures always infect entire regions, and it will be helpful to recognize them within larger grids when they appear. 
+
+\begin{lem}
+\label{lem:forest}
+Let $G = P_a \Osq P_b$ be a graph and $S \subseteq V(G)$ be a subset of the vertices of $G$. Let $G[\overline{S}]$ be the subgraph of $G$ induced by vertices not in $S$. Then $S$ is a lethal set if and only if $G[\overline{S}]$ is cycle-free, and has no paths between any two boundary vertices. 
+\end{lem}
+
+\begin{lem}
+\label{lem:walls}
+Let $G$ be the grid graph $(a,b,c)$ and let $A$ be a set of infected vertices in $G$. Let $H = G[\overline{A}]$ be the subgraph of $G$ induced by uninfected vertices. Let $\{F, F'\} \subseteq V(G)$ be orthogonal faces of $G$. If $H$ does not contain a path between vertices $v \in F, v' \in F'$, then $G$ percolates.
+\end{lem}
+
+\begin{proof}
+We proceed by induction on $|V(H)| = abc - |A|$. If $|V(H)| = 0$, then all vertices of $G$ are infected and we are done. Suppose $|V(H)| > 0$, and consider a connected component $Y$ of $H$. By hypothesis, $Y$ does not contain a path between any two orthogonal faces of $G$. Therefore, without loss of generality, there exists a face $X = \{a\} \times \{1, \dots b\} \times \{1, \dots, c\}$ such that $V(Y) \cap X = \emptyset$. Take the largest $i$ such that $X_i = \{a\} \times \{1, \dots b\} \times \{1, \dots, c\}$ contains a vertex of $Y$. Repeat this process to obtain maximal faces $Y_j$ and $Z_k$ in the $b$ and $c$ directions, respectively. 
+
+Observe that this construction gives a vertex $v = (i,j,k) \in V(Y)$, and planes $X_{i+1}, Y_{j+1}, Z_{k+1}$ such that $(X_{i+1} \cup Y_{j+1} \cup Z_{k+1}) \cap  V(Y) = \emptyset$. In particular, note that $(i+1,j,k), (i,j+1,k),(i,j,k+1) \in N(v)$. Since these three vertices belong to $A$ and $v \notin A$, $v$ becomes infected. Furthermore, since $|V(H) \setminus \{v\}| < |V(H)|$, the resulting graph percolates by induction. This completes the proof.
+\end{proof}
+
+\begin{cor}
+\label{cor:three_walls}
+Let $G$ be the grid graph $(a,b,c)$. If a set $A$ is lethal on three mutually orthogonal faces of $G$, then $A$ is lethal on $G$.
+\end{cor}
+
+\begin{proof}
+Let $X, Y, Z$ be three mutually orthogonal faces of $G$. By hypothesis, $X \cup Y \cup Z \subseteq A_t$ for some time $t$. Therefore, the graph $H = G[\overline{A_t}]$ cannot contain a path between vertices on orthogonal faces of $G$. By lemma \ref{lem:walls}, $G$ percolates.
+\end{proof}
+
+\begin{cor}
+\label{cor:manifold}
+Let $G$ be the grid graph $(a,b,c)$ and let $A$ be a set of infected vertices of $G$. Let $\{R_1, \dots, R_k\} $ be a partition of $V(G) \setminus A$ into sub-grids $(a_1,b_1,c_1), \dots, (a_k,b_k,c_k)$ such that each $R_i$ is bounded by a lethal infection on three mutually orthogonal faces. Then $A$ is lethal on $G$.
+\end{cor}
+
+\begin{proof}
+By hypothesis and corollary \ref{cor:three_walls}, $A$ is lethal on each $R_i$. Since $A \cup R_1 \cup \dots \cup R_k = V(G)$ and each $R_i$ becomes infected, $A$ must be lethal.
+\end{proof}
+
+\begin{defn}
+\label{def:manifold}
+Let a \emph{manifold} $M$ of the grid graph $G = (a,b,c)$ be any set of vertices $A$ satisfying the conditions of corollary \ref{cor:manifold}.
+\end{defn}
+
+\begin{defn}
+\label{def:proper_unfolding}
+Let a \emph{proper unfolding} of $G = (a,b,c)$ be a planar representation of the manifold of $G$. This can be thought of as a special type of folding net of $G$, such that when assembled the resulting structure satisfies the conditions of corollary \ref{cor:manifold}.
+\end{defn}
+
+\begin{cor}
+\label{cor:ortho_walls}
+Let $M$ be the proper unfolding of a manifold of $G = (a,b,c)$, and let $A$ be a lethal set on $M$. Then $A$ is lethal on $G$.
+\end{cor}
+
+\begin{proof}
+The proof follows directly from definitions \ref{def:manifold} and \ref{def:proper_unfolding}.
+\end{proof}
+
+%\begin{cor}
+%\label{cor:three_walls}
+%Let $G$ be a grid assembled from sub-grids $G_1, \dots, G_k$. Let $H_1, \dots, H_k$ be sets satisfying the conditions of lemma \ref{lem:three_walls} for sub-grids $G_1, \dots, G_k$, respectively. Then $H = H_1 \cup \dots \cup H_k$ is a lethal set in $G$.
+%\end{cor}
+
+%\begin{lem}
+%\label{lem:unfold}
+%Let $G$ be the grid $(a,b,c)$. Let $H$ be a subgraph induced by the vertices of $G$. If the projection of $H$ in the $x$ direction gives the graph $(b,c)$, in the $y$ direction gives $(a,c)$, and in the $z$ direction gives $(a,b)$, and $H$ percolates, then $G$ percolates.
+%\end{lem}
+
+%\begin{proof}
+%The projection condition guarantees that $G$ has lethal sets on three perpendicular planes. The result follows from lemma \ref{lem:three_walls}.
+%\end{proof}
+
+%We refer to the union of mutually orthogonal faces of sub-grids $G_1, \dots, G_k$ as a \emph{manifold} of $G$. Therefore, corollary \ref{cor:three_walls} says that if a set $H$ is lethal on the manifold of $G$, then $H$ is lethal in $G$. Furthermore, we define a \emph{proper unfolding} of $G$ as a planar representation of the manifold of $G$. This can be thought of as a special type of folding net of $G$, such that when assembled the resulting structure satisfies the conditions of corollary \ref{cor:three_walls}. 
+
+%\begin{cor}
+%\label{cor:unfold}
+%Something about unfolding $H$ and its planar embedding. Imagine $H$ as a set of folded up pieces of paper. Let $\mathcal{N}$ be the family of unfolded nets comprising $H$. To show that $G$ percolates, it is sufficient to show that all nets $N \in \mathcal{N}$ harbor lethal infections.
+%\end{cor}
+
+\end{comment}

@@ -56,12 +56,19 @@ We shall show that all grids of thickness 6 can be obtained recursively from $(3
 
 (NOTE (to Peter and Jon): I have struggled a bit with the canonical way to describe grids. I like the tuple representation $(a,b,c)$ where WLOG $a \leq b \leq c$. However, this becomes a bit mucky in the following proofs, because $(3n,m,3)$ potentially violates this rule if $n$ is large and $m$ is small. To accommodate this, I have written ``grids of the form $(a,b,6)$, where $a \equiv 0 \pmod 6$ and $b \equiv 0 \pmod 2$, or $b \equiv 0 \pmod 6$ and $a \equiv 0 \pmod 2$," in an attempt to address the circumstance where the ordering of the tuple is flipped because $n$ is large and $m$ is small. However, I think this may just muddy the waters.)
 
-\begin{figure}[]
+%\begin{figure}[]
+%\centering
+%\includegraphics[width=\textwidth]{figures/4/thickness_6_case_1.pdf}
+%\caption{Thickness 6 grids with perfect percolating sets as obtained in lemma \ref{lem:thickness_6_case_1} (left), and divisibility cases of thickness 6 (right).}
+%\label{fig:thickness_6_case_1}
+%\end{figure}
+
+\begin{table}[]
 \centering
-\includegraphics[width=\textwidth]{figures/4/thickness_6_case_1.pdf}
-\caption{Thickness 6 grids with perfect percolating sets as obtained in lemma \ref{lem:thickness_6_case_1} (left), and divisibility cases of thickness 6 (right).}
-\label{fig:thickness_6_case_1}
-\end{figure}
+\includegraphics[width=\textwidth]{tables/4/thickness_6_cases.pdf}
+\caption{The four thickness 6 cases analyzed in Lemmas \ref{lem:thickness_6_case_1} (blue), \ref{lem:thickness_6_case_2} (green), \ref{lem:thickness_6_case_3} (red), and \ref{lem:thickness_6_case_4} (yellow).}
+\label{fig:thickness_6_cases}
+\end{table}
 
 \begin{lem}
 \label{lem:thickness_6_case_1}
@@ -117,6 +124,13 @@ We show that all divisibility cases for grids of thickness 7 percolate at the lo
 \item $(x,y,7)$ for $x,y \in \{0,3\}$ and $x \not\equiv y \pmod 6$.
 \end{enumerate}
 
+\begin{table}[]
+\centering
+\includegraphics[width=\textwidth]{tables/4/thickness_7_cases.pdf}
+\caption{The four thickness 7 cases analyzed in Lemmas \ref{lem:thickness_7_case_1} (blue), \ref{lem:thickness_7_case_2} (green), \ref{lem:thickness_7_case_3} (red), and \ref{lem:thickness_7_case_4} (yellow).}
+\label{fig:thickness_7_cases}
+\end{table}
+
 \begin{lem}
 \label{lem:thickness_7_case_1}
 All grids of the form $(x,y,7)$ for $x,y \in \{1,4\}$ and $x \equiv y \pmod 6$ are complete.
@@ -160,7 +174,7 @@ Thickness 7 is complete.
 \end{lem}
 
 \begin{proof}
-By lemmas \ref{lem:thickness_7_case_1}, \ref{lem:thickness_7_case_2}, \ref{lem:thickness_7_case_3}, and \ref{lem:thickness_7_case_4}, all divisibility cases for thickness 7 percolate at the lower bound.
+By Lemmas \ref{lem:thickness_7_case_1}, \ref{lem:thickness_7_case_2}, \ref{lem:thickness_7_case_3}, and \ref{lem:thickness_7_case_4}, all divisibility cases for thickness 7 percolate at the lower bound.
 \end{proof}
 
 \section{Completeness of Grids of Size $\geq$ 5}
