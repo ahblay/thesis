@@ -38,6 +38,7 @@ We consider grids obtained from $(6,3,2) + (a,3,3)$, for $a \equiv 0 \pmod 3$ an
 \end{proof}
 
 \begin{lem}
+\label{lem:thickness_5_complete}
 Thickness 5 is complete.
 \end{lem}
 
@@ -116,7 +117,7 @@ All divisibility cases for thickness 6 are grids of the form $(x,y,6)$ such that
 
 \section{Completeness of Thickness 7}
 
-We show that all divisibility cases for grids of thickness 7 percolate at the lower bound. Observe that divisibility cases for thickness 7 consist of grids of the form $(x,y,7)$ for $x,y$ in residue classes $\{0,1,3,4\}$ modulo 6. We separate these divisibility cases into the following four categories and show that each category is complete:
+We show that all divisibility cases for grids of thickness 7 admit perfect lethal sets. Observe that divisibility cases for thickness 7 consist of grids of the form $(x,y,7)$ for $x,y$ in residue classes $\{0,1,3,4\}$ modulo 6 (see Table \ref{fig:thickness_7_cases}). We separate these divisibility cases into the following four categories and show that each category is complete:
 \begin{enumerate}
 \item $(x,y,7)$ for $x,y \in \{1,4\}$ and $x \equiv y \pmod 6$;
 \item $(x,y,7)$ for $x,y \in \{1,4\}$ and $x \not\equiv y \pmod 6$;
@@ -133,13 +134,17 @@ We show that all divisibility cases for grids of thickness 7 percolate at the lo
 
 \begin{lem}
 \label{lem:thickness_7_case_1}
-All grids of the form $(x,y,7)$ for $x,y \in \{1,4\}$ and $x \equiv y \pmod 6$ are complete.
+All grids of the form $(x,y,7)$ for $x,y \in \{1,4\}$ and $x \equiv y \pmod 6$ admit perfect lethal sets.
 \end{lem}
 
 \begin{proof}
-Consider the construction $(a,b,2) + (8,5,5)$ for $a,b \in \{2,5\}$ and $a \not\equiv b \pmod 6$. Observe that this construction obtains all grids of the form described in (1) above. We show that the grids $(a,b,2), (a,5,5), (8,b,5), (8,5,2)$ are all complete. 
-\{The fact that these grids are complete follows from a number of constructions and the observation that thickness 5 is complete.\} 
-By remark \ref{rem:recursion_pieces}, the construction $(a,b,2) + (8,5,5)$ percolates at the lower bound. This completes the proof. 
+Consider the construction $(a,b,2) + (8,5,5)$ for $a,b \in \{2,5\} \pmod 6$, $a \not\equiv b \pmod 6$, and $a,b > 2$. Observe that this construction obtains all grids of the form described in (1) above, apart from $(10,10,7)$ and $(a, 7,7)$, for $a \equiv 1 \pmod 6$. 
+
+By Corollary \ref{cor:recursion}, we must show that the grids $(a,b,2), (a,5,5), (8,b,5), (8,5,2)$ are all perfect. By Proposition \ref{prop:thickness_2_2d_family}, $(a,b,2)$ and $(8,5,2)$ are perfect. By Lemma \ref{lem:thickness_5_complete}, $(a,5,5)$ and $(8,b,5)$ are perfect. 
+
+To obtain $(a,7,7)$, for $a \equiv 1 \pmod 6$, we consider $(4,4,4) + (a-4,3,3)$. By Corollary \ref{cor:recursion}, we must show that $(4,4,4), (4,3,3), (a-4,4,3), (a-4,3,4)$ are all perfect. By Constructions X and Y in Appendix A, we have that $(4,4,4)$ and $(4,3,3)$ are perfect, respectively. Since $a-4 \equiv 3 \pmod 6$, we obtain $(a-4,4,3)$ from Proposition \ref{prop:thickness_3_width_4}.
+
+To obtain $(10,10,7)$, consider $(5,5,5) + (5,5,2)$. By Corollary \ref{cor:recursion}, we must show that $(5,5,5), (5,5,2), (5,5,2), (5,5,5)$ are all perfect. Lemma \ref{lem:thickness_5_complete} gives us $(5,5,5)$, and Construction X gives us $(5,5,2)$. We conclude that all grids of the form given in (1) are perfect. 
 \end{proof}
 
 \begin{lem}
@@ -148,7 +153,11 @@ All grids of the form $(x,y,7)$ for $x,y \in \{1,4\}$ and $x \not\equiv y \pmod 
 \end{lem}
 
 \begin{proof}
-Consider the construction $(a,b,2) + (5,5,5)$ for $a,b \in \{2,5\}$ and $a \not\equiv b \pmod 6$. Observe that this construction obtains all grids of the form described in (2) above. We consider the grids $(a,b,2), (a,5,5), (5,b,5), (5,5,2)$. By \{known constructions and completeness of thickness 5\}, each of these grids is perfect, and so by remark \ref{rem:recursion_pieces}, $(a,b,2) + (5,5,5)$ percolates at the lower bound. This completes the proof.
+Consider the construction $(a,b,2) + (5,5,5)$ for $a,b \in \{2,5\} \pmod 6$, $a \not\equiv b \pmod 6$, and $a,b > 2$. Observe that this construction obtains all grids of the form described in (2) above, apart from $(a,7,7)$, for $a \equiv 4 \pmod 6$. 
+
+By Corollary \ref{cor:recursion}, we must show that the grids $(a,b,2), (a,5,5), (5,b,5), (5,5,2)$ are all perfect. By Proposition \ref{prop:thickness_2_2d_family}, $(a,b,2)$ is perfect. We obtain $(a,5,5)$ and $(5,b,5)$ from Lemma \ref{lem:thickness_5_complete}, and $(5,5,2)$ is given by Construction X.
+
+To obtain $(a,7,7)$, for $a \equiv 4 \pmod 6$, we consider $(7,4,4) + (a-7,3,3)$. Since $a \equiv 4 \pmod 6$ and $a \geq 7$, we have that $a \geq 10$. By Corollary \ref{cor:recursion}, we must show that $(7,4,4), (7,3,3), (a-7,4,3), (a-7,3,4)$ are all perfect. We obtain $(7,4,4)$ from $(2,2,2) + (5,2,2)$. Constructions X and Y show that $(2,2,2), (2,2,2), (5,2,2), (5,2,2)$ are all perfect. Proposition \ref{prop:3x3xk} gives us $(7,3,3)$. Since $a-7 \equiv 3 \pmod 6$, we obtain $(a-7,4,3)$ from Proposition \ref{prop:thickness_3_width_4}. We conclude that all grids of the form given in (2) are perfect. 
 \end{proof}
 
 \begin{lem}
@@ -157,7 +166,11 @@ All grids of the form $(x,y,7)$ for $x,y \in \{0,3\}$ and $x \equiv y \pmod 6$ a
 \end{lem}
 
 \begin{proof}
-Consider the construction $(a,b,2) + (6,9,5)$ for $a,b \in \{0,3\}$ and $a \not\equiv b \pmod 6$. Observe that this construction contains all grids described in (3) above. We consider the grids $(a,b,2), (a,9,5), (6,b,5), (6,9,2)$. Observe that $(3,9,5)$ is perfect by construction, and $(a,9,5)$ is perfect in general for $a>3$. Similarly, $(6,3,5)$ is perfect by construction, and $(6,b,5)$ is perfect for all other $b>3$. Finally, $(a,b,2)$ and $(6,9,2)$ are perfect by construction. Therefore, by remark \ref{rem:recursion_pieces}, $(a,b,2) + (5,5,5)$ percolates at the lower bound. This completes the proof.
+Consider the construction $(a,b,2) + (6,9,5)$ for $a,b \in \{0,3\} \pmod 6$, $a \not\equiv b \pmod 6$, and $a,b > 2$. Observe that this construction contains all grids described in (3) above, apart from $(9,9,7)$. 
+
+By Corollary \ref{cor:recursion}, we must show that the grids $(a,b,2), (a,9,5), (6,b,5), (6,9,2)$ are all perfect. By Proposition \ref{prop:thickness_2_2d_family}, $(a,b,2)$ and $(6,9,2)$ are perfect. By Proposition \ref{prop:thickness_3_2d_family}, $(a,9,5)$ is perfect. We obtain $(6,b,5)$ from Lemma \ref{lem:thickness_5_complete}, for $b \geq 5$, and $(6,3,5)$ from Proposition \ref{prop:3x6xk}. 
+
+To obtain $(9,9,7)$, consider $(6,6,4) + (3,3,3)$. By Corollary \ref{cor:recursion}, we must show that $(6,6,4), (6,3,3), (3,6,3), (3,3,4)$ are all perfect. We obtain $(6,6,4)$ from $(3,3,1) + (3,3,3)$. Constructions X and Y show that $(3,3,1), (3,3,3), (3,3,3), (1,3,3)$ are all perfect. Proposition \ref{prop:3x3xk} gives us $(6,3,3)$ and $(4,3,3)$. We conclude that all grids of the form given in (3) are perfect.
 \end{proof}
 
 \begin{lem}
@@ -166,7 +179,9 @@ All grids of the form $(x,y,7)$ for $x,y \in \{0,3\}$ and $x \not\equiv y \pmod 
 \end{lem}
 
 \begin{proof}
-Consider the construction $(a,b,2) + (6,6,5)$ for $a,b \in \{0,3\}$ and $a \not\equiv b \pmod 6$. Observe that this construction contains all grids described in (4) above. We consider the grids $(a,b,2), (a,6,5), (6,b,5), (6,6,2)$. Observe that $(3,6,5)$ is perfect by construction, and $(a,6,5)$ is perfect in general for $a>3$. Similarly, $(6,3,5)$ is perfect by construction, and $(6,b,5)$ is perfect for all other $b>3$. Finally, $(a,b,2)$ and $(6,6,2)$ are perfect by construction. Therefore, by remark \ref{rem:recursion_pieces}, $(a,b,2) + (5,5,5)$ percolates at the lower bound. This completes the proof.
+Consider the construction $(a,b,2) + (6,6,5)$ for $a,b \in \{0,3\} \pmod 6$, $a \not\equiv b \pmod 6$, and $a,b > 2$. Observe that this construction contains all grids described in (4) above. 
+
+By Corollary \ref{cor:recursion}, we must show that the grids $(a,b,2), (a,6,5), (6,b,5), (6,6,2)$ are all perfect. By Proposition \ref{prop:thickness_2_2d_family}, $(a,b,2)$ is perfect. We obtain $(6,b,5)$ from Lemma \ref{lem:thickness_5_complete}, for $b \geq 5$, and $(6,3,5)$ from Proposition \ref{prop:3x6xk}. We obtain $(6,6,2)$ by Construction X. We conclude that all grids of the form given in (4) are perfect.
 \end{proof}
 
 \begin{lem}
@@ -174,7 +189,7 @@ Thickness 7 is complete.
 \end{lem}
 
 \begin{proof}
-By Lemmas \ref{lem:thickness_7_case_1}, \ref{lem:thickness_7_case_2}, \ref{lem:thickness_7_case_3}, and \ref{lem:thickness_7_case_4}, all divisibility cases for thickness 7 percolate at the lower bound.
+By Lemmas \ref{lem:thickness_7_case_1}, \ref{lem:thickness_7_case_2}, \ref{lem:thickness_7_case_3}, and \ref{lem:thickness_7_case_4}, all divisibility cases for thickness 7 admit perfect lethal sets.
 \end{proof}
 
 \section{Completeness of Grids of Size $\geq$ 5}
