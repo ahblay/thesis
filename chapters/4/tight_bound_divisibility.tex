@@ -43,9 +43,9 @@ All grids of the form $(x,5,5)$ for $x \in \{2,5\} \pmod 6$ admit perfect lethal
 \begin{proof}
 Consider the construction $(5,2,2) + (a,3,3)$, for $a \equiv 0 \pmod 3$ and $a >3$. Observe that this construction obtains all grids of the form described in (1), apart from $(5,5,5)$ and $(8,5,5)$.
 
-By Corollary \ref{cor:recursion}, we must show that the grids $(5,2,2), (5,3,3), (a,2,3), (a,3,2)$ are all perfect. We have that $(5,2,2)$ is perfect by Construction X in Appendix A, and $(5,3,3)$ is given by Proposition \ref{prop:3x3xk}. Since $a >3$, Propositions \ref{prop:2x3xk_0} and \ref{prop:2x3xk_3} give $(a,2,3)$. 
+By Corollary \ref{cor:recursion}, we must show that the grids $(5,2,2), (5,3,3), (a,2,3), (a,3,2)$ are all perfect. We have that $(5,2,2)$ is perfect by Construction \ref{con:5x2x2} in Appendix A, and $(5,3,3)$ is given by Proposition \ref{prop:3x3xk}. Since $a >3$, Propositions \ref{prop:2x3xk_0} and \ref{prop:2x3xk_3} give $(a,2,3)$. 
 
-By Constructions X and Y in Appendix A, we obtain the remaining grids $(5,5,5)$ and $(8,5,5)$. We conclude that all grids of the form given in (1) are perfect.
+By Constructions \ref{con:5x5x5} and \ref{con:8x5x5} in Appendix A, we obtain the remaining grids $(5,5,5)$ and $(8,5,5)$. We conclude that all grids of the form given in (1) are perfect.
 \end{proof}
 
 \begin{lem}
@@ -58,7 +58,7 @@ Consider the construction $(6,3,2) + (a,3,3)$, for $a \equiv 0 \pmod 3$ and $a >
 
 By Corollary \ref{cor:recursion}, we must show that the grids $(6,3,2), (6,3,3), (a,3,3), (a,3,2)$ are all perfect. Since $a >3$, $(6,3,2)$ and $(a,3,2)$ are given by Propositions \ref{prop:2x3xk_0} and \ref{prop:2x3xk_3}. Similarly, $(6,3,3)$ and $(a,3,3)$ are given by Proposition \ref{prop:3x3xk}.
 
-To obtain $(6,6,5)$, we consider the construction $(3,3,1)+(3,3,4)$. By Corollary \ref{cor:recursion}, we must show that $(3,3,1), (3,3,4), (3,3,4), (3,3,1)$ are all perfect. These are obtained, respectively, by Propositions \ref{prop:3x3xk} and \ref{prop:thickness_3_width_4}. Construction X gives $(9,6,5)$. We conclude that all grids of the form given in (2) are perfect.
+To obtain $(6,6,5)$, we consider the construction $(3,3,1)+(3,3,4)$. By Corollary \ref{cor:recursion}, we must show that $(3,3,1), (3,3,4), (3,3,4), (3,3,1)$ are all perfect. These are obtained, respectively, by Propositions \ref{prop:3x3xk} and \ref{prop:thickness_3_width_4}. Construction \ref{con:9x6x5} gives $(9,6,5)$. We conclude that all grids of the form given in (2) are perfect.
 \end{proof}
 
 \begin{lem}
@@ -71,9 +71,9 @@ Consider the construction $(a,b,2) + (6,6,3)$, for $a,b \in \{0,2,3,5\} \pmod 6$
 
 By Corollary \ref{cor:recursion}, we must show that the grids $(a,b,2), (a,6,3), (6,b,3), (6,6,2)$ are all perfect. By Proposition \ref{prop:thickness_2_2d_family}, $(a,b,2)$ is perfect. Both $(a,6,3)$ and $(6,b,3)$ follow from Proposition \ref{prop:3x6xk}. We obtain $(6,6,2)$ from $(3,3,1)+(3,3,1)$. By Proposition \ref{prop:purina}, $(3,3,1)$ is perfect, and so by Corollary \ref{cor:recursion}, $(6,6,2)$ is perfect.
 
-To obtain $(a,8,5)$, for $a \equiv 5 \pmod 6$ and $a \geq 17$, we consider the construction $(8,5,2) + (a,3,3)$, for $a \equiv 3 \pmod 6$ and $a>3$. By Corollary \ref{cor:recursion}, we must show that $(2,5,2)$, $(8,3,3)$, $(a,5,3)$, $(a,2,3)$ are all perfect. We obtain $(2,5,2)$ from Construction X and $(8,3,3)$ from Proposition \ref{prop:3x3xk}. Since $a \equiv 3 \pmod 6$, Proposition \ref{prop:thickness_2_2d_family} gives $(a,5,3)$, and Proposition \ref{prop:2x3xk_3} gives $(a,2,3)$. 
+To obtain $(a,8,5)$, for $a \equiv 5 \pmod 6$ and $a \geq 17$, we consider the construction $(8,5,2) + (a,3,3)$, for $a \equiv 3 \pmod 6$ and $a>3$. By Corollary \ref{cor:recursion}, we must show that $(2,5,2)$, $(8,3,3)$, $(a,5,3)$, $(a,2,3)$ are all perfect. We obtain $(2,5,2)$ from Construction \ref{con:5x2x2} and $(8,3,3)$ from Proposition \ref{prop:3x3xk}. Since $a \equiv 3 \pmod 6$, Proposition \ref{prop:thickness_2_2d_family} gives $(a,5,3)$, and Proposition \ref{prop:2x3xk_3} gives $(a,2,3)$. 
 
-The above construction omits the singular grid $(11,8,5)$. However, we may obtain $(11,8,5)$ from $(2,3,6)+(3,5,5)$. By Corollary \ref{cor:recursion}, we must show that $(2,3,6), (2,5,5)$, $(3,3,5), (3,5,6)$ are all perfect. We obtain $(2,5,5)$ from Construction X, $(3,3,5)$ from Proposition \ref{prop:3x3xk}, and $(2,3,6)$ and $(3,5,6)$ from Proposition \ref{prop:3x6xk}. We conclude that all grids of the form given in (3) are perfect.
+The above construction omits the singular grid $(11,8,5)$. However, we may obtain $(11,8,5)$ from $(2,3,6)+(3,5,5)$. By Corollary \ref{cor:recursion}, we must show that $(2,3,6), (2,5,5)$, $(3,3,5), (3,5,6)$ are all perfect. We obtain $(2,5,5)$ from Construction \ref{con:5x5x2}, $(3,3,5)$ from Proposition \ref{prop:3x3xk}, and $(2,3,6)$ and $(3,5,6)$ from Proposition \ref{prop:3x6xk}. We conclude that all grids of the form given in (3) are perfect.
 \end{proof}
 
 \begin{lem}
@@ -86,7 +86,7 @@ Consider the construction $(a,b,2) + (6,3,3)$, for $a,b \in \{0,2,3,5\} \pmod 6$
 
 By Corollary \ref{cor:recursion}, we must show that the grids $(a,b,2), (a,3,3), (6,b,3), (6,3,2)$ are all perfect. By Proposition \ref{prop:thickness_2_2d_family}, $(a,b,2)$ is perfect. Both $(6,3,2)$ and $(6,b,3)$ follow from Proposition \ref{prop:3x6xk}. We obtain $(a,3,3)$ from Proposition \ref{prop:3x3xk}.
 
-To obtain $(8,8,5)$, we consider the construction $(2,2,2) + (6,6,3)$. By Corollary \ref{cor:recursion}, we must show that $(2,2,2), (2,6,6), (3,2,6), (3,6,2)$ are all perfect. We obtain $(2,2,2)$ from Construction X and $(3,6,2)$ from Proposition \ref{prop:3x6xk}. The construction $(3,3,1)+(3,3,1)$ gives $(6,6,2)$. By Proposition \ref{prop:purina}, $(3,3,1)$ is perfect, and so by Corollary \ref{cor:recursion}, $(6,6,2)$ is perfect. We conclude that all grids of the form given in (3) are perfect.
+To obtain $(8,8,5)$, we consider the construction $(2,2,2) + (6,6,3)$. By Corollary \ref{cor:recursion}, we must show that $(2,2,2), (2,6,6), (3,2,6), (3,6,2)$ are all perfect. We obtain $(2,2,2)$ from Construction \ref{con:2x2x2} and $(3,6,2)$ from Proposition \ref{prop:3x6xk}. The construction $(3,3,1)+(3,3,1)$ gives $(6,6,2)$. By Proposition \ref{prop:purina}, $(3,3,1)$ is perfect, and so by Corollary \ref{cor:recursion}, $(6,6,2)$ is perfect. We conclude that all grids of the form given in (3) are perfect.
 \end{proof}
 
 \begin{lem}
@@ -147,7 +147,7 @@ Consider the construction $(3n,m,3) + (6,6,3)$, for $n,m \equiv 1 \pmod 2$ and $
 
 By Corollary \ref{cor:recursion}, we must show that the grids $(3n,m,3), (3n,6,3), (6,m,3), (6,6,3)$ are all perfect. By Proposition \ref{prop:thickness_3_2d_family}, $(3n,m,3)$ is perfect for all $m > 1$. Since $n,m > 1$, $(3n,6,3), (6,m,3), (6,6,3)$ are all perfect by Proposition \ref{prop:3x6xk}.
 
-To obtain $(x,7,6)$, for $x \equiv 3 \pmod 6$ and $x \geq 9$, we consider $(6,3,3) + (x-6, 4,3)$. By Corollary \ref{cor:recursion}, we must show that $(6,3,3), (6,4,3), (x-6,3,3), (x-6,4,3)$ are all perfect. We obtain $(6,3,3)$ and $(x-6,3,3)$ from Proposition \ref{prop:3x6xk}. Construction X in Appendix A gives $(6,4,3)$. Proposition \ref{prop:thickness_3_width_4} gives $(x-6,4,3)$. We conclude that all grids of the form given in (2) are perfect. 
+To obtain $(x,7,6)$, for $x \equiv 3 \pmod 6$ and $x \geq 9$, we consider $(6,3,3) + (x-6, 4,3)$. By Corollary \ref{cor:recursion}, we must show that $(6,3,3), (6,4,3), (x-6,3,3), (x-6,4,3)$ are all perfect. We obtain $(6,3,3)$ and $(x-6,3,3)$ from Proposition \ref{prop:3x6xk}. Construction \ref{con:6x4x3} in Appendix A gives $(6,4,3)$. Proposition \ref{prop:thickness_3_width_4} gives $(x-6,4,3)$. We conclude that all grids of the form given in (2) are perfect. 
 \end{proof}
 
 \begin{lem}
@@ -209,9 +209,9 @@ Consider the construction $(a,b,2) + (8,5,5)$ for $a,b \in \{2,5\} \pmod 6$, $a 
 
 By Corollary \ref{cor:recursion}, we must show that the grids $(a,b,2), (a,5,5), (8,b,5), (8,5,2)$ are all perfect. By Proposition \ref{prop:thickness_2_2d_family}, $(a,b,2)$ and $(8,5,2)$ are perfect. By Lemma \ref{lem:thickness_5_complete}, $(a,5,5)$ and $(8,b,5)$ are perfect. 
 
-To obtain $(a,7,7)$, for $a \equiv 1 \pmod 6$, we consider $(4,4,4) + (a-4,3,3)$. By Corollary \ref{cor:recursion}, we must show that $(4,4,4), (4,3,3), (a-4,4,3), (a-4,3,4)$ are all perfect. By Constructions X and Y in Appendix A, we have that $(4,4,4)$ and $(4,3,3)$ are perfect, respectively. Since $a-4 \equiv 3 \pmod 6$, we obtain $(a-4,4,3)$ from Proposition \ref{prop:thickness_3_width_4}.
+To obtain $(a,7,7)$, for $a \equiv 1 \pmod 6$, we consider $(4,4,4) + (a-4,3,3)$. By Corollary \ref{cor:recursion}, we must show that $(4,4,4), (4,3,3), (a-4,4,3), (a-4,3,4)$ are all perfect. We obtain $(4,4,4)$ from $(2,2,2)+(2,2,2)$. By Construction \ref{con:2x2x2} in Appendix A, we have that $(2,2,2)$ is perfect. Proposition \ref{prop:3x3xk} gives $(4,3,3)$. Since $a-4 \equiv 3 \pmod 6$, we obtain $(a-4,4,3)$ from Proposition \ref{prop:thickness_3_width_4}.
 
-To obtain $(10,10,7)$, consider $(5,5,5) + (5,5,2)$. By Corollary \ref{cor:recursion}, we must show that $(5,5,5), (5,5,2), (5,5,2), (5,5,5)$ are all perfect. Lemma \ref{lem:thickness_5_complete} gives us $(5,5,5)$, and Construction X gives us $(5,5,2)$. We conclude that all grids of the form given in (1) are perfect. 
+To obtain $(10,10,7)$, consider $(5,5,5) + (5,5,2)$. By Corollary \ref{cor:recursion}, we must show that $(5,5,5), (5,5,2), (5,5,2), (5,5,5)$ are all perfect. Lemma \ref{lem:thickness_5_complete} gives us $(5,5,5)$, and Construction \ref{con:5x5x2} gives us $(5,5,2)$. We conclude that all grids of the form given in (1) are perfect. 
 \end{proof}
 
 \begin{lem}
@@ -222,9 +222,9 @@ All grids of the form $(x,y,7)$ for $x,y \in \{1,4\}$ and $x \not\equiv y \pmod 
 \begin{proof}
 Consider the construction $(a,b,2) + (5,5,5)$ for $a,b \in \{2,5\} \pmod 6$, $a \not\equiv b \pmod 6$, and $a,b > 2$. Observe that this construction obtains all grids of the form described in (2) above, apart from $(a,7,7)$, for $a \equiv 4 \pmod 6$. 
 
-By Corollary \ref{cor:recursion}, we must show that the grids $(a,b,2), (a,5,5), (5,b,5), (5,5,2)$ are all perfect. By Proposition \ref{prop:thickness_2_2d_family}, $(a,b,2)$ is perfect. We obtain $(a,5,5)$ and $(5,b,5)$ from Lemma \ref{lem:thickness_5_complete}, and $(5,5,2)$ is given by Construction X.
+By Corollary \ref{cor:recursion}, we must show that the grids $(a,b,2), (a,5,5), (5,b,5), (5,5,2)$ are all perfect. By Proposition \ref{prop:thickness_2_2d_family}, $(a,b,2)$ is perfect. We obtain $(a,5,5)$ and $(5,b,5)$ from Lemma \ref{lem:thickness_5_complete}, and $(5,5,2)$ is given by Construction \ref{con:5x5x2}.
 
-To obtain $(a,7,7)$, for $a \equiv 4 \pmod 6$, we consider $(7,4,4) + (a-7,3,3)$. Since $a \equiv 4 \pmod 6$ and $a \geq 7$, we have that $a \geq 10$. By Corollary \ref{cor:recursion}, we must show that $(7,4,4), (7,3,3), (a-7,4,3), (a-7,3,4)$ are all perfect. We obtain $(7,4,4)$ from $(2,2,2) + (5,2,2)$. Constructions X and Y show that $(2,2,2), (2,2,2), (5,2,2), (5,2,2)$ are all perfect. Proposition \ref{prop:3x3xk} gives us $(7,3,3)$. Since $a-7 \equiv 3 \pmod 6$, we obtain $(a-7,4,3)$ from Proposition \ref{prop:thickness_3_width_4}. We conclude that all grids of the form given in (2) are perfect. 
+To obtain $(a,7,7)$, for $a \equiv 4 \pmod 6$, we consider $(7,4,4) + (a-7,3,3)$. Since $a \equiv 4 \pmod 6$ and $a \geq 7$, we have that $a \geq 10$. By Corollary \ref{cor:recursion}, we must show that $(7,4,4), (7,3,3), (a-7,4,3), (a-7,3,4)$ are all perfect. We obtain $(7,4,4)$ from $(2,2,2) + (5,2,2)$. Constructions \ref{con:2x2x2} and \ref{con:5x2x2} show that $(2,2,2), (2,2,2), (5,2,2), (5,2,2)$ are all perfect. Proposition \ref{prop:3x3xk} gives us $(7,3,3)$. Since $a-7 \equiv 3 \pmod 6$, we obtain $(a-7,4,3)$ from Proposition \ref{prop:thickness_3_width_4}. We conclude that all grids of the form given in (2) are perfect. 
 \end{proof}
 
 \begin{lem}
@@ -237,7 +237,7 @@ Consider the construction $(a,b,2) + (6,9,5)$ for $a,b \in \{0,3\} \pmod 6$, $a 
 
 By Corollary \ref{cor:recursion}, we must show that the grids $(a,b,2), (a,9,5), (6,b,5), (6,9,2)$ are all perfect. By Proposition \ref{prop:thickness_2_2d_family}, $(a,b,2)$ and $(6,9,2)$ are perfect. By Proposition \ref{prop:thickness_3_2d_family}, $(a,9,5)$ is perfect. We obtain $(6,b,5)$ from Lemma \ref{lem:thickness_5_complete}, for $b \geq 5$, and $(6,3,5)$ from Proposition \ref{prop:3x6xk}. 
 
-To obtain $(9,9,7)$, consider $(6,6,4) + (3,3,3)$. By Corollary \ref{cor:recursion}, we must show that $(6,6,4), (6,3,3), (3,6,3), (3,3,4)$ are all perfect. We obtain $(6,6,4)$ from $(3,3,1) + (3,3,3)$. Constructions X and Y show that $(3,3,1), (3,3,3), (3,3,3), (1,3,3)$ are all perfect. Proposition \ref{prop:3x3xk} gives us $(6,3,3)$ and $(4,3,3)$. We conclude that all grids of the form given in (3) are perfect.
+To obtain $(9,9,7)$, consider $(6,6,4) + (3,3,3)$. By Corollary \ref{cor:recursion}, we must show that $(6,6,4), (6,3,3), (3,6,3), (3,3,4)$ are all perfect. We obtain $(6,6,4)$ from $(3,3,1) + (3,3,3)$. Constructions \ref{con:3x3x1} and \ref{con:3x3x3} show that $(3,3,1), (3,3,3), (3,3,3), (1,3,3)$ are all perfect. Proposition \ref{prop:3x3xk} gives us $(6,3,3)$ and $(4,3,3)$. We conclude that all grids of the form given in (3) are perfect.
 \end{proof}
 
 \begin{lem}
@@ -248,7 +248,7 @@ All grids of the form $(x,y,7)$ for $x,y \in \{0,3\}$ and $x \not\equiv y \pmod 
 \begin{proof}
 Consider the construction $(a,b,2) + (6,6,5)$ for $a,b \in \{0,3\} \pmod 6$, $a \not\equiv b \pmod 6$, and $a,b > 2$. Observe that this construction contains all grids described in (4) above. 
 
-By Corollary \ref{cor:recursion}, we must show that the grids $(a,b,2), (a,6,5), (6,b,5), (6,6,2)$ are all perfect. By Proposition \ref{prop:thickness_2_2d_family}, $(a,b,2)$ is perfect. We obtain $(6,b,5)$ from Lemma \ref{lem:thickness_5_complete}, for $b \geq 5$, and $(6,3,5)$ from Proposition \ref{prop:3x6xk}. We obtain $(6,6,2)$ by Construction X. We conclude that all grids of the form given in (4) are perfect.
+By Corollary \ref{cor:recursion}, we must show that the grids $(a,b,2), (a,6,5), (6,b,5), (6,6,2)$ are all perfect. By Proposition \ref{prop:thickness_2_2d_family}, $(a,b,2)$ is perfect. We obtain $(6,b,5)$ from Lemma \ref{lem:thickness_5_complete}, for $b \geq 5$, and $(6,3,5)$ from Proposition \ref{prop:3x6xk}. We obtain $(6,6,2)$ from $(3,3,1)+(3,3,1)$. By Proposition \ref{prop:purina}, $(3,3,1)$ is perfect, and so by Corollary \ref{cor:recursion}, $(6,6,2)$ is perfect. We conclude that all grids of the form given in (4) are perfect.
 \end{proof}
 
 \begin{lem}
