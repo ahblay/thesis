@@ -5,22 +5,48 @@
 \usepackage{array}
 \usepackage[table]{xcolor}
 \usepackage{tikz}
+\usepackage{moresize}
 
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 \def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
 
 \begin{document}
-\begin{center}
-\begin{tabular}{ m{1cm} | m{1cm} | m{1cm} | m{1cm} |} 
-  mod 3 & $a_1 \equiv 0$ & $a_1 \equiv 1$ & $a_1 \equiv 2$ \\
-  \hline
-  $a_2 \equiv 0$ & \cellcolor{green!30} & \cellcolor{green!30} & \cellcolor{green!30} \\ 
-  \hline
-  $a_2 \equiv 1$ & \cellcolor{green!30} & \cellcolor{red!30} & \cellcolor{red!30} \\ 
-  \hline
-  $a_2 \equiv 2$ & \cellcolor{green!30} & \cellcolor{red!30} & \cellcolor{red!30} \\ 
-  \hline
-\end{tabular}
-\end{center}
+\begin{tikzpicture}
+
+\draw[gray,fill=green!30] (1,1) rectangle (2,2);
+\draw[gray,fill=red!30] (2,1) rectangle (3,2);
+\draw[gray,fill=green!30] (1,2) rectangle (2,3);
+\draw[gray,fill=red!30] (3,2) rectangle (4,3);
+\draw[gray,fill=green!30] (2,3) rectangle (3,4);
+\draw[gray,fill=red!30] (3,1) rectangle (4,2);
+\draw[gray,fill=green!30] (3,3) rectangle (4,4);
+
+\draw[gray,fill=red!30] (2,2) rectangle (3,3);
+\draw[gray,fill=green!30] (1,3) rectangle (2,4);
+
+\draw[] (1,1) grid (4,4);
+
+\node[font=\ssmall] at (0.6,4.3) {mod 3};
+
+\node[font=\ssmall] at (1.5,4.3) {$\equiv 0$};
+\node[font=\ssmall] at (2.5,4.3) {$\equiv 1$};
+\node[font=\ssmall] at (3.5,4.3) {$\equiv 2$};
+
+\node[font=\ssmall] at (0.7,3.5) {$\equiv 0$};
+\node[font=\ssmall] at (0.7,2.5) {$\equiv 1$};
+\node[font=\ssmall] at (0.7,1.5) {$\equiv 2$};
+
+\node[font=\ssmall] at (2.5,2.7) {$(7,7,6)$};
+\node[font=\ssmall] at (2.5,2.3) {$(1,1,0)$};
+
+\node[font=\ssmall] at (3.5,2.7) {$(7,8,6)$};
+\node[font=\ssmall] at (3.5,2.3) {$(1,2,0)$};
+
+\node[font=\ssmall] at (3.5,1.7) {$(8,8,6)$};
+\node[font=\ssmall] at (3.5,1.3) {$(2,2,0)$};
+
+\node[font=\ssmall] at (2.5,1.7) {$(8,7,6)$};
+\node[font=\ssmall] at (2.5,1.3) {$(2,1,0)$};
+\end{tikzpicture}
 \end{document}
