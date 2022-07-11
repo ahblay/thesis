@@ -64,8 +64,29 @@ In both cases, we obtain the lower bound $m(b_1, b_2, b_3, 3)$. This completes t
 
 \section{Applying the recursion}
 
+\begin{table}[]
+\centering
+\includegraphics[width=\textwidth]{tables/2/thickness_2.pdf}
+\caption{Thickness 2 constructions used in the proof of Theorem \ref{thm:main_result}. Blue and green cells represent infinite families of constructions. Red cells are individual constructions. Divisibility cases are white and non-divisibility cases are gray.}
+\label{tab:integral_bounds_2}
+\end{table} 
+
+\begin{table}[]
+\centering
+\includegraphics[width=\textwidth]{tables/2/thickness_3.pdf}
+\caption{Thickness 3 constructions used in the proof of Theorem \ref{thm:main_result}. Blue, green and yellow cells represent infinite families of constructions. Red cells are individual constructions. Divisibility cases are white and non-divisibility cases are gray.}
+\label{tab:integral_bounds_3}
+\end{table} 
+
+\begin{table}[]
+\centering
+\includegraphics[width=\textwidth]{tables/2/thickness_5.pdf}
+\caption{Thickness 5 constructions used in the proof of Theorem \ref{thm:main_result}. Red cells are individual constructions. Divisibility cases are white and non-divisibility cases are gray.}
+\label{tab:integral_bounds_5}
+\end{table}
+
 % Handle the divisibility cases, and note that certain augmentations to the recursion allow us to obtain non-divisible optimal grids, if we are cautious with regard to the pieces we use.
-Corollary \ref{cor:recursion} provides a perscriptive method for constructing optimal and perfect lethal sets recursively, provided the existence of sufficiently many small building blocks. In the following chapter, we use this technique to obtain perfect lethal sets on all $(b_1,b_2,b_3)$ grids, for $b_1,b_2,b_3 \geq 5$, and optimal lethal sets on all $(b_1,b_2,b_3)$ grids, for $b_1,b_2,b_3 \geq 11$. To facilitate this process, we first present some useful constructions of lethal sets (discussed in greater detail in Chapter [Constructions]), as well as particular applications of Corollary \ref{cor:recursion} that hold for general grids. 
+Corollary \ref{cor:recursion} provides a prescriptive method for constructing optimal and perfect lethal sets recursively, provided the existence of sufficiently many small building blocks. In the following chapter, we use this technique to obtain perfect lethal sets on all $(b_1,b_2,b_3)$ grids, for $b_1,b_2,b_3 \geq 5$, and optimal lethal sets on all $(b_1,b_2,b_3)$ grids, for $b_1,b_2,b_3 \geq 11$. To facilitate this process, we first summarize some useful families of lethal sets (discussed in greater detail in Chapter [Constructions] and illustrated in Tables \ref{tab:integral_bounds_2}, \ref{tab:integral_bounds_3}, and \ref{tab:integral_bounds_5}), as well as particular applications of Corollary \ref{cor:recursion} that hold for general grids. 
 
 \begin{prop}
 \label{prop:3x3xk}
@@ -110,6 +131,7 @@ For all $k \geq 1$, $(2^k-1,2^k-1,1)$ is perfect.
 Combining the above propositions with Corollary \ref{cor:recursion}, we are able to obtain the following lemmas.
 
 \begin{lem}
+\label{lem:plus_333}
 Suppose $(b_1, b_2, b_3)$ is optimal. Then $(b_1+3, b_2+3, b_3+3)$ is optimal. 
 \end{lem}
 
