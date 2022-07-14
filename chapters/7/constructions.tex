@@ -2,9 +2,22 @@
 
 \section{Introduction}
 
-In this chapter, we present diagrammed proofs of lethal sets that percolate at the lower bound. The proofs are organized by the thickness of the grid. Many of the constructions in the following sections belong to infinite families of either optimal or perfect sets. In this case, we shall examine the grids by region, and observe that certain regions can be expanded to arbitrarily large sizes using mathematical induction. 
+In this chapter, we present diagrammed proofs of lethal sets that percolate at the lower bound. The proofs are organized by the thickness of the grid. Many of the constructions in the following sections belong to infinite families of either optimal or perfect sets. In this case, we shall examine the grids by region, and observe that certain regions can be expanded to arbitrarily large sizes using mathematical induction. In all constructions, we consider percolation under the 3-neighbor process.
 
-We shall call a thickness \emph{semi-complete} if all divisibility cases are optimal.
+We shall call a thickness \emph{semi-complete} if all divisibility cases are optimal. We present some useful definitions and lemmas.
+
+\begin{defn}
+For a grid $G=[a_1] \times [a_2] \times [a_3]$, define the $k$th \emph{level} of $G$ as the subgraph $L_k = [a_1] \times [a_2] \times \{k\}$, for $k \in [a_3]$. 
+\end{defn}
+
+\begin{lem}
+\label{lem:2_neighbor_levels}
+Let $G=[a_1] \times [a_2] \times [a_3]$ and let $L_k$ be the $k$th level of $G$. Suppose all vertices in $L_k$ are infected. Then any lethal set in $L_{k+1}$ (resp. $L_{k-1}$) under the 2-neighbor process is lethal in $G[V(L_{k}) \cup V(L_{k+1})]$ (resp. $G[V(L_{k-1}) \cup V(L_{k})]$) under the 3-neighbor process. 
+\end{lem}
+
+\begin{proof}
+Each vertex $v \in L_{k+1} \cup L_{k-1}$ has an infected neighbor in $L_k$. Therefore, if $v$ has two infected neighbors in its own level, it has at least 3 infected neighbors in $G$. 
+\end{proof}
 
 \section{Thickness 1}
 
@@ -139,12 +152,54 @@ We can extend this construction in the $x$ direction by inserting the repeated s
 
 % (3 mod 6, 3, 2)
 \begin{con}
-All $(a,3,2)$ grids with $a \equiv 3 \pmod 6$ are perfect. 
+All $(a,3,2)$ grids with $a \equiv 3 \pmod 6$ and $a >3$ are perfect. 
 \end{con}
 
 \begin{proof}
-(This construction is the same as the previous one, except the the final four columns are augmented slightly to accommodate the $0 \pmod 3$ requirement. Instead of deriving a proper unfolding, it is probably easier to simply show that this small change is sufficient to guarantee lethality, and agrees with the S.A. bound.)
+%(This construction is the same as the previous one, except the the final four columns are augmented slightly to accommodate the $0 \pmod 3$ requirement. Instead of deriving a proper unfolding, it is probably easier to simply show that this small change is sufficient to guarantee lethality, and agrees with the S.A. bound.)
+
+%We proceed by induction. Consider the grid $G=(9,3,2)$, and let $A_t$ be the set of infected vertices at time-step $t$ (see Figure \ref{fig:9x3x2}). We show that $A_0$ is lethal on $G_1$ and $G_2$. Observe that after one time-step, the subgraph $G_1[\overline{A_1}]$ is a forest connected to the border of $G_1$, and so by Proposition \ref{prop:immune_regions}, $A_0$ is lethal on $G_1$. Since $A_0$ is lethal on $G_1$, by Lemma \ref{lem:2_neighbor_levels}, it is sufficient to prove that $A_0$ is lethal on $G_2$ under the 2-neighbor bootstrap process. Figure \ref{fig:9x3x1} illustrates the key steps of this process, starting at $t=1$. Infection spreads down rows delineated by red arrows, ultimately infecting all vertices in $G_2$. We conclude that $A_0$ is lethal on $G$ under the 3-neighbor process.
+
+%Let $A = \{1\} \times [3] \times [2]$, $B = \{8,9\} \times [3] \times [2]$ and $X = \{2,3,4,5,6,7\} \times [3] \times [2]$ be components of $G$ (see Figure \ref{fig:9x3x2}). Denote by $AX^kB$ the graph obtained by inserting $k$ copies of $X$ between components $A$ and $B$. Let $A_0^k$ be a lethal set on $AX^kB$. We show that $A_0^{k+1}$ is lethal on $AX^{k+1}B$. 
+
+Let $G=(6k+3,3,2)$ be a grid such that $k>0$. Let $A = \{1\} \times [3] \times [2]$, $B = \{6k+2, 6k+3\} \times [3] \times [2]$, and $X_i = \{6i+2,6i+3,6i+4,6i+5,6i+6,6i+7\} \times [3] \times [2]$ for $i \in [k - 1] \cup \{0\}$, be components of $G$. Denote by $AX^kB$ the union of components $A \cup X_0 \cup \dots \cup X_{k-1} \cup B$, and note that $G=AX^kB$. Let $A_t^k \subseteq V(G)$ be the set of infectious vertices in $G$ at time $t$, and suppose that each $X_i$ contains the same pattern of infected vertices (see Figure \ref{fig:9x3x2}). We show that $A_0^k$ is lethal and perfect. 
+
+Consider the union of components $AX^k = A \cup X_0 \cup \dots \cup X_{k-1}$ (see Figure \ref{fig:19x3x2}). Let $L_1$ and $L_2$ be the top and bottom levels $AX^k$, respectively. Observe that after one time-step, the subgraph $L_1[\overline{A_1^k}]$ is a forest connected to the border of $L_1$, and so by Proposition \ref{prop:immune_regions}, $A_0^k$ is lethal on $L_1$. 
+
+Now consider $G$ and observe that the top level becomes fully infected (see Figure \ref{fig:21x3x2}). Therefore, by Lemma \ref{lem:2_neighbor_levels}, it is sufficient to prove that $A_0^k$ is lethal on the bottom level under the 2-neighbor bootstrap process. Figure \ref{fig:9x3x1} illustrates the key steps of this process on the smaller grid $AXB$, starting at $t=1$. Infection spreads down rows delineated by red arrows, ultimately infecting all vertices in the bottom level. We conclude that $A_0^k$ is lethal on $G$ under the 3-neighbor process.
+
+To prove that $A_0^k$ is perfect, observe that $|A_0^k| = 3 + 10k + 4$. The surface area bound for $G=(6k+3,3,2)$ is given by
+$$\frac{(3)(6k+3) + (3)(2) + (2)(6k+3)}{3} = \frac{30k + 21}{3} = 10k+7.$$
+Since these two values are equal, $A_0^k$ is tight and lethal, and therefore perfect.
 \end{proof}
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.3\textwidth]{figures/7/3x9x2.pdf}
+\caption{The components $A$, $X$, $B$ on $G=AXB$ with infectious set $A_0$.}
+\label{fig:9x3x2}
+\end{figure} 
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/7/3x19x2.pdf}
+\caption{An infection on $AX^3$, $t=0$ and $t=1$.}
+\label{fig:19x3x2}
+\end{figure} 
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/7/3x21x2.pdf}
+\caption{An infection on $G$.}
+\label{fig:21x3x2}
+\end{figure} 
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/7/3x9x1.pdf}
+\caption{The 2-neighbor process on $(9,3,1)$ for $t=1$, $t \in \{2,3,4,5,6\}$, and $t \in \{7,8,9,10,11,12,13,14\}$.}
+\label{fig:9x3x1}
+\end{figure} 
 
 % (2 mod 6, 5 mod 6, 2)
 
@@ -237,6 +292,21 @@ For all larger grids, observe that the snaking corridor in the left side $G$ can
 \section{Thickness 3}
 
 \begin{con}
+All $(a,3,3)$ grids $G$ with $a \equiv 0 \pmod 2$ and $a > 2$ are perfect. 
+\end{con}
+
+\begin{proof}
+Let $G=(2k,3,3)$ be a grid such that $k > 1$. Let $A = \{1,2,3\} \times [3] \times [3]$, $B = \{2k\} \times [3] \times [2]$, and $X_i = \{2i+2,2i+3\} \times [3] \times [2]$ for $i \in [k]$, be components of $G$. Denote by $AX^kB$ the union of components $A \cup X_0 \cup \dots \cup X_{k-1} \cup B$, and note that $G=AX^kB$. Let $A_t^k \subseteq V(G)$ be the set of infectious vertices in $G$ at time $t$, and suppose that each $X_i$ contains the same pattern of infected vertices (see Figure \ref{fig:3x6x3}). We show that $A_0^k$ is lethal and perfect. 
+\end{proof}
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.3\textwidth]{figures/7/3x6x3.pdf}
+\caption{The components $A$, $X$, $B$ on $G=AXB$ with infectious set $A_0$.}
+\label{fig:3x6x3}
+\end{figure} 
+
+\begin{con}
 All $(a,b,3)$ grids $G$ with $a \equiv 3 \pmod 6$ and $b \equiv 1 \pmod 2$ are perfect. 
 \end{con}
 
@@ -268,6 +338,10 @@ We show that an unfolding of $G$ can be obtained from a simple augmentation of $
 \caption{A proper unfolding of $G= (15,23,3)$. Colored rectangles indicate faces of $G$. }
 \label{fig:17x25x1_manifold}
 \end{figure} 
+
+\begin{con}
+All $(a,3,3)$ grids $G$ with $a \equiv 0 \pmod 2$ are perfect. 
+\end{con}
 
 % COMMENT
 % COMMENT
