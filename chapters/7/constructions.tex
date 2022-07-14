@@ -296,14 +296,36 @@ All $(a,3,3)$ grids $G$ with $a \equiv 0 \pmod 2$ and $a > 2$ are perfect.
 \end{con}
 
 \begin{proof}
-Let $G=(2k,3,3)$ be a grid such that $k > 1$. Let $A = \{1,2,3\} \times [3] \times [3]$, $B = \{2k\} \times [3] \times [2]$, and $X_i = \{2i+2,2i+3\} \times [3] \times [2]$ for $i \in [k]$, be components of $G$. Denote by $AX^kB$ the union of components $A \cup X_0 \cup \dots \cup X_{k-1} \cup B$, and note that $G=AX^kB$. Let $A_t^k \subseteq V(G)$ be the set of infectious vertices in $G$ at time $t$, and suppose that each $X_i$ contains the same pattern of infected vertices (see Figure \ref{fig:3x6x3}). We show that $A_0^k$ is lethal and perfect. 
+Let $G=(2k,3,3)$ be a grid such that $k > 1$. Let $A = \{1,2,3\} \times [3] \times [3]$, $B = \{2k\} \times [3] \times [3]$, and $X_i = \{2i+2,2i+3\} \times [3] \times [3]$ for $i \in [k-2]$, be components of $G$. Denote by $AX^kB$ the union of components $A \cup X_1 \cup \dots \cup X_{k} \cup B$, and note that $G=AX^kB$. Let $A_t^k \subseteq V(G)$ be the set of infectious vertices in $G$ at time $t$, and suppose that each $X_i$ contains the same pattern of infected vertices (see Figure \ref{fig:3x6x3}). We show that $A_0^k$ is lethal and perfect. 
+
+Consider the union of components $AX^k = A \cup X_1 \cup \dots \cup X_{k}$ (see Figure \ref{fig:3x13x3}). Let $L_1$, $L_2$ and $L_3$ be the top, middle and bottom levels of $AX^k$, respectively. Observe that after one time-step, the subgraph of $L_2 \setminus \{2k-1\} \times [3] \times \{2\}$ induced by $\overline{A_0^k}$ is acyclic with no border-to-border vertices, and so by Proposition \ref{prop:immune_regions}, $A_0^k$ infects all vertices of $L_2$ apart from those in the rightmost column (labeled ``X"; see Figure \ref{fig:3x13x3}). Therefore, by Lemma \ref{lem:2_neighbor_levels}, all vertices in $L_1$ apart from the rightmost column (labeled ``Y") become infected by the 2-neighbor process. Similarly, the red arrow in Figure \ref{fig:3x13x3}) shows the path of infection in $L_3$. 
+
+Consider these observations in the context of $G$. Figure \ref{fig:3x14x3} shows that it takes 7 additional time-steps to fully infect $L_1$ and $L_2$. By Lemma \ref{lem:2_neighbor_levels}, the remaining healthy vertices in $L_3$ become infected. We therefore conclude that $A_0^k$ is lethal on $G$ under the 3-neighbor process.
+
+To prove that $A_0^k$ is perfect, observe that $|A_0^k| = 8 + 4(k-2) + 3=4k+3$. The surface area bound for $G=(2k,3,3)$ is given by
+$$\frac{(2k)(3) + (3)(3) + (3)(2k)}{3} = \frac{12k + 9}{3} = 4k+3.$$
+Since these two values are equal, $A_0^k$ is tight and lethal, and therefore perfect.
 \end{proof}
 
 \begin{figure}[]
 \centering
-\includegraphics[width=0.3\textwidth]{figures/7/3x6x3.pdf}
+\includegraphics[width=0.2\textwidth]{figures/7/3x6x3.pdf}
 \caption{The components $A$, $X$, $B$ on $G=AXB$ with infectious set $A_0$.}
 \label{fig:3x6x3}
+\end{figure} 
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/7/3x13x3.pdf}
+\caption{An infection on $AX^5$, $t=0$ and $t=1$.}
+\label{fig:3x13x3}
+\end{figure} 
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.5\textwidth]{figures/7/3x14x3_numbered_heatmap.pdf}
+\caption{An infection on $G$.}
+\label{fig:3x14x3}
 \end{figure} 
 
 \begin{con}
