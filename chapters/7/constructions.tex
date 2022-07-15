@@ -2,9 +2,9 @@
 
 \section{Introduction}
 
-In this chapter, we present diagrammed proofs of lethal sets that percolate at the lower bound. The proofs are organized by the thickness of the grid. Many of the constructions in the following sections belong to infinite families of either optimal or perfect sets. In this case, we shall examine the grids by region, and observe that certain regions can be expanded to arbitrarily large sizes using mathematical induction. In all constructions, we consider percolation under the 3-neighbor process.
+In this chapter, we present diagrammed proofs of grids that admit optimal and perfect lethal sets under the 3-neighbor process. The proofs are organized by the thickness of the grid. All constructions in the following sections belong to infinite families of grids. We use two strategies in our analysis of these constructions, dependent on the parity of the grid. 
 
-We shall call a thickness \emph{semi-complete} if all divisibility cases are optimal. We present some useful definitions and lemmas.
+We examine families of the form $(0,1,1) \pmod 2$ by region, and observe that certain regions can be expanded to arbitrarily large sizes without adversely affecting the spread of infection. In particular, we split these grids into components $A,B,X$, where $A$ and $B$ bookend a central, repeating segment $X$. Our discussion will make use of the following definition and lemma:
 
 \begin{defn}
 For a grid $G=[a_1] \times [a_2] \times [a_3]$, define the $k$th \emph{level} of $G$ as the subgraph $L_k = [a_1] \times [a_2] \times \{k\}$, for $k \in [a_3]$. 
@@ -19,49 +19,19 @@ Let $G=[a_1] \times [a_2] \times [a_3]$ and let $L_k$ be the $k$th level of $G$.
 Each vertex $v \in L_{k+1} \cup L_{k-1}$ has an infected neighbor in $L_k$. Therefore, if $v$ has two infected neighbors in its own level, it has at least 3 infected neighbors in $G$. 
 \end{proof}
 
+Proofs of the lethality of the remaining families all leverage Lemma \ref{lem:walls}. As a consequence, their argumentative structure remains broadly the same, even as the constructions themselves appear quite different. We shall outline this structure here, before examining the specific proofs. 
+
+We begin by demonstrating that the grid $G=(a_1,a_2,a_3)$ admits a manifold $M$. Recall from Corollary \ref{cor:walls} that a manifold on $G$ is the union of faces
+$$F_{1,k_1} \cup F_{2,k_2} \cup F_{3,k_3}$$
+for some $k_i \in [a_i]$. To show that a particular subset $M$ of $V(G)$ is a manifold, we identify the regions $R_1, \dots, R_n$ that partition $V(G) \setminus M$ and are flanked by three perpendicular walls. In our diagrams, these regions are represented by the volumes bordered by three perpendicular blue, green, and red walls. We then identify a proper unfolding $H$ of $M$ and show that $H$ admits a lethal set $A$, where $|A| = \text{SA}(G)$. Finally, we apply Corollary \ref{cor:walls} to prove that $G$ is perfect. 
+
+%We shall call a thickness \emph{semi-complete} if all divisibility cases are optimal. We present some useful definitions and lemmas.
+
 \section{Thickness 1}
 
-There are two general constructions in thickness 1 that percolate at the surface area bound. The first construction is perfect for all $(2^n-1, 2^n-1, 1)$ grids, and originates in a 2021 paper by Benevides et al. \cite{benevides:2021}. The second construction is optimal for all grids $(a,b,1)$, where $a \equiv 5 \pmod 6$, $b \equiv 1 \pmod 2$, and $a,b \geq 5$. As such grids constitute non-divisibility cases, this construction is not perfect.
+We present a construction that is optimal on all grids $(a,b,1)$, where $a \equiv 5 \pmod 6$, $b \equiv 1 \pmod 2$, and $a,b \geq 5$. As such grids constitute non-divisibility cases, this construction is not perfect. However, by leveraging Lemma \ref{lem:unfolded_cube}, we shall see that it can be used to obtain perfect lethal sets on certain grids of thickness 3. 
 
-% Purina constructions that percolate at the S.A. bound
-\subsection{Purina}
-
-We refer to this construction colloquially as the Purina construction, due to the similarly between its instance on the $(3,3,1)$ grid and the logo of the pet food brand. No funding has been offered, but we are open to the possibility. A more extensive discussion on this pattern can be found in \cite{benevides:2021}.
-
-\begin{con}
-\label{con:purina}
-All grids of the form $(2^n-1, 2^n-1, 1)$ are perfect.
-\end{con}
-
-\begin{figure}[]
-\centering
-\includegraphics[width=0.1\textwidth]{figures/7/3x3x1.pdf}
-\caption{A perfect percolating set for $(3,3,1)$.}
-\label{fig:3x3x1}
-\end{figure} 
-
-\begin{proof}
-This is a recursive construction built from the base component piece shown in figure \ref{fig:3x3x1}. Note that this $(3,3,1)$ construction is lethal under the 3-neighbor bootstrap process, and that it meets the surface area bound:
-$$\frac{1}{3} \cdot (ab+bc+ca) = \frac{1}{3} \cdot (9 + 3 + 3) = 5.$$
-For larger grids of size $(2^n-1, 2^n-1, 1)$, join four copies of $(2^{n-1}-1, 2^{n-1}, 1)$ about two perpendicular corridors, and infect the vertex at their intersection (figure \ref{fig:15x15x1}). Observe that the resulting set is lethal: each of the four smaller grids is lethal by hypothesis, and the remaining vertices induce a forest with disconnected boundary points, which percolates by lemma \ref{lem:forest}. Furthermore, note that
-\begin{align*}
-\text{S.A.}(2^n-1,2^n-1,1) &= \frac{1}{3} \cdot (2^{2n}-1) \\
-&= 4 \cdot \frac{1}{3} \cdot (2^{2n-2} -1) + 1 = 4 \cdot \text{S.A.}(2^{n-1}-1, 2^{n-1}, 1) + 1,
-\end{align*}
-and therefore this construction is perfect.
-\end{proof}
-
-\begin{figure}[]
-\centering
-\includegraphics[width=0.6\textwidth]{figures/7/15x15x1.pdf}
-\caption{A perfect percolating set for $(15,15,1)$.}
-\label{fig:15x15x1}
-\end{figure} 
-
-% (odd)x(odd) constructions that percolate at the S.A. bound
-\subsection{Snakes}
-
-As indicated by lemma \ref{lem:forest}, a fundamental characteristic of lethal sets $S$ is the presence of an initially uninfected corridor, bounded by walls of infection. This structure is apparent in the second diagrams of figures \ref{fig:15x15x1} and \ref{fig:11x13x1}. These corridors correspond to forests in the complement $G[\overline{S}]$ of $S$. In this subsection, we provide a general method for constructing such corridors in $(a, b, 1)$ grids where $a \equiv 5 \pmod 6$ and $b \equiv 1 \pmod 2$.
+As indicated by Proposition \ref{prop:immune_regions}, a fundamental characteristic of lethal sets $A_0$ is the presence of an initially uninfected corridor, bounded by walls of infection. This structure is apparent in the second diagrams of Figures \ref{fig:15x15x1} and \ref{fig:11x13x1} in the previous chapter. These corridors correspond to forests in the complement $G[\overline{A_0}]$ of $A_0$. In this section, we provide a general method for constructing such corridors in $(a, b, 1)$ grids where $a \equiv 5 \pmod 6$ and $b \equiv 1 \pmod 2$.
 
 % WITH THE EXCEPTION OF WIDTH 3!!!!!
 % WIDTH >= 5
@@ -71,7 +41,7 @@ All grids of the form $(a,b,1)$, $a \equiv 5 \pmod 6$, $b \equiv 1 \pmod 2$, and
 \end{con}
 
 \begin{proof}
-For grids of the form $(a,b,1)$, $a \equiv 5 \pmod 6$, $b \equiv 1 \pmod 2$, we construct an optimal infected set and show that it percolates by lemma \ref{lem:forest}. For the base case, consider the $(5,5,1)$ grid $G$ illustrated in figure \ref{fig:5x5x1}. Observe that this construction is optimal. Now consider the grid $G'$ resulting from the insertion of a $(5, 2k, 1)$ block, as shown in figure \ref{fig:5x13x1}. Note that the subgraph induced by the uninfected vertices of $G'$ satisfies the conditions of lemma \ref{lem:forest}. Furthermore, note that if any $(5, n, 1)$ grid is optimal, the $(5,n+2,1)$ grid resulting from such a construction has surface area bound $\text{S.A.}(5,n,1) + 4$, which agrees with the number of infected vertices.
+For grids of the form $(a,b,1)$, $a \equiv 5 \pmod 6$, $b \equiv 1 \pmod 2$, we construct an optimal infected set and show that it is lethal by Proposition \ref{prop:immune_regions}. For the base case, consider the $(5,5,1)$ grid $G$ illustrated in Figure \ref{fig:5x5x1}. Observe that this construction is optimal. Now consider the grid $G'$ resulting from the insertion of a $(5, 2k, 1)$ block, as shown in Figure \ref{fig:5x13x1}. Note that the subgraph induced by the uninfected vertices of $G'$ satisfies the conditions of Proposition \ref{prop:immune_regions}. Furthermore, note that if any $(5, n, 1)$ grid is optimal, the $(5,n+2,1)$ grid resulting from such a construction has surface area bound $\text{S.A.}(5,n,1) + 4$, which agrees with the number of infected vertices.
 
 \begin{figure}[]
 \centering
@@ -87,7 +57,7 @@ For grids of the form $(a,b,1)$, $a \equiv 5 \pmod 6$, $b \equiv 1 \pmod 2$, we 
 \label{fig:5x13x1}
 \end{figure} 
 
-To extend this construction in the vertical direction, we introduce a kink in the snaking infection. This kink requires six rows to produce a repeating pattern. The structure of this design is shown in figure \ref{fig:11x13x1}. For grids of smaller width, the same construction gives optimal percolating sets; however, the snaking pattern is increasingly difficult to recognize in thin grids.
+To extend this construction in the vertical direction, we introduce a kink in the snaking infection. This kink requires six rows to produce a repeating pattern. The structure of this design is shown in Figure \ref{fig:11x13x1}. For grids of smaller width, the same construction gives optimal percolating sets; however, the snaking pattern is increasingly difficult to recognize in thin grids.
 \end{proof}
 
 \begin{figure}[]
@@ -101,54 +71,7 @@ To extend this construction in the vertical direction, we introduce a kink in th
 
 \section{Thickness 2}
 
-In this section we examine four infinite families of perfect grids. We show that each has a manifold that admits a lethal set of perfect size. We note that such lethal sets are likely to exist for nearly all divisibility cases in thickness two; however, constructions are elusive and those presented here are sufficient to prove the main result of this thesis.
-
-Unlike those presented in the previous section, the following proofs all leverage lemma \ref{lem:walls}. As a consequence, their argumentative structure remains broadly the same, even as the constructions themselves appear quite different. For this reason, we shall outline this structure here, before examining the specific proofs. 
-
-We begin by demonstrating that a grid $G$ admits a manifold $M$. To show so, we identify the regions $R_1, \dots, R_k$ that partition $V(G) \setminus M$. In our diagrams, these regions are represented by the volumes enclosed by three perpendicular blue, green, and red walls. We then identify a proper unfolding $H$ of $M$ and show that $H$ admits a lethal set $A$, where $|A| = \text{SA}(G)$. Finally, we apply corollary \ref{cor:ortho_walls} to prove that $G$ is perfect. 
-
-\begin{con}
-All $(a,3,2)$ grids with $a \equiv 0 \pmod 6$ are perfect. 
-\end{con}
-
-\begin{proof}
-Let $G$ be an $(a,3,2)$ grid with $a \equiv 0 \pmod 6$, and let $M$ be a manifold of $G$ and $H$ be its proper unfolding (see figure \ref{fig:3x12x2_manifold}). Observe that $M$ is indeed a manifold: it partitions $V(G) \setminus M$ into two sets $R_1$ and $R_2$, both bounded by mutually orthogonal red, green, and blue faces (see figure \ref{fig:3x12x2_manifold}). Furthermore, note that $H$ is obtained from $M$ by cutting along seams between red and green faces, and flattening the figure. It follows that $H$ is a proper unfolding of $G$. We show that $H$ admits a perfect lethal set. 
-
-Consider the initial infection $A$ of $H$ illustrated in figure \ref{fig:3x12x2_unfolded_lethal}. Observe that $A$ infects all vertices of $H$ by lemma \ref{lem:forest}, with the exception of two regions on the far left and far right. However, note that upon refolding, the two cells marked with an ``X" in $H$ represent the same cell in $G$. This is sufficient to infect the remaining regions of $H$, and by corollary \ref{cor:ortho_walls}, $A$ is lethal on $G$. Finally, a simple calculation reveals that $|A|$ matches the surface area bound, and therefore is perfect.
-
-We can extend this construction in the $x$ direction by inserting the repeated structure of six columns; this augmentation percolates by lemma \ref{lem:forest} and agrees with the surface area bound for all larger grids. This completes the proof.
-\end{proof}
-
-% (0 mod 6, 3, 2)
-\begin{figure}[]
-\centering
-\includegraphics[width=0.8\textwidth]{figures/7/3x12x2.pdf}
-\caption{A perfect percolating set for $(3,12,2)$.}
-\label{fig:3x12x2}
-\end{figure} 
-
-\begin{figure}[]
-\centering
-\begin{subfigure}{0.45\textwidth}
-	\includegraphics[width=\textwidth]{figures/7/3x12x2_manifold_3d.pdf}
-	\caption{A manifold of $G= (3,12,2)$.}
-	\label{}
-\end{subfigure} \hfill%
-\begin{subfigure}{0.45\textwidth}
-	\includegraphics[width=\textwidth]{figures/7/3x12x2_manifold.pdf}
-	\caption{A proper unfolding of $G$.}
-	\label{}
-\end{subfigure}
-\caption{A proper unfolding of $G= (3,12,2)$. Colored rectangles indicate faces of $G$. Dashed lines indicate that cells appear on different layers. }
-\label{fig:3x12x2_manifold}
-\end{figure} 
-
-\begin{figure}[]
-\centering
-\includegraphics[width=0.8\textwidth]{figures/7/3x12x2_unfolded_lethal.pdf}
-\caption{A percolating set on the proper unfolding of $G= (3,12,2)$.}
-\label{fig:3x12x2_unfolded_lethal}
-\end{figure} 
+We examine four infinite families of perfect grids and show that each has a manifold that admits a lethal set of perfect size. We note that such lethal sets are likely to exist for nearly all divisibility cases in thickness two; however, constructions are elusive and those presented here are sufficient to prove the main result of this thesis.
 
 % (3 mod 6, 3, 2)
 \begin{con}
@@ -201,6 +124,52 @@ Since these two values are equal, $A_0^k$ is tight and lethal, and therefore per
 \label{fig:9x3x1}
 \end{figure} 
 
+\begin{con}
+All $(a,3,2)$ grids with $a \equiv 0 \pmod 6$ are perfect. 
+\end{con}
+
+\begin{proof}
+Let $G$ be an $(6k,3,2)$ grid with $k \geq 1$, and let $M$ be a manifold of $G$ and $H$ be its proper unfolding (see Figure \ref{fig:3x12x2_manifold}). Observe that $M$ is indeed a manifold: it partitions $V(G) \setminus M$ into two sets $R_1$ and $R_2$, both bounded by mutually orthogonal red, green, and blue faces (see Figure \ref{fig:3x12x2_manifold_a}). Furthermore, note that $H$ is obtained from $M$ by cutting along seams between red and green faces, and flattening the figure. It follows that $H$ is a proper unfolding of $G$. We show that $H$ admits a perfect lethal set. 
+
+Consider the initial infection $A_0$ of $H$ illustrated in Figure \ref{fig:3x12x2_unfolded_lethal}. Observe that $A_0$ infects all vertices of $H$ by Proposition \ref{prop:immune_regions}, with the exception of two regions on the far left and far right. However, note that upon refolding, the two cells marked with an ``X" in $H$ represent the same cell in $G$. This is sufficient to infect the remaining regions of $H$, and by Corollary \ref{cor:walls}, $A_0$ is lethal on $G$. Furthermore, observe that $G$ can be extended in the $x$ direction by repeated insertions of the component $X$ (see Figure \ref{fig:3x12x2}). This process does not affect the structure of $H$, and Proposition \ref{prop:immune_regions} again guarantees lethality.
+
+To prove that $A_0$ is perfect, observe that $|A_0| = 4 + 10(k-1) + 8 = 10k +2$. The surface area bound for $G=(6k,3,2)$ is given by
+$$\frac{(3)(6k) + (3)(2) + (2)(6k)}{3} = \frac{30k + 6}{3} = 10k+2.$$
+Since these two values are equal, $A_0$ is tight and lethal, and therefore perfect.
+\end{proof}
+
+% (0 mod 6, 3, 2)
+
+\begin{figure}[]
+\centering
+\begin{subfigure}{0.45\textwidth}
+	\includegraphics[width=\textwidth]{figures/7/3x12x2_manifold_3d.pdf}
+	\caption{A manifold of $G= (3,12,2)$.}
+	\label{fig:3x12x2_manifold_a}
+\end{subfigure} \hfill%
+\begin{subfigure}{0.45\textwidth}
+	\includegraphics[width=\textwidth]{figures/7/3x12x2_manifold.pdf}
+	\caption{A proper unfolding of $G$.}
+	\label{fig:3x12x2_manifold_b}
+\end{subfigure}
+\caption{A proper unfolding of $G= (3,12,2)$. Colored rectangles indicate faces of $G$. Dashed lines indicate that cells appear on different layers. }
+\label{fig:3x12x2_manifold}
+\end{figure} 
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/7/3x12x2_unfolded_lethal.pdf}
+\caption{A percolating set on the proper unfolding of $G= (3,12,2)$.}
+\label{fig:3x12x2_unfolded_lethal}
+\end{figure} 
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/7/3x12x2.pdf}
+\caption{A perfect percolating set for $(3,12,2)$.}
+\label{fig:3x12x2}
+\end{figure} 
+
 % (2 mod 6, 5 mod 6, 2)
 
 \begin{figure}[]
@@ -239,9 +208,9 @@ All $(a,b,2)$ grids with $a,b \in \{2,5\} \pmod 6$, $a \neq b \pmod 6$, and $a,b
 \end{con}
 
 \begin{proof}
-Let $G$ be an $(a,b,2)$ grid with $a,b \in \{2,5\} \pmod 6$ and $a \neq b \pmod 6$, and let $M$ be a manifold of $G$ and $H$ be its proper unfolding (figure \ref{fig:11x20x2_manifold}). Note that $M$ partitions the vertices of $V(G) \setminus M$ into two disjoint sets $R_1$ and $R_2$, both bounded by mutually orthogonal red, green, and blue faces. Note, also, that $H$ is obtained from $M$ by cutting along seams between red and green faces, and flattening the figure. Therefore, $H$ is a proper unfolding of $G$. We show that $H$ admits a perfect lethal set. 
+Let $G$ be an $(a,b,2)$ grid with $a,b \in \{2,5\} \pmod 6$ and $a \neq b \pmod 6$, and let $M$ be a manifold of $G$ and $H$ be its proper unfolding (Figure \ref{fig:11x20x2_manifold}). Note that $M$ partitions the vertices of $V(G) \setminus M$ into two disjoint sets $R_1$ and $R_2$, both bounded by mutually orthogonal red, green, and blue faces. Note, also, that $H$ is obtained from $M$ by cutting along seams between red and green faces, and flattening the figure. Therefore, $H$ is a proper unfolding of $G$. We show that $H$ admits a perfect lethal set. 
 
-Consider the initial infection $A$ of $H$ as shown in figure \ref{fig:11x20x2_unfolded_lethal}. By lemma \ref{lem:forest}, $A$ infects all vertices of $H$, with the exception of two regions on the left- and right-most sides of the grid. However, note that the vertices labeled ``X" in figure \ref{fig:11x20x2_unfolded_lethal} represent that same vertex in $G$. This permits $A$ to infect the remaining healthy vertices, thereby proving that $A$ is lethal on $H$. By corollary \ref{cor:ortho_walls}, $A$ is lethal on $G$. Finally, a simple calculation shows that $|A|$ satisfies the surface area bound on $G$, and so $A$ is perfect. 
+Consider the initial infection $A_0$ of $H$ as shown in figure \ref{fig:11x20x2_unfolded_lethal}. By Proposition \ref{prop:immune_regions}, $A_0$ infects all vertices of $H$, with the exception of two regions on the left- and right-most sides of the grid. However, note that the vertices labeled ``X" in Figure \ref{fig:11x20x2_unfolded_lethal} represent that same vertex in $G$. This permits $A_0$ to infect the remaining healthy vertices, thereby proving that $A_0$ is lethal on $H$. By Corollary \ref{cor:walls}, $A_0$ is lethal on $G$. Finally, a simple calculation shows that $|A|$ satisfies the surface area bound on $G$, and so $A$ is perfect. 
 
 The above construction holds for $a \geq 5$ and $b \geq 8$. It can be extended in the $x$ direction by inserting a block of width 6, representing the repeating vertical snaking pattern. Similarly, it can be extended in the $y$ direction by inserting a block of height 6, representing the horizontal snaking pattern. Both such augmentations spawn infections that satisfy the conditions of lemma \ref{lem:forest}, and a simple calculation reveals that they agree with the surface area bound. This concludes the proof. 
 \end{proof}
