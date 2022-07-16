@@ -175,10 +175,29 @@ Since these two values are equal, $A_0^{k-1}$ is tight and lethal, and therefore
 
 % (2 mod 6, 5 mod 6, 2)
 
+% a,b, MUST BE A CERTAIN SIZE
+\begin{con}
+All $(a,b,2)$ grids with $a,b \in \{2,5\} \pmod 6$, $a \neq b \pmod 6$, and $a,b > 2$ are perfect. 
+\end{con}
+
+\begin{proof}
+Let $G$ be an $(a,b,2)$ grid with $a,b \in \{2,5\} \pmod 6$, $a \neq b \pmod 6$, and $a,b > 2$, and let $M$ be a manifold of $G$ and $H$ be its proper unfolding (Figure \ref{fig:11x20x2_manifold}). Note that $M$ partitions the vertices of $V(G) \setminus M$ into two disjoint sets $R_1$ and $R_2$, both bounded by mutually orthogonal red, green, and blue faces. Note, also, that $H$ is obtained from $M$ by cutting along seams between red and green faces, and flattening the figure. Therefore, $H$ is a proper unfolding of $G$. 
+
+Let $X_1, \dots, X_{k_1}$ be the repeated components of $H$ in the $x$-direction, and $Y_1, \dots, Y_{k_2}$ be the repeated components of $H$ in the $y$-direction. Denote by $X \times Y$ the union of these components. Let $A_t \subseteq V(H)$ be the set of infectious vertices in $H$ at time $t$, and suppose that all $X_i$ and all $Y_i$ contain the same pattern of infected vertices (see Figure \ref{fig:3x12x2_unfolded_lethal}). We show that $A_0$ is lethal and perfect.
+
+Consider the initial infection $A_0$ of $H$ as shown in figure \ref{fig:11x20x2_unfolded_lethal}. Observe that $A_0$ infects all vertices of $X\times Y$ by Proposition \ref{prop:immune_regions}. We show that the remaining healthy vertices of $H$ become infected. Consider re-folding $H$, and note that the two cells marked with an ``X" in $H$ represent the same cell in $G$. This is enough to infect the remaining regions of $H$, and by Corollary \ref{cor:walls}, $A_0$ is lethal on $G$. 
+
+The above construction holds for $a \geq 5$ and $b \geq 8$. It can be extended in the $x$ direction by inserting a block of width 6, representing the repeating vertical snaking pattern. Similarly, it can be extended in the $y$ direction by inserting a block of height 6, representing the horizontal snaking pattern. Both such augmentations spawn infections that satisfy the conditions of lemma \ref{lem:forest}, and a simple calculation reveals that they agree with the surface area bound. This concludes the proof. 
+
+To prove that $A_0$ is perfect, observe that each $X_i \times Y_j$ block contains exactly 12 infected vertices. Of the remaining vertices $H \setminus X \times Y$, 20 are infected. Therefore, $|A_0| = 12(k_1)(k_2) + 20$. The surface area bound for $G=(6k_1+2,6k_2+5,2)$ is given by
+$$\frac{(6k_1+2)(6k_2 + 5) + (6k_2+5)(2) + (2)(6k_1+2)}{3} = \frac{36(k_1)(k_2) +42k_1 +24k_2 + 24}{3} = 12k_1k_2 +14k_1+8k_2+8.$$
+Since these two values are equal, $A_0^{k-1}$ is tight and lethal, and therefore perfect.
+\end{proof}
+
 \begin{figure}[]
 \centering
-\includegraphics[width=0.8\textwidth]{figures/7/11x20x2.pdf}
-\caption{A perfect percolating set for $(11,20,2)$.}
+\includegraphics[width=0.8\textwidth]{figures/7/17x14x2.pdf}
+\caption{A perfect percolating set for $(17,20,2)$.}
 \label{fig:11x20x2}
 \end{figure} 
 
@@ -200,23 +219,10 @@ Since these two values are equal, $A_0^{k-1}$ is tight and lethal, and therefore
 
 \begin{figure}[]
 \centering
-\includegraphics[width=0.8\textwidth]{figures/7/11x20x2_unfolded_lethal.pdf}
+\includegraphics[width=0.8\textwidth]{figures/7/18x16x1_unfolded_lethal.pdf}
 \caption{A percolating set on the proper unfolding of $G= (11,20,2)$.}
 \label{fig:11x20x2_unfolded_lethal}
 \end{figure} 
-
-% a,b, MUST BE A CERTAIN SIZE
-\begin{con}
-All $(a,b,2)$ grids with $a,b \in \{2,5\} \pmod 6$, $a \neq b \pmod 6$, and $a,b > 2$ are perfect. 
-\end{con}
-
-\begin{proof}
-Let $G$ be an $(a,b,2)$ grid with $a,b \in \{2,5\} \pmod 6$ and $a \neq b \pmod 6$, and let $M$ be a manifold of $G$ and $H$ be its proper unfolding (Figure \ref{fig:11x20x2_manifold}). Note that $M$ partitions the vertices of $V(G) \setminus M$ into two disjoint sets $R_1$ and $R_2$, both bounded by mutually orthogonal red, green, and blue faces. Note, also, that $H$ is obtained from $M$ by cutting along seams between red and green faces, and flattening the figure. Therefore, $H$ is a proper unfolding of $G$. We show that $H$ admits a perfect lethal set. 
-
-Consider the initial infection $A_0$ of $H$ as shown in figure \ref{fig:11x20x2_unfolded_lethal}. By Proposition \ref{prop:immune_regions}, $A_0$ infects all vertices of $H$, with the exception of two regions on the left- and right-most sides of the grid. However, note that the vertices labeled ``X" in Figure \ref{fig:11x20x2_unfolded_lethal} represent that same vertex in $G$. This permits $A_0$ to infect the remaining healthy vertices, thereby proving that $A_0$ is lethal on $H$. By Corollary \ref{cor:walls}, $A_0$ is lethal on $G$. Finally, a simple calculation shows that $|A|$ satisfies the surface area bound on $G$, and so $A$ is perfect. 
-
-The above construction holds for $a \geq 5$ and $b \geq 8$. It can be extended in the $x$ direction by inserting a block of width 6, representing the repeating vertical snaking pattern. Similarly, it can be extended in the $y$ direction by inserting a block of height 6, representing the horizontal snaking pattern. Both such augmentations spawn infections that satisfy the conditions of lemma \ref{lem:forest}, and a simple calculation reveals that they agree with the surface area bound. This concludes the proof. 
-\end{proof}
 
 % (3 mod 6, 0 mod 6, 2) 
 
