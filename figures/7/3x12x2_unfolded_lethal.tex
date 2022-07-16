@@ -5,6 +5,7 @@
 \usepackage{textcomp}%
 \usepackage{lastpage}%
 \usepackage{tikz}%
+\usetikzlibrary{decorations.pathreplacing,calligraphy}
 %
 %
 %
@@ -88,6 +89,9 @@
 \path[draw,draw,fill=red] (9.0,-3.0) rectangle (10.0,-2.0);%
 \path[draw,draw,fill=red] (11.0,-3.0) rectangle (12.0,-2.0);%
 \path[draw,draw,fill=red] (13.0,-3.0) rectangle (14.0,-2.0);%
+
+\draw[decorate, decoration={calligraphic brace, mirror, amplitude=5pt}, line width=0.3mm] (3.05,-3.2) -- (8.95,-3.2);
+\node at (6,-3.8) {\LARGE X};
 \end{tikzpicture}%
 \hspace*{1in}%
 \begin{tikzpicture}[scale=1.0]%
@@ -187,6 +191,9 @@
 \path[draw,draw,fill=red] (11.0,-3.0) rectangle (12.0,-2.0);%
 \path[draw,draw,fill=red] (12.0,-3.0) rectangle (13.0,-2.0);%
 \path[draw,draw,fill=red] (13.0,-3.0) rectangle (14.0,-2.0);%
+
+\draw[decorate, decoration={calligraphic brace, mirror, amplitude=5pt}, line width=0.3mm] (3.05,-3.2) -- (8.95,-3.2);
+\node at (6,-3.8) {\LARGE X};
 \end{tikzpicture}%
 \newline%
 \end{document}

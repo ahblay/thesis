@@ -1,4 +1,4 @@
-\chapter{Conceptual Tools}
+\chapter{Tools and Techniques}
 
 As suggested in Chapter 1, it appears that lethal sets in grid graphs adhere to certain fixed rules. We examine these rules here, and explain why they are necessary and helpful for understanding the problem of bootstrap percolation.
 
@@ -144,6 +144,16 @@ Proposition \ref{prop:immune_regions} more clearly articulates the notion of imm
 It will be insightful to consider the surface area bound on two-dimensional grids in the context of Propositions \ref{prop:corners}, \ref{prop:border} and \ref{prop:immune_regions}. For simplicity, we introduce the following terms. We refer to grids with integral surface area bounds as \emph{divisibility cases} and grids with non-integral bounds as \emph{non-divisibility cases}. The divisibility and non-divisibility cases for three-dimensional grids where $r=3$ are illustrated in Table \ref{tab:integral_bounds}. Let $A_0 \subseteq V(G)$ be a lethal set on $G$ that matches the surface area bound. We call $A_0$ \emph{perfect} if $G$ is a divisibility case, and \emph{optimal} if $G$ is a non-divisibility case. 
 
 Recall from Chapter 1 that a lethal initial infection $A_0$ is perfect if it contains no adjacent vertices, and if all vertices $v \in A_{t > 0}$ are infected by precisely $d$ neighbors. Therefore, by Propositions \ref{prop:corners} and \ref{prop:border}, if  $[a_1] \times [a_2]$ admits a perfect lethal set, then $a_1, a_2 \equiv 1 \pmod 2$. Furthermore, every component of the subgraph $H$ induced by uninfected vertices must contain exactly one border vertex (otherwise the second condition on perfect infections would be violated). In Chapter 6, we use these observations to prove that the only two-dimensional grids that admit perfect lethal sets under 3-neighbor bootstrap percolation are of the form $[2^n-1]^2$.
+
+\section{Visualizer}
+
+In addition to the conceptual tools presented above, many of the results in this thesis were obtained with the help of a visualization tool. This resource allows a user to experimentally infect vertices in two- and three-dimensional grids, and observe the step-by-step $r$-neighbor percolation process. As far as we are aware, such a tool did not previously exist for the problem of bootstrap percolation. In this section, we provide an overview of the functionality of this resource (which we refer to as the \emph{visualizer}), and highlight features that could prove useful in further research. The visualizer is located at \texttt{https://ahblay.pythonanywhere.com}, and the reader is encouraged to examine the lethal sets presented in later chapters as they appear (although this is not necessary to understand the results).
+
+\subsection{Control panel}
+
+\subsection{Design}
+
+\subsection{Improvements}
 
 % COMMENT
 % COMMENT

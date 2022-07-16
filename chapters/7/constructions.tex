@@ -125,17 +125,20 @@ Since these two values are equal, $A_0^k$ is tight and lethal, and therefore per
 \end{figure} 
 
 \begin{con}
-All $(a,3,2)$ grids with $a \equiv 0 \pmod 6$ are perfect. 
+All $(a,3,2)$ grids with $a \equiv 0 \pmod 6$ and $a \geq 6$ are perfect. 
 \end{con}
 
 \begin{proof}
-Let $G$ be an $(6k,3,2)$ grid with $k \geq 1$, and let $M$ be a manifold of $G$ and $H$ be its proper unfolding (see Figure \ref{fig:3x12x2_manifold}). Observe that $M$ is indeed a manifold: it partitions $V(G) \setminus M$ into two sets $R_1$ and $R_2$, both bounded by mutually orthogonal red, green, and blue faces (see Figure \ref{fig:3x12x2_manifold_a}). Furthermore, note that $H$ is obtained from $M$ by cutting along seams between red and green faces, and flattening the figure. It follows that $H$ is a proper unfolding of $G$. We show that $H$ admits a perfect lethal set. 
+Let $G$ be an $(6k,3,2)$ grid such that $k \geq 1$, and let $M$ be a manifold of $G$ and $H$ be its proper unfolding (see Figure \ref{fig:3x12x2_manifold}). Observe that $M$ is indeed a manifold: it partitions $V(G) \setminus M$ into two sets $R_1$ and $R_2$, both bounded by mutually orthogonal red, green, and blue faces (see Figure \ref{fig:3x12x2_manifold_a}). Furthermore, note that $H$ is obtained from $M$ by cutting along seams between red and green faces, and flattening the figure. It follows that $H$ is a proper unfolding of $G$. 
 
-Consider the initial infection $A_0$ of $H$ illustrated in Figure \ref{fig:3x12x2_unfolded_lethal}. Observe that $A_0$ infects all vertices of $H$ by Proposition \ref{prop:immune_regions}, with the exception of two regions on the far left and far right. However, note that upon refolding, the two cells marked with an ``X" in $H$ represent the same cell in $G$. This is sufficient to infect the remaining regions of $H$, and by Corollary \ref{cor:walls}, $A_0$ is lethal on $G$. Furthermore, observe that $G$ can be extended in the $x$ direction by repeated insertions of the component $X$ (see Figure \ref{fig:3x12x2}). This process does not affect the structure of $H$, and Proposition \ref{prop:immune_regions} again guarantees lethality.
+Let $X_i$, for $i \in [k - 1]$, be the repeated components of $H$. Denote by $X^{k-1}$ the union of these components. Let $A_t^{k-1} \subseteq V(H)$ be the set of infectious vertices in $H$ at time $t$, and suppose that each $X_i$ contains the same pattern of infected vertices (see Figure \ref{fig:3x12x2_unfolded_lethal}). We show that $A_0^{k-1}$ is lethal and perfect.
 
-To prove that $A_0$ is perfect, observe that $|A_0| = 4 + 10(k-1) + 8 = 10k +2$. The surface area bound for $G=(6k,3,2)$ is given by
+Consider an initial infection $A_0^{k-1}$ of $H$ (see Figure \ref{fig:3x12x2_unfolded_lethal}). Observe that $A_0^{k-1}$ infects all vertices of $X^{k-1}$ by Proposition \ref{prop:immune_regions}. We show that the remaining healthy vertices of $H$ become infected. Consider re-folding $H$, and note that the two cells marked with an ``X" in $H$ represent the same cell in $G$. This is enough to infect the remaining regions of $H$, and by Corollary \ref{cor:walls}, $A_0^k$ is lethal on $G$. 
+%Furthermore, observe that $G$ can be extended in the $x$ direction by repeated insertions of the component $X$ (see Figure \ref{fig:3x12x2}). This process does not affect the structure of $H$, and Proposition \ref{prop:immune_regions} again guarantees lethality.
+
+To prove that $A_0^{k-1}$ is perfect, observe that $|A_0^{k-1}| = 4 + 10(k-1) + 8 = 10k +2$. The surface area bound for $G=(6k,3,2)$ is given by
 $$\frac{(3)(6k) + (3)(2) + (2)(6k)}{3} = \frac{30k + 6}{3} = 10k+2.$$
-Since these two values are equal, $A_0$ is tight and lethal, and therefore perfect.
+Since these two values are equal, $A_0^{k-1}$ is tight and lethal, and therefore perfect.
 \end{proof}
 
 % (0 mod 6, 3, 2)
@@ -159,14 +162,14 @@ Since these two values are equal, $A_0$ is tight and lethal, and therefore perfe
 \begin{figure}[]
 \centering
 \includegraphics[width=0.8\textwidth]{figures/7/3x12x2_unfolded_lethal.pdf}
-\caption{A percolating set on the proper unfolding of $G= (3,12,2)$.}
+\caption{A lethal set on $H$ showing the repeated component $X$ ($t=1$ and $t=2$).}
 \label{fig:3x12x2_unfolded_lethal}
 \end{figure} 
 
 \begin{figure}[]
 \centering
 \includegraphics[width=0.8\textwidth]{figures/7/3x12x2.pdf}
-\caption{A perfect percolating set for $(3,12,2)$.}
+\caption{A perfect lethal set for $(3,12,2)$ with component $X$.}
 \label{fig:3x12x2}
 \end{figure} 
 
