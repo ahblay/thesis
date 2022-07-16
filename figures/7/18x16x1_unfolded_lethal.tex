@@ -5,6 +5,7 @@
 \usepackage{textcomp}%
 \usepackage{lastpage}%
 \usepackage{tikz}%
+\usetikzlibrary{decorations.pathreplacing,calligraphy}
 %
 %
 %
@@ -387,6 +388,18 @@
 
 \node at (15.5, -13.5) {\Huge X};
 \node at (14.5, -14.5) {\Huge X};
+
+\draw[decorate, decoration={calligraphic brace, mirror, amplitude=5pt}, line width=0.3mm] (3.05,-17.2) -- (8.95,-17.2);
+\node at (6,-17.8) {\Huge X\textsubscript{1}};
+
+\draw[decorate, decoration={calligraphic brace, mirror, amplitude=5pt}, line width=0.3mm] (9.05,-17.2) -- (14.95,-17.2);
+\node at (12,-17.8) {\Huge X\textsubscript{2}};
+
+\draw[decorate, decoration={calligraphic brace, mirror, amplitude=5pt}, line width=0.3mm] (0.8,1.05) -- (0.8,-4.95);
+\node at (0.2,-2) {\Huge Y\textsubscript{2}};
+
+\draw[decorate, decoration={calligraphic brace, mirror, amplitude=5pt}, line width=0.3mm] (0.8,-5.05) -- (0.8,-10.95);
+\node at (0.2,-8) {\Huge Y\textsubscript{1}};
 \end{tikzpicture}%
 \hspace*{1in}%
 \begin{tikzpicture}[scale=1.0]%
@@ -862,6 +875,18 @@
 
 \node at (15.5, -13.5) {\Huge X};
 \node at (14.5, -14.5) {\Huge X};
+
+\draw[decorate, decoration={calligraphic brace, mirror, amplitude=5pt}, line width=0.3mm] (3.05,-17.2) -- (8.95,-17.2);
+\node at (6,-17.8) {\Huge X\textsubscript{1}};
+
+\draw[decorate, decoration={calligraphic brace, mirror, amplitude=5pt}, line width=0.3mm] (9.05,-17.2) -- (14.95,-17.2);
+\node at (12,-17.8) {\Huge X\textsubscript{2}};
+
+\draw[decorate, decoration={calligraphic brace, mirror, amplitude=5pt}, line width=0.3mm] (0.8,1.05) -- (0.8,-4.95);
+\node at (0.2,-2) {\Huge Y\textsubscript{2}};
+
+\draw[decorate, decoration={calligraphic brace, mirror, amplitude=5pt}, line width=0.3mm] (0.8,-5.05) -- (0.8,-10.95);
+\node at (0.2,-8) {\Huge Y\textsubscript{1}};
 \end{tikzpicture}%
 \newline%
 \end{document}

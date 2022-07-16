@@ -129,16 +129,16 @@ All $(a,3,2)$ grids with $a \equiv 0 \pmod 6$ and $a \geq 6$ are perfect.
 \end{con}
 
 \begin{proof}
-Let $G$ be an $(6k,3,2)$ grid such that $k \geq 1$, and let $M$ be a manifold of $G$ and $H$ be its proper unfolding (see Figure \ref{fig:3x12x2_manifold}). Observe that $M$ is indeed a manifold: it partitions $V(G) \setminus M$ into two sets $R_1$ and $R_2$, both bounded by mutually orthogonal red, green, and blue faces (see Figure \ref{fig:3x12x2_manifold_a}). Furthermore, note that $H$ is obtained from $M$ by cutting along seams between red and green faces, and flattening the figure. It follows that $H$ is a proper unfolding of $G$. 
+Let $G$ be an $(a,3,2)$ grid with $a \equiv 0 \pmod 6$ and $a \geq 6$, and let $M$ be a manifold of $G$ and $H$ be its proper unfolding (see Figure \ref{fig:3x12x2_manifold}). Observe that $M$ is indeed a manifold: it partitions $V(G) \setminus M$ into two sets $R_1$ and $R_2$, both bounded by mutually orthogonal red, green, and blue faces (see Figure \ref{fig:3x12x2_manifold_a}). Furthermore, note that $H$ is obtained from $M$ by cutting along seams between red and green faces, and flattening the figure. It follows that $H$ is a proper unfolding of $G$. 
 
-Let $X_i$, for $i \in [k - 1]$, be the repeated components of $H$. Denote by $X^{k-1}$ the union of these components. Let $A_t^{k-1} \subseteq V(H)$ be the set of infectious vertices in $H$ at time $t$, and suppose that each $X_i$ contains the same pattern of infected vertices (see Figure \ref{fig:3x12x2_unfolded_lethal}). We show that $A_0^{k-1}$ is lethal and perfect.
+Let $X_1, \dots, X_k$ be the repeated components of $H$. Denote by $X$ the union of these components. Let $A_t \subseteq V(H)$ be the set of infectious vertices in $H$ at time $t$, and suppose that each $X_i$ contains the same pattern of infected vertices (see Figure \ref{fig:3x12x2_unfolded_lethal}). We show that $A_0$ is lethal and perfect.
 
-Consider an initial infection $A_0^{k-1}$ of $H$ (see Figure \ref{fig:3x12x2_unfolded_lethal}). Observe that $A_0^{k-1}$ infects all vertices of $X^{k-1}$ by Proposition \ref{prop:immune_regions}. We show that the remaining healthy vertices of $H$ become infected. Consider re-folding $H$, and note that the two cells marked with an ``X" in $H$ represent the same cell in $G$. This is enough to infect the remaining regions of $H$, and by Corollary \ref{cor:walls}, $A_0^k$ is lethal on $G$. 
+Consider an initial infection $A_0$ of $H$ (see Figure \ref{fig:3x12x2_unfolded_lethal}). Observe that $A_0$ infects all vertices of $X$ by Proposition \ref{prop:immune_regions}. We show that the remaining healthy vertices of $H$ become infected. Consider re-folding $H$, and note that the two cells marked with an ``X" in $H$ represent the same cell in $G$. This is enough to infect the remaining regions of $H$, and by Corollary \ref{cor:walls}, $A_0$ is lethal on $G$. 
 %Furthermore, observe that $G$ can be extended in the $x$ direction by repeated insertions of the component $X$ (see Figure \ref{fig:3x12x2}). This process does not affect the structure of $H$, and Proposition \ref{prop:immune_regions} again guarantees lethality.
 
-To prove that $A_0^{k-1}$ is perfect, observe that $|A_0^{k-1}| = 4 + 10(k-1) + 8 = 10k +2$. The surface area bound for $G=(6k,3,2)$ is given by
-$$\frac{(3)(6k) + (3)(2) + (2)(6k)}{3} = \frac{30k + 6}{3} = 10k+2.$$
-Since these two values are equal, $A_0^{k-1}$ is tight and lethal, and therefore perfect.
+To prove that $A_0$ is perfect, observe that $|A_0| = 4 + 10k + 8 = 10k +12$. The surface area bound for $G=(6k+6,3,2)$, where $k$ is the number of repeated components $X$, is given by
+$$\frac{(3)(6k+6) + (3)(2) + (2)(6k+6)}{3} = \frac{30k + 36}{3} = 10k+12.$$
+Since these two values are equal, $A_0$ is tight and lethal, and therefore perfect.
 \end{proof}
 
 % (0 mod 6, 3, 2)
@@ -183,23 +183,25 @@ All $(a,b,2)$ grids with $a,b \in \{2,5\} \pmod 6$, $a \neq b \pmod 6$, and $a,b
 \begin{proof}
 Let $G$ be an $(a,b,2)$ grid with $a,b \in \{2,5\} \pmod 6$, $a \neq b \pmod 6$, and $a,b > 2$, and let $M$ be a manifold of $G$ and $H$ be its proper unfolding (Figure \ref{fig:11x20x2_manifold}). Note that $M$ partitions the vertices of $V(G) \setminus M$ into two disjoint sets $R_1$ and $R_2$, both bounded by mutually orthogonal red, green, and blue faces. Note, also, that $H$ is obtained from $M$ by cutting along seams between red and green faces, and flattening the figure. Therefore, $H$ is a proper unfolding of $G$. 
 
-Let $X_1, \dots, X_{k_1}$ be the repeated components of $H$ in the $x$-direction, and $Y_1, \dots, Y_{k_2}$ be the repeated components of $H$ in the $y$-direction. Denote by $X \times Y$ the union of these components. Let $A_t \subseteq V(H)$ be the set of infectious vertices in $H$ at time $t$, and suppose that all $X_i$ and all $Y_i$ contain the same pattern of infected vertices (see Figure \ref{fig:3x12x2_unfolded_lethal}). We show that $A_0$ is lethal and perfect.
+Let $X_1, \dots, X_{k_1}$ be the repeated components of $H$ in the $x$-direction, and $Y_1, \dots, Y_{k_2}$ be the repeated components of $H$ in the $y$-direction (see Figure \ref{fig:18x16x1_unfolded_lethal}). Denote by $X \times Y$ the union of these components. Let $A_t \subseteq V(H)$ be the set of infectious vertices in $H$ at time $t$, and suppose that for $i \in [k_1] \setminus \{1,k_1\}$ and $j \in [k_2]$, each $X_i \times Y_j$ contains the same pattern of infected vertices (see Figure \ref{fig:XiYj}). We show that $A_0$ is lethal and perfect.
 
-Consider the initial infection $A_0$ of $H$ as shown in figure \ref{fig:11x20x2_unfolded_lethal}. Observe that $A_0$ infects all vertices of $X\times Y$ by Proposition \ref{prop:immune_regions}. We show that the remaining healthy vertices of $H$ become infected. Consider re-folding $H$, and note that the two cells marked with an ``X" in $H$ represent the same cell in $G$. This is enough to infect the remaining regions of $H$, and by Corollary \ref{cor:walls}, $A_0$ is lethal on $G$. 
+Consider the initial infection $A_0$ of $H$ as shown in Figure \ref{fig:18x16x1_unfolded_lethal}. Observe that $A_0$ infects all vertices of $X\times Y$ by Proposition \ref{prop:immune_regions}. We show that the remaining healthy vertices of $H$ become infected. The individual vertices in the rightmost column of $H$ are infected by Proposition \ref{prop:immune_regions}. Consider re-folding $H$, and note that the two cells marked with an ``X" in $H$ represent the same cell in $G$. This is enough to infect the remaining regions of $H$, and by Corollary \ref{cor:walls}, $A_0$ is lethal on $G$. 
 
-The above construction holds for $a \geq 5$ and $b \geq 8$. It can be extended in the $x$ direction by inserting a block of width 6, representing the repeating vertical snaking pattern. Similarly, it can be extended in the $y$ direction by inserting a block of height 6, representing the horizontal snaking pattern. Both such augmentations spawn infections that satisfy the conditions of lemma \ref{lem:forest}, and a simple calculation reveals that they agree with the surface area bound. This concludes the proof. 
-
-To prove that $A_0$ is perfect, observe that each $X_i \times Y_j$ block contains exactly 12 infected vertices. Of the remaining vertices $H \setminus X \times Y$, 20 are infected. Therefore, $|A_0| = 12(k_1)(k_2) + 20$. The surface area bound for $G=(6k_1+2,6k_2+5,2)$ is given by
-$$\frac{(6k_1+2)(6k_2 + 5) + (6k_2+5)(2) + (2)(6k_1+2)}{3} = \frac{36(k_1)(k_2) +42k_1 +24k_2 + 24}{3} = 12k_1k_2 +14k_1+8k_2+8.$$
-Since these two values are equal, $A_0^{k-1}$ is tight and lethal, and therefore perfect.
+To prove that $A_0$ is perfect, observe that for $i \in [k_1] \setminus \{1\}$ and $j \in [k_2]$, each $X_i \times Y_j$ block contains exactly 12 infected vertices. For $j \in [k_2 -1]$, $X_1 \times Y_j$ contains 11 infected vertices, and $X_1 \times Y_{k_2}$ contains 12 infected vertices. In total, the component $X \times Y$ contains exactly 
+$$12(k_1-1)(k_2) + 11(k_2-1) + 12$$
+initially infected vertices. Of the remaining vertices in $H$, $14(k_1) - 1 +9(k_2) + 8$ are infected. Therefore, 
+\begin{align*}
+|A_0| &= 12(k_1-1)(k_2) + 11(k_2-1) + 12+14(k_1) - 1 +9(k_2) + 8 \\
+&= 12k_1k_2 + 14k_1 + 8k_2 +8.
+\end{align*}
+The surface area bound for $G=(6k_1+2,6k_2+5,2)$ is given by
+\begin{align*}
+SA(6k_1+2,6k_2+5,2) &= \frac{(6k_1+2)(6k_2 + 5) + (6k_2+5)(2) + (2)(6k_1+2)}{3} \\
+&= \frac{36(k_1)(k_2) +42k_1 +24k_2 + 24}{3} \\
+&= 12k_1k_2 +14k_1+8k_2+8.
+\end{align*}
+Since these two values are equal, $A_0$ is tight and lethal, and therefore perfect.
 \end{proof}
-
-\begin{figure}[]
-\centering
-\includegraphics[width=0.8\textwidth]{figures/7/17x14x2.pdf}
-\caption{A perfect percolating set for $(17,20,2)$.}
-\label{fig:11x20x2}
-\end{figure} 
 
 \begin{figure}[]
 \centering
@@ -220,8 +222,22 @@ Since these two values are equal, $A_0^{k-1}$ is tight and lethal, and therefore
 \begin{figure}[]
 \centering
 \includegraphics[width=0.8\textwidth]{figures/7/18x16x1_unfolded_lethal.pdf}
-\caption{A percolating set on the proper unfolding of $G= (11,20,2)$.}
-\label{fig:11x20x2_unfolded_lethal}
+\caption{A percolating set on the proper unfolding of $G= (17,14,2)$.}
+\label{fig:18x16x1_unfolded_lethal}
+\end{figure}
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.12\textwidth]{figures/7/XiYj.pdf}
+\caption{A block $X_i \times Y_j$.}
+\label{fig:XiYj}
+\end{figure} 
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/7/17x14x2.pdf}
+\caption{A perfect percolating set for $(17,20,2)$.}
+\label{fig:11x20x2}
 \end{figure} 
 
 % (3 mod 6, 0 mod 6, 2) 
