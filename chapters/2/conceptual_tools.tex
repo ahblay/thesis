@@ -149,7 +149,32 @@ Recall from Chapter 1 that a lethal initial infection $A_0$ is perfect if it con
 
 In addition to the conceptual tools presented above, many of the results in this thesis were obtained with the help of a visualization tool. This resource allows a user to experimentally infect vertices in two- and three-dimensional grids, and observe the step-by-step $r$-neighbor percolation process. As far as we are aware, such a tool did not previously exist for the problem of bootstrap percolation. In this section, we provide an overview of the functionality of this resource (which we refer to as the \emph{visualizer}), and highlight features that could prove useful in further research. The visualizer is located at \texttt{https://ahblay.pythonanywhere.com}, and the reader is encouraged to examine the lethal sets presented in later chapters as they appear (although this is not necessary to understand the results).
 
+\begin{figure}[]
+\centering
+\includegraphics[width=\textwidth]{figures/2/visualizer}
+\caption{The visualization tool with a infected set.}
+\label{fig:visualizer}
+\end{figure} 
+
 \subsection{Control panel}
+
+A screenshot of the visualizer is shown in Figure \ref{fig:visualizer}. It functions as follows:
+
+A user enters the parameters of their problem (e.g. they wish to examine the grid $[17] \times [23]$ under 3-neighbor percolation, and so select ``Grid" from the dropdown menu and choose 17 rows, 23 columns, 1 layer, and a threshold of 3 neighbors), and then clicks submit. This renders a grid of gray vertices. The user then selects those vertices that they wish to infect and, when satisfied, clicks ``Run percolation." This allows the user to step through the phases of infection. 
+
+Let us examine in detail the options available in this process. The control panel features the following:
+
+\begin{itemize}
+\item A dropdown menu to choose between percolation on a grid, and percolation on a torus;
+\item Text boxes to enter the size of the grid (resp. torus);
+\item A text box to enter the threshold number of neighbors to spawn an infection;
+\item A submit button, which renders the chosen parameters as a grid of clickable gray circles;
+\item Buttons to initiate and step through the percolation process, and a checkbox to animate it;
+\item A button labeled ``Improve percolation," which removes unnecessary infections (should they exist);
+\item An option to select from a list of existing lethal sets;
+\item A checkbox to reflect infected vertices;
+\item Buttons to upload/download an infected set as a text file.
+\end{itemize}
 
 \subsection{Design}
 
