@@ -307,7 +307,11 @@ Let $(r_1,r_2,r_3)$ be the tuple of residues of $(a_1,a_2,a_3)$ modulo 3. Given 
 \end{table} 
 
 \begin{proof}[Proof of Theorem \ref{thm:main_result}]
-Let $(a_1,a_2,a_3)$ be such that $a_1 \geq a_2 \geq a_3 \geq 11$. 
+Let $(a_1,a_2,a_3)$ be such that $a_1 \geq a_2 \geq a_3 \geq 11$. Observe that each $a_i$ can be written as $3b_i + r_i$, for $b_i \geq 2$ and some $r_i \in \{5,6,7\}$. We therefore have that $(a_1,a_2,a_3) = (r_1,r_2,r_3) + (3b_1,3b_2,3b_3)$, for $r_1,r_2,r_3 \in \{5,6,7\}$. By Lemma \ref{lem:multiples_of_3}, $(a_1,a_2,a_3)$ is optimal if $(r_1,r_2,r_3)$ is optimal. 
+
+Corollary \ref{cor:divisibility_complete} gives us the optimality of divisibility cases. Therefore, we need only consider non-divisible grids $(r_1,r_2,r_3)$. In particular, we must show that $(6,5,5)$, $(7,5,5)$, $(7,6,5)$, $(7,7,5)$ and $(7,7,6)$ are all optimal. We obtain $(7,7,6)$ from $(4,4,3) + (3,3,3)$. By Lemma \ref{lem:plus_333}, $(7,7,6)$ is optimal. Constructions for $(6,5,5)$, $(7,5,5)$, $(7,6,5)$, $(7,7,5)$ are given in Appendix A.
+
+Since each of the non-divisibility grids $(r_1,r_2,r_3)$ admits an optimal lethal set, we conclude that all grids $(a_1,a_2,a_3)$ where $a_1 \geq a_2 \geq a_3 \geq 11$ are optimal.
 \end{proof}
 
 %\begin{lem}
