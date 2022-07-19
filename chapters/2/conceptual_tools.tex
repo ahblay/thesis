@@ -145,16 +145,16 @@ It will be insightful to consider the surface area bound on two-dimensional grid
 
 Recall from Chapter 1 that a lethal initial infection $A_0$ is perfect if it contains no adjacent vertices, and if all vertices $v \in A_{t > 0}$ are infected by precisely $d$ neighbors. Therefore, by Propositions \ref{prop:corners} and \ref{prop:border}, if  $[a_1] \times [a_2]$ admits a perfect lethal set, then $a_1, a_2 \equiv 1 \pmod 2$. Furthermore, every component of the subgraph $H$ induced by uninfected vertices must contain exactly one border vertex (otherwise the second condition on perfect infections would be violated). In Chapter 6, we use these observations to prove that the only two-dimensional grids that admit perfect lethal sets under 3-neighbor bootstrap percolation are of the form $[2^n-1]^2$.
 
-\section{Visualizer}
-
-In addition to the conceptual tools presented above, many of the results in this thesis were obtained with the help of a visualization tool. This resource allows a user to experimentally infect vertices in two- and three-dimensional grids, and observe the step-by-step $r$-neighbor percolation process. As far as we are aware, such a tool did not previously exist for the problem of bootstrap percolation. In this section, we provide an overview of the functionality of this resource (which we refer to as the \emph{visualizer}), and highlight features that could prove useful in further research. The visualizer is located at \texttt{https://ahblay.pythonanywhere.com}, and the reader is encouraged to examine the lethal sets presented in later chapters as they appear (although this is not necessary to understand the results).
-
 \begin{figure}[]
 \centering
 \includegraphics[width=\textwidth]{figures/2/visualizer}
 \caption{The visualization tool with a infected set.}
 \label{fig:visualizer}
 \end{figure} 
+
+\section{Visualizer}
+
+In addition to the conceptual tools presented above, many of the results in this thesis were obtained with the help of a visualization tool. This resource allows a user to experimentally infect vertices in two- and three-dimensional grids, and observe the step-by-step $r$-neighbor percolation process. As far as we are aware, such a tool did not previously exist for the problem of bootstrap percolation. In this section, we provide an overview of the functionality of this resource (which we refer to as the \emph{visualizer}), and highlight features that could prove useful in further research. The visualizer is located at \texttt{https://ahblay.pythonanywhere.com}, and the reader is encouraged to examine the lethal sets presented in later chapters as they appear (although this is not necessary to understand the results).
 
 \subsection{Control panel}
 
@@ -175,6 +175,18 @@ Let us examine in detail the options available in this process. The control pane
 \item A checkbox to reflect infected vertices;
 \item Buttons to upload/download an infected set as a text file.
 \end{itemize}
+
+We highlight the design and representation of grids as matrices of clickable vertices, the choice between grid and torus, the ``Improve percolation" button, the ability to view existing lethal sets as well as upload/download them, and the option to reflect the pattern of infected vertices. 
+
+One of the challenges of visualizing the problem of bootstrap percolation arises from the fact that many grids are large and high-dimensional. This is perhaps the greatest limitation of the visualizer. The current iteration of the tool renders vertices as clickable regions in an HTML \texttt{canvas} element, which does not respond well to re-scaling. As a result, large grids contain very small vertices, which complicates the process of selecting an initial infection. Furthermore, \texttt{canvas} does not natively support 3-dimensional structures, and so 3-dimensional grids are simply rendered as a stack of their 2-dimensional layers. 
+
+Users are able to select between percolation on a grid, and percolation on a torus. This choice does not impact the representation of the grid (resp. torus). However, when stepping through the phases of infection, vertices at the top of the grid are treated as neighbors of those on the bottom, and similarly for left and right. 
+
+In this chapter (and in Chapter 6) we saw that certain patterns of infected vertices are always lethal. The fickleness of bootstrap percolation regularly precludes us from simply copying these patterns across all grids to obtain perfect lethal sets. However, sometimes these patterns can be augmented with additional infections. If a set $A_0$ is lethal and above the surface area bound, the ``Improve percolation" button attempts to remove non-essential infections. It does this by removing a random vertex $v$ from $A_0$ and checking if the resulting set is lethal. If it is, the new infection $A_0 \setminus \{v\}$ is rendered on the screen. 
+
+In pursuit of determining new perfect lethal sets, it is often helpful to examine and alter existing ones. Whenever a user clicks ``Run percolation" on a perfect lethal set, a text file containing the lethal configuration of vertices is stored in a database. This file is made accessible to all future users through the ``Show optimal sets" window. We hope that ongoing use of this tool will passively allow for the accumulation of a number of lethal sets in 2- and 3-dimensions. In addition to accessing known lethal sets via the ``Show optimal sets" button, users are able to upload sets from a local text file. These files must be configured as a sequence of X's and O's, with rows on new lines, and layers separated by a blank line. An example of this format can be obtained by creating an infected grid on the visualizer and selecting ``Download .txt". 
+
+The ``Reflect top layer" checkbox is another resource designed to increase the efficiency of experimentally generating lethal sets. We have found in our research that certain grids, especially of the form $[a_1] \times [a_2] \times [2]$, have symmetric infections in their top and bottom layers. By choosing ``Reflect top layer", these symmetries are generated automatically. 
 
 \subsection{Design}
 
