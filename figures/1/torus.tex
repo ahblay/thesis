@@ -1,0 +1,90 @@
+\documentclass{standalone}%
+\usepackage[T1]{fontenc}%
+\usepackage[utf8]{inputenc}%
+\usepackage{lmodern}%
+\usepackage{textcomp}%
+\usepackage{lastpage}%
+\usepackage{tikz, tikz-3dplot}%
+%
+%
+%
+\begin{document}%
+\normalsize%
+
+\tdplotsetmaincoords{74}{122}
+\begin{tikzpicture}
+		[tdplot_main_coords,
+			small_cube/.style={gray, fill=gray!60, opacity=0.8},
+			cell/.style={black, fill=red, opacity=0.8},
+			cube/.style={black},
+			grid/.style={very thin,gray!65},
+			axis/.style={->,blue,thick}]
+			
+	% draw back edges of big cube
+	\draw[cube] (0,0,0) -- (0,8,0);
+	\draw[cube] (0,0,0) -- (0,0,8);
+	\draw[cube] (0,0,0) -- (8,0,0);
+	
+	%draw a grid in the x-y plane
+	\foreach \y in {0,...,7}
+		\foreach \z in {0,...,7}
+		{
+			\draw[grid] (7,\y,0) -- (7,\y,7);
+			\draw[grid] (7,0,\z) -- (7,7,\z);
+		}
+		
+	\foreach \x in {0,...,7}
+		\foreach \z in {0,...,7}
+		{
+			\draw[grid] (\x,7,0) -- (\x,7,7);
+			\draw[grid] (0,7,\z) -- (7,7,\z);
+		}
+		
+	\foreach \x in {0,...,7}
+		\foreach \y in {0,...,7}
+		{
+			\draw[grid] (\x,0,7) -- (\x,7,7);
+			\draw[grid] (0,\y,7) -- (7,\y,7);
+		}
+			
+	%draw the edges of the cube
+	\draw[small_cube] (0,0,0) -- (0,0,7);
+	\draw[small_cube] (0,7,0) -- (0,7,7);
+	\draw[small_cube] (7,0,0) -- (7,0,7);
+	\draw[small_cube] (7,7,0) -- (7,7,7);
+	
+	%draw the top and bottom of the cube
+	%\draw[small_cube] (0,0,0) -- (0,7,0) -- (7,7,0) -- (7,0,0) -- cycle;
+	\draw[small_cube] (0,0,7) -- (0,7,7) -- (7,7,7) -- (7,0,7) -- cycle;
+	\draw[small_cube] (0,7,7) -- (7,7,7) -- (7,7,0) -- (0,7,0) -- cycle;
+	\draw[small_cube] (7,7,7) -- (7,7,0) -- (7,0,0) -- (7,0,7) -- cycle;
+
+	%draw the top and bottom of the cube
+	%\draw[cube] (0,0,0) -- (0,8,0) -- (8,8,0) -- (8,0,0) -- cycle;
+	%\draw[cube] (0,0,8) -- (0,8,8) -- (8,8,8) -- (8,0,8) -- cycle;
+	
+	%draw the edges of the cube
+	%\draw[cube] (0,0,0) -- (0,0,8);
+	%\draw[cube] (0,8,0) -- (0,8,8);
+	%\draw[cube] (8,0,0) -- (8,0,8);
+	%\draw[cube] (8,8,0) -- (8,8,8);
+	
+	%CELL
+	\draw[cell] (7,7,8) -- (7,8,8) -- (8,8,8) -- (8,7,8) -- cycle;
+	\draw[cell] (7,8,8) -- (8,8,8) -- (8,8,7) -- (7,8,7) -- cycle;
+	\draw[cell] (8,8,8) -- (8,8,7) -- (8,7,7) -- (8,7,8) -- cycle;
+	%CELL
+	\draw[cell] (7,0,1) -- (7,1,1) -- (8,1,1) -- (8,0,1) -- cycle;
+	\draw[cell] (7,1,1) -- (8,1,1) -- (8,1,0) -- (7,1,0) -- cycle;
+	\draw[cell] (8,1,1) -- (8,1,0) -- (8,0,0) -- (8,0,1) -- cycle;
+	%ARROW
+	%\draw[->, line width=1mm, red] (8,7,8) -- (8,0,8);
+	
+	% front faces of big cube
+	\draw[cube] (0,0,8) -- (0,8,8) -- (8,8,8) -- (8,0,8) -- cycle;
+	\draw[cube] (0,8,8) -- (8,8,8) -- (8,8,0) -- (0,8,0) -- cycle;
+	\draw[cube] (8,8,8) -- (8,8,0) -- (8,0,0) -- (8,0,8) -- cycle;
+		
+\end{tikzpicture}
+
+\end{document}

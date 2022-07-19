@@ -16,7 +16,7 @@ What is the fewest number of infected cells necessary to spawn a lethal infectio
 
 Before we present the solution,
 %(which is particularly elegant and satisfying, and the reader is encouraged to play around with this problem on their own and get a feel for the behavior), 
-let us take a moment to examine some properties of infectious sets and attempt to characterize what attributes might correspond to lethality. It should not take too long to observe that if an initial infection is in some way ``spread too thinly," then it will be unable to jump between infected areas, leading to gaps in infection, which we refer to as \emph{immune regions}. The perimeter of the lattice is particularly susceptible to this, as vertices there have fewer neighbors from whom they might be exposed. Heuristically, then, a lethal set must have the ability to effectively span the entire lattice, and must be particularly virulent along the perimeter. 
+let us take a moment to examine some properties of infectious sets and attempt to characterize what attributes might correspond to lethality. It should not take too long to observe that if an initial infection is in some way ``spread too thinly," then it will be unable to ``jump" between infected areas, leading to gaps in infection, which we refer to as \emph{immune regions}. The perimeter of the lattice is particularly susceptible to this, as vertices there have fewer neighbors from whom they might be exposed. Heuristically, then, a lethal set must have the ability to effectively span the entire lattice, and must be particularly virulent along the perimeter. 
 
 With this criteria in mind, we are able to make some educated guesses regarding the specific structure of sets that are likely to be lethal. In particular, we would like to consider the two starting infections illustrated in Figure \ref{fig:two_infections}. Notice that while Figure \ref{fig:two_infections} (\subref{fig:two_infections_b}) has far fewer perimeter infections, both (\subref{fig:two_infections_a}) and (\subref{fig:two_infections_b}) manage to form continuous bands of infected cells that appear to span the entire lattice after one step. Indeed, this fits with our notion of immune regions (or lack thereof), and we see that both infections will continue to propagate outwards from these bands until all cells become infected.
 
@@ -38,6 +38,8 @@ With this criteria in mind, we are able to make some educated guesses regarding 
 
 It is clear from Figure \ref{fig:two_infections} that we may obtain lethal sets on the $n \times n$ lattice of size $n$ by simply infecting the diagonal. What is less obvious is whether it is possible to improve upon this result. Perhaps the most natural first attempt at this is to remove an infection from one of the cells along the diagonal. However, this seems to form an immune region containing the removed cell. After some experimentation, one begins to believe it impossible to simultaneously satisfy the heuristic that a starting infection must span the lattice, while also using fewer than $n$ initial infections. The question therefore becomes: how do we prove it?
 
+\subsubsection{An early result}
+
 Consider the cumulative perimeter of infected regions. For a given infectious set $A$, let $P(A)$ be the total perimeter of the infected regions of $A$. Let $A_0$ be an initial infection, and observe that $P(A_0) \leq 4 |A_0|$. (This bound is only tight if no two infected cells are adjacent. Otherwise, the edge between such cells lies within the infected region, and cannot contribute to the infection's perimeter.) Observe that for any uninfected cell to become infected, it must abut at least two infected cells. Upon infection, the edges adjacent to these cells no longer lie on the infection's perimeter; additionally, the remaining edges of this newly infected cell contribute at most $2$ to this perimeter. All told, after infection, $P(A_1) \leq P(A_0)$. 
 
 If we suppose that $A_0$ is a lethal set, then at some point in time, the entire grid will become infected. This infection will have a perimeter $4n$. Since this perimeter did not increase, $A_0$ must have originally had a perimeter of at least $4n$. Since each cell in $A_0$ can contribute at most $4$ to this perimeter, it must be the case that $|A_0| \geq n$. Our diagonal construction shows that $|A_0| \leq n$, and so we are able to conclude that $n$ is best possible.
@@ -53,8 +55,8 @@ Let us now define the problem in concrete terms. Let $G$ be a graph, let $r \geq
 $$A_t = A_{t-1} \cup \{v \in V(G) : |N_G(v) \cap A_{t-1}| \geq r\},$$
 where $N_G(v)$ is the set of vertices adjacent to $v$ in $G$. We define the \emph{closure} of $A_0$ under $r$-neighbor bootstrap percolation to be $[A_0] = \bigcup_{t=0}^{\infty} A_t$. We say that $A_0$ \emph{percolates} or is \emph{lethal} if $[A_0] = V(G)$. We define the smallest lethal set in a graph $G$ under $r$-neighbor bootstrap percolation by the quantity $m(G,r)$. We note that under these rules, it is not possible for vertices to become uninfected.
 
-While it is possible to study bootstrap percolation on any graph $G$, much of the contemporary research focuses on multidimensional grids \cite{something}. We therefore introduce the following notation. For all $n \in \mathbb{N}$, let $[n] = \{1, 2, \dots, n\}$. Let the grid graph with vertex set $\prod_i^d [a_i]$ be denoted by $\prod_i^d [a_i]$. Note that $\prod_i^d [a_i] = P_{a_1} \square \cdots \square P_{a_d}$. Furthermore, define:
-$$m(a_1, \dots, a_d, r) = m(\prod_i^d [a_i], r).$$
+While it is possible to study bootstrap percolation on any graph $G$, much of the contemporary research focuses on multidimensional grids \cite{something}. We therefore introduce the following notation. For all $n \in \mathbb{N}$, let $[n] = \{1, 2, \dots, n\}$. Let the grid graph with vertex set $\prod_i^d [a_i]$ be denoted by $\prod_i^d [a_i]$. Note that $\prod_i^d [a_i] = P_{a_1} \square \cdots \square P_{a_d}$, where $\square$ denotes the Cartesian product of graphs. Furthermore, define:
+$$m(a_1, \dots, a_d, r) = m\left(\prod_i^d [a_i], r\right).$$
 
 There are a number of natural generalizations of the problem posed in Question \ref{que:simple_puzzle}. In this thesis, we discuss those obtained by varying the structure of $G$ and the value of $r$. Below, we outline some of the existing results for graphs that are the Cartesian product of paths and cycles, and $r \in \{0, 1, 2, 3\}$. These results are summarized in Table \ref{tab:known_bounds}.
 
@@ -68,18 +70,18 @@ There are a number of natural generalizations of the problem posed in Question \
 \subsection{Results on grids and tori}
 \label{sec:result_summary}
 
-In this section, we highlight major bootstrap percolation results on grids and tori. Some of the following bounds are not tight and require supplemental constructions, which are often difficult to obtain. We further sub-divide this discussion into results on the grid (of which there are many), and results on the torus (of which there are few).
+In this section, we highlight existing extremal bootstrap percolation results on grids and tori. Some of the following bounds are not known to be tight and require supplemental constructions, which are often difficult to obtain. We further sub-divide this discussion into results on the grid (of which there are many), and results on the torus (of which there are few).
 
 \subsubsection{Grids}
 
 From the puzzle posed in Question \ref{que:simple_puzzle}, we readily obtain variant problems by altering three parameters: the size and shape of the grid $G$, the grid's dimension $d$, and the threshold number of neighbors $r$. We examine each of these problems in turn.
 
-In the prior discussion of the perimeter argument, we showed that for square grids $[n]^2$, $m([n]^2, 2) \geq n$, and verified this to be tight with a diagonal construction. The following result (attributed to Pete) generalizes this result to all rectangular grids $[a_1] \times [a_2]$. A proof is included for completeness. 
+In the prior discussion of the perimeter argument, we showed that, for square grids, it holds that $m([n]^2, 2) \geq n$, and verified this to be tight with a diagonal construction. The following result (attributed to Pete) generalizes this result to all rectangular grids $[a_1] \times [a_2]$. A proof is included for completeness. 
 
 \begin{thm}
 \label{thm:perimeter_rects}
 For $a_1, a_2 \geq 1$,
-$$m(a_1,a_2,2) = \ceil*{\frac{a_1+a_2-2}{2}}+1.$$
+$$m(a_1,a_2,2) = \ceil*{\frac{a_1+a_2}{2}}.$$
 \end{thm}
 
 \begin{proof}
@@ -106,7 +108,7 @@ Observe that $A_0$ infects all vertices of $[a_1] \times [a_2]$, apart from the 
 \label{fig:base_cases}
 \end{figure} 
 
-Let us take a moment to examine the issue of integrality in the perimeter bound. Non-integrality occurs either when adjacent vertices are infected in the same generation, or when a vertex is infected by more than $r$ neighbors. Note that in both cases, this decreases the perimeter of infection. One way to think about this is to consider each vertex as having ``infectious potential": vertices $v \in A_0$ can infect up to $d(v)$ healthy vertices, whereas vertices $v \in A_i$ for $i > 0$ can infect at most $d(v) - r$. An integral perimeter bound mandates that each vertex realize its potential, whereas a non-integral bound leaves a small margin for error. Figure \ref{fig:sa_construction_2d_a} illustrates the integral case, where each cell is infected by exactly two neighboring cells; this condition ensures that $P(A_i) = P([A_0])$ for all $i$. Conversely, in Figure \ref{fig:sa_construction_2d_b}, the cell demarcated with an ``X" experiences infection on three sides, thereby reducing its infectious potential. The existence of such a cell is guaranteed by the fact the perimeter bound in this case is non-integral. 
+Let us take a moment to examine the issue of integrality in the perimeter bound. When non-integrality occurs, either adjacent vertices are infected in the same generation, or a vertex is infected by more than $r$ neighbors. Note that in both cases, this decreases the perimeter of infection. One way to think about this is to consider each vertex as having ``infectious potential": vertices $v \in A_0$ can infect up to $d(v)$ healthy vertices, whereas vertices $v \in A_i$ for $i > 0$ can infect at most $d(v) - r$. An integral perimeter bound mandates that each vertex realize its potential, whereas a non-integral bound leaves a small margin for error. Figure \ref{fig:sa_construction_2d_a} illustrates the integral case, where each cell is infected by exactly two neighboring cells; this condition ensures that $P(A_i) = P([A_0])$ for all $i$. Conversely, in Figure \ref{fig:sa_construction_2d_b}, the cell demarcated with an ``X" experiences infection on three sides, thereby reducing its infectious potential. The existence of such a cell is guaranteed by the fact the perimeter bound in this case is non-integral. 
 
 \begin{figure}[]
 \centering
@@ -124,7 +126,7 @@ Let us take a moment to examine the issue of integrality in the perimeter bound.
 \label{fig:sa_construction_2d}
 \end{figure} 
 
-We can further generalize for the case of $r=2$. In 2006, Balogh and Bollobas \cite{balogh:2006} proved the following general form of Theorem \ref{thm:perimeter_rects} for all $d$-dimensional hypercubes $(a_1, \dots, a_d)$, $a_i \geq 1$:
+We can further generalize in the case $r=2$. In 2006, Balogh and Bollob\'as \cite{balogh:2006} proved the following general form of Theorem \ref{thm:perimeter_rects} for all $d$-dimensional hypercubes $(a_1, \dots, a_d)$, $a_i \geq 1$:
 
 \begin{thm}[Balogh]
 \label{thm:complete_r_2}
@@ -148,6 +150,7 @@ Then there exists $k \geq 1$ such that $a=b=2^k-1$.
 \end{thm}
 
 \begin{cor}
+\label{cor:sqaure_grids_thickness_1}
 For all $n \geq 1$,
 $$ m(n,n,3) =
 \begin{cases} 
@@ -174,7 +177,7 @@ $$m(a_1,a_2, \dots, a_d,d) \geq \frac{\sum_{j=1}^d \prod_{i \neq j} a_i}{d}.$$
 \end{thm}
 
 \begin{proof}
-We apply the same invariant strategy presented in the perimeter argument. For simplicity, consider $\prod_{i=1}^d[a_i]$ to be embedded within the larger graph $\prod_{i=1}^d \{0, \dots, a_i + 1\}$. Note that in $\prod_{i=1}^d \{0, \dots, a_i + 1\}$, each vertex $v \in \prod_{i=1}^d[a_i]$ has degree $2d$. Let $A_0$ be a lethal set in $\prod_{i=1}^d[a_i]$ under the $d$-neighbor bootstrap process. Let $A_t$ be the set of infected vertices in $\prod_{i=1}^d[a_i]$ at generation $t$. Denote by $m_t$ the number of edges between vertices $u \in A_t$ and $v \in \prod_{i=1}^d[a_i] \setminus A_t$. %We show that the sequence $m_0, m_1, m_2, \dots$ is monotonically decreasing. 
+We apply the same ``invariant" strategy presented in the perimeter argument. For simplicity, consider $\prod_{i=1}^d[a_i]$ to be embedded within the larger graph $\prod_{i=1}^d \{0, \dots, a_i + 1\}$. Note that in $\prod_{i=1}^d \{0, \dots, a_i + 1\}$, each vertex $v \in \prod_{i=1}^d[a_i]$ has degree $2d$. Let $A_0$ be a lethal set in $\prod_{i=1}^d[a_i]$ under the $d$-neighbor bootstrap process. For $t >0$, let $A_t$ be the set of infected vertices in $\prod_{i=1}^d[a_i]$ at generation $t$. Denote by $m_t$ the number of edges between vertices $u \in A_t$ and $v \in \prod_{i=1}^d[a_i] \setminus A_t$. %We show that the sequence $m_0, m_1, m_2, \dots$ is monotonically decreasing. 
 We show that $m_{t-1} \geq m_t$ for all $t> 0$. 
 
 %Let $N = |A_t - A_{t-1}|$, and let $v_1, \dots, v_N$ be an arbitrary ordering on the vertices of $A_t \setminus A_{t-1}$. 
@@ -187,7 +190,7 @@ where the final expression gives the total number of edges between the fully inf
 
 We note that the prior argument is precisely the same as the so-called perimeter argument outlined on Page 2. Here, the quantity $m_t$ is a $d$-dimensional analogue of the perimeter of infection $P(A_t)$ at time-step $t$, and the lower bound
 $$2\sum_{j=1}^d \prod_{i \neq j} a_i$$
-is the $d$-dimensional ``perimeter" of the grid. Again, observe that equality can only be obtained when no vertices of $A_0$ are adjacent, and all vertices $v \in A_{t>0}$ are infected by exactly $d$ neighbors. Any imprecision causes a reduction in ``perimeter" of two units, corresponding to a $1/d$ increase in the bound. 
+is the $d$-dimensional ``perimeter" of the grid. Again, observe that equality can only be obtained when no vertices of $A_0$ are adjacent, and all vertices $v \in A_{t}$, for $t>0$, are infected by exactly $d$ neighbors. Any imprecision causes a reduction in ``perimeter" of two units, corresponding to a $1/d$ increase in the bound. 
 
 The primary aim of this thesis is to prove that the surface area bound is tight for sufficiently large grids when $r=3$. This process employs a number of general constructions (discussed in Chapter 7), as well as a recursive strategy (Chapter 3). In Chapter 5, we prove the following result:
 
@@ -226,10 +229,79 @@ $$|I| \geq \frac{ab +c}{3} \geq \frac{ab +1}{3}.$$
 
 Observe that the conditions $c \geq 1$ and $m_{IH} \leq 4|I|$ prevent us from obtaining strict equality. Specifically, if $I$ is lethal, $G[H]$ has one component, and no vertices in $I$ are adjacent, then $|I|$ is minimized. Note that these conditions are quite similar to those on grids; the specific difference is that equality in the bound on grids mandates that no vertex be infected by more than $r$ neighbors, whereas equality on three-dimensional tori requires this inefficiency be centered on one particular vertex. 
 
+Theorem \ref{thm:torus_lb} is generalized to all tori by Hambardzumyan, Hatami and Qian in \cite{hatami}. Specifically, they provide a recursive formula for the size of minimum lethal sets on tori under $r$-bond bootstrap percolation, an instance of graph bootstrap percolation introduced by Bollobas in 1968 \cite{bollobas}. One might think of this process as an analogue of bootstrap percolation on the edges of a graph, whereby an uninfected edge becomes infected if one of its endpoints is adjacent to at least $r$ infected edges. The minimum lethal edge set under the $r$-bond process on a graph $G$ is denoted by $m_e(G,r)$. 
+
+The authors note that a lethal set of vertices can be converted into a lethal set of edges under the $r$-bond process by simply infecting an arbitrary set of $r$ edges incident to every infected vertex. This observation provides the following lower bound on $m(G,r)$:
+$$\frac{m_e(G,r)}{r} \leq m(G,r).$$
+
+In Theorem 8 of \cite{hatami}, a recursive formula is given for $m_e(G_d,r)$, where $G_d$ is the Cartesian product of $d$ cycles. As $m_e(G_d,r) = r \cdot m(G,r)$, we are able to leverage this result to obtain a lower bound on $m(C_{a_1} \square C_{a_2} \square C_{a_3}, 3)$. In particular, we have the following theorem.
+
+\begin{thm}
+\label{thm:3d_torus_lb}
+Let $G_3 = C_{a_1} \square C_{a_2} \square C_{a_3}$. Then
+$$m(G_3,3) \geq \frac{(a_1-1)(a_2-1) + (a_2-1)(a_3-1) + (a_3-1)(a_1 -1) + 3}{3}.$$
+\end{thm}
+
+\noindent Note that the above bound is precisely one less than the surface area bound on the grid $[a_1-1] \times [a_2-1] \times [a_3-1]$. The following corollary to Theorem \ref{thm:main_result} provides an upper bound on $m(G_3,3)$ for all $a_1,a_2,a_3 \geq 12$:
+
+\begin{cor}
+Let $G_3 = C_{a_1} \square C_{a_2} \square C_{a_3}$, where $a_1,a_2,a_3 \geq 12$. Then
+$$m(G_3,3) \leq \frac{(a_1-1)(a_2-1) + (a_2-1)(a_3-1) + (a_3-1)(a_1 -1) + 6}{3}.$$
+\end{cor}
+
+\begin{proof}
+Let $G = [a_1-1] \times [a_2-1] \times [a_3-1]$ and observe that, by Theorem \ref{thm:main_result},
+$$\frac{(a_1-1)(a_2-1) + (a_2-1)(a_3-1) + (a_3-1)(a_1 -1) + 6}{3} = SA(G,3) + 2.$$
+%We show that it is always possible to obtain a lethal set on $G_3 = C_{a_1} \square C_{a_2} \square C_{a_3}$ by adding two infections to a lethal set on $G$.
+
+Consider $[a_1-1] \times [a_2-1] \times [a_3-1] \subset V(G_3)$, and let $A_0$ be a perfect lethal set on the grid induced by these vertices. Let $u = (a_1,a_2,a_3)$ and $v = (a_1,1,1)$ be vertices in $G_3$ (see Figure \ref{fig:torus}). We show that $A_0 \cup \{u,v\}$ is lethal on $G_3$. 
+
+Note that $A_0$ infects all vertices $[a_1-1] \times [a_2-1] \times [a_3-1]$. Consider $[a_1] \times [a_2-1] \times [a_3-1]$, and observe that the infection spreads outward across this face from $v$. With all of $a_1 \times [a_2-1] \times [a_3-1]$ infected, $u$ spawns infections down $a_1 \times a_2 \times [a_3-1]$ and $a_1 \times [a_2-1] \times a_3$. This permits infection of faces $[a_1-1] \times [a_2] \times [a_3-1]$ and $[a_1-1] \times [a_2-1] \times [a_3]$. Finally, $[a_1-1] \times a_2 \times a_3$ are infected.
+
+This constitutes all vertices of $G_3$, and so we conclude that $A_0 \cup \{u,v\}$ is lethal on $G_3$. 
+\end{proof}
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.4\textwidth]{figures/1/torus.pdf}
+\caption{The grid $G$ (gray) inset in the larger torus, with infected vertices $u$ and $v$.}
+\label{fig:torus}
+\end{figure} 
+
 % other semi-related problems in bootstrap percolation
 \section{Other Problems}
 
-In this section, we provide a cursory overview of some other related areas of study in bootstrap percolation. We highlight problems regarding the number of iterations necessary to infect all vertices on a graph.
+Thus far, we have focused on the extremal problem of determining the smallest possible lethal set on $d$-dimensional grids and tori. Unsurprisingly, this is one of many existing areas of research in bootstrap percolation. In this section, we shall highlight a different, related problem: what is is the maximum (and minimum) time it takes for a lethal set to infect all vertices of a grid?
+
+As before, we shall begin with $2$-neighbor percolation on $[n]^2$, and address the question of maximum percolation time. We shall say that a lethal set $A_0 \subseteq V(G)$ percolates in time $T$ if we obtain $[A_0]$ in $T$ time-steps. For $r \in \mathbb{N}$, let
+$$T(G,r) = \max\{T \in \mathbb{N} \mid \exists \text{ a set }A_0 \subseteq V(G)\text{ that }r\text{-neighbor percolates in time }T\}.$$
+In 2015, Benevides and Przykucki \cite{percolationtime} determined the asymptotic value of $T([n]^2,2)$. Their result is reproduced below.
+
+\begin{thm}[Benevides, Przykucki]
+The maximum percolation time on $[n]^2$ is $T([n]^2,2) = \frac{13}{18}n^2 + O(n)$. 
+\end{thm}
+
+Interestingly, this time is not achieved with minimum lethal sets (of size $n$). In fact, the same authors showed in an earlier paper that the maximum percolation time for lethal sets $A_0$ on $[n]^2$, where $|A_0| = n$, is the nearest integer value to $\frac{5n^2-2n}{8}$ \cite{percolationtime2}. 
+
+The fact that minimum lethal sets do not always percolate slowest holds for grids $[n]^2$ under 3-neighbor percolation, where $n=2^k-1$. In Chapter 5, we prove that $m([n]^2,3) = \frac{n^2+2n}{3}$, and this is achieved for exactly one lethal configuration of vertices $A_0$. It is easy to see that $A_0$ percolates in time $(n-1)/2$ and so, if $|A_0| = \frac{n^2+2n}{3}$, then $T([n]^2,3) = \frac{n-1}{2}$ (see Figure \ref{fig:fast}). By removing the restriction on $|A_0|$, we are able to improve this to $T([n]^2,3) \geq (n-1)(n-1)/2$ (see Figure \ref{fig:slow}). It is not clear whether this lower bound is best possible and, as far as we are aware, no papers have been published regarding the value of $T([n]^d,r)$ for values other than $d=r=2$. 
+
+\begin{figure}[]
+\centering
+\begin{subfigure}{0.4\textwidth}
+	\includegraphics[width=\textwidth]{figures/1/15x15x1.pdf}
+	\caption{$T([n]^2,3) = \frac{n-1}{2}$}
+	\label{fig:fast}
+\end{subfigure} \hfill%
+\begin{subfigure}{0.4\textwidth}
+	\includegraphics[width=\textwidth]{figures/1/15x15x1_slow.pdf}
+	\caption{$T([n]^2,3) \geq \frac{(n-1)(n-1)}{2}$}
+	\label{fig:slow}
+\end{subfigure}
+\caption{Lethal sets on $[2^k-1]^2$ with different percolation times.}
+\label{fig:percolation_time}
+\end{figure} 
+
+%In this section, we provide a cursory overview of some other related areas of study in bootstrap percolation. We highlight problems regarding the number of iterations necessary to infect all vertices on a graph.
 
 \section{Structure of this Thesis}
 
