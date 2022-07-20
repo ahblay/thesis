@@ -2,4 +2,9 @@
 # A script that compiles my document and opens the new pdf.
 
 pdflatex -halt-on-error thesis.tex
+if [[ "$1" == "bib" ]]; then
+bibtex thesis.aux
+pdflatex -halt-on-error thesis.tex
+pdflatex -halt-on-error thesis.tex
+fi
 open thesis.pdf

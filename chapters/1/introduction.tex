@@ -229,12 +229,12 @@ $$|I| \geq \frac{ab +c}{3} \geq \frac{ab +1}{3}.$$
 
 Observe that the conditions $c \geq 1$ and $m_{IH} \leq 4|I|$ prevent us from obtaining strict equality. Specifically, if $I$ is lethal, $G[H]$ has one component, and no vertices in $I$ are adjacent, then $|I|$ is minimized. Note that these conditions are quite similar to those on grids; the specific difference is that equality in the bound on grids mandates that no vertex be infected by more than $r$ neighbors, whereas equality on three-dimensional tori requires this inefficiency be centered on one particular vertex. 
 
-Theorem \ref{thm:torus_lb} is generalized to all tori by Hambardzumyan, Hatami and Qian in \cite{hatami}. Specifically, they provide a recursive formula for the size of minimum lethal sets on tori under $r$-bond bootstrap percolation, an instance of graph bootstrap percolation introduced by Bollobas in 1968 \cite{bollobas}. One might think of this process as an analogue of bootstrap percolation on the edges of a graph, whereby an uninfected edge becomes infected if one of its endpoints is adjacent to at least $r$ infected edges. The minimum lethal edge set under the $r$-bond process on a graph $G$ is denoted by $m_e(G,r)$. 
+Theorem \ref{thm:torus_lb} is generalized to all tori by Hambardzumyan, Hatami and Qian in \cite{hambardzumyan:2020}. Specifically, they provide a recursive formula for the size of minimum lethal sets on tori under $r$-bond bootstrap percolation, an instance of graph bootstrap percolation introduced by Bollobas in 1968 \cite{bollobas1968weakly}. One might think of this process as an analogue of bootstrap percolation on the edges of a graph, whereby an uninfected edge becomes infected if one of its endpoints is adjacent to at least $r$ infected edges. The minimum lethal edge set under the $r$-bond process on a graph $G$ is denoted by $m_e(G,r)$. 
 
 The authors note that a lethal set of vertices can be converted into a lethal set of edges under the $r$-bond process by simply infecting an arbitrary set of $r$ edges incident to every infected vertex. This observation provides the following lower bound on $m(G,r)$:
 $$\frac{m_e(G,r)}{r} \leq m(G,r).$$
 
-In Theorem 8 of \cite{hatami}, a recursive formula is given for $m_e(G_d,r)$, where $G_d$ is the Cartesian product of $d$ cycles. As $m_e(G_d,r) = r \cdot m(G,r)$, we are able to leverage this result to obtain a lower bound on $m(C_{a_1} \square C_{a_2} \square C_{a_3}, 3)$. In particular, we have the following theorem.
+In Theorem 8 of \cite{hambardzumyan:2020}, a recursive formula is given for $m_e(G_d,r)$, where $G_d$ is the Cartesian product of $d$ cycles. As $m_e(G_d,r) = r \cdot m(G,r)$, we are able to leverage this result to obtain a lower bound on $m(C_{a_1} \square C_{a_2} \square C_{a_3}, 3)$. In particular, we have the following theorem.
 
 \begin{thm}
 \label{thm:3d_torus_lb}
@@ -275,13 +275,13 @@ Thus far, we have focused on the extremal problem of determining the smallest po
 
 As before, we shall begin with $2$-neighbor percolation on $[n]^2$, and address the question of maximum percolation time. We shall say that a lethal set $A_0 \subseteq V(G)$ percolates in time $T$ if we obtain $[A_0]$ in $T$ time-steps. For $r \in \mathbb{N}$, let
 $$T(G,r) = \max\{T \in \mathbb{N} \mid \exists \text{ a set }A_0 \subseteq V(G)\text{ that }r\text{-neighbor percolates in time }T\}.$$
-In 2015, Benevides and Przykucki \cite{percolationtime} determined the asymptotic value of $T([n]^2,2)$. Their result is reproduced below.
+In 2015, Benevides and Przykucki \cite{benevides2015maximum} determined the asymptotic value of $T([n]^2,2)$. Their result is reproduced below.
 
 \begin{thm}[Benevides, Przykucki]
 The maximum percolation time on $[n]^2$ is $T([n]^2,2) = \frac{13}{18}n^2 + O(n)$. 
 \end{thm}
 
-Interestingly, this time is not achieved with minimum lethal sets (of size $n$). In fact, the same authors showed in an earlier paper that the maximum percolation time for lethal sets $A_0$ on $[n]^2$, where $|A_0| = n$, is the nearest integer value to $\frac{5n^2-2n}{8}$ \cite{percolationtime2}. 
+Interestingly, this time is not achieved with minimum lethal sets (of size $n$). In fact, the same authors showed in an earlier paper that the maximum percolation time for lethal sets $A_0$ on $[n]^2$, where $|A_0| = n$, is the nearest integer value to $\frac{5n^2-2n}{8}$ \cite{benevides2013slowly}. 
 
 The fact that minimum lethal sets do not always percolate slowest holds for grids $[n]^2$ under 3-neighbor percolation, where $n=2^k-1$. In Chapter 5, we prove that $m([n]^2,3) = \frac{n^2+2n}{3}$, and this is achieved for exactly one lethal configuration of vertices $A_0$. It is easy to see that $A_0$ percolates in time $(n-1)/2$ and so, if $|A_0| = \frac{n^2+2n}{3}$, then $T([n]^2,3) = \frac{n-1}{2}$ (see Figure \ref{fig:fast}). By removing the restriction on $|A_0|$, we are able to improve this to $T([n]^2,3) \geq (n-1)(n-1)/2$ (see Figure \ref{fig:slow}). It is not clear whether this lower bound is best possible and, as far as we are aware, no papers have been published regarding the value of $T([n]^d,r)$ for values other than $d=r=2$. 
 
@@ -352,7 +352,7 @@ In Chapter 3, we prove that there exist lethal sets at the S.A. bound for all in
 
 Chapter 4 extends the results of Chapter 3 to all grids of size at least 11 with non-integral surface area bound. 
 
-Chapter 5 considers the specific case of grids of the form $(a,b,1)$, and answers a question posed in Benevides et al. \cite{benevides:2022} regarding the existence of tight lethal sets on non-square grids. 
+Chapter 5 considers the specific case of grids of the form $(a,b,1)$, and answers a question posed in Benevides et al. \cite{benevides:2021} regarding the existence of tight lethal sets on non-square grids. 
 
 Chapter 6 is dedicated to presenting and proving the lethality of sets on a number of grids, and families of grids. 
 
