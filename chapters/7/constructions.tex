@@ -468,12 +468,55 @@ Since these two values are equal, $A_0^k$ is tight and lethal, and therefore per
 All $(a,6,3)$ grids $G$ with $a \equiv 1 \pmod 2$ and $a \geq 5$ are perfect. 
 \end{con}
 
+\begin{proof}
+Let $G=(2k+3,6,3)$ be a grid such that $k \geq 1$, and let $X_1, \dots, X_{k}$ be the repeated components of $G$ in the $x$-direction. Denote the union of these components by $X^k$. Let $A_t^k \subseteq V(G)$ be the set of infectious vertices in $G$ at time $t$, and suppose that each $X_i$ contains the same pattern of infected vertices (see Figure \ref{fig:6x11x3}). We show that $A_0^k$ is lethal and perfect. 
+
+Let $L_1$, $L_2$ and $L_3$ be the top, middle and bottom levels of $G$, respectively. Consider $L_2$ at $t=1$ (see Figure \ref{fig:6x11x3}). Observe that all vertices in $X^k \cap L_2$ (with the exception of the one labeled ``X") are infected by Proposition \ref{prop:2_neighbor_levels}, due to adjacent infected vertices in $L_1$ and$L_3$. 
+
+Consider these observations in the context of $G$. Figure \ref{fig:6x11x3_timesteps} shows that it takes 5 additional time-steps to fully infect $L_2$. Since $L_1$ and $L_3$ contain lethal sets under the 2-neighbor process, by Lemma \ref{lem:2_neighbor_levels}, the remaining healthy vertices in these levels become infected. We therefore conclude that $A_0^k$ is lethal on $G$ under the 3-neighbor process.
+
+To prove that $A_0^k$ is perfect, observe that for $i \in [k]$, each $X_i$ contains 6 infected vertices. Of the remaining vertices in $G$, 15 are infected. Therefore, $|A_0| = 6k+15$. The surface area bound for $G=(2k+3,6,3)$ is given by
+$$\frac{(2k+3)(6) + (6)(3) + (3)(2k+3)}{3} = \frac{18k + 45}{3} = 6k+15.$$
+Since these two values are equal, $A_0^k$ is tight and lethal, and therefore perfect.
+\end{proof}
+
+
+\begin{figure}[]
+\centering
+\begin{subfigure}[t]{0.65\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/7/6x11x3.pdf}
+\caption{A lethal set on $(6,11,3)$, $t=0$ and $t=1$.}
+\label{fig:6x11x3}	
+\end{subfigure} \hfill%
+\begin{subfigure}[t]{0.295\textwidth}
+\centering
+\includegraphics[width=\textwidth]{figures/7/6x11x3_L2_numbered_heatmap.pdf}
+\caption{Timesteps to infect $L_2$.}
+\label{fig:6x11x3_timesteps}
+\end{subfigure}
+\caption{}
+\label{fig:}
+\end{figure} 
+
 % COMMENT
 % COMMENT
 % COMMENT
 % COMMENT
 
 \begin{comment}
+
+\begin{figure}[]
+\centering
+\begin{subfigure}{0.45\textwidth}
+	
+\end{subfigure} \hfill%
+\begin{subfigure}{0.45\textwidth}
+	
+\end{subfigure}
+\caption{}
+\label{fig:}
+\end{figure} 
 
 \section{Individual constructions}
 
