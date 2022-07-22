@@ -256,20 +256,39 @@ $$\frac{(a_1-1)(a_2-1) + (a_2-1)(a_3-1) + (a_3-1)(a_1 -1) + 6}{3} = SA(G,3) + 2.
 
 Consider $[a_1-1] \times [a_2-1] \times [a_3-1] \subset V(G_3)$, and let $A_0$ be a perfect lethal set on the grid induced by these vertices. Let $u = (a_1,a_2,a_3)$ and $v = (a_1,1,1)$ be vertices in $G_3$ (see Figure \ref{fig:torus}). We show that $A_0 \cup \{u,v\}$ is lethal on $G_3$. 
 
-Note that $A_0$ infects all vertices $[a_1-1] \times [a_2-1] \times [a_3-1]$. Consider $[a_1] \times [a_2-1] \times [a_3-1]$, and observe that the infection spreads outward across this face from $v$. With all of $a_1 \times [a_2-1] \times [a_3-1]$ infected, $u$ spawns infections down $a_1 \times a_2 \times [a_3-1]$ and $a_1 \times [a_2-1] \times a_3$. This permits infection of faces $[a_1-1] \times [a_2] \times [a_3-1]$ and $[a_1-1] \times [a_2-1] \times [a_3]$. Finally, $[a_1-1] \times a_2 \times a_3$ are infected.
+Note that $A_0$ infects all vertices $[a_1-1] \times [a_2-1] \times [a_3-1]$. Consider $[a_1] \times [a_2-1] \times [a_3-1]$, and observe that the infection spreads outward across this face from $v$ (Figure \ref{fig:torus_b}). With all of $a_1 \times [a_2-1] \times [a_3-1]$ infected, $u$ spawns infections down $a_1 \times a_2 \times [a_3-1]$ and $a_1 \times [a_2-1] \times a_3$ (Figure \ref{fig:torus_c}). This permits infection of faces $[a_1-1] \times [a_2] \times [a_3-1]$ and $[a_1-1] \times [a_2-1] \times [a_3]$ (Figure \ref{fig:torus_d}). Finally, $[a_1-1] \times a_2 \times a_3$ are infected (not pictured).
 
 This constitutes all vertices of $G_3$, and so we conclude that $A_0 \cup \{u,v\}$ is lethal on $G_3$. 
 \end{proof}
 
 \begin{figure}[]
 \centering
-\includegraphics[width=0.4\textwidth]{figures/1/torus.pdf}
-\caption{The grid $G$ (gray) inset in the larger torus, with infected vertices $u$ and $v$.}
+\begin{subfigure}{0.21\textwidth}
+	\includegraphics[width=\textwidth]{figures/1/torus.pdf}
+	\caption{}
+	\label{fig:torus_a}
+\end{subfigure} \hfill%
+\begin{subfigure}{0.21\textwidth}
+	\includegraphics[width=\textwidth]{figures/1/torus_2.pdf}
+	\caption{}
+	\label{fig:torus_b}
+\end{subfigure} \hfill
+\begin{subfigure}{0.21\textwidth}
+	\includegraphics[width=\textwidth]{figures/1/torus_3.pdf}
+	\caption{}
+	\label{fig:torus_c}
+\end{subfigure} \hfill
+\begin{subfigure}{0.21\textwidth}
+	\includegraphics[width=\textwidth]{figures/1/torus_4.pdf}
+	\caption{}
+	\label{fig:torus_d}
+\end{subfigure}
+\caption{Four stages of infection on the grid $G$ (gray) inset in the larger torus, with infected vertices $u$ and $v$ (dark red).}
 \label{fig:torus}
 \end{figure} 
 
 % other semi-related problems in bootstrap percolation
-\section{Other Problems}
+\subsection{Other Problems}
 
 Thus far, we have focused on the extremal problem of determining the smallest possible lethal set on $d$-dimensional grids and tori. Unsurprisingly, this is one of many existing areas of research in bootstrap percolation. In this section, we shall highlight a different, related problem: what is is the maximum (and minimum) time it takes for a lethal set to infect all vertices of a grid?
 
@@ -305,15 +324,15 @@ The fact that minimum lethal sets do not always percolate slowest holds for grid
 
 \section{Structure of this Thesis}
 
-As stated by Theorem \ref{thm:main_result}, the primary goal of this thesis is to prove a tight bound for 3-neighbor bootstrap percolation on three-dimensional grids of sufficiently large size. This task requires the use of two major lemmas, as well as both original and previously published ideas and constructions. In an effort to present this material in a coherent manner, the paper is structured as follows. 
+As stated by Theorem \ref{thm:main_result}, the primary goal of this thesis is to prove a tight bound for 3-neighbor bootstrap percolation on three-dimensional grids of sufficiently large size. This task requires the use of two major lemmas, as well as both original and previously published ideas and constructions. In an effort to present this material in a coherent manner, the thesis is structured as follows. 
 
-Chapters 2 and 3 are dedicated to building a conceptual and intuitive framework upon which to prove Theorem \ref{thm:main_result}. In Chapter 2, we categorize and present percolating sets on both divisible and non-divisible grids, and discuss the differences between these cases. In Chapter 3, we prove two lemmas allowing us to develop large families of lethal sets that match the surface area bound. 
+Chapters 2 and 3 are dedicated to building a conceptual and intuitive framework upon which to prove Theorem \ref{thm:main_result}. In Chapter 2, we present lemmas regarding the structure of lethal sets in both two-dimensional and $d$-dimensional grids. These lemmas will prove useful in our examination of general constructions of lethal sets (see Chapter 6). We also discuss the design and function of a visualization tool developed to assist in the examination of lethal sets. In Chapter 3, we prove a lemma that will allow us to recursively develop large families of lethal sets that match the surface area bound, and summarize all families of lethal sets that we are able to obtain. 
 
-Chapters 4 and 5 leverage the results of Chapter 3 to prove Theorem \ref{thm:main_result}. In Chapter 4, we show that all divisible grids $(a_1,a_2,a_3)$, $a_1 \leq a_2 \leq a_3$ admit lethal sets matching the SA bound, and in Chapter 5, we extend this result to all grids of size 11. Chapter 6 further builds on this, highlighting some new results for 3-neighbor percolation on grids of the form $(a_1,a_2,1)$.
+Chapter 4 leverages the results of Chapters 2 and 3 to prove Theorem \ref{thm:main_result}. We first show that all divisible grids $(a_1,a_2,a_3)$, $a_1 \leq a_2 \leq a_3$ admit lethal sets matching the SA bound, and then extend this result to all grids of size 11. Chapter 5 further builds on this, highlighting some new results for 3-neighbor percolation on grids of the form $(a_1,a_2,1)$.
 
-Chapter 7 proves the constructions presented in Chapter 2.
+Chapter 7 and Appendix A examine the structure and lethality of percolating sets discovered in this research. In particular, Chapter 7 proves the lethality of the constructed families of sets presented in Chapter 2, and Appendix A illustrates the phases of infection on individual lethal sets.
 
-Finally, Chapters 8, 9 and 10 wrap up the discussion with a summary of the programmatic techniques used to discover lethal sets, helpful software resources for future research, how the results of this thesis may be helpful in pursuit of results on the torus, and recommendations for future research in similar and related problems. 
+Finally, Chapter 9 summarizes our results and provides recommendations for future research in similar and related problems. 
 
 % proof of perimeter bound and generalization to surface area bound
 % "So we have a goal, and now the question becomes whether or not it is possible to obtain this goal in all cases through constructions."

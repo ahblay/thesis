@@ -158,12 +158,9 @@ In addition to the conceptual tools presented above, many of the results in this
 
 \subsection{Control panel}
 
-A screenshot of the visualizer is shown in Figure \ref{fig:visualizer}. It functions as follows:
+%e.g. they wish to examine the grid $[17] \times [23]$ under 3-neighbor percolation, and so select ``Grid" from the dropdown menu and choose 17 rows, 23 columns, 1 layer, and a threshold of 3 neighbors) This renders a grid of gray vertices. The user then selects those vertices that they wish to infect and, when satisfied, clicks ``Run percolation." This allows the user to step through the phases of infection
 
-A user enters the parameters of their problem (e.g. they wish to examine the grid $[17] \times [23]$ under 3-neighbor percolation, and so select ``Grid" from the dropdown menu and choose 17 rows, 23 columns, 1 layer, and a threshold of 3 neighbors), and then clicks submit. This renders a grid of gray vertices. The user then selects those vertices that they wish to infect and, when satisfied, clicks ``Run percolation." This allows the user to step through the phases of infection. 
-
-Let us examine in detail the options available in this process. The control panel features the following:
-
+The basic functionality of the visualizer allows a user to enter the parameters of their problem, select a set of initially infected vertices, and step through the percolation process by time-step. These options are made available to the user in a control panel, shown on the righthand side of Figure \ref{fig:visualizer}. The control panel features the following:
 \begin{itemize}
 \item A dropdown menu to choose between percolation on a grid, and percolation on a torus;
 \item Text boxes to enter the size of the grid (resp. torus);
@@ -175,14 +172,13 @@ Let us examine in detail the options available in this process. The control pane
 \item A checkbox to reflect infected vertices;
 \item Buttons to upload/download an infected set as a text file.
 \end{itemize}
-
 We highlight the design and representation of grids as matrices of clickable vertices, the choice between grid and torus, the ``Improve percolation" button, the ability to view existing lethal sets as well as upload/download them, and the option to reflect the pattern of infected vertices. 
 
 One of the challenges of visualizing the problem of bootstrap percolation arises from the fact that many grids are large and high-dimensional. This is perhaps the greatest limitation of the visualizer. The current iteration of the tool renders vertices as clickable regions in an HTML \texttt{canvas} element, which does not respond well to re-scaling. As a result, large grids contain very small vertices, which complicates the process of selecting an initial infection. Furthermore, \texttt{canvas} does not natively support 3-dimensional structures, and so 3-dimensional grids are simply rendered as a stack of their 2-dimensional layers. 
 
 Users are able to select between percolation on a grid, and percolation on a torus. This choice does not impact the representation of the grid (resp. torus). However, when stepping through the phases of infection, vertices at the top of the grid are treated as neighbors of those on the bottom, and similarly for left and right. 
 
-In this chapter (and in Chapter 6) we saw that certain patterns of infected vertices are always lethal. The fickleness of bootstrap percolation regularly precludes us from simply copying these patterns across all grids to obtain perfect lethal sets. However, sometimes these patterns can be augmented with additional infections. If a set $A_0$ is lethal and above the surface area bound, the ``Improve percolation" button attempts to remove non-essential infections. It does this by removing a random vertex $v$ from $A_0$ and checking if the resulting set is lethal. If it is, the new infection $A_0 \setminus \{v\}$ is rendered on the screen. 
+In this chapter (and in Chapter 6) we saw (shall see) that certain patterns of infected vertices are always lethal. The fickleness of bootstrap percolation regularly precludes us from simply copying these patterns across all grids to obtain perfect lethal sets. However, sometimes these patterns can be augmented with additional infections. If a set $A_0$ is lethal and above the surface area bound, the ``Improve percolation" button attempts to remove non-essential infections. It does this by removing a random vertex $v$ from $A_0$ and checking if the resulting set is lethal. If it is, the new infection $A_0 \setminus \{v\}$ is rendered on the screen. 
 
 In pursuit of determining new perfect lethal sets, it is often helpful to examine and alter existing ones. Whenever a user clicks ``Run percolation" on a perfect lethal set, a text file containing the lethal configuration of vertices is stored in a database. This file is made accessible to all future users through the ``Show optimal sets" window. We hope that ongoing use of this tool will passively allow for the accumulation of a number of lethal sets in 2- and 3-dimensions. In addition to accessing known lethal sets via the ``Show optimal sets" button, users are able to upload sets from a local text file. These files must be configured as a sequence of X's and O's, with rows on new lines, and layers separated by a blank line. An example of this format can be obtained by creating an infected grid on the visualizer and selecting ``Download .txt". 
 
@@ -191,6 +187,35 @@ The ``Reflect top layer" checkbox is another resource designed to increase the e
 \subsection{Design}
 
 \subsection{Improvements}
+
+The visualization tool was developed primarily as a means to engage with the structure of lethal sets directly. Initially, it was intended as a private tool to help discern the often complex patterns in these sets. For this reason, it contains a number of quirks and bugs that were either treated as features, or ignored and never resolved. In this section, we discuss some of these issues and suggest possible improvements to make the tool useful to a broader audience. 
+
+The most significant bug occurs when a user attempts to alter an infected set during the percolation process. This bug is a direct consequence of the manner in which 
+
+% ability to toggle between the three different configurations of a set
+As we discussed in the prior section, one limitation of HTML \texttt{canvas} elements is the inability to conveniently represent three dimensional objects. We circumvented this issue by representing grids as a sequence of two-dimensional layers. While this strategy is effective, it limits a user's ability to clearly identify patterns that appear between these layers. Through experimentation, we found that toggling between different orientations of the grid allowed us to discover patterns that were otherwise hidden. In the current version of the visualizer, there is no convenient way to obtain different orientations of a grid. We propose an additional button that cycles through the $d$ orientations of a grid. This feature would likely be simple to implement, and yield substantial results.
+
+% ability to infect vertices by clicking and dragging
+We also discussed the challenge of clicking on vertices in large grids, due to the inability to effectively zoom in on the \texttt{canvas} element. While the best solution to this problem likely requires a complete overhaul of the representation of the grid (using some other front-end library designed to better represent and interact with grid-like structures), an intermediate and simpler possibility is to improve the manner in which vertices are selected. In particular, we propose a change that allows sequences of vertices to be simultaneously selected by clicking and dragging. This should be fairly easy to implement, as one can track the \texttt{mouseDown} event in Javascript, and keep a list of the vertices that the cursor touches during this time.  
+
+% highlight cells that experience infection from >r neighbors
+% improving the manner in which sets are improved (this is a computational problem)
+When attempting to construct a lethal set, it is often the case that one begins with a particular configuration of vertices, and makes small changes to accommodate the particular parity or congruence class of the grid. One existing resource to aid in this process is the ``Improve percolation" button. In its current state, this button is only able to remove unnecessary vertices from already lethal sets. However, it would we useful if it could also augment existing sets in such a way that they become more infectious. This could take the form of either adding vertices to infectious sets that are below the surface area bound, or changing the position of existing infections to increase the infectiousness of the initial set. 
+
+In a similar vein, recall that non-integral sets $A_0$ contain vertices that experience infection from more than $r$ neighbors. If the size of $A_0$ is well above the surface area bound, the location of such vertices can provide a good indication of where improvements in the structure of $A_0$ are likely to be found. One possible implementation could be to highlight vertices that do not realize their ``infectious potential". 
+
+% nice presentation of existing lethal sets in the database
+From a cosmetic perspective, the presentation of existing perfect lethal sets is currently difficult to parse and should be improved. We suggest that these files be arranged by the number of layers in the grid. Additionally, there is currently no capacity to represent and store constructions that apply to large families of grids. We currently provide large example files that clearly exhibit a repeating pattern. However, this choice is both less convenient and less convincing. 
+
+% increase the efficiency of the percolation algorithm
+
+% count the number of timesteps
+
+% randomize initial infections
+
+% higher dimensions (could be HARD)
+
+% make the visualization tool into a puzzle game???
 
 % COMMENT
 % COMMENT
