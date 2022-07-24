@@ -1,1 +1,55 @@
-\chapter{Conclusion}
+\chapter{Concluding Remarks}
+
+In Chapters 2 and 3, we presented two lemmas regarding the behavior and structure of lethal sets, and used these lemmas (in conjunction with a number of human and computer-generated constructions) to obtain families of perfect sets. In Chapter 4, we used our recursive construction to prove the existence of \emph{perfect} lethal sets on all $[a_1] \times [a_2] \times [a_3]$ grids, for $a_1,a_2,a_3 \geq 5$. We further extended this result to prove the existence of \emph{optimal} lethal sets on all $[a_1] \times [a_2] \times [a_3]$ grids, for $a_1,a_2,a_3 \geq 11$. In Chapter 5, we tackled the case of 3-neighbor percolation on two-dimensional grids, and proved that the only such grids to admit perfect lethal sets are of the form $[2^k-1]^2$. Finally, in Chapters 6 and 7 we presented a number of lethal constructions, many of which extend in one or two dimensions. We discussed the strategy of representing lethal sets on unfolded, two-dimensional surfaces, and noted the nearly ubiquitous presence of corridor-like structures in lethal sets. In the following section, we conclude this thesis with open problems and recommendations for future research.
+
+\section{Future Work}
+
+% More precisely characterize exactly which sets are/are not optimal
+We conjecture that the bounds of $a_1, a_2,a_3 \geq 5$ and $a_1, a_2,a_3 \geq 11$ for perfect and optimal sets, respectively, can be improved. Experimentally, it appears that tight constructions exist for all $a_1, a_2,a_3 \geq 3$. 
+
+\begin{conj}
+\label{conj:better_bound}
+For all $a_1, a_2,a_3 \geq 3$,
+$$m(a_1,a_2,a_3,3) = \ceil*{\frac{a_1a_2 +a_2a_3+a_3a_1}{3}}.$$
+\end{conj}
+We anticipate that the process of lowering these bounds will require obtaining additional constructions, either through computational work or the generalization of those presented in this thesis. In particular, a proof of the existence of perfect sets for all grids of thickness 3 would have the immediate effect of reducing the bound on optimal sets to $a_1, a_2,a_3 \geq 8$. 
+
+We note that a similar result for $a_1, a_2,a_3 \geq 2$ is impossible. Lethal sets on grids of the form $[a_1] \times [2] \times [2]$ must contain $3a_1/2+O(1)$ vertices, as consecutive $[2]^2$ layers cannot harbor fewer than 3 infections. This differs significantly from the surface area bound of $\ceil{4a_1/3}$. It is not clear whether similar restrictions exist for other grids of thickness 2, and we do not claim to know which tuples $(a_1,a_2,a_3)$ admit perfect infections. 
+
+The theorems of this thesis are restricted to the case of $d=r=3$; however, we speculate that similar results exist for all $d=r$. 
+
+\begin{conj}
+For all $d \geq 4$, there exists some $N_d$ such that if $a_1, \dots, a_d \geq N_d$, then
+$$m(a_1,a_2, \dots, a_d,d) = \frac{\sum_{j=1}^d \prod_{i \neq j} a_i}{d}.$$
+\end{conj}
+
+In particular, it would be interesting to apply the techniques of recursion and unfolding to higher dimensions. Unfortunately, just as the 3-dimensional folding strategy relies on lethal 3-neighbor constructions in 2-dimensional grids, so an application of folding to $d$ dimensions relies on the existence of $d$-neighbor lethal sets in $(d-1)$-dimensional grids. For this reason, we propose the following problem:
+
+\begin{prob}
+\label{prob:d-1}
+Determine $m(a_1, \dots, a_{d-1}, d)$ for all $d > 3$.
+\end{prob}
+
+We note that although Corollary \ref{cor:square_grids_thickness_1} resolves the question of $m(n,n,3)$ for square grids, the case of rectangular grids remains open. Therefore, as a particular case of Problem \ref{prob:d-1}, we propose the following:
+
+\begin{prob}
+\label{prob:rectangular_2d}
+Determine $m(a_1,a_2, 3)$ for all $a_1,a_2 \geq 3$.
+\end{prob}
+
+%The non-existence of perfect lethal sets on $(a_1,2,2)$ grids further complicates the process of proving Conjecture \ref{conj:better_bound}. To obtain perfect constructions for grids of thickness 4 recursively, 
+
+% Get the torus bound tight
+In the introduction, we showed that for the torus $G_{3} = C_{a_1} \square C_{a_2} \square C_{a_3}$ and the grid $G = [a_1-1] \times [a_2-1] \times [a_3-1]$,
+$$SA(G, 3) + 1 \leq m(G_3,3) \leq SA(G,3)+2.$$
+A natural problem is to determine if the smallest lethal set $G_3$ is always exactly one above the surface area bound on $G$.
+
+\begin{prob}
+Determine $m(G_3,3)$.
+\end{prob}
+
+% Resolve the question of 3-neighbor percolation on the 2d grid
+
+% Slowest percolating time for 3-neighbor percolation on 2d grids
+
+% Lower bounds on the Cartesian product of paths and cycles
