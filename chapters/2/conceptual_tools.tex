@@ -1,14 +1,19 @@
 \chapter{Tools and Techniques}
 
-As suggested in Chapter 1, it appears that lethal sets in grid graphs adhere to certain fixed rules. We examine these rules here, and explain why they are necessary and helpful for understanding the problem of bootstrap percolation.
+While it is difficult to identify specific patterns across all lethal sets $A_0$ under the $r$-neighbor bootstrap process, there are certain structures that appear frequently enough to warrant discussion. In this chapter, we examine such structures. We also introduce the following shorthand notation, which will appear throughout the remainder of this thesis. 
+
+\begin{defn}
+Let $a_1, \dots, a_d$ be integers such that $a_1 \geq \dots \geq a_d \geq 1$. We define the tuple $(a_1, \dots, a_d)$ as the grid graph $\prod_{i=1}^d [a_i]$. Furthermore, we refer to the smallest value $a_d$ as the \emph{thickness} of $(a_1, \dots, a_d)$.
+\end{defn}
+\noindent We remark that this notation is the same as that used for the coordinates of a vertex, and make explicit note of this distinction when necessary. 
 
 \section{The $d$-walls lemma}
 
-While it is difficult to identify specific patterns across all lethal sets $A_0$ under the $r$-neighbor bootstrap process, there are certain structures that appear frequently enough to warrant discussion. Of particular utility is the following lemma, which states precisely what it means for a set to span a grid (as we saw in Figure \ref{fig:two_infections}).
+We begin with the following lemma, which articulates more clearly the notion of a lethal set ``spanning" a grid (as we saw in Figure \ref{fig:two_infections}).
 
 \begin{lem}
 \label{lem:walls}
-Let $A_0$ be an infected set on $G = \prod_{i=1}^d [a_i]$. Let $\overline{A_0} = V(G) \setminus A_0$, and let $H = G[\overline{A_0}]$ be the subgraph of $G$ induced by $\overline{A_0}$. For $1 \leq k \leq a_j$, let $F_{j,k} = \prod_{i=1}^{j-1} [a_i] \times \{k\} \times \prod_{i=j+1}^{d} [a_i]$ be the $k$th level of $G$ in the $j$th dimension. If $H$ does not contain a path between $F_{j,1}$ and $F_{j,a_j}$, for all $1 \leq j \leq d$, then $A_0$ is lethal on $G$ under $d$-neighbor percolation.
+Let $A_0$ be an infected set on $G = \prod_{i=1}^d [a_i]$. Let $\overline{A_0} = V(G) \setminus A_0$, and let $H = G[\overline{A_0}]$ be the subgraph of $G$ induced by $\overline{A_0}$. For $1 \leq k \leq a_j$, let $F_{j,k} = \prod_{i=1}^{j-1} [a_i] \times \{k\} \times \prod_{i=j+1}^{d} [a_i]$ be the $k$th plane of $G$ in the $j$th dimension. If $H$ does not contain a path between $F_{j,1}$ and $F_{j,a_j}$, for all $1 \leq j \leq d$, then $A_0$ is lethal on $G$ under $d$-neighbor percolation.
 \end{lem}
 
 \begin{proof}
@@ -17,7 +22,7 @@ We proceed by induction on $|V(H)| = \prod_{i=1}^d a_i - |A_0|$. If $|V(H)| = 0$
 For each $j \in [d]$, let $x_j$ be the maximum value such that $V(Y) \cap F_{j,x_j}$ is non-empty. Note that such an $x_j$ must exist since $|V(H)| > 0$. 
 
 Consider the vertex $\vec{x} = (x_1, \dots, x_d) \in V(Y)$, and observe that 
-$$\{\bigcup_{j \in [d]} F_{j,x_j+1}\} \cap  V(Y) = \emptyset.$$
+$$\left\{\bigcup_{j \in [d]} F_{j,x_j+1}\right\} \cap  V(Y) = \emptyset.$$
 In particular, note that $(x_1+1, x_2, \dots, x_d), \dots, (x_1, \dots, x_d+1) \in N_S(\vec{x})$. Therefore, $\vec{x}$ becomes infected. Furthermore, since $|V(H) \setminus \{\vec{x}\}| < |V(H)|$, the resulting graph percolates by induction. This completes the proof.
 \end{proof}
 
@@ -25,7 +30,7 @@ In particular, note that $(x_1+1, x_2, \dots, x_d), \dots, (x_1, \dots, x_d+1) \
 \label{cor:walls}
 Let $G$ be the grid graph $\prod_{i=1}^d [a_i]$. For each $j \in [d]$ and some $1 \leq k \leq a_j$, let 
 $$M = \bigcup_{j,k} F_{j,k}$$
-be a subset of the vertices of $G$ formed by the union of mutually orthogonal faces. If a set $A_0$ is lethal on $M$, then it is lethal on $G$. 
+be a subset of the vertices of $G$ formed by the union of mutually orthogonal planes. If a set $A_0$ is lethal on $M$, then it is lethal on $G$. 
 %Let $G$ be the grid graph $(a,b,c)$. If a set $A$ is lethal on three mutually orthogonal faces of $G$, then $A$ is lethal on $G$.
 \end{cor}
 
@@ -34,9 +39,9 @@ Since $A_0$ is lethal on $M$, there exists a time $t$ where $M \subseteq A_t$. T
 %Let $X, Y, Z$ be three mutually orthogonal faces of $G$. By hypothesis, $X \cup Y \cup Z \subseteq A_t$ for some time $t$. Therefore, the graph $H = G[\overline{A_t}]$ cannot contain a path between vertices on orthogonal faces of $G$. By lemma \ref{lem:walls}, $G$ percolates.
 \end{proof}
 
-Corollary \ref{cor:walls} provides a general description of lethal sets on $d$-dimensional grids in terms of their $(d-1)$-dimensional faces, provided these faces are mutually orthogonal. Here, we return to the notion first introduced in Chapter 1 of the capacity of a lethal set to span a grid. In particular, we see that the set in Figure \ref{fig:two_infections_a} is comprised of lethal sets under the 2-neighbor bootstrap process on the two one-dimensional orthogonal faces $F_{1,1}$ and $F_{2,1}$ of $[10]^2$. In this regard, the problem of obtaining perfect $d$-neighbor lethal sets on $d$-dimensional grids is reduced to the problem of determining a ``good" union $M$ of mutually orthogonal $(d-1)$-dimensional faces. 
+Corollary \ref{cor:walls} provides a cleaner characterization of certain lethal sets on $d$-dimensional grids in terms of their $(d-1)$-dimensional planes, provided these planes are mutually orthogonal. Here, we return to the notion first introduced in Chapter 1 of the capacity of a lethal set to span a grid. In particular, we see that the set in Figure \ref{fig:two_infections_a} is comprised of lethal sets under the 2-neighbor bootstrap process on the two one-dimensional orthogonal planes $F_{1,1}$ and $F_{2,1}$ of $[10]^2$. In this regard, the problem of obtaining perfect $d$-neighbor lethal sets on $d$-dimensional grids is reduced to the problem of determining a ``good" union $M$ of mutually orthogonal $(d-1)$-dimensional planes. 
 %Once found, each face in $M$ can itself be infected by this same recursive process. 
-In Chapter 7, we apply this idea to obtain an infinite family of three-dimensional grids from three orthogonal two-dimensional faces. However, we caution that the challenge of determining a ``good" union $M$ is non-trivial in general.
+In Chapter 7, we apply this idea to obtain an infinite family of three-dimensional grids from three orthogonal two-dimensional planes. However, we caution that the challenge of determining a ``good" union $M$ is non-trivial in general.
 
 The following corollary (taken as a particular instance of Corollary \ref{cor:walls}) will be useful in our discussion of lethal sets on three-dimensional grids $(a_1,a_2,a_3)$. 
 
@@ -83,11 +88,12 @@ $$\frac{a_1a_2 + a_1a_3 + a_2a_3}{3},$$
 which is precisely the surface area bound for $(a_1, a_2, a_3)$. 
 \end{proof}
 
-In the context of Figure \ref{fig:manifold_types}, this lemma tells us that a percolating set on the $(a_1,a_2,a_3)$ grid (left of Figure \ref{fig:manifold_types}) is precisely the same size as a percolating set on the complete flattened rectangle minus the size of a percolating set on the missing region (right of Figure \ref{fig:manifold_types}). In practice, this lemma allows us to leverage an understanding of lethal sets on two-dimensional grids to obtain lethal sets in three dimensions. However, care is required in this process, and the existence of an optimal set on a two-dimensional grid does not immediately guarantee the existence of such a set in three dimensions. 
+In the context of Figure \ref{fig:manifold_types}, this lemma tells us that a percolating set on the $(a_1,a_2,a_3)$ grid (left of Figure \ref{fig:manifold_types}) is precisely the same size as a percolating set on the complete flattened rectangle minus the size of a percolating set on the missing region (right of Figure \ref{fig:manifold_types}). In practice, this lemma allows us to leverage an understanding of lethal sets on two-dimensional grids to obtain lethal sets in three dimensions. However, care is required in this process, as the region excluded from the two-dimensional unfolding must contain precisely the same number of infected vertices as the surface area bound.
+%and the existence of an optimal set on a two-dimensional grid does not immediately guarantee the existence of such a set in three dimensions. 
 
 \section{3-neighbor percolation on two-dimensional grids}
 
-It is clear that an understanding of the behavior of 3-neighbor percolation on two-dimensional grids is of use in our investigation of 3-neighbor percolation on $(a_1,a_2,a_3)$ grids. In Chapter 6 we examine the problem of 3-neighbor percolation on square two-dimensional grids, and answer a question posed by Benevides et alia regarding the value of $m([n]^2, 3)$. Here, we describe some of the structural properties of lethal sets on two-dimensional grids that will prove useful in that analysis. The following propositions are due to Benevides et al \cite{benevides}. 
+The above discussion suggests that an understanding of the behavior of 3-neighbor percolation on two-dimensional grids is of use in our investigation of 3-neighbor percolation on $(a_1,a_2,a_3)$ grids. In Chapter 6 we examine the problem of 3-neighbor percolation on square two-dimensional grids, and answer a question posed by Benevides et alia regarding the value of $m([n]^2, 3)$. Here, we describe some of the structural properties of lethal sets on two-dimensional grids that will prove useful in that analysis. The following propositions are due to Benevides et al \cite{benevides}. 
 
 \begin{prop}
 \label{prop:corners}
@@ -104,7 +110,7 @@ Let $B$ be the set of vertices on the border of $[a_1] \times [a_2]$, and let $u
 \end{prop}
 
 \begin{proof}
-Assume for contradiction that $A_0 \cap \{u,v\} = \emptyset$. Since $u,v$ are border vertices, $d(u) \leq d(v) \leq 3$. Because $A_0$ is lethal, $u$ and$v$ must become infected. Suppose, without loss of generality, that $u$ is infected first. This is impossible, since $d(u) \leq 3$ and $v$ is not infected.
+Assume for contradiction that $A_0 \cap \{u,v\} = \emptyset$. By Proposition \ref{prop:corners}, neither $u$ nor $v$ is a corner vertex. Since $u,v$ are border vertices, $d(u) = d(v) = 3$. Because $A_0$ is lethal, $u$ and $v$ must become infected. Suppose, without loss of generality, that $u$ is infected first. This is impossible, since $d(u) = 3$ and $v$ is not infected.
 \end{proof}
 
 \begin{prop}
@@ -139,9 +145,9 @@ Suppose $P$ is a path in $H$ with endpoints on the border. No vertex $v$ in $P$ 
 \label{tab:integral_bounds}
 \end{table} 
 
-Proposition \ref{prop:immune_regions} more clearly articulates the notion of immune regions discussed in Chapter 1. While such immune regions exist in higher-dimensional grids, their structure is substantially harder to define. 
+Proposition \ref{prop:immune_regions} more clearly articulates the notion of immune regions discussed in Chapter 1. While such immune regions exist in higher-dimensional grids, their structure is substantially harder to characterize. 
 
-It will be insightful to consider the surface area bound on two-dimensional grids in the context of Propositions \ref{prop:corners}, \ref{prop:border} and \ref{prop:immune_regions}. For simplicity, we introduce the following terms. We refer to grids with integral surface area bounds as \emph{divisibility cases} and grids with non-integral bounds as \emph{non-divisibility cases}. The divisibility and non-divisibility cases for three-dimensional grids where $r=3$ are illustrated in Table \ref{tab:integral_bounds}. Let $A_0 \subseteq V(G)$ be a lethal set on $G$ that matches the surface area bound. We call $A_0$ \emph{perfect} if $G$ is a divisibility case, and \emph{optimal} if $G$ is a non-divisibility case. 
+It will be insightful to consider the surface area bound on two-dimensional grids in the context of Propositions \ref{prop:corners}, \ref{prop:border} and \ref{prop:immune_regions}. For simplicity, we introduce the following terms. We refer to grids with integral surface area bounds as \emph{divisibility cases} and grids with non-integral bounds as \emph{non-divisibility cases}. The divisibility and non-divisibility cases for three-dimensional grids where $r=3$ are illustrated in Table \ref{tab:integral_bounds}. We refer to the lethal set $A_0 \subseteq V(G)$ in $G$ that matches the surface area bound as \emph{optimal}. Furthermore, if $G$ is a divisibility case, we call $A_0$ \emph{perfect}.
 
 Recall from Chapter 1 that a lethal initial infection $A_0$ is perfect if it contains no adjacent vertices, and if all vertices $v \in A_{t > 0}$ are infected by precisely $d$ neighbors. Therefore, by Propositions \ref{prop:corners} and \ref{prop:border}, if  $[a_1] \times [a_2]$ admits a perfect lethal set, then $a_1, a_2 \equiv 1 \pmod 2$. Furthermore, every component of the subgraph $H$ induced by uninfected vertices must contain exactly one border vertex (otherwise the second condition on perfect infections would be violated). In Chapter 6, we use these observations to prove that the only two-dimensional grids that admit perfect lethal sets under 3-neighbor bootstrap percolation are of the form $[2^n-1]^2$.
 
