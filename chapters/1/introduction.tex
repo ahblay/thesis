@@ -1,6 +1,6 @@
 \chapter{Introduction}
 
-Consider the lattice depicted in the leftmost diagram of Figure \ref{fig:simple_puzzle}. We refer to the elements of this lattice as \emph{cells}. Suppose we have the capacity to infect some cells (colored red) with a disease, and that this disease will, over a period of time, propagate through uninfected cells of the lattice. Rquire that uninfected cells become infected if they are exposed to at least two infected neighboring cells in the vertical and/or horizontal directions. We say that the initial infection is \emph{lethal} if the entire lattice ultimately becomes infected. Here is a puzzle:
+Consider the lattice depicted in the leftmost diagram of Figure \ref{fig:simple_puzzle}. We refer to the elements of this lattice as \emph{cells}. Suppose we have the capacity to infect some cells (colored red) with a disease, and that this disease will, over a period of time, propagate through uninfected cells of the lattice. Require that uninfected cells become infected if they are exposed to at least two infected neighboring cells in the vertical and/or horizontal directions. We say that the initial infection is \emph{lethal} if the entire lattice ultimately becomes infected. Here is a puzzle:
 
 \begin{question}
 \label{que:simple_puzzle}
@@ -92,6 +92,7 @@ Observe that $A_0$ infects all vertices of $[a_1] \times [a_2]$, apart from the 
 
 \begin{figure}[]
 \centering
+\hspace*{\fill}
 \begin{subfigure}{0.03\textwidth}
 	\includegraphics[width=\textwidth]{figures/1/1x1x1.pdf}
 \end{subfigure} \hfill%
@@ -104,6 +105,7 @@ Observe that $A_0$ infects all vertices of $[a_1] \times [a_2]$, apart from the 
 \begin{subfigure}{0.06\textwidth}
 	\includegraphics[width=\textwidth]{figures/1/2x2x1.pdf}
 \end{subfigure}
+\hspace*{\fill}
 \caption{Tight constructions for lethal sets where $a_1+a_2 \leq 4$.}
 \label{fig:base_cases}
 \end{figure} 
@@ -317,16 +319,18 @@ The fact that minimum lethal sets do not always percolate slowest holds for grid
 
 \begin{figure}[]
 \centering
-\begin{subfigure}{0.4\textwidth}
+\hspace*{\fill}
+\begin{subfigure}{0.3\textwidth}
 	\includegraphics[width=\textwidth]{figures/1/15x15x1.pdf}
 	\caption{$T([n]^2,3) = \frac{n-1}{2}$}
 	\label{fig:fast}
 \end{subfigure} \hfill%
-\begin{subfigure}{0.4\textwidth}
+\begin{subfigure}{0.3\textwidth}
 	\includegraphics[width=\textwidth]{figures/1/15x15x1_slow.pdf}
 	\caption{$T([n]^2,3) \geq \frac{(n-1)(n-1)}{2}$}
 	\label{fig:slow}
 \end{subfigure}
+\hspace*{\fill}
 \caption{Lethal sets on $[2^k-1]^2$ with different percolation times.}
 \label{fig:percolation_time}
 \end{figure} 

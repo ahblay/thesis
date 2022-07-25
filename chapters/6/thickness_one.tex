@@ -1,12 +1,12 @@
 \chapter{Thickness One}
 
-While results from the previous chapters resolve the question of $m(a_1,a_2,a_3,3)$ for $a_1 \geq a_2 \geq a_3 \geq 11$, similar constructions for smaller grids remain sparse. Nevertheless, computer examples seem to suggest that grids of minimum size at least 2 are largely optimal. Grids of thickness 1 tell a different story. In this chapter, we prove that the only perfect grids in thickness 1 are those of the form $[2^n-1]^2$. This answers a question posed by Benevides et al. in \cite{benevides}.
+While results from the previous chapters resolve the question of $m(a_1,a_2,a_3,3)$ for $a_1 \geq a_2 \geq a_3 \geq 11$, similar constructions for smaller grids remain sparse. Nevertheless, computer examples seem to suggest that most grids of minimum size at least 2 are optimal. Grids of thickness 1 tell a different story. In this chapter, we prove that the only perfect grids in thickness 1 are those of the form $[2^n-1]^2$. This answers a question posed by Benevides, Bermond, Lesfari and Nisse in \cite{benevides:2021}.
 
 \section{A tight result for $[n]^2$}
-The argumentative structure of the proof is as follows: Let $A_0$ be a perfect lethal set on the grid $(a_1, a_2, 1)$. We show that the structure of $A_0$ guarantees the existence of a perfect lethal set on the smaller grid $(\frac{a_1-1}{2}, \frac{a_2-1}{2}, 1)$. Repeated applications of this process of reduction guarantee the existence of a perfect lethal set on the grid $(a_0, 1,1)$. Since the only such grid that admits a perfect lethal set is $(1,1,1)$, we are forced to conclude that $a_1 = a_2 = 2^k-1$ for some $k > 0$. 
+The argumentative structure of the proof is as follows: Let $A_0$ be a perfect lethal set on the grid $G(a_1, a_2, 1)$. We show that the structure of $A_0$ guarantees the existence of a perfect lethal set on the smaller grid $G(\frac{a_1-1}{2}, \frac{a_2-1}{2}, 1)$. Repeated applications of this process of reduction guarantee the existence of a perfect lethal set on the grid $G(a_0, 1,1)$. Since the only such grid that admits a perfect lethal set is $G(1,1,1)$, we are forced to conclude that $a_1 = a_2 = 2^k-1$ for some $k > 0$. 
 
 \subsection{Preliminaries}
-For the remainder of the chapter, let $G = [a_1] \times [a_2]$. Recall that perfect lethal sets match the surface area bound. In particular,
+For the remainder of the chapter, let $G = [a_1] \times [a_2]$. Recall that every perfect lethal set matches the surface area bound. In particular,
 $$|A_0| = \frac{a_1a_2 + a_1 + a_2}{3}.$$
 We begin with the following observations regarding the structure of $A_0$:
 
@@ -41,7 +41,7 @@ Let $A_0$ be a perfect lethal set on $[a_1] \times [a_2]$ under 3-neighbor perco
 \end{prop}
 
 \begin{proof}
-Sufficiency follows from Proposition \ref{prop:immune_regions}. For necessity, observe that the interior vertices of $A_0$ each remove exactly 4 edges from the subgraph induced by $H$. This implies that the subgraph induced by $H$ is a forest with exactly $a_1 + a_2 - 2$ components. As there are exactly $a_1 + a_2 - 2$ border vertices in $H$, each component must contain exactly one border vertex.
+By Proposition \ref{prop:immune_regions}, we have that each component of $H$ contains at most one border vertex. To see that each component contains at least one border vertex, observe that the interior vertices of $A_0$ each remove exactly 4 edges from the subgraph induced by $H$. This implies that the subgraph induced by $H$ is a forest with exactly $a_1 + a_2 - 2$ components. As there are exactly $a_1 + a_2 - 2$ border vertices in $H$, each component must contain exactly one border vertex.
 \end{proof}
 
 Consider a labeling of the vertices of $G$ by their coordinates, starting at $(1,1)$ in the lower left and ranging to $(a_1,a_2)$ in the upper right. Refer to a vertex $(x,y)$ as ``even" or ``odd" depending on the parity of $x+y$. If a set $S \subseteq V(G)$ contains all vertices of the same parity, call $S$ monochromatic. The following lemma leverages the prior propositions to prove that any perfect lethal set on $G$ must be monochromatic.
@@ -64,7 +64,7 @@ Let $H$ be a graph with vertices $V(H) = V(G)$ and edges $uv$ if and only if $u$
 \end{figure} 
 
 \subsection{Reduction}
-We present an auxiliary $(\frac{a_1-1}{2}, \frac{a_2-1}{2}, 1)$ grid $G'$ obtained from $G$, and show that it admits a perfect lethal set. Let the vertices of $G'$ be $2 \times 2$ tiles of $G$ given by
+Using propositions from the prior section, we show that it is possible to obtain a perfect lethal set on the smaller grid $G' = G(\frac{a_1-1}{2}, \frac{a_2-1}{2}, 1)$ obtained from $G$. Let the vertices of $G'$ be $2 \times 2$ tiles of $G$ given by
 $$\{(2x-1,2y-1),(2x-1,2y),(2x,2y-1),(2x,2y) \mid (x,y) \in [1, (a_1-1)/2] \times [1, (a_2-1)/2]\},$$
 with adjacencies between tiles that differ by one in each of the cardinal directions. Note that Proposition \ref{prop:odd_by_odd} ensures that $|V(G')|$ is an integer. Furthermore, observe that for any tile $T_{x,y} \in V(G')$, $|A_0 \cap T_{x,y}| \in \{1,2\}$. This follows from the fact that $A_0$ is an independent set, and $G[\overline{A_0}]$ is acyclic. For all $T_{x,y} \in V(G')$, color $T_{x,y}$ blue if $|A_0 \cap T_{x,y}| = 2$, and white otherwise. Let $b$ and $w$ be the number of blue and white tiles in $V(G')$, respectively. We determine $b$ by solving the following system of equations:
 \begin{align*}
@@ -136,28 +136,28 @@ For necessity, we show that any cycle or border-to-border path in the white tile
 \label{fig:tile_infection}
 \end{figure} 
 
-We have shown that the existence of a perfect lethal set on $[a_1] \times [a_2]$ implies the existence of a perfect lethal set on $[(a_1-1)/2] \times [(a_2-1)/2)]$. Proposition \ref{prop:odd_by_odd} mandates that all perfect lethal sets on $[a_1] \times [a_2]$ be odd-by-odd. Together, these statements require that $a_1 = 2^{k_1}-1$ and $a_2 = 2^{k_2}-1$ for some $k_1,k_2 > 0$, respectively. By repeated applications of Lemma \ref{lem:blue_lethal}, we ultimately obtain a grid $[a_0] \times [1]$ that admits a perfect lethal set. Clearly, the only such grid is the single vertex $[1]$. We therefore conclude that the only two-dimensional grids that admit perfect lethal sets under 3-neighbor percolation are square grids of the form $[2^n-1]^2$. A construction that achieves this is published in Benevides et al \cite{benevides}, and reproduced below.
+We have shown that the existence of a perfect lethal set on $[a_1] \times [a_2]$ implies the existence of a perfect lethal set on $[(a_1-1)/2] \times [(a_2-1)/2)]$. Proposition \ref{prop:odd_by_odd} mandates that all perfect lethal sets on $[a_1] \times [a_2]$ be odd-by-odd. Together, these statements require that $a_1 = 2^{k_1}-1$ and $a_2 = 2^{k_2}-1$ for some $k_1,k_2 > 0$, respectively. By repeated applications of Lemma \ref{lem:blue_lethal}, we ultimately obtain a grid $[a_0] \times [1]$ that admits a perfect lethal set. Clearly, the only such grid is the single vertex $[1]$. We therefore conclude that the only two-dimensional grids that admit perfect lethal sets under 3-neighbor percolation are square grids of the form $[2^n-1]^2$. Furthermore, note that this process fixes the location of infected vertices in a particular configuration. This configuration is published in Benevides et al \cite{benevides:2021}, and reproduced below.
 
 \subsection{Purina}
 
-We refer to this construction colloquially as the Purina construction, due to the similarly between its instance on the $(3,3,1)$ grid and the logo of the pet food brand. No funding has been offered, but we are open to the possibility. A more extensive discussion on this pattern can be found in \cite{benevides:2021}.
+We refer to this construction colloquially as the Purina construction, due to the similarly between its instance $G(3,3,1)$ and the logo of the pet food brand. No funding has been offered, but we are open to the possibility. A more extensive discussion on this pattern can be found in \cite{benevides:2021}.
 
-\begin{con}
+\begin{con}[Benevides, Bermond, Lesfari, Nisse]
 \label{con:purina}
-All grids of the form $(2^n-1, 2^n-1, 1)$ are perfect.
+All grids of the form $G(2^n-1, 2^n-1, 1)$ are perfect.
 \end{con}
 
 \begin{figure}[]
 \centering
 \includegraphics[width=0.1\textwidth]{figures/7/3x3x1.pdf}
-\caption{A perfect percolating set for $(3,3,1)$.}
+\caption{A perfect percolating set for $G(3,3,1)$.}
 \label{fig:3x3x1}
 \end{figure} 
 
 \begin{proof}
-This is a recursive construction built from the base component piece shown in Figure \ref{fig:3x3x1}. Note that this $(3,3,1)$ construction is lethal under the 3-neighbor bootstrap process, and that it meets the surface area bound:
+This is a recursive construction built from the base component piece shown in Figure \ref{fig:3x3x1}. Note that this $G(3,3,1)$ construction is lethal under the 3-neighbor bootstrap process, and that it meets the surface area bound:
 $$\frac{1}{3} \cdot (ab+bc+ca) = \frac{1}{3} \cdot (9 + 3 + 3) = 5.$$
-For larger grids of size $(2^n-1, 2^n-1, 1)$, join four copies of $(2^{n-1}-1, 2^{n-1}, 1)$ about two perpendicular corridors, and infect the vertex at their intersection (Figure \ref{fig:15x15x1}). Observe that the resulting set is lethal: each of the four smaller grids is lethal by hypothesis, and the remaining vertices induce a forest with disconnected boundary points, which percolates by Proposition \ref{prop:immune_regions}. Furthermore, note that
+For larger grids of size $G(2^n-1, 2^n-1, 1)$, join four copies of $G(2^{n-1}-1, 2^{n-1}, 1)$ about two perpendicular corridors, and infect the vertex at their intersection (Figure \ref{fig:15x15x1}). Observe that the resulting set is lethal: each of the four smaller grids is lethal by hypothesis, and the remaining vertices induce a forest with disconnected boundary points, which percolates by Proposition \ref{prop:immune_regions}. Furthermore, note that
 \begin{align*}
 \text{S.A.}(2^n-1,2^n-1,1) &= \frac{1}{3} \cdot (2^{2n}-1) \\
 &= 4 \cdot \frac{1}{3} \cdot (2^{2n-2} -1) + 1 = 4 \cdot \text{S.A.}(2^{n-1}-1, 2^{n-1}, 1) + 1,
@@ -167,8 +167,8 @@ and therefore this construction is perfect.
 
 \begin{figure}[]
 \centering
-\includegraphics[width=0.6\textwidth]{figures/7/15x15x1.pdf}
-\caption{A perfect percolating set for $(15,15,1)$.}
+\includegraphics[width=0.9\textwidth]{figures/7/15x15x1.pdf}
+\caption{A perfect percolating set for $G(15,15,1)$.}
 \label{fig:15x15x1}
 \end{figure} 
 
