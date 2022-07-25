@@ -193,6 +193,14 @@ We note that the prior argument is precisely the same as the so-called perimeter
 $$2\sum_{j=1}^d \prod_{i \neq j} a_i$$
 is the $d$-dimensional ``perimeter" of the grid. Again, observe that equality can only be obtained when no vertices of $A_0$ are adjacent, and all vertices $v \in A_{t}$, for $t>0$, are infected by exactly $d$ neighbors. Any imprecision causes a reduction in ``perimeter" of two units, corresponding to a $1/d$ increase in the bound. 
 
+We note that in the case where $a_1 = \dots = a_d = n$, the bound given in Theorem \ref{thm:sa_bound} simplifies to $m(n, \dots,n,d) \geq n^{d-1}$. Somewhat surprisingly, it is not too difficult to find lethal sets that meet this bound. However, to the best of our knowledge, this first published proof of this fact appears in a 2019 paper by Przykucki and Shelton \cite{przykucki:2019}. 
+
+\begin{thm}[Lower bound \cite{balogh1998random}. Upper bound \cite{przykucki:2019}]
+\label{thm:hypercubes}
+For all $n,d \geq 1$,
+$$m(\underbrace{n,\dots,n}_d,d) = n^{d-1}.$$
+\end{thm}
+
 The primary aim of this thesis is to prove that the surface area bound is tight for sufficiently large grids when $r=3$. This process employs a number of general constructions (discussed in Chapter 6), as well as a recursive strategy (discussed in Chapter 3). In Chapter 5, we prove the following result:
 
 \begin{thm}

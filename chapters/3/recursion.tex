@@ -1,10 +1,10 @@
 \chapter{A Recursive Technique}
 
-In the previous chapter, we examined some structures in grids that, if present, immediately guarantee lethality. Most significantly, we proved that lethal sets on mutually orthogonal walls of a grid are lethal on the entire grid. In the following sections, we leverage this result to show that certain configurations of fully infected sub-grids (which we shall call blocks) will cause the larger grid to become infected. Furthermore, we show that if each of these smaller blocks is infected with a minimum lethal set, the composite larger brick will also be infected with a minimum lethal set (barring some considerations for divisibility).
+In the previous chapter, we examined some structures in grids that, if present, immediately guarantee lethality. Most significantly, we proved that lethal sets on mutually orthogonal walls of a grid are lethal on the entire grid. In the following sections, we leverage this result to show that certain configurations of fully infected sub-grids (which we shall call blocks) will cause the larger grid to become infected. Furthermore, we show that, if each of these smaller blocks is infected with a minimum lethal set, then the composite larger brick will also be infected with a minimum lethal set (barring some divisibility considerations).
 
-The proof of this claim makes use of the so-called \emph{modified bootstrap process} in $[n]^d$, discussed in \cite{some paper} and \cite{some other paper}. This is a strengthened variation of the problem introduced in Chapter 1, whereby vertices in the $[n]^d$ grid become infected if and only if they are adjacent to infected vertices along edges in each of the $d$ directions. For example, in the $[n]^2$ grid, a vertex that sees infection in one of both the North/South and East/West directions will itself become infected, whereas a vertex with infected neighbors to the East and West (but not North and South) will not. 
+The proof of this claim makes use of the so-called \emph{modified bootstrap process} in $[n]^d$, studied by Holroyd in \cite{holroyd2006metastability} and \cite{holroyd2003sharp}. This is a strengthened variation of the problem introduced in Chapter 1, whereby vertices in the $[n]^d$ grid become infected if and only if they are adjacent to infected vertices along edges in each of the $d$ directions. For example, in the $[n]^2$ grid, a vertex that sees infection in one of both the North/South and East/West directions will itself become infected, whereas a vertex with infected neighbors only to the East and West will not. 
 
-In particular, the following lemma considers composite grids $[n]^d$ where each vertex $x = (x_1, \dots, x_d) \in [n]^d$ is itself a smaller block $G_x$. We prove that lethal sets on these grids can be built from the smaller lethal sets on each $G_x$. 
+In particular, the following lemma considers composite grids $[n]^d$ where each vertex $x = (x_1, \dots, x_d) \in [n]^d$ is itself a smaller block. We prove that lethal sets on these grids can be built from the smaller lethal sets on each component block. 
 % $[b_1] \times [b_2] \times \cdots \times [b_d]$ grid
 
 \begin{figure}[]
@@ -16,34 +16,36 @@ In particular, the following lemma considers composite grids $[n]^d$ where each 
 
 \begin{lem}
 \label{lem:recursion}
-For $n,d \geq 1$, let $A = (a_{i,j})$ be a $d \times n$ matrix of positive integers, and let $b_i = \sum_{j=1}^n a_{i,j}$, for $1 \geq j \geq d$. Let $S$ be a lethal set under the modified process on $[n]^d$, and for each vertex $\vec{x} = (x_1, \dots, x_v) \in S$, let $T_{\vec{x}}$ be a lethal set on $\prod_{i=1}^d [a_{i,x_i}]$ under $d$-neighbor percolation. Then
+For $n,d \geq 1$, let $A = (a_{i,j})$ be a $d \times n$ matrix of positive integers, and let $b_i = \sum_{j=1}^n a_{i,j}$, for $1 \leq i \leq d$. Let $S$ be a lethal set under the modified process on $[n]^d$, and for each vertex $\vec{x} = (x_1, \dots, x_v) \in S$, let $T_{\vec{x}}$ be a lethal set on $\prod_{i=1}^d [a_{i,x_i}]$ under $d$-neighbor percolation. Then
 $$m(b_1, \dots, b_d, d) \leq \sum_{\vec{x} \in S} |T_{\vec{x}}|.$$
 \end{lem}
 
 \begin{proof}
 We imagine sub-dividing the $\prod_{i=1}^d [b_{i}]$ brick into smaller blocks by partitioning each of the $d$ axes into segments $a_{i,1}, a_{i,2}, \dots, a_{i,n}$, $1 \leq i \leq d$. Each block is given by a unique product of these segments, and represented by a vector $\vec{x} = (x_1, \dots, x_d) \in [n]^d$. Formally, for each such $\vec{x}$, let $G_{\vec{x}}$ be the block with vertex set
-$$\prod_{i=1}^d \{1+ \sum_{j=1}^{x_i -1}a_{i,j}, \dots, \sum_{j=1}^{x_i}a_{i,j} \},$$
+$$\prod_{i=1}^d \left\{1+ \sum_{j=1}^{x_i -1}a_{i,j}, \dots, \sum_{j=1}^{x_i}a_{i,j} \right\},$$
 and edges between vertices that differ by one in exactly one coordinate. Figure \ref{fig:recursion} illustrates the block $G_{\vec{x}}$ for $\vec{x} = (1,2,2) \in [2]^3$. Observe that $G_{\vec{x}}$ is isomorphic to $\prod_{i=1}^d [a_{i,x_i}]$.
 
 For each $\vec{x} \in S$, let $A_{\vec{x}}$ be the vertices of $G_{\vec{x}}$ corresponding to the vertices of $T_{\vec{x}}$ under isomorphism from $\prod_{i=1}^d [a_{i,x_i}]$ to $G_{\vec{x}}$, and let $A_0 = \cup A_{\vec{x}}$. Observe that $|A_0| = \sum_{\vec{x} \in S} |T_{\vec{x}}|$. We show that $A_0$ is lethal on $\prod_{i=1}^d [b_{i}]$.
 
-By the definition of $T_{\vec{x}}$, for each $\vec{x} \in S$, $A_{\vec{x}}$ is lethal on $G_{\vec{x}}$. Imagine running the $d$-neighbor process until all blocks $G_{\vec{x}}$ are fully infected. We claim that this is sufficient to infect all remaining vertices of $\prod_{i=1}^d [b_{i}]$. Consider the remaining blocks $G_{\vec{x}}$, for $\vec{x} \in [n]^d \setminus S$. Since $S$ is lethal under the modified process, each $G_{\vec{x}}$ is adjacent to fully infected blocks in all $d$ directions. In particular, if we consider expanding out the faces of $G_{\vec{x}}$ towards these infected blocks, the resulting cube has $d$ fully infected faces that share a common corner. By Corollary \ref{cor:three_walls}, this structure will infect all the vertices of $G_{\vec{x}}$. Repeating this process on each uninfected region of $\prod_{i=1}^d [b_{i}]$ (as they are exposed under the modified process) ultimately results in all vertices becoming infected. This completes the proof. 
+By the definition of $T_{\vec{x}}$, for each $\vec{x} \in S$, $A_{\vec{x}}$ is lethal on $G_{\vec{x}}$. Imagine running the $d$-neighbor process until all blocks $G_{\vec{x}}$ are fully infected. We claim that this is sufficient to infect all remaining vertices of $\prod_{i=1}^d [b_{i}]$. Consider the remaining blocks $G_{\vec{x}}$, for $\vec{x} \in [n]^d \setminus S$. Since $S$ is lethal under the modified process, each $G_{\vec{x}}$ is adjacent to fully infected blocks in all $d$ directions. 
+%In particular, if we consider expanding out the faces of $G_{\vec{x}}$ towards these infected blocks, the resulting cube has $d$ fully infected faces that share a common corner. 
+By Corollary \ref{cor:three_walls}, this is sufficient to infect all the vertices of $G_{\vec{x}}$. Repeating this process on each uninfected region of $\prod_{i=1}^d [b_{i}]$ (as they are exposed under the modified process) ultimately results in all vertices becoming infected. This completes the proof. 
 \end{proof}
 
 % Corollary that shows the recursion produces tight bounds on the size of lethal sets, IF all of the constituent blocks are divisibility cases
-We note that although the lemma above is true in full generality, we are only concerned with the particular case where $n=2$ and $d=3$. The following corollary proves that the bound in Lemma \ref{lem:recursion} is tight for $n=2$ and $d=3$, if lethal sets on at least three of the constituent blocks are perfect. 
+We note that although the lemma above is true in full generality, we only apply it in the particular case where $n=2$ and $d=3$. The following corollary proves that the bound in Lemma \ref{lem:recursion} is tight for $n=2$ and $d=3$, provided that the lethal sets on at least three of the constituent blocks are perfect. 
 
 \begin{cor}
 \label{cor:recursion}
 Let $A=(a_{i,j})$ be a $3 \times 2$ matrix of positive integers, and let $b_i = a_{i,1} + a_{i,2}$ for all $1 \leq i \leq 3$. Then $m(b_1, b_2, b_3, 3)$ is at most
 $$m(a_{1,1}, a_{2,1}, a_{3,1}, 3) +  m(a_{1,2}, a_{2,2}, a_{3,1}, 3) + m(a_{1,2}, a_{2,1}, a_{3,2}, 3) + m(a_{1,1}, a_{2,2}, a_{3,2}, 3).$$
-Furthermore, this bound is tight if at least 3 of the constituent grids are perfect. 
+Furthermore, this bound is tight if at least three of $\{(a_{1,1}, a_{2,1}, a_{3,1})$, $(a_{1,2}, a_{2,2}, a_{3,1})$, $(a_{1,2}, a_{2,1}, a_{3,2})$, $(a_{1,1}, a_{2,2}, a_{3,2})\}$ are perfect. 
 \end{cor}
 
 \begin{proof}
-The upper bound on $m(b_1, b_2, b_3, 3)$ is a direct consequence of Lemma \ref{lem:recursion}, since $(1,1,1), (2,2,1), (2,1,2), (1,2,2)$ is lethal under the modified process on $[2]^3$. 
+The upper bound on $m(b_1, b_2, b_3, 3)$ is a direct consequence of Lemma \ref{lem:recursion}, since the set $\{(1,1,1), (2,2,1), (2,1,2), (1,2,2)\}$ of vertices is lethal under the modified process on $[2]^3$. 
 
-If all grids are perfect, then:  
+If all constituent grids are perfect, then:  
 \begin{align*}
 &m(a_{1,1}, a_{2,1}, a_{3,1}, 3) +  m(a_{1,2}, a_{2,2}, a_{3,1}, 3) + m(a_{1,2}, a_{2,1}, a_{3,2}, 3) + m(a_{1,1}, a_{2,2}, a_{3,2}, 3) \\[10pt]
 &= \frac{a_{1,1}a_{2,1} + a_{2,1}a_{3,1} + a_{3,1}a_{1,1}}{3} + \frac{a_{1,2}a_{2,2} + a_{2,2}a_{3,1} + a_{3,1}a_{1,2}}{3} \\
@@ -59,10 +61,10 @@ Similarly, suppose, without loss of generality, that $(a_{1,1}, a_{2,1}, a_{3,1}
 &= \ceil*{\frac{(a_{1,1} + a_{1,2})(a_{2,1} + a_{2,2}) + (a_{2,1} + a_{2,2})(a_{3,1} + a_{3,2}) + (a_{3,1} + a_{3,2})(a_{1,1} + a_{1,2})}{3}} \\[10pt]
 &= \ceil*{\frac{b_1b_2+b_2b_3+b_3b_1}{3}}.
 \end{align*}
-In both cases, we obtain the lower bound $m(b_1, b_2, b_3, 3)$. This completes the proof. 
+In both cases, we obtain an upper bound on $m(b_1, b_2, b_3, 3)$ matching the lower surface area bound. This completes the proof. 
 \end{proof}
 
-\section{Applying the recursion}
+\section{Helpful building blocks}
 
 \begin{table}[]
 \centering
@@ -86,14 +88,14 @@ In both cases, we obtain the lower bound $m(b_1, b_2, b_3, 3)$. This completes t
 \end{table}
 
 % Handle the divisibility cases, and note that certain augmentations to the recursion allow us to obtain non-divisible optimal grids, if we are cautious with regard to the pieces we use.
-Corollary \ref{cor:recursion} provides a prescriptive method for constructing optimal and perfect lethal sets recursively, provided the existence of sufficiently many small building blocks. In the following chapter, we use this technique to obtain perfect lethal sets on all $(b_1,b_2,b_3)$ grids, for $b_1,b_2,b_3 \geq 5$, and optimal lethal sets on all $(b_1,b_2,b_3)$ grids, for $b_1,b_2,b_3 \geq 11$. To facilitate this process, we first summarize some useful families of lethal sets (discussed in greater detail in Chapter [Constructions] and illustrated in Tables \ref{tab:integral_bounds_2}, \ref{tab:integral_bounds_3}, and \ref{tab:integral_bounds_5}), as well as particular applications of Corollary \ref{cor:recursion} that hold for general grids. 
+Corollary \ref{cor:recursion} provides a prescriptive method for constructing optimal and perfect lethal sets recursively, provided the existence of sufficiently many small building blocks. In the following chapter, we use this technique to obtain perfect lethal sets on all $G(b_1,b_2,b_3)$ grids, for $b_1,b_2,b_3 \geq 5$, and optimal lethal sets on all $G(b_1,b_2,b_3)$ grids, for $b_1,b_2,b_3 \geq 11$. To facilitate this process, we first summarize some useful families of lethal sets (discussed in greater detail in Chapter 6 and illustrated in Tables \ref{tab:integral_bounds_2}, \ref{tab:integral_bounds_3}, and \ref{tab:integral_bounds_5}), as well as particular applications of Corollary \ref{cor:recursion} that hold for general grids. 
 
 \begin{prop}
 \label{prop:3x3xk}
 For all $k \geq 1$ such that $k \neq 2$, $(3,3,k)$ is perfect.
 \end{prop}
 
-\begin{proof}[Outline]
+\begin{proof}
 We obtain $(3,3,k)$ for $k \equiv 0 \pmod 2$ and $k > 2$ from Construction \ref{con:3x3xeven}, and $(3,3,k)$ for $k \equiv 1 \pmod 2$ and $k > 2$ from Construction \ref{con:3xaxb}. The case of $(3,3,1)$ is given in Benevides, and reproduced as Construction \ref{con:purina}.
 \end{proof}
 
@@ -102,8 +104,8 @@ We obtain $(3,3,k)$ for $k \equiv 0 \pmod 2$ and $k > 2$ from Construction \ref{
 For all $k \geq 2$, $(3,6,k)$ is perfect.
 \end{prop}
 
-\begin{proof}[Outline]
-We obtain $(3,6,k)$ for $k \equiv 0 \pmod 2$ and $k \geq 4$ from Construction \ref{con:3x6xeven}, and $(3,6,k)$ for $k \equiv 1 \pmod 2$ and $k \geq 5$ from Construction \ref{con:3xaxb}. The remaining grids $(3,6,2)$ and $(3,6,3)$ are obtained from Propositions \ref{prop:2x3xk_0} and \ref{prop:3x3xk}.
+\begin{proof}
+We obtain $(3,6,k)$ for $k \equiv 0 \pmod 2$ and $k \geq 4$ from Construction \ref{con:3x6xeven}, and $(3,6,k)$ for $k \equiv 1 \pmod 2$ and $k \geq 5$ from Construction \ref{con:3xaxb}. The remaining tuples $(3,6,2)$ and $(3,6,3)$ are obtained from Propositions \ref{prop:2x3xk_0} and \ref{prop:3x3xk}.
 \end{proof}
 
 \begin{prop}
@@ -111,8 +113,8 @@ We obtain $(3,6,k)$ for $k \equiv 0 \pmod 2$ and $k \geq 4$ from Construction \r
 For all $k \equiv 3 \pmod 6$ and $l \equiv 1 \pmod 2$ such that $l >1$, $(3,k,l)$ is perfect.
 \end{prop}
 
-\begin{proof}[Outline]
-We obtain such grids from Construction \ref{con:3xaxb}.
+\begin{proof}
+We obtain such tuples from Construction \ref{con:3xaxb}.
 \end{proof}
 
 \begin{prop}
@@ -120,8 +122,8 @@ We obtain such grids from Construction \ref{con:3xaxb}.
 For all $k,l \in \{0,2,3,5\} \pmod 6$ such that $k \not\equiv l \pmod 6$ and $k,l > 2$, $(k,l,2)$ is perfect.
 \end{prop}
 
-\begin{proof}[Outline]
-We obtain $(k,l,2)$ for $k,l \in \{2,5\} \pmod 6$ such that $k \not\equiv l \pmod 6$ and $k,l > 2$ from Construction \ref{con:2x2x5_mod6}. We obtain $(k,l,2)$ for $k,l \in \{0,3\} \pmod 6$ such that $k \not\equiv l \pmod 6$ and $k,l \geq 6$ from Construction \ref{con:2x3x0_mod6}. The remaining grids are of the form $(k,3,2)$ for $k \equiv 0 \pmod 6$ and these are obtained from Construction \ref{con:3x2xa_mod6}.
+\begin{proof}
+We obtain $(k,l,2)$ for $k,l \in \{2,5\} \pmod 6$ such that $k \not\equiv l \pmod 6$ and $k,l > 2$ from Construction \ref{con:2x2x5_mod6}. We obtain $(k,l,2)$ for $k,l \in \{0,3\} \pmod 6$ such that $k \not\equiv l \pmod 6$ and $k,l \geq 6$ from Construction \ref{con:2x3x0_mod6}. The remaining tuples are of the form $(k,3,2)$ for $k \equiv 0 \pmod 6$ and these are obtained from Construction \ref{con:3x2xa_mod6}.
 \end{proof}
 
 \begin{prop}
@@ -129,7 +131,7 @@ We obtain $(k,l,2)$ for $k,l \in \{2,5\} \pmod 6$ such that $k \not\equiv l \pmo
 For all $k \equiv 3 \pmod 6$, $(k,4,3)$ is perfect.
 \end{prop}
 
-\begin{proof}[Outline]
+\begin{proof}
 We obtain $(k,4,3)$ for $k \equiv 3 \pmod 6$ and $k \geq 9$ from Construction \ref{con:3x4xa}. The case of $(4,3,3)$ is given by Proposition \ref{prop:3x3xk}.
 \end{proof}
 
@@ -138,7 +140,7 @@ We obtain $(k,4,3)$ for $k \equiv 3 \pmod 6$ and $k \geq 9$ from Construction \r
 For all $k \equiv 0 \pmod 6$ such that $k>3$, $(k,2,3)$ is perfect.
 \end{prop}
 
-\begin{proof}[Outline]
+\begin{proof}
 We obtain $(k,2,3)$ for $k \equiv 0 \pmod 6$ and $k \geq 6$ from Construction \ref{con:3x2xa_mod6}. 
 \end{proof}
 
@@ -147,7 +149,7 @@ We obtain $(k,2,3)$ for $k \equiv 0 \pmod 6$ and $k \geq 6$ from Construction \r
 For all $k \equiv 3 \pmod 6$ such that $k>3$, $(k,2,3)$ is perfect.
 \end{prop}
 
-\begin{proof}[Outline]
+\begin{proof}
 We obtain $(k,2,3)$ for $k \equiv 3 \pmod 6$ and $k > 3$ from Construction \ref{con:3x2x(3mod6)}.
 \end{proof}
 
@@ -156,15 +158,15 @@ We obtain $(k,2,3)$ for $k \equiv 3 \pmod 6$ and $k > 3$ from Construction \ref{
 For all $k \geq 1$, $(2^k-1,2^k-1,1)$ is perfect.
 \end{prop}
 
-\begin{proof}[Outline]
-The construction for such grids is presented in Benevides and reproduced as Construction \ref{con:purina}.
+\begin{proof}
+The construction for such tuples is presented in \cite{benevides:2021} and reproduced as Construction \ref{con:purina}.
 \end{proof}
 
 Combining the above propositions with Corollary \ref{cor:recursion}, we are able to obtain the following lemmas.
 
 \begin{lem}
 \label{lem:plus_333}
-Suppose $(b_1, b_2, b_3)$ is optimal. Then $(b_1+3, b_2+3, b_3+3)$ is optimal. 
+Suppose $(b_1, b_2, b_3)$ is optimal and $b_1,b_2,b_3 \neq 2$. Then $(b_1+3, b_2+3, b_3+3)$ is optimal. 
 \end{lem}
 
 \begin{proof}
@@ -172,6 +174,19 @@ By Proposition \ref{prop:3x3xk}, each of $(b_1,3,3), (3,b_2,3),(3,3,b_3)$ is per
 $$m(b_1+3, b_2+3, b_3+3, 3) = m(b_1,b_2,b_3,3) + m(b_1,3,3,3) + m(3,b_2,3,3) + m(3,3,b_3,3),$$
 and so $(b_1+3, b_2+3, b_3+3)$ is optimal.
 \end{proof}
+
+\begin{lem}
+\label{lem:plus_336}
+Suppose $(b_1, b_2, b_3)$ is optimal, $b_1,b_2 \geq 2$, and $b_3 \neq 2$. Then $(b_1+3, b_2+3, b_3+6)$ is optimal. 
+\end{lem}
+
+\begin{proof}
+By assumption, $(b_1,b_2,b_3)$ is optimal. Both of $(b_1,3,6)$ and $(3,b_2,6)$ are perfect by Proposition \ref{prop:3x6xk}. By Proposition \ref{prop:3x3xk}, $(3,3,b_3)$ is perfect. Therefore, by Corollary \ref{cor:recursion}, 
+$$m(b_1+3, b_2+3, b_3+6, 3) = m(b_1,b_2,b_3,3) + m(b_1,3,6,3) + m(3,b_2,6,3) + m(3,3,b_3,3),$$
+and so $(b_1+3, b_2+3, b_3+6)$ is optimal.
+\end{proof}
+
+In the following chapter, we shall see that the existence of the perfect lethal sets on the families of grids presented above, coupled with Corollary \ref{cor:recursion}, is enough to prove Theorem \ref{thm:main_result}. Speaking analogically, Propositions \ref{prop:3x3xk} -- \ref{prop:purina} (and the individual constructions in Appendix A) are the atomic pieces required to generate all molecular lethal sets. It should be noted that the atomic constructions used in this thesis are in no way special; there is likely a simpler combination of constructed lethal sets that also generates all grids $G(a_1,a_2,a_3)$, for $a_1,a_2,a_3 \geq 11$. These are simply the constructions that we were able to obtain. It would be interesting to determine, in general, the smallest number of constructed lethal sets required to build all other lethal sets in $d$-dimensional grids using Corollary \ref{cor:recursion}. 
 
 % Example of the recursion on a small grid and discussion re: the strategies for analyzing percolating sets
 
