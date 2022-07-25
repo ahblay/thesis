@@ -49,21 +49,21 @@ This proof is an instance of the famous \emph{perimeter argument}, which has bel
 \section{Bootstrap Percolation}
 
 %Before presenting a proof, let us take a moment to formally define the process described above and develop some useful notation. 
-The study of such cellular infection spread in grids (and, more generally, in graphs) is known in the literature as \emph{bootstrap percolation}, and was introduced in the 1970s by Chalupa et al. \cite{chalupa:1979} as a simplified model for the behavior of ferromagnetic fields. In their original 1979 paper, the authors research the stable structure of probabilistically selected initial infections. While this differs from the problem posed in Question \ref{que:simple_puzzle}, the rules for the spread of infection and its broad behavior remain the same. It is worth noting that a large portion of contemporary research on bootstrap problems is focused on questions of probabilistic nature; while these problems are certainly interesting and of merit, they do not fall within the scope of this thesis. Rather, we shall focus on those problems where we have specific control over the structure of the initial infections; in particular, we aim to determine the smallest lethal set on the Cartesian product of paths and cycles. 
+The study of such cellular infection spread in grids (and, more generally, in graphs) is known in the literature as \emph{bootstrap percolation}, and was introduced in the 1970s by Chalupa, Leath and Reich as a simplified model for the behavior of ferromagnetic fields \cite{chalupa:1979}. In their original 1979 paper, the authors research the stable structure of probabilistically selected initial infections. While this differs from the problem posed in Question \ref{que:simple_puzzle}, the rules for the spread of infection and its broad behavior remain the same. It is worth noting that a large portion of contemporary research on bootstrap problems is focused on questions of probabilistic nature; while these problems are certainly interesting and of merit, they do not fall within the scope of this thesis. Rather, we shall focus on those problems where we have specific control over the structure of the initial infections; in particular, we aim to determine the smallest lethal set on the Cartesian product of paths and cycles. 
 
 Let us now define the problem in concrete terms. Let $G$ be a graph, let $r \geq 0$ and let $A_0 \subseteq V(G)$ be a set of initially infected vertices. Iteratively, infect those vertices of $G$ with at least $r$ infected neighbors. For all $t > 0$, let $A_t$ be the set of infected vertices at time step $t$. We then have
 $$A_t = A_{t-1} \cup \{v \in V(G) : |N_G(v) \cap A_{t-1}| \geq r\},$$
 where $N_G(v)$ is the set of vertices adjacent to $v$ in $G$. We define the \emph{closure} of $A_0$ under $r$-neighbor bootstrap percolation to be $[A_0] = \bigcup_{t=0}^{\infty} A_t$. We say that $A_0$ \emph{percolates} or is \emph{lethal} if $[A_0] = V(G)$. We define the smallest lethal set in a graph $G$ under $r$-neighbor bootstrap percolation by the quantity $m(G,r)$. We note that under these rules, it is not possible for vertices to become uninfected.
 
-While it is possible to study bootstrap percolation on any graph $G$, much of the contemporary research focuses on multidimensional grids \cite{something}. We therefore introduce the following notation. For all $n \in \mathbb{N}$, let $[n] = \{1, 2, \dots, n\}$. Let the grid graph with vertex set $\prod_i^d [a_i]$ be denoted by $\prod_i^d [a_i]$. Note that $\prod_i^d [a_i] = P_{a_1} \square \cdots \square P_{a_d}$, where $\square$ denotes the Cartesian product of graphs. Furthermore, define:
+While it is possible to study bootstrap percolation on any graph $G$, much of the contemporary research focuses on multidimensional grids \cite{pete:1997,przykucki:2019,balogh:2006,benevides:2021,benevides2015maximum,benevides2013slowly,pete1997make,balogh2012sharp,balogh2009bootstrap,balogh2009majority,balogh2010bootstrap}. We therefore introduce the following notation. For all $n \in \mathbb{N}$, let $[n] = \{1, 2, \dots, n\}$. Let the grid graph with vertex set $\prod_i^d [a_i]$ and edges between vertices that differ by 1 in exactly one coordinate be denoted by $\prod_i^d [a_i]$. Note that $\prod_i^d [a_i] = P_{a_1} \square \cdots \square P_{a_d}$, where $\square$ denotes the Cartesian product of graphs. Furthermore, define:
 $$m(a_1, \dots, a_d, r) = m\left(\prod_i^d [a_i], r\right).$$
 
-There are a number of natural generalizations of the problem posed in Question \ref{que:simple_puzzle}. In this thesis, we discuss those obtained by varying the structure of $G$ and the value of $r$. Below, we outline some of the existing results for graphs that are the Cartesian product of paths and cycles, and $r \in \{0, 1, 2, 3\}$. These results are summarized in Table \ref{tab:known_bounds}.
+There are a number of natural generalizations of the problem posed in Question \ref{que:simple_puzzle}. In this thesis, we discuss those obtained by varying the structure of $G$ and the value of $r$. Below, we outline some of the existing results for graphs that are the Cartesian product of paths and cycles, and $r \in \{0, 1, 2, 3\}$. Some of these results are summarized in Table \ref{tab:known_bounds}.
 
 \begin{table}[]
 \centering
 \includegraphics[width=\textwidth,origin=c]{tables/1/known_bounds.pdf}
-\caption{A summary of known bootstrap percolation results for grids and the torus, $r \in \{0,1,2,3,d\}$.}
+\caption{A summary of known bootstrap percolation results for grids, $r \in \{0,1,2,3\}$.}
 \label{tab:known_bounds}
 \end{table} 
 
@@ -76,7 +76,7 @@ In this section, we highlight existing extremal bootstrap percolation results on
 
 From the puzzle posed in Question \ref{que:simple_puzzle}, we readily obtain variant problems by altering three parameters: the size and shape of the grid $G$, the grid's dimension $d$, and the threshold number of neighbors $r$. We examine each of these problems in turn.
 
-In the prior discussion of the perimeter argument, we showed that, for square grids, it holds that $m([n]^2, 2) \geq n$, and verified this to be tight with a diagonal construction. The following result (attributed to Pete) generalizes this result to all rectangular grids $[a_1] \times [a_2]$. A proof is included for completeness. 
+In the prior discussion of the perimeter argument, we showed that, for square grids, it holds that $m([n]^2, 2) \geq n$, and verified this to be tight with a diagonal construction. The following result (attributed to Pete \cite{pete1997make}) generalizes this result to all rectangular grids $[a_1] \times [a_2]$. A proof is included for completeness. 
 
 \begin{thm}
 \label{thm:perimeter_rects}
@@ -128,19 +128,19 @@ Let us take a moment to examine the issue of integrality in the perimeter bound.
 
 We can further generalize in the case $r=2$. In 2006, Balogh and Bollob\'as \cite{balogh:2006} proved the following general form of Theorem \ref{thm:perimeter_rects} for all $d$-dimensional hypercubes $(a_1, \dots, a_d)$, $a_i \geq 1$:
 
-\begin{thm}[Balogh]
+\begin{thm}[Balogh and Bollob\'as]
 \label{thm:complete_r_2}
 For $d \geq 1$ and $a_1, \dots, a_d \geq 1$, 
 $$m(a_1, \dots, a_d, 2) = \ceil*{\frac{\sum_{i=1}^d (a_i-1)}{2}}+1.$$
 \end{thm}
 
-Theorem \ref{thm:complete_r_2} completes the picture for infections with a threshold of two on grids. The next question is whether similar results exist for larger $r$. Unfortunately, while generalizing to $d$-dimensional grids yields nice results for $r=2$, attempts to obtain a holistic understanding of $m(a_1, \dots, a_d, r)$ for arbitrary $r$ have been largely fruitless. Even the case of $r=3$ remains stubbornly inaccessible for nearly all large $d$. However, certain breakthroughs have been made in the following circumstances: $d=2$, $d=3$, and $G=[2]^d$.
+Theorem \ref{thm:complete_r_2} completes the picture for infections with a threshold of two on grids. We now ask whether similar results exist for larger $r$. Unfortunately, while generalizing to $d$-dimensional grids yields nice results for $r=2$, attempts to obtain a holistic understanding of $m(a_1, \dots, a_d, r)$ for arbitrary $r$ have been largely fruitless. Even the case of $r=3$ remains stubbornly inaccessible for nearly all large $d$. However, certain breakthroughs have been made for $d=2$, $d=3$, and $G=[2]^d$.
 
-We first consider 3-neighbor percolation on two-dimensional square grids. In 2021, Benevides et al. proved that 
+We first consider 3-neighbor percolation on two-dimensional square grids. In 2021, Benevides, Bermond, Lesfari and Nisse proved that 
 $$m(n,n,3) = \ceil*{\frac{n^2+2n+4}{3}}$$
 for even $n$, and 
 $$\ceil*{\frac{n^2+2n}{3}} \leq m(n,n,3) \leq \ceil*{\frac{n^2+2n}{3}} + 1$$
-for odd $n$. Additionally, they showed that these bounds are tight for odd $n$: if $n = 5 \pmod 6$, or $n = 2^k - 1$ for some $k \in \mathbb{N}$, then $m(n,n,3) = \ceil{\frac{n^2+2n}{3}}$; and if $n \in \{9,13\}$, then $m(n,n,3) = \ceil{\frac{n^2+2n}{3}} + 1$. Constructions that achieve this bound are illustrated in Chapter 7. We add to this picture with the following theorem, proven in Chapter 6, and corollary:
+for odd $n$. Additionally, they showed that these bounds are tight in the following cases: if $n = 5 \pmod 6$, or $n = 2^k - 1$ for some $k \in \mathbb{N}$, then $m(n,n,3) = \ceil{\frac{n^2+2n}{3}}$; and if $n \in \{9,13\}$, then $m(n,n,3) = \ceil{\frac{n^2+2n}{3}} + 1$. Constructions that achieve this bound are illustrated in Chapter 5. We add to this picture with the following theorem, proven in Chapter 5, and corollary:
 
 \begin{thm}
 \label{thm:2d_rectangle}
@@ -166,9 +166,10 @@ $$
 The first three cases follow from Theorem 1 of \cite{benevides:2021} and the observation that if $n \equiv 5 \pmod 6$, then $\ceil{\frac{n^2+2n}{3}} = \frac{n^2+2n+1}{3}$. In the final case, $n$ is congruent to either 1 or 3 modulo 6. This implies that $n^2 + 2n$ is divisible by three. From Theorem 1 of \cite{benevides:2021}, we have that $m(n,n,3) \leq \frac{n^2+2n+3}{3}$. Furthermore, since $n$ is not of the form $2^k-1$, it follows from Theorem \ref{thm:2d_rectangle} that $m(n,n,3) > \frac{n^2+2n}{3}$. Therefore, $m(n,n,3) = \frac{n^2+2n+3}{3}$.
 \end{proof}
 
-This result resolves the question of the minimum lethal set for two dimensional square grids. For the more general case of rectangular grids, the problem remains unsolved. However, we are able to achieve an upper bound of $m(a,b,3) \leq \ceil{\frac{ab+a+b+6}{3}}$ and a lower bound (described below) of $m(a,b,3) \geq \ceil{\frac{ab+a+b}{3}}$, for all $a,b > 1$. Further discussion of these results can be found in Chapter 6.
+This result resolves the question of the minimum lethal set for two dimensional square grids. For the more general case of rectangular grids, the problem remains unsolved. However, our experimentation suggests that nearly all grids $[a_1] \times [a_2]$ for $a_1,a_2 > 2$ fall within a constant factor of the following bound.
+%However, we are able to achieve an upper bound of $m(a,b,3) \leq \ceil{\frac{ab+a+b+6}{3}}$ and a lower bound (described below) of $m(a,b,3) \geq \ceil{\frac{ab+a+b}{3}}$, for all $a,b > 1$. Further discussion of these results can be found in Chapter 6.
 
-One significant and well-known result for 3-neighbor percolation on two- and three-dimensional grids is the following lower bound, taken as a three-dimensional analogue of the perimeter bound. This result is referenced frequently throughout this document, and referred to interchangeably as the \emph{surface area} or \emph{SA bound}. We prove the statement in full generality, while noting that we only make use of the case where $d=3$. We also note that, like the perimeter bound, the following proof belongs to bootstrap percolation folklore, and appears to have been first published in 1997 by Balogh and Pete \cite{balogh_and_pete}.
+One significant and well-known result for 3-neighbor percolation on two- and three-dimensional grids is the following lower bound, taken as a three-dimensional analogue of the perimeter bound. This result is referenced frequently throughout this document, and referred to interchangeably as the \emph{surface area} or \emph{SA bound}. We prove the statement in full generality, while noting that we only make use of the case where $d=3$. We also note that, like the perimeter bound, the following proof belongs to bootstrap percolation folklore. While it appears to have been first published in 1997 by Balogh and Pete \cite{balogh1998random}, variations also appear in \cite{bollobas2006coffee,pete:1997,pete1997make}.
 
 \begin{thm}
 \label{thm:sa_bound}
@@ -177,11 +178,11 @@ $$m(a_1,a_2, \dots, a_d,d) \geq \frac{\sum_{j=1}^d \prod_{i \neq j} a_i}{d}.$$
 \end{thm}
 
 \begin{proof}
-We apply the same ``invariant" strategy presented in the perimeter argument. For simplicity, consider $\prod_{i=1}^d[a_i]$ to be embedded within the larger graph $\prod_{i=1}^d \{0, \dots, a_i + 1\}$. Note that in $\prod_{i=1}^d \{0, \dots, a_i + 1\}$, each vertex $v \in \prod_{i=1}^d[a_i]$ has degree $2d$. Let $A_0$ be a lethal set in $\prod_{i=1}^d[a_i]$ under the $d$-neighbor bootstrap process. For $t >0$, let $A_t$ be the set of infected vertices in $\prod_{i=1}^d[a_i]$ at generation $t$. Denote by $m_t$ the number of edges between vertices $u \in A_t$ and $v \in \prod_{i=1}^d[a_i] \setminus A_t$. %We show that the sequence $m_0, m_1, m_2, \dots$ is monotonically decreasing. 
+We apply the same ``invariant" strategy presented in the perimeter argument. For simplicity, consider $\prod_{i=1}^d[a_i]$ to be embedded within the larger graph $\prod_{i=1}^d \{0, \dots, a_i + 1\}$. Note that in $\prod_{i=1}^d \{0, \dots, a_i + 1\}$, each vertex $v \in \prod_{i=1}^d[a_i]$ has degree $2d$. Let $A_0$ be a lethal set in $\prod_{i=1}^d[a_i]$ under the $d$-neighbor bootstrap process. For $t >0$, let $A_t$ be the set of infected vertices in $\prod_{i=1}^d[a_i]$ at generation $t$. Denote by $m_t$ the number of edges between vertices $u \in A_t$ and $v \in \prod_{i=1}^d \{0, \dots, a_i + 1\} \setminus A_t$. %We show that the sequence $m_0, m_1, m_2, \dots$ is monotonically decreasing. 
 We show that $m_{t-1} \geq m_t$ for all $t> 0$. 
 
 %Let $N = |A_t - A_{t-1}|$, and let $v_1, \dots, v_N$ be an arbitrary ordering on the vertices of $A_t \setminus A_{t-1}$. 
-By definition, each vertex $v \in A_t \setminus A_{t-1}$ has at least $d$ neighbors in $A_{t-1}$. Therefore, since $d(v) = 2d$, $v$ has no more than $d$ neighbors outside of $A_t$. This implies that the number of edges from $A_{t-1} \cup \{v\}$ to $\prod_{i=1}^d[a_i] \setminus A_{t-1} \cup \{v\}$ cannot exceed $m_{t-1}$. Furthermore, this holds for every vertex $v \in A_{t-1}$, and so $m_{t-1} \geq m_t$. 
+By definition, each vertex $v \in A_t \setminus A_{t-1}$ has at least $d$ neighbors in $A_{t-1}$. Therefore, since $d(v) = 2d$, $v$ has no more than $d$ neighbors outside of $A_t$. This implies that the number of edges from $A_{t-1} \cup \{v\}$ to $\prod_{i=1}^d \{0, \dots, a_i + 1\} \setminus A_{t-1} \cup \{v\}$ cannot exceed $m_{t-1}$. Furthermore, this holds for every vertex $v \in A_{t-1}$, and so $m_{t-1} \geq m_t$. 
 
 Since $A_0$ is lethal, we have that 
 $$2d|A_0| \geq m_0 \geq m_1 \geq \dots \geq 2 \sum_{j=1}^d \prod_{i \neq j} a_i,$$ 
@@ -192,7 +193,7 @@ We note that the prior argument is precisely the same as the so-called perimeter
 $$2\sum_{j=1}^d \prod_{i \neq j} a_i$$
 is the $d$-dimensional ``perimeter" of the grid. Again, observe that equality can only be obtained when no vertices of $A_0$ are adjacent, and all vertices $v \in A_{t}$, for $t>0$, are infected by exactly $d$ neighbors. Any imprecision causes a reduction in ``perimeter" of two units, corresponding to a $1/d$ increase in the bound. 
 
-The primary aim of this thesis is to prove that the surface area bound is tight for sufficiently large grids when $r=3$. This process employs a number of general constructions (discussed in Chapter 7), as well as a recursive strategy (Chapter 3). In Chapter 5, we prove the following result:
+The primary aim of this thesis is to prove that the surface area bound is tight for sufficiently large grids when $r=3$. This process employs a number of general constructions (discussed in Chapter 6), as well as a recursive strategy (discussed in Chapter 3). In Chapter 5, we prove the following result:
 
 \begin{thm}
 \label{thm:main_result}
@@ -200,11 +201,12 @@ For all $a_1, a_2, a_3 \geq 11$,
 $$m(a_1,a_2,a_3,3) = \ceil*{\frac{a_1a_2+a_2a_3+a_1a_3}{3}}.$$
 \end{thm}
 
-Unfortunately, the complete resolution of the $r=3$ case on grids remains elusive. Tight constructions exist for cubes $[n]^3$ and hypercubes $[2]^d$, but in general bounds are difficult to obtain. Worse, for $r>3$, the only additional result beyond the surface area bound addresses the very specific case of $r$-dimensional cubes. Open problems abound.
+Unfortunately, the complete resolution of the $r=3$ case on grids remains elusive. Tight constructions exist for cubes $[n]^3$ and hypercubes $[2]^d$, but more general results are difficult to obtain. See Chapter 7 for suggestions on areas of further research.
+%Worse, for $r>3$, the only additional result beyond the surface area bound addresses the very specific case of $r$-dimensional cubes. Open problems abound.
 
 \subsubsection{Tori}
 
-In addition to varying the parameters $r$ and $d$, we might also change the very structure of $G$. It is natural to shift from grids (the Cartesian product of paths) to tori (the Cartesian product of cycles). In fact, it could be argued that bootstrap percolation on the torus is \emph{more} natural than the grid, since tori are regular and grids are not. This problem has been studied by Benevides et al. In 2021, they obtained the following lower bound for the Cartesian product of two cycles \cite{benevides:2021}. Their proof is included here for completeness.
+In addition to varying the parameters $r$ and $d$, we might also change the very structure of $G$. It is natural to shift from grids (the Cartesian product of paths) to tori (the Cartesian product of cycles). In fact, it could be argued that bootstrap percolation on the torus is \emph{more} natural than the grid, since tori are regular and grids are not. This problem has been studied by Benevides, Bermond, Lesfari and Nisse. In 2021, they obtained the following lower bound for the Cartesian product of two cycles \cite{benevides:2021}. Their proof is included here for completeness.
 
 \begin{thm}
 \label{thm:torus_lb}
@@ -227,14 +229,15 @@ Combining like terms and simplifying, we have
 $$|I| \geq \frac{ab +c}{3} \geq \frac{ab +1}{3}.$$
 \end{proof}
 
-Observe that the conditions $c \geq 1$ and $m_{IH} \leq 4|I|$ prevent us from obtaining strict equality. Specifically, if $I$ is lethal, $G[H]$ has one component, and no vertices in $I$ are adjacent, then $|I|$ is minimized. Note that these conditions are quite similar to those on grids; the specific difference is that equality in the bound on grids mandates that no vertex be infected by more than $r$ neighbors, whereas equality on three-dimensional tori requires this inefficiency be centered on one particular vertex. 
+Observe that the conditions $c \geq 1$ and $m_{IH} \leq 4|I|$ prevent us from obtaining exact equality. Specifically, if $I$ is lethal, $G[H]$ has one component, and no vertices in $I$ are adjacent, then $|I|$ is minimized. Note that these conditions are quite similar to those on grids; the specific difference is that equality in the bound on grids mandates that no vertex be infected by more than $r$ neighbors, whereas equality on three-dimensional tori appears more complex.
+%requires this inefficiency be centered on one particular vertex. 
 
-Theorem \ref{thm:torus_lb} is generalized to all tori by Hambardzumyan, Hatami and Qian in \cite{hambardzumyan:2020}. Specifically, they provide a recursive formula for the size of minimum lethal sets on tori under $r$-bond bootstrap percolation, an instance of graph bootstrap percolation introduced by Bollobas in 1968 \cite{bollobas1968weakly}. One might think of this process as an analogue of bootstrap percolation on the edges of a graph, whereby an uninfected edge becomes infected if one of its endpoints is adjacent to at least $r$ infected edges. The minimum lethal edge set under the $r$-bond process on a graph $G$ is denoted by $m_e(G,r)$. 
+Theorem \ref{thm:torus_lb} is generalized to all tori by Hambardzumyan, Hatami and Qian in \cite{hambardzumyan:2020}. Specifically, they provide a recursive formula for the size of minimum lethal sets on tori under $r$-bond bootstrap percolation, an instance of the graph bootstrap percolation problem introduced by Bollobas in 1968 \cite{bollobas1968weakly}. One might think of $r$-bond percolation as an analogue of bootstrap percolation on the edges of a graph, whereby an uninfected edge becomes infected if one of its endpoints is adjacent to at least $r$ infected edges. The minimum lethal edge set under the $r$-bond process on a graph $G$ is denoted by $m_e(G,r)$. 
 
-The authors note that a lethal set of vertices can be converted into a lethal set of edges under the $r$-bond process by simply infecting an arbitrary set of $r$ edges incident to every infected vertex. This observation provides the following lower bound on $m(G,r)$:
+Hambardzumyan, Hatami and Qian note that a lethal set of vertices can be converted into a lethal set of edges under the $r$-bond process by simply infecting an arbitrary set of $r$ edges incident to every infected vertex. This observation provides the following lower bound on $m(G,r)$:
 $$\frac{m_e(G,r)}{r} \leq m(G,r).$$
 
-In Theorem 8 of \cite{hambardzumyan:2020}, a recursive formula is given for $m_e(G_d,r)$, where $G_d$ is the Cartesian product of $d$ cycles. As $m_e(G_d,r) = r \cdot m(G,r)$, we are able to leverage this result to obtain a lower bound on $m(C_{a_1} \square C_{a_2} \square C_{a_3}, 3)$. In particular, we have the following theorem.
+In Theorem 8 of \cite{hambardzumyan:2020}, a recursive formula is given for $m_e(G_d,r)$, where $G_d$ is the Cartesian product of $d$ cycles. As $m_e(G_d,r) \leq r \cdot m(G_d,r)$, we are able to leverage this result to obtain a lower bound on $m(C_{a_1} \square C_{a_2} \square C_{a_3}, 3)$. In particular, we have the following theorem.
 
 \begin{thm}
 \label{thm:3d_torus_lb}
@@ -290,9 +293,9 @@ This constitutes all vertices of $G_3$, and so we conclude that $A_0 \cup \{u,v\
 % other semi-related problems in bootstrap percolation
 \subsection{Other Problems}
 
-Thus far, we have focused on the extremal problem of determining the smallest possible lethal set on $d$-dimensional grids and tori. Unsurprisingly, this is one of many existing areas of research in bootstrap percolation. In this section, we shall highlight a different, related problem: what is is the maximum (and minimum) time it takes for a lethal set to infect all vertices of a grid?
+Thus far, we have focused on the extremal problem of determining the smallest possible lethal set on $d$-dimensional grids and tori. Unsurprisingly, this is one of many existing areas of research in bootstrap percolation. In this section, we highlight a different, related problem: what is is the maximum time it takes for a lethal set to infect all vertices of a grid?
 
-As before, we shall begin with $2$-neighbor percolation on $[n]^2$, and address the question of maximum percolation time. We shall say that a lethal set $A_0 \subseteq V(G)$ percolates in time $T$ if we obtain $[A_0]$ in $T$ time-steps. For $r \in \mathbb{N}$, let
+As before, we shall begin with $2$-neighbor percolation on $[n]^2$. We shall say that a lethal set $A_0 \subseteq V(G)$ percolates in time $T$ if we obtain $[A_0]$ in $T$ time-steps. For $r \in \mathbb{N}$, let
 $$T(G,r) = \max\{T \in \mathbb{N} \mid \exists \text{ a set }A_0 \subseteq V(G)\text{ that }r\text{-neighbor percolates in time }T\}.$$
 In 2015, Benevides and Przykucki \cite{benevides2015maximum} determined the asymptotic value of $T([n]^2,2)$. Their result is reproduced below.
 
@@ -300,9 +303,9 @@ In 2015, Benevides and Przykucki \cite{benevides2015maximum} determined the asym
 The maximum percolation time on $[n]^2$ is $T([n]^2,2) = \frac{13}{18}n^2 + O(n)$. 
 \end{thm}
 
-Interestingly, this time is not achieved with minimum lethal sets (of size $n$). In fact, the same authors showed in an earlier paper that the maximum percolation time for lethal sets $A_0$ on $[n]^2$, where $|A_0| = n$, is the nearest integer value to $\frac{5n^2-2n}{8}$ \cite{benevides2013slowly}. 
+Interestingly, this time is not achieved with minimum lethal sets (lethal sets of size $n$). In fact, the same authors showed in an earlier paper that the maximum percolation time for lethal sets $A_0$ on $[n]^2$, where $|A_0| = n$, is the nearest integer value to $\frac{5n^2-2n}{8}$ \cite{benevides2013slowly}. 
 
-The fact that minimum lethal sets do not always percolate slowest holds for grids $[n]^2$ under 3-neighbor percolation, where $n=2^k-1$. In Chapter 5, we prove that $m([n]^2,3) = \frac{n^2+2n}{3}$, and this is achieved for exactly one lethal configuration of vertices $A_0$. It is easy to see that $A_0$ percolates in time $(n-1)/2$ and so, if $|A_0| = \frac{n^2+2n}{3}$, then $T([n]^2,3) = \frac{n-1}{2}$ (see Figure \ref{fig:fast}). By removing the restriction on $|A_0|$, we are able to improve this to $T([n]^2,3) \geq (n-1)(n-1)/2$ (see Figure \ref{fig:slow}). It is not clear whether this lower bound is best possible and, as far as we are aware, no papers have been published regarding the value of $T([n]^d,r)$ for values other than $d=r=2$. 
+The fact that minimum lethal sets do not always percolate slowest holds for grids $[n]^2$ under 3-neighbor percolation, where $n=2^k-1$. In Chapter 5, we prove that $m([n]^2,3) = \frac{n^2+2n}{3}$, and show that this is achieved for exactly one lethal configuration of vertices $A_0$. It is easy to see that $A_0$ percolates in time $(n-1)/2$ and so, if $|A_0| = \frac{n^2+2n}{3}$, then $T([n]^2,3) = \frac{n-1}{2}$ (see Figure \ref{fig:fast}). By removing the restriction on $|A_0|$, we are able to improve this to $T([n]^2,3) \geq (n-1)(n-1)/2$ (see Figure \ref{fig:slow}). It is not clear whether this lower bound is best possible and, as far as we are aware, no papers have been published regarding the value of $T([n]^d,r)$ for values other than $d=r=2$. 
 
 \begin{figure}[]
 \centering
@@ -328,11 +331,11 @@ As stated by Theorem \ref{thm:main_result}, the primary goal of this thesis is t
 
 Chapters 2 and 3 are dedicated to building a conceptual and intuitive framework upon which to prove Theorem \ref{thm:main_result}. In Chapter 2, we present lemmas regarding the structure of lethal sets in both two-dimensional and $d$-dimensional grids. These lemmas will prove useful in our examination of general constructions of lethal sets (see Chapter 6). We also discuss the design and function of a visualization tool developed to assist in the examination of lethal sets. In Chapter 3, we prove a lemma that will allow us to recursively develop large families of lethal sets that match the surface area bound, and summarize all families of lethal sets that we are able to obtain. 
 
-Chapter 4 leverages the results of Chapters 2 and 3 to prove Theorem \ref{thm:main_result}. We first show that all divisible grids $(a_1,a_2,a_3)$, $a_1 \leq a_2 \leq a_3$ admit lethal sets matching the SA bound, and then extend this result to all grids of size 11. Chapter 5 further builds on this, highlighting some new results for 3-neighbor percolation on grids of the form $(a_1,a_2,1)$.
+Chapter 4 leverages the results of Chapters 2 and 3 to prove Theorem \ref{thm:main_result}. We first show that grids $[a_1] \times [a_2] \times [a_3]$, $a_1 \geq a_2 \geq a_3 \geq 5$ with integral surface area bound admit tight lethal sets, and then extend this result to all grids of size 11. Chapter 5 further builds on this, highlighting some new results for 3-neighbor percolation on grids $[a_1] \times [a_2]$.
 
-Chapter 7 and Appendix A examine the structure and lethality of percolating sets discovered in this research. In particular, Chapter 7 proves the lethality of the constructed families of sets presented in Chapter 2, and Appendix A illustrates the phases of infection on individual lethal sets.
+Chapter 6 and Appendix A examine the structure and lethality of percolating sets discovered in this research. In particular, Chapter 6 proves the lethality of the constructed families of sets presented in Chapter 2, and Appendix A illustrates the phases of infection on individual lethal sets.
 
-Finally, Chapter 9 summarizes our results and provides recommendations for future research in similar and related problems. 
+Finally, Chapter 7 summarizes our results and provides recommendations for future research in similar and related problems. 
 
 % proof of perimeter bound and generalization to surface area bound
 % "So we have a goal, and now the question becomes whether or not it is possible to obtain this goal in all cases through constructions."
