@@ -1,10 +1,8 @@
 \chapter{Constructions}
 
-\section{Introduction}
+In this chapter, we present diagram-supported constructions for grids that admit optimal and perfect lethal sets under the 3-neighbor process. The proofs are organized by the thickness of the grid. All constructions in this chapter belong to infinite families of grids. We use two strategies in our analysis of these constructions, outlined below.
 
-In this chapter, we present diagrammed proofs of grids that admit optimal and perfect lethal sets under the 3-neighbor process. The proofs are organized by the thickness of the grid. All constructions in the following sections belong to infinite families of grids. We use two strategies in our analysis of these constructions, dependent on the parity of the grid. 
-
-We examine families of the form $(0,1,1) \pmod 2$ by region, and observe that certain regions can be expanded to arbitrarily large sizes without adversely affecting the spread of infection. In particular, we split these grids into components $A,B,X$, where $A$ and $B$ bookend a central, repeating segment $X$. Our discussion will make use of the following definition and lemma:
+We examine Constructions \ref{con:3x2x(3mod6)}, \ref{con:2x3x0_mod6}, \ref{con:3x3xeven}, \ref{con:3x6xeven}, and \ref{con:3x6xodd} by region, and observe that certain pieces of the grid can be expanded to arbitrarily large sizes without adversely affecting the spread of infection. In particular, we split these grids into components $A,B,X$, where $A$ and $B$ bookend a central, periodic segment $X$. Our discussion will make use of the following definition and lemma:
 
 \begin{defn}
 For a grid $G=[a_1] \times [a_2] \times [a_3]$, define the $k$th \emph{level} of $G$ as the subgraph $L_k = [a_1] \times [a_2] \times \{k\}$, for $k \in [a_3]$. 
@@ -12,7 +10,7 @@ For a grid $G=[a_1] \times [a_2] \times [a_3]$, define the $k$th \emph{level} of
 
 \begin{lem}
 \label{lem:2_neighbor_levels}
-Let $G=[a_1] \times [a_2] \times [a_3]$ and let $L_k$ be the $k$th level of $G$. Suppose all vertices in $L_k$ are infected. Then any lethal set in $L_{k+1}$ (resp. $L_{k-1}$) under the 2-neighbor process is lethal in $G[V(L_{k}) \cup V(L_{k+1})]$ (resp. $G[V(L_{k-1}) \cup V(L_{k})]$) under the 3-neighbor process. 
+Let $G=[a_1] \times [a_2] \times [a_3]$ and let $L_k$ be the $k$th level of $G$. Suppose all vertices in $L_k$ are infected. Then any lethal set in $L_{k+1}$ $($resp. $L_{k-1}$$)$ under the $2$-neighbor process is lethal in $G[V(L_{k}) \cup V(L_{k+1})]$ $($resp. $G[V(L_{k-1}) \cup V(L_{k})]$$)$ under the 3-neighbor process. 
 \end{lem}
 
 \begin{proof}
@@ -21,15 +19,13 @@ Each vertex $v \in L_{k+1} \cup L_{k-1}$ has an infected neighbor in $L_k$. Ther
 
 Proofs of the lethality of the remaining families all leverage Lemma \ref{lem:walls}. As a consequence, their argumentative structure remains broadly the same, even as the constructions themselves appear quite different. We shall outline this structure here, before examining the specific proofs. 
 
-We begin by demonstrating that the grid $G=(a_1,a_2,a_3)$ admits a manifold $M$. Recall from Corollary \ref{cor:walls} that a manifold on $G$ is the union of faces
-$$F_{1,k_1} \cup F_{2,k_2} \cup F_{3,k_3}$$
-for some $k_i \in [a_i]$. To show that a particular subset $M$ of $V(G)$ is a manifold, we identify the regions $R_1, \dots, R_n$ that partition $V(G) \setminus M$ and are flanked by three perpendicular walls. In our diagrams, these regions are represented by the volumes bordered by three perpendicular blue, green, and red walls. We then identify a proper unfolding $H$ of $M$ and show that $H$ admits a lethal set $A$, where $|A| = \text{SA}(G)$. Finally, we apply Corollary \ref{cor:walls} to prove that $G$ is perfect. 
+We begin by demonstrating that the grid $G=G(a_1,a_2,a_3)$ admits a manifold $M$. Recall from Corollary \ref{cor:three_walls} that a manifold on $G$ is the union of shared perpendicular faces of sub-grids $G_{i,j,\ell}$ of $G$. To show that a particular subset $M$ of $V(G)$ is a manifold, we identify the regions $R_1, \dots, R_n$ that partition $V(G) \setminus M$ and are flanked by three perpendicular walls. In our diagrams, these regions are represented by the volumes bordered by three perpendicular blue, green, and red walls. We then identify a proper unfolding $H$ of $M$ and show that $H$ admits a lethal set $A$, where $|A| = SA(G)$. Finally, we apply Corollary \ref{cor:three_walls} to prove that $G$ is perfect. 
 
 %We shall call a thickness \emph{semi-complete} if all divisibility cases are optimal. We present some useful definitions and lemmas.
 
 \section{Thickness 1}
 
-We present a construction that is optimal on all grids $(a,b,1)$, where $a \equiv 5 \pmod 6$, $b \equiv 1 \pmod 2$, and $a,b \geq 5$. As such grids constitute non-divisibility cases, this construction is not perfect. However, by leveraging Lemma \ref{lem:unfolded_cube}, we shall see that it can be used to obtain perfect lethal sets on certain grids of thickness 3. 
+We present a construction that is optimal on all grids $G(a,b,1)$, where $a \equiv 5 \pmod 6$, $b \equiv 1 \pmod 2$, and $a,b \geq 5$. As such grids constitute non-divisibility cases, this construction is not perfect. However, by leveraging Lemma \ref{lem:unfolded_cube}, we shall see that it can be used to obtain perfect lethal sets on certain grids of thickness 3. 
 
 As indicated by Proposition \ref{prop:immune_regions}, a fundamental characteristic of lethal sets $A_0$ is the presence of an initially uninfected corridor, bounded by walls of infection. This structure is apparent in the second diagrams of Figures \ref{fig:15x15x1} and \ref{fig:11x13x1} in the previous chapter. These corridors correspond to forests in the complement $G[\overline{A_0}]$ of $A_0$. In this section, we provide a general method for constructing such corridors in $(a, b, 1)$ grids where $a \equiv 5 \pmod 6$ and $b \equiv 1 \pmod 2$.
 
@@ -37,33 +33,33 @@ As indicated by Proposition \ref{prop:immune_regions}, a fundamental characteris
 % WIDTH >= 5
 \begin{con}
 \label{con:snake}
-All grids of the form $(a,b,1)$, $a \equiv 5 \pmod 6$, $b \equiv 1 \pmod 2$, and $a,b \geq 5$ are optimal.
+All tuples $(a,b,1)$, $a \equiv 5 \pmod 6$, $b \equiv 1 \pmod 2$, and $a,b \geq 5$ are optimal.
 \end{con}
 
 \begin{proof}
-For grids of the form $(a,b,1)$, $a \equiv 5 \pmod 6$, $b \equiv 1 \pmod 2$, we construct an optimal infected set and show that it is lethal by Proposition \ref{prop:immune_regions}. For the base case, consider the $(5,5,1)$ grid $G$ illustrated in Figure \ref{fig:5x5x1}. Observe that this construction is optimal. Now consider the grid $G'$ resulting from the insertion of a $(5, 2k, 1)$ block, as shown in Figure \ref{fig:5x13x1}. Note that the subgraph induced by the uninfected vertices of $G'$ satisfies the conditions of Proposition \ref{prop:immune_regions}. Furthermore, note that if any $(5, n, 1)$ grid is optimal, the $(5,n+2,1)$ grid resulting from such a construction has surface area bound $\text{S.A.}(5,n,1) + 4$, which agrees with the number of infected vertices.
+For $G(a,b,1)$, $a \equiv 5 \pmod 6$, $b \equiv 1 \pmod 2$, we construct an optimal infected set and show that it is lethal by Proposition \ref{prop:immune_regions}. For the base case, consider the $[5] \times [5] \times [1]$ grid $G$ illustrated in Figure \ref{fig:5x5x1}. Observe that this construction is optimal. Now consider the grid $G'$ resulting from the insertion of a $[5] \times [2k] \times [1]$ block $X$, as shown in Figure \ref{fig:5x13x1}. Note that the subgraph induced by the uninfected vertices of $G'$ satisfies the conditions of Proposition \ref{prop:immune_regions}. Furthermore, note that if any grid $G(5, n, 1)$ is optimal, the grid $G(5,n+2,1)$ resulting from such a construction has surface area bound $SA(5,n,1) + 4$, which agrees with the number of infected vertices.
 
 \begin{figure}[]
 \centering
 \includegraphics[width=0.15\textwidth]{figures/7/5x5x1.pdf}
-\caption{An optimal percolating set for $(5,5,1)$.}
+\caption{An optimal percolating set for $G(5,5,1)$.}
 \label{fig:5x5x1}
 \end{figure} 
 
 \begin{figure}[]
 \centering
 \includegraphics[width=0.5\textwidth]{figures/7/5x13x1.pdf}
-\caption{An optimal percolating set for $(5,13,1)$.}
+\caption{An optimal percolating set for $G(5,13,1)$.}
 \label{fig:5x13x1}
 \end{figure} 
 
-To extend this construction in the vertical direction, we introduce a kink in the snaking infection. This kink requires six rows to produce a repeating pattern. The structure of this design is shown in Figure \ref{fig:11x13x1}. For grids of smaller width, the same construction gives optimal percolating sets; however, the snaking pattern is increasingly difficult to recognize in thin grids.
+To extend this construction in the vertical direction, we introduce a ``kink" in the snaking infection. This ``kink" requires six rows to produce a repeating pattern. The structure of this design is shown in Figure \ref{fig:11x13x1}, with the ``kinked" region labeled ``Y". For grids of smaller width, the same construction gives optimal percolating sets; however, the snaking pattern is increasingly difficult to recognize in thin grids.
 \end{proof}
 
 \begin{figure}[]
 \centering
 \includegraphics[width=0.6\textwidth]{figures/7/11x13x1.pdf}
-\caption{An optimal percolating set for $(11,13,1)$.}
+\caption{An optimal percolating set for $G(11,13,1)$.}
 \label{fig:11x13x1}
 \end{figure} 
 
@@ -76,7 +72,7 @@ We examine four infinite families of perfect grids and show that each has a mani
 % (3 mod 6, 3, 2)
 \begin{con}
 \label{con:3x2x(3mod6)}
-All $(a,3,2)$ grids with $a \equiv 3 \pmod 6$ and $a >3$ are perfect. 
+All tuples $(a,3,2)$ with $a \equiv 3 \pmod 6$ and $a >3$ are perfect. 
 \end{con}
 
 \begin{proof}
@@ -86,13 +82,13 @@ All $(a,3,2)$ grids with $a \equiv 3 \pmod 6$ and $a >3$ are perfect.
 
 %Let $A = \{1\} \times [3] \times [2]$, $B = \{8,9\} \times [3] \times [2]$ and $X = \{2,3,4,5,6,7\} \times [3] \times [2]$ be components of $G$ (see Figure \ref{fig:9x3x2}). Denote by $AX^kB$ the graph obtained by inserting $k$ copies of $X$ between components $A$ and $B$. Let $A_0^k$ be a lethal set on $AX^kB$. We show that $A_0^{k+1}$ is lethal on $AX^{k+1}B$. 
 
-Let $G=(6k+3,3,2)$ be a grid such that $k>0$. Let $A = \{1\} \times [3] \times [2]$, $B = \{6k+2, 6k+3\} \times [3] \times [2]$, and $X_i = \{6i+2,6i+3,6i+4,6i+5,6i+6,6i+7\} \times [3] \times [2]$ for $i \in [k - 1] \cup \{0\}$, be components of $G$. Denote by $AX^kB$ the union of components $A \cup X_0 \cup \dots \cup X_{k-1} \cup B$, and note that $G=AX^kB$. Let $A_t^k \subseteq V(G)$ be the set of infectious vertices in $G$ at time $t$, and suppose that each $X_i$ contains the same pattern of infected vertices (see Figure \ref{fig:9x3x2}). We show that $A_0^k$ is lethal and perfect. 
+Let $G=G(6k+3,3,2)$ be a grid such that $k>0$. Let $A = \{1\} \times [3] \times [2]$, $B = \{6k+2, 6k+3\} \times [3] \times [2]$, and $X_i = \{6i+2,6i+3,\dots,6i+7\} \times [3] \times [2]$ for $i \in [k - 1] \cup \{0\}$, be regions of $G$. Denote by $AX^kB$ the union of regions $A \cup X_0 \cup \dots \cup X_{k-1} \cup B$, and note that $G=AX^kB$. Let $A_t^k \subseteq V(G)$ be the set of infected vertices in $G$ at time $t$, and suppose that each $X_i$ contains the same pattern of infected vertices (see Figure \ref{fig:9x3x2}). We show that $A_0^k$ is lethal and perfect. 
 
-Consider the union of components $AX^k = A \cup X_0 \cup \dots \cup X_{k-1}$ (see Figure \ref{fig:19x3x2}). Let $L_1$ and $L_2$ be the top and bottom levels $AX^k$, respectively. Observe that after one time-step, the subgraph $L_1[\overline{A_1^k}]$ is a forest connected to the border of $L_1$, and so by Proposition \ref{prop:immune_regions}, $A_0^k$ is lethal on $L_1$. 
+Consider the union of regions $AX^k = A \cup X_0 \cup \dots \cup X_{k-1}$ (see Figure \ref{fig:19x3x2}). Let $L_1$ and $L_2$ be the top and bottom levels of $AX^k$, respectively. Observe that after one time step, the subgraph $L_1[\overline{A_1^k}]$ is a forest connected to the border of $L_1$, and so by Proposition \ref{prop:immune_regions}, $A_0^k$ is lethal on $L_1$. 
 
 Now consider $G$ and observe that the top level becomes fully infected (see Figure \ref{fig:21x3x2}). Therefore, by Lemma \ref{lem:2_neighbor_levels}, it is sufficient to prove that $A_0^k$ is lethal on the bottom level under the 2-neighbor bootstrap process. Figure \ref{fig:9x3x1} illustrates the key steps of this process on the smaller grid $AXB$, starting at $t=1$. Infection spreads down rows delineated by red arrows, ultimately infecting all vertices in the bottom level. We conclude that $A_0^k$ is lethal on $G$ under the 3-neighbor process.
 
-To prove that $A_0^k$ is perfect, observe that $|A_0^k| = 3 + 10k + 4$. The surface area bound for $G=(6k+3,3,2)$ is given by
+To prove that $A_0^k$ is perfect, observe that $|A_0^k| = 3 + 10k + 4$. The surface area bound for $G(6k+3,3,2)$ is given by
 $$\frac{(3)(6k+3) + (3)(2) + (2)(6k+3)}{3} = \frac{30k + 21}{3} = 10k+7.$$
 Since these two values are equal, $A_0^k$ is tight and lethal, and therefore perfect.
 \end{proof}
@@ -100,7 +96,7 @@ Since these two values are equal, $A_0^k$ is tight and lethal, and therefore per
 \begin{figure}[]
 \centering
 \includegraphics[width=0.3\textwidth]{figures/7/3x9x2.pdf}
-\caption{The components $A$, $X$, $B$ on $G=AXB$ with infectious set $A_0$.}
+\caption{The regions $A$, $X$, $B$ on $G=AXB$ with infectious set $A_0$.}
 \label{fig:9x3x2}
 \end{figure} 
 
@@ -121,24 +117,24 @@ Since these two values are equal, $A_0^k$ is tight and lethal, and therefore per
 \begin{figure}[]
 \centering
 \includegraphics[width=0.8\textwidth]{figures/7/3x9x1.pdf}
-\caption{The 2-neighbor process on $(9,3,1)$ for $t=1$, $t \in \{2,3,4,5,6\}$, and $t \in \{7,8,9,10,11,12,13,14\}$.}
+\caption{The 2-neighbor process on $G(9,3,1)$ for $t=1$, $2 \le t \le 6$, and $7 \le t \le 14$.}
 \label{fig:9x3x1}
 \end{figure} 
 
 \begin{con}
 \label{con:3x2xa_mod6}
-All $(a,3,2)$ grids with $a \equiv 0 \pmod 6$ and $a \geq 6$ are perfect. 
+All tuples $(a,3,2)$ with $a \equiv 0 \pmod 6$ and $a \geq 6$ are perfect. 
 \end{con}
 
 \begin{proof}
-Let $G$ be an $(a,3,2)$ grid with $a \equiv 0 \pmod 6$ and $a \geq 6$, and let $M$ be a manifold of $G$ and $H$ be its proper unfolding (see Figure \ref{fig:3x12x2_manifold}). Observe that $M$ is indeed a manifold: it partitions $V(G) \setminus M$ into two sets $R_1$ and $R_2$, both bounded by mutually orthogonal red, green, and blue faces (see Figure \ref{fig:3x12x2_manifold_a}). Furthermore, note that $H$ is obtained from $M$ by cutting along seams between red and green faces, and flattening the figure. It follows that $H$ is a proper unfolding of $G$. 
+Let $G=G(a,3,2)$ where $a \equiv 0 \pmod 6$ and $a \geq 6$, and let $M$ be a manifold of $G$ and $H$ be its proper unfolding (see Figure \ref{fig:3x12x2_manifold}). Observe that $M$ is indeed a manifold: it partitions $V(G) \setminus M$ into two sets $R_1$ and $R_2$, both bounded by mutually orthogonal red, green, and blue faces (see Figure \ref{fig:3x12x2_manifold_a}). Furthermore, note that $H$ is obtained from $M$ by cutting along seams between red and green faces, and flattening the figure. It follows that $H$ is a proper unfolding of $G$. 
 
-Let $X_1, \dots, X_k$ be the repeated components of $H$. Denote by $X$ the union of these components. Let $A_t \subseteq V(H)$ be the set of infectious vertices in $H$ at time $t$, and suppose that each $X_i$ contains the same pattern of infected vertices (see Figure \ref{fig:3x12x2_unfolded_lethal}). We show that $A_0$ is lethal and perfect.
+Let $X_1, \dots, X_k$ be the periodic regions of $H$. Denote by $X$ the union of these regions. Let $A_t \subseteq V(H)$ be the set of infected vertices in $H$ at time $t$, and suppose that each $X_i$ contains the same pattern of infected vertices (see Figure \ref{fig:3x12x2_unfolded_lethal}). We show that $A_0$ is lethal and perfect.
 
-Consider an initial infection $A_0$ of $H$ (see Figure \ref{fig:3x12x2_unfolded_lethal}). Observe that $A_0$ infects all vertices of $X$ by Proposition \ref{prop:immune_regions}. We show that the remaining healthy vertices of $H$ become infected. Consider re-folding $H$, and note that the two cells marked with an ``X" in $H$ represent the same cell in $G$. This is enough to infect the remaining regions of $H$, and by Corollary \ref{cor:walls}, $A_0$ is lethal on $G$. 
+Consider an initial infection $A_0$ of $H$ (see Figure \ref{fig:3x12x2_unfolded_lethal}). Observe that $A_0$ infects all vertices of $X$ by Proposition \ref{prop:immune_regions}. We show that the remaining healthy vertices of $H$ become infected. Consider re-folding $H$, and note that the two cells marked with an ``X" in $H$ represent the same cell in $G$. This is enough to infect the remaining regions of $H$, and by Corollary \ref{cor:three_walls}, $A_0$ is lethal on $G$. 
 %Furthermore, observe that $G$ can be extended in the $x$ direction by repeated insertions of the component $X$ (see Figure \ref{fig:3x12x2}). This process does not affect the structure of $H$, and Proposition \ref{prop:immune_regions} again guarantees lethality.
 
-To prove that $A_0$ is perfect, observe that $|A_0| = 4 + 10k + 8 = 10k +12$. The surface area bound for $G=(6k+6,3,2)$, where $k$ is the number of repeated components $X$, is given by
+To prove that $A_0$ is perfect, observe that $|A_0| = 4 + 10k + 8 = 10k +12$. The surface area bound for $G(6k+6,3,2)$, where $k$ is the number of repeated regions $X$, is given by
 $$\frac{(3)(6k+6) + (3)(2) + (2)(6k+6)}{3} = \frac{30k + 36}{3} = 10k+12.$$
 Since these two values are equal, $A_0$ is tight and lethal, and therefore perfect.
 \end{proof}
@@ -149,7 +145,7 @@ Since these two values are equal, $A_0$ is tight and lethal, and therefore perfe
 \centering
 \begin{subfigure}{0.45\textwidth}
 	\includegraphics[width=\textwidth]{figures/7/3x12x2_manifold_3d.pdf}
-	\caption{A manifold of $G= (3,12,2)$.}
+	\caption{A manifold of $G(3,12,2)$.}
 	\label{fig:3x12x2_manifold_a}
 \end{subfigure} \hfill%
 \begin{subfigure}{0.45\textwidth}
@@ -157,21 +153,21 @@ Since these two values are equal, $A_0$ is tight and lethal, and therefore perfe
 	\caption{A proper unfolding of $G$.}
 	\label{fig:3x12x2_manifold_b}
 \end{subfigure}
-\caption{A proper unfolding of $G= (3,12,2)$. Colored rectangles indicate faces of $G$. Dashed lines indicate that cells appear on different layers. }
+\caption{A proper unfolding of $G(3,12,2)$. Colored rectangles indicate faces of $G$. Dashed lines indicate that cells appear on different layers. }
 \label{fig:3x12x2_manifold}
 \end{figure} 
 
 \begin{figure}[]
 \centering
 \includegraphics[width=0.8\textwidth]{figures/7/3x12x2_unfolded_lethal.pdf}
-\caption{A lethal set on $H$ showing the repeated component $X$ ($t=1$ and $t=2$).}
+\caption{A lethal set on $H$ showing the repeated region $X$ ($t=1$ and $t=2$).}
 \label{fig:3x12x2_unfolded_lethal}
 \end{figure} 
 
 \begin{figure}[]
 \centering
 \includegraphics[width=0.8\textwidth]{figures/7/3x12x2.pdf}
-\caption{A perfect lethal set for $(3,12,2)$ with component $X$.}
+\caption{A perfect lethal set for $G(3,12,2)$ with region $X$.}
 \label{fig:3x12x2}
 \end{figure} 
 
@@ -180,24 +176,24 @@ Since these two values are equal, $A_0$ is tight and lethal, and therefore perfe
 % a,b, MUST BE A CERTAIN SIZE
 \begin{con}
 \label{con:2x2x5_mod6}
-All $(a,b,2)$ grids with $a,b \in \{2,5\} \pmod 6$, $a \neq b \pmod 6$, and $a,b > 2$ are perfect. 
+All tuples $(a,b,2)$ with $a,b \in \{2,5\} \pmod 6$, $a \not\equiv b \pmod 6$, and $a,b > 2$ are perfect. 
 \end{con}
 
 \begin{proof}
-Let $G$ be an $(a,b,2)$ grid with $a,b \in \{2,5\} \pmod 6$, $a \neq b \pmod 6$, and $a,b > 2$, and let $M$ be a manifold of $G$ and $H$ be its proper unfolding (Figure \ref{fig:11x20x2_manifold}). Note that $M$ partitions the vertices of $V(G) \setminus M$ into two disjoint sets $R_1$ and $R_2$, both bounded by mutually orthogonal red, green, and blue faces. Note, also, that $H$ is obtained from $M$ by cutting along seams between red and green faces, and flattening the figure. Therefore, $H$ is a proper unfolding of $G$. 
+Let $G=G(a,b,2)$ be a grid with $a,b \in \{2,5\} \pmod 6$, $a \not\equiv b \pmod 6$, and $a,b > 2$, and let $M$ be a manifold of $G$ and $H$ be its proper unfolding (Figure \ref{fig:11x20x2_manifold}). Note that $M$ partitions the vertices of $V(G) \setminus M$ into two disjoint sets $R_1$ and $R_2$, both bounded by mutually orthogonal red, green, and blue faces. Note, also, that $H$ is obtained from $M$ by cutting along seams between red and green faces, and flattening the figure. Therefore, $H$ is a proper unfolding of $G$. 
 
-Let $X_1, \dots, X_{k_1}$ be the repeated components of $H$ in the $x$-direction, and $Y_1, \dots, Y_{k_2}$ be the repeated components of $H$ in the $y$-direction (see Figure \ref{fig:18x16x1_unfolded_lethal}). Denote by $X \times Y$ the union of these components. Let $A_t \subseteq V(H)$ be the set of infectious vertices in $H$ at time $t$, and suppose that for $i \in [k_1] \setminus \{1,k_1\}$ and $j \in [k_2]$, each $X_i \times Y_j$ contains the same pattern of infected vertices (see Figure \ref{fig:XiYj}). We show that $A_0$ is lethal and perfect.
+Let $X_1, \dots, X_{k_1}$ be the repeated regions of $H$ in the $x$-direction, and $Y_1, \dots, Y_{k_2}$ be the repeated regions of $H$ in the $y$-direction (see Figure \ref{fig:18x16x1_unfolded_lethal}). Denote by $XY$ the union of these components. Let $A_t \subseteq V(H)$ be the set of infectious vertices in $H$ at time $t$, and suppose that for $i \in [k_1] \setminus \{1,k_1\}$ and $j \in [k_2]$, each $X_iY_j$ contains the same pattern of infected vertices (see Figure \ref{fig:XiYj}). We show that $A_0$ is lethal and perfect.
 
-Consider the initial infection $A_0$ of $H$ as shown in Figure \ref{fig:18x16x1_unfolded_lethal}. Observe that $A_0$ infects all vertices of $X\times Y$ by Proposition \ref{prop:immune_regions}. We show that the remaining healthy vertices of $H$ become infected. The individual vertices in the rightmost column of $H$ are infected by Proposition \ref{prop:immune_regions}. Consider re-folding $H$, and note that the two cells marked with an ``X" in $H$ represent the same cell in $G$. This is enough to infect the remaining regions of $H$, and by Corollary \ref{cor:walls}, $A_0$ is lethal on $G$. 
+Consider the initial infection $A_0$ of $H$ as shown in Figure \ref{fig:18x16x1_unfolded_lethal}. Observe that $A_0$ infects all vertices of $X\times Y$ by Proposition \ref{prop:immune_regions}. We show that the remaining healthy vertices of $H$ become infected. The individual vertices in the rightmost column of $H$ are infected by Proposition \ref{prop:immune_regions}. Consider re-folding $H$, and note that the two cells marked with an ``X" in $H$ represent the same cell in $G$. This is enough to infect the remaining regions of $H$, and by Corollary \ref{cor:three_walls}, $A_0$ is lethal on $G$. 
 
-To prove that $A_0$ is perfect, observe that for $i \in [k_1] \setminus \{1\}$ and $j \in [k_2]$, each $X_i \times Y_j$ block contains exactly 12 infected vertices. For $j \in [k_2 -1]$, $X_1 \times Y_j$ contains 11 infected vertices, and $X_1 \times Y_{k_2}$ contains 12 infected vertices. In total, the component $X \times Y$ contains exactly 
+To prove that $A_0$ is perfect, observe that for $i \in [k_1] \setminus \{1\}$ and $j \in [k_2]$, each $X_iY_j$ block contains exactly 12 infected vertices. For $j \in [k_2 -1]$, $X_1Y_j$ contains 11 infected vertices, and $X_1Y_{k_2}$ contains 12 infected vertices. In total, the region $XY$ contains exactly 
 $$12(k_1-1)(k_2) + 11(k_2-1) + 12$$
-initially infected vertices. Of the remaining vertices in $H$, $14(k_1) - 1 +9(k_2) + 8$ are infected. Therefore, 
+initially infected vertices. Of the remaining vertices in $H$, $14k_1 - 1 +9k_2 + 8$ are infected. Therefore, 
 \begin{align*}
-|A_0| &= 12(k_1-1)(k_2) + 11(k_2-1) + 12+14(k_1) - 1 +9(k_2) + 8 \\
+|A_0| &= 12(k_1-1)k_2 + 11(k_2-1) + 12+14(k_1) - 1 +9(k_2) + 8 \\
 &= 12k_1k_2 + 14k_1 + 8k_2 +8.
 \end{align*}
-The surface area bound for $G=(6k_1+2,6k_2+5,2)$ is given by
+The surface area bound for $G(6k_1+2,6k_2+5,2)$ is given by
 \begin{align*}
 SA(6k_1+2,6k_2+5,2) &= \frac{(6k_1+2)(6k_2 + 5) + (6k_2+5)(2) + (2)(6k_1+2)}{3} \\
 &= \frac{36(k_1)(k_2) +42k_1 +24k_2 + 24}{3} \\
@@ -210,7 +206,7 @@ Since these two values are equal, $A_0$ is tight and lethal, and therefore perfe
 \centering
 \begin{subfigure}{0.45\textwidth}
 	\includegraphics[width=\textwidth]{figures/7/11x20x2_manifold_3d.pdf}
-	\caption{A manifold of $G= (11,20,2)$.}
+	\caption{A manifold of $G(11,20,2)$.}
 	\label{}
 \end{subfigure} \hfill%
 \begin{subfigure}{0.45\textwidth}
@@ -218,28 +214,28 @@ Since these two values are equal, $A_0$ is tight and lethal, and therefore perfe
 	\caption{A proper unfolding of $G$.}
 	\label{}
 \end{subfigure}
-\caption{A proper unfolding of $G= (11,20,2)$. Colored rectangles indicate faces of $G$. Dashed lines indicate that cells appear on different layers. }
+\caption{A proper unfolding of $G(11,20,2)$. Colored rectangles indicate faces of $G$. Dashed lines indicate that cells appear on different layers. }
 \label{fig:11x20x2_manifold}
 \end{figure} 
 
 \begin{figure}[]
 \centering
 \includegraphics[width=0.8\textwidth]{figures/7/18x16x1_unfolded_lethal.pdf}
-\caption{A percolating set on the proper unfolding of $G= (17,14,2)$.}
+\caption{A percolating set on the proper unfolding of $G(17,14,2)$.}
 \label{fig:18x16x1_unfolded_lethal}
 \end{figure}
 
 \begin{figure}[]
 \centering
 \includegraphics[width=0.6\textwidth]{figures/7/17x14x2.pdf}
-\caption{A perfect percolating set for $(17,20,2)$.}
+\caption{A perfect percolating set for $G(17,20,2)$.}
 \label{fig:11x20x2}
 \end{figure} 
 
 \begin{figure}[]
 \centering
 \includegraphics[width=0.12\textwidth]{figures/7/XiYj.pdf}
-\caption{A block $X_i \times Y_j$.}
+\caption{A block $X_iY_j$.}
 \label{fig:XiYj}
 \end{figure} 
 
@@ -248,21 +244,21 @@ Since these two values are equal, $A_0$ is tight and lethal, and therefore perfe
 % a,b MUST BE A CERTAIN SIZE
 \begin{con}
 \label{con:2x3x0_mod6}
-All $(a,b,2)$ grids with $a,b \in \{0,3\} \pmod 6$, $a \neq b \pmod 6$ and $a,b, \geq 6$ are perfect. 
+All tuples $(a,b,2)$ with $a,b \in \{0,3\} \pmod 6$, $a \not\equiv b \pmod 6$ and $a,b, \geq 6$ are perfect. 
 \end{con}
 
 \begin{proof}
-Let $G$ be an $(a,b,2)$ grid with $a,b \in \{0,3\} \pmod 6$, $a \neq b \pmod 6$, and $a,b \geq 6$, and let $X_1, \dots, X_{k_1}$ be the repeated components of $G$ in the $x$-direction, and $Y_1, \dots, Y_{k_2}$ be the repeated components of $G$ in the $y$-direction (see Figure \ref{fig:12x15x2}). Denote the union of these components by $X \times Y$. Let $A_t \subseteq V(H)$ be the set of infectious vertices in $G$ at time $t$, and suppose that for $i \in [k_1]$ and $j \in [k_2]$, each $X_i \times Y_j$ contains the same pattern of infected vertices (see Figure \ref{fig:12x15x2}). We show that $A_0$ is lethal and perfect.
+Let $G=G(a,b,2)$ be a grid with $a,b \in \{0,3\} \pmod 6$, $a \not\equiv b \pmod 6$, and $a,b \geq 6$, and let $X_1, \dots, X_{k_1}$ be the repeated regions of $G$ in the $x$-direction, and $Y_1, \dots, Y_{k_2}$ be the repeated regions of $G$ in the $y$-direction (see Figure \ref{fig:12x15x2}). Denote the union of these regions by $XY$. Let $A_t \subseteq V(H)$ be the set of infected vertices in $G$ at time $t$, and suppose that for $i \in [k_1]$ and $j \in [k_2]$, each $X_iY_j$ contains the same pattern of infected vertices (see Figure \ref{fig:12x15x2}). We show that $A_0$ is lethal and perfect.
 
-Let $L_1$ and $L_2$ be the top and bottom layers of $G$, respectively. Observe that after one time-step, the subgraph of $L_1$ induced by the uninfected vertices of $\cup Y_i$ is both acyclic and contains no border-to-border paths. Therefore, by Proposition \ref{prop:immune_regions}, $A_0$ is lethal in $(\cup Y_i) \cap L_1$. 
+Let $L_1$ and $L_2$ be the top and bottom layers of $G$, respectively. Observe that after one time step, the subgraph of $L_1$ induced by the uninfected vertices of $\cup Y_i$ is both acyclic and contains no border-to-border paths. Therefore, by Proposition \ref{prop:immune_regions}, $A_0$ is lethal in $(\cup Y_i) \cap L_1$. 
 
 Consider these observations in the context of $G$. Figure \ref{fig:12x15x2_L1} shows that after 5 additional time-steps, the remaining healthy vertices in $L_1$ form two corridors, marked by red arrows. The vertices in the upper corridor are infected by Proposition \ref{prop:immune_regions}, and those in the lower corridor are infected by Lemma \ref{lem:2_neighbor_levels}. Therefore, all vertices of $L_1$ become infected. Furthermore, the infected vertices in $L_2$ form a lethal set under the 2-neighbor process, and so, by Lemma \ref{lem:2_neighbor_levels}, we conclude that $A_0$ is lethal on $G$ under the 3-neighbor process.
 
-To prove that $A_0$ is perfect, observe that for $i \in [k_1]$ and $j \in [k_2]$, each $X_i \times Y_j$ block contains exactly 12 infected vertices, and so the total number of infected vertices in $X \times Y$ is $12k_1k_2$. 
+To prove that $A_0$ is perfect, observe that for $i \in [k_1]$ and $j \in [k_2]$, each $X_iY_j$ block contains exactly 12 infected vertices, and so the total number of infected vertices in $XY$ is $12k_1k_2$. 
 
 Of the remaining vertices in $G$, $16k_1+22k_2+28$ are infected. Therefore,
 $$|A_0| = 12k_1k_2 + 16k_1+22k_2+28.$$ 
-The surface area bound for $G=(6k_1+9,6k_2+6,2)$ is given by
+The surface area bound for $G(6k_1+9,6k_2+6,2)$ is given by
 \begin{align*}
 SA(6k_1+9,6k_2+6,2) &= \frac{(6k_1+9)(6k_2+6) + (6k_2+6)(2) + (2)(6k_1+9)}{3} \\
 &= \frac{36k_1k_2+ 48k_1 + 66k_2 + 84}{3} \\
@@ -274,18 +270,18 @@ Since these two values are equal, $A_0$ is tight and lethal, and therefore perfe
 \begin{figure}[]
 \centering
 \includegraphics[width=0.8\textwidth]{figures/7/12x15x2.pdf}
-\caption{A perfect percolating set for $(12,21,2)$.}
+\caption{A perfect percolating set for $G(12,21,2)$.}
 \label{fig:12x15x2}
 \end{figure} 
 
 \begin{figure}[]
 \centering
 \includegraphics[width=0.6\textwidth]{figures/7/12x15x2_L1_numbered_heatmap.pdf}
-\caption{A perfect percolating set for $(12,21,2)$.}
+\caption{A perfect percolating set for $G(12,21,2)$.}
 \label{fig:12x15x2_L1}
 \end{figure} 
 
-We note that it is possible to examine grids of the form described above using a folding argument, \emph{if} they are at least as large as $(12,21,2)$. However, such a process omits an infinite number of smaller grids. Nevertheless, the construction is of interest, and the grid and corresponding unfolded net are given in Figures \ref{fig:12x21x2}, \ref{fig:12x21x2_unfolded} and \ref{fig:12x21x2_unfolded_lethal} in the Appendix. 
+We note that it is possible to examine grids of the form described above using a folding argument, \emph{if} they are at least as large as $G(12,21,2)$. However, such a process omits an infinite number of smaller grids. Nevertheless, the construction is of interest, and the grid and corresponding unfolded net are given in Figures \ref{fig:12x21x2}, \ref{fig:12x21x2_unfolded} and \ref{fig:12x21x2_unfolded_lethal} in the Appendix. 
 
 % COMMENT
 % COMMENT
@@ -331,17 +327,17 @@ We note that it is possible to examine grids of the form described above using a
 
 \begin{con}
 \label{con:3x3xeven}
-All $(a,3,3)$ grids $G$ with $a \equiv 0 \pmod 2$ and $a > 2$ are perfect. 
+All tuples $(a,3,3)$ with $a \equiv 0 \pmod 2$ and $a > 2$ are perfect. 
 \end{con}
 
 \begin{proof}
-Let $G=(2k,3,3)$ be a grid such that $k > 1$. Let $A = \{1,2,3\} \times [3] \times [3]$, $B = \{2k\} \times [3] \times [3]$, and $X_i = \{2i+2,2i+3\} \times [3] \times [3]$ for $i \in [k-2]$, be components of $G$. Denote by $AX^kB$ the union of components $A \cup X_1 \cup \dots \cup X_{k} \cup B$, and note that $G=AX^kB$. Let $A_t^k \subseteq V(G)$ be the set of infectious vertices in $G$ at time $t$, and suppose that each $X_i$ contains the same pattern of infected vertices (see Figure \ref{fig:3x6x3}). We show that $A_0^k$ is lethal and perfect. 
+Let $G=G(2k,3,3)$ be a grid such that $k > 1$. Let $A = \{1,2,3\} \times [3] \times [3]$, $B = \{2k\} \times [3] \times [3]$, and $X_i = \{2i+2,2i+3\} \times [3] \times [3]$ for $i \in [k-2]$, be regions of $G$. Denote by $AX^kB$ the union of regions $A \cup X_1 \cup \dots \cup X_{k} \cup B$, and note that $G=AX^kB$. Let $A_t^k \subseteq V(G)$ be the set of infected vertices in $G$ at time $t$, and suppose that each $X_i$ contains the same pattern of infected vertices (see Figure \ref{fig:3x6x3}). We show that $A_0^k$ is lethal and perfect. 
 
-Consider the union of components $AX^k = A \cup X_1 \cup \dots \cup X_{k}$ (see Figure \ref{fig:3x13x3}). Let $L_1$, $L_2$ and $L_3$ be the top, middle and bottom levels of $AX^k$, respectively. Observe that after one time-step, the subgraph of $L_2 \setminus \{2k-1\} \times [3] \times \{2\}$ induced by $\overline{A_0^k}$ is acyclic with no border-to-border vertices, and so by Proposition \ref{prop:immune_regions}, $A_0^k$ infects all vertices of $L_2$ apart from those in the rightmost column (labeled ``X"; see Figure \ref{fig:3x13x3}). Therefore, by Lemma \ref{lem:2_neighbor_levels}, all vertices in $L_1$ apart from the rightmost column (labeled ``Y") become infected by the 2-neighbor process. Similarly, the red arrow in Figure \ref{fig:3x13x3}) shows the path of infection in $L_3$. 
+Consider the union of regions $AX^k = A \cup X_1 \cup \dots \cup X_{k}$ (see Figure \ref{fig:3x13x3}). Let $L_1$, $L_2$ and $L_3$ be the top, middle and bottom levels of $AX^k$, respectively. Observe that after one time-step, the subgraph of $L_2 \setminus \{2k-1\} \times [3] \times \{2\}$ induced by $\overline{A_0^k}$ is acyclic with no border-to-border vertices, and so by Proposition \ref{prop:immune_regions}, $A_0^k$ infects all vertices of $L_2$ apart from those in the rightmost column (labeled ``X"; see Figure \ref{fig:3x13x3}). Therefore, by Lemma \ref{lem:2_neighbor_levels}, all vertices in $L_1$ apart from the rightmost column (labeled ``Y") become infected by the 2-neighbor process. Similarly, the red arrow in Figure \ref{fig:3x13x3}) shows the path of infection in $L_3$. 
 
-Consider these observations in the context of $G$. Figure \ref{fig:3x14x3} shows that it takes 7 additional time-steps to fully infect $L_1$ and $L_2$. By Lemma \ref{lem:2_neighbor_levels}, the remaining healthy vertices in $L_3$ become infected. We therefore conclude that $A_0^k$ is lethal on $G$ under the 3-neighbor process.
+Consider these observations in the context of $G$. Figure \ref{fig:3x14x3} shows that it takes 7 additional time steps to fully infect $L_1$ and $L_2$. By Lemma \ref{lem:2_neighbor_levels}, the remaining healthy vertices in $L_3$ become infected. We therefore conclude that $A_0^k$ is lethal on $G$ under the 3-neighbor process.
 
-To prove that $A_0^k$ is perfect, observe that $|A_0^k| = 8 + 4(k-2) + 3=4k+3$. The surface area bound for $G=(2k,3,3)$ is given by
+To prove that $A_0^k$ is perfect, observe that $|A_0^k| = 8 + 4(k-2) + 3=4k+3$. The surface area bound for $G(2k,3,3)$ is given by
 $$\frac{(2k)(3) + (3)(3) + (3)(2k)}{3} = \frac{12k + 9}{3} = 4k+3.$$
 Since these two values are equal, $A_0^k$ is tight and lethal, and therefore perfect.
 \end{proof}
@@ -349,7 +345,7 @@ Since these two values are equal, $A_0^k$ is tight and lethal, and therefore per
 \begin{figure}[]
 \centering
 \includegraphics[width=0.2\textwidth]{figures/7/3x6x3.pdf}
-\caption{The components $A$, $X$, $B$ on $G=AXB$ with infectious set $A_0$.}
+\caption{The regions $A$, $X$, $B$ on $G=AXB$ with infected set $A_0$.}
 \label{fig:3x6x3}
 \end{figure} 
 
@@ -369,19 +365,19 @@ Since these two values are equal, $A_0^k$ is tight and lethal, and therefore per
 
 \begin{con}
 \label{con:3xaxb}
-All $(a,b,3)$ grids $G$ with $a \equiv 3 \pmod 6$, $b \equiv 1 \pmod 2$ and $a,b \geq 3$ are perfect. 
+All tuples $(a,b,3)$ with $a \equiv 3 \pmod 6$, $b \equiv 1 \pmod 2$ and $a,b \geq 3$ are perfect. 
 \end{con}
 
 \begin{proof}
-Consider the grid $H=(a+2,b+2,1)$, where $a \equiv 3 \pmod 6$ and $b \equiv 1 \pmod 2$. Observe that $H$ admits an optimal percolating set by Construction \ref{con:snake}, and that
+Consider the grid $H=G(a+2,b+2,1)$, where $a \equiv 3 \pmod 6$ and $b \equiv 1 \pmod 2$. Observe that $H$ admits an optimal percolating set by Construction \ref{con:snake}, and that
 $$\text{SA}(a,b,3) = \ceil{\text{SA}(a+2,b+2,1)} - 3.$$
-We show that a proper unfolding of $G$ can be obtained from a simple augmentation of $H$. Let $H'$ be the grid obtained by deleting the four vertices in the bottom, right-most corner of $H$ (see Figure \ref{fig:17x25x1_unfolded}). Consider the folding pattern illustrated in Figure \ref{fig:17x25x1_manifold}, and observe that the pairs of vertices adjacent to the deleted region are duplicates of each other. (In other words, consider folding up the red and green regions in Figure \ref{fig:17x25x1_manifold}, and notice that this operation causes vertices to overlap.) Taking this into account, $H'$ percolates by Proposition \ref{prop:immune_regions}. Since $H$ admits an optimal percolating set of size $\ceil{\text{SA}(a+2,b+2,1)}$, and precisely 3 of the vertices deleted from $H$ to obtain $H'$ were infected, it follows that $H'$ admits a perfect lethal set. Finally, by Lemma \ref{cor:walls}, $G$ is perfect.
+We show that a proper unfolding of $G$ can be obtained from a simple augmentation of $H$. Let $H'$ be the grid obtained by deleting the four vertices in the bottom, right-most corner of $H$ (see Figure \ref{fig:17x25x1_unfolded}). Consider the folding pattern illustrated in Figure \ref{fig:17x25x1_manifold}, and observe that the pairs of vertices adjacent to the deleted region are duplicates of each other. (In other words, consider folding up the red and green regions in Figure \ref{fig:17x25x1_manifold}, and notice that this operation causes vertices to overlap.) Taking this into account, $H'$ percolates by Proposition \ref{prop:immune_regions}. Since $H$ admits an optimal percolating set of size $\ceil{\text{SA}(a+2,b+2,1)}$, and precisely 3 of the vertices deleted from $H$ to obtain $H'$ were infected, it follows that $H'$ admits a perfect lethal set. Finally, by Lemma \ref{cor:three_walls}, $G$ is perfect.
 \end{proof}
 
 \begin{figure}[]
 \centering
 \includegraphics[width=0.8\textwidth]{figures/7/17x25x1_unfolded.pdf}
-\caption{A percolating set on the proper unfolding $H'$ of $G= (15,23,3)$.}
+\caption{A percolating set on the proper unfolding $H'$ of $G(15,23,3)$.}
 \label{fig:17x25x1_unfolded}
 \end{figure}
 
@@ -389,7 +385,7 @@ We show that a proper unfolding of $G$ can be obtained from a simple augmentatio
 \centering
 \begin{subfigure}{0.45\textwidth}
 	\includegraphics[width=\textwidth]{figures/7/17x25x1_manifold_3d.pdf}
-	\caption{A manifold of $G= (15,23,3)$.}
+	\caption{A manifold of $G(15,23,3)$.}
 	\label{}
 \end{subfigure} \hfill%
 \begin{subfigure}{0.45\textwidth}
@@ -397,23 +393,23 @@ We show that a proper unfolding of $G$ can be obtained from a simple augmentatio
 	\caption{A proper unfolding of $G$.}
 	\label{}
 \end{subfigure}
-\caption{A proper unfolding of $G= (15,23,3)$. Colored rectangles indicate faces of $G$. }
+\caption{A proper unfolding of $G(15,23,3)$. Colored rectangles indicate faces of $G$. }
 \label{fig:17x25x1_manifold}
 \end{figure} 
 
 \begin{con}
 \label{con:3x4xa}
-All $(a,4,3)$ grids $G$ with $a \equiv 3 \pmod 6$ and $a \geq 9$ are perfect. 
+All tuples $(a,4,3)$ with $a \equiv 3 \pmod 6$ and $a \geq 9$ are perfect. 
 \end{con}
 
 \begin{proof}
-Let $G=(6k+3,4,3)$ be a grid such that $k \geq 1$, and let $X_1, \dots, X_{k}$ be the repeated components of $G$ in the $x$-direction. Denote the union of these components by $X^k$. Let $A_t^k \subseteq V(G)$ be the set of infectious vertices in $G$ at time $t$, and suppose that each $X_i$ contains the same pattern of infected vertices (see Figure \ref{fig:4x15x3}). We show that $A_0^k$ is lethal and perfect. 
+Let $G=G(6k+3,4,3)$ be a grid such that $k \geq 1$, and let $X_1, \dots, X_{k}$ be the repeated regions of $G$ in the $x$-direction. Denote the union of these components by $X^k$. Let $A_t^k \subseteq V(G)$ be the set of infected vertices in $G$ at time $t$, and suppose that each $X_i$ contains the same pattern of infected vertices (see Figure \ref{fig:4x15x3}). We show that $A_0^k$ is lethal and perfect. 
 
 Let $L_1$, $L_2$ and $L_3$ be the top, middle and bottom levels of $G$, respectively. Consider $L_3$ at $t=1$ (see Figure \ref{fig:4x15x3}). Observe that the vertices labeled ``X" are infected at $t=2$, and subsequently all vertices in $X^k \cap L_3$ (with the exception of the vertex labeled ``Y") are infected by Proposition \ref{prop:immune_regions}. Additionally, the infected vertices in $L_2$ at $t=1$ are lethal in $X^k \cap L_2$ under the 2-neighbor process, and so by Lemma \ref{lem:2_neighbor_levels}, all vertices of $X^k \cap L_2$ (apart from the one labeled ``Y") are infected.
 
-Consider these observations in the context of $G$. Figure \ref{fig:4x15x3_timesteps} shows that it takes 5 additional time-steps to fully infect $L_2$. By Lemma \ref{lem:2_neighbor_levels}, the remaining healthy vertices in $L_1$ and $L_3$ become infected. We therefore conclude that $A_0^k$ is lethal on $G$ under the 3-neighbor process.
+Consider these observations in the context of $G$. Figure \ref{fig:4x15x3_timesteps} shows that it takes 5 additional time steps to fully infect $L_2$. By Lemma \ref{lem:2_neighbor_levels}, the remaining healthy vertices in $L_1$ and $L_3$ become infected. We therefore conclude that $A_0^k$ is lethal on $G$ under the 3-neighbor process.
 
-To prove that $A_0^k$ is perfect, observe that for $i \in [k]$, each $X_i$ contains 14 infected vertices. Of the remaining vertices in $G$, 11 are infected. Therefore, $|A_0| = 14k+11$. The surface area bound for $G=(6k+3,4,3)$ is given by
+To prove that $A_0^k$ is perfect, observe that for $i \in [k]$, each $X_i$ contains 14 infected vertices. Of the remaining vertices in $G$, 11 are infected. Therefore, $|A_0| = 14k+11$. The surface area bound for $G(6k+3,4,3)$ is given by
 $$\frac{(6k+3)(4) + (4)(3) + (3)(6k+3)}{3} = \frac{42k + 33}{3} = 14k+11.$$
 Since these two values are equal, $A_0^k$ is tight and lethal, and therefore perfect.
 \end{proof}
@@ -427,7 +423,7 @@ Since these two values are equal, $A_0^k$ is tight and lethal, and therefore per
 \end{subfigure} \hfill%
 \begin{subfigure}{0.3\textwidth}
 \includegraphics[width=\textwidth]{figures/7/4x15x3_timesteps_numbered_heatmap.pdf}
-\caption{Timesteps to infect $L_2$.}
+\caption{Time steps to infect $L_2$.}
 \label{fig:4x15x3_timesteps}
 \end{subfigure}
 \caption{}
@@ -436,17 +432,17 @@ Since these two values are equal, $A_0^k$ is tight and lethal, and therefore per
 
 \begin{con}
 \label{con:3x6xeven}
-All $(a,6,3)$ grids $G$ with $a \equiv 0 \pmod 2$ and $a \geq 4$ are perfect. 
+All tuples $(a,6,3)$ with $a \equiv 0 \pmod 2$ and $a \geq 4$ are perfect. 
 \end{con}
 
 \begin{proof}
-Let $G=(2k+2,6,3)$ be a grid such that $k \geq 1$, and let $X_1, \dots, X_{k}$ be the repeated components of $G$ in the $x$-direction. Denote the union of these components by $X^k$. Let $A_t^k \subseteq V(G)$ be the set of infectious vertices in $G$ at time $t$, and suppose that each $X_i$ contains the same pattern of infected vertices (see Figure \ref{fig:6x12x3}). We show that $A_0^k$ is lethal and perfect. 
+Let $G=G(2k+2,6,3)$ be a grid such that $k \geq 1$, and let $X_1, \dots, X_{k}$ be the repeated regions of $G$ in the $x$-direction. Denote the union of these regions by $X^k$. Let $A_t^k \subseteq V(G)$ be the set of infected vertices in $G$ at time $t$, and suppose that each $X_i$ contains the same pattern of infected vertices (see Figure \ref{fig:6x12x3}). We show that $A_0^k$ is lethal and perfect. 
 
-Let $L_1$, $L_2$ and $L_3$ be the top, middle and bottom levels of $G$, respectively. Consider $L_2$ at $t=1$ (see Figure \ref{fig:6x12x3}). Observe that all vertices in $X^k \cap L_2$ are infected by Proposition \ref{prop:2_neighbor_levels}, due to adjacent infected vertices in $L_1$ and$L_3$. 
+Let $L_1$, $L_2$ and $L_3$ be the top, middle and bottom levels of $G$, respectively. Consider $L_2$ at $t=1$ (see Figure \ref{fig:6x12x3}). Observe that all vertices in $X^k \cap L_2$ are infected by Lemma \ref{lem:2_neighbor_levels}, due to adjacent infected vertices in $L_1$ and $L_3$. 
 
-Consider these observations in the context of $G$. Figure \ref{fig:6x12x3_timesteps} shows that it takes 2 additional time-steps to fully infect $L_2$. Since $L_1$ and $L_3$ contain lethal sets under the 2-neighbor process, by Lemma \ref{lem:2_neighbor_levels}, the remaining healthy vertices in these levels become infected. We therefore conclude that $A_0^k$ is lethal on $G$ under the 3-neighbor process.
+Consider these observations in the context of $G$. Figure \ref{fig:6x12x3_timesteps} shows that it takes 2 additional time steps to fully infect $L_2$. Since $L_1$ and $L_3$ contain lethal sets under the 2-neighbor process, by Lemma \ref{lem:2_neighbor_levels}, the remaining healthy vertices in these levels become infected. We therefore conclude that $A_0^k$ is lethal on $G$ under the 3-neighbor process.
 
-To prove that $A_0^k$ is perfect, observe that for $i \in [k]$, each $X_i$ contains 6 infected vertices. Of the remaining vertices in $G$, 12 are infected. Therefore, $|A_0| = 6k+12$. The surface area bound for $G=(2k+2,6,3)$ is given by
+To prove that $A_0^k$ is perfect, observe that for $i \in [k]$, each $X_i$ contains 6 infected vertices. Of the remaining vertices in $G$, 12 are infected. Therefore, $|A_0| = 6k+12$. The surface area bound for $G(2k+2,6,3)$ is given by
 $$\frac{(2k+2)(6) + (6)(3) + (3)(2k+2)}{3} = \frac{18k + 36}{3} = 6k+12.$$
 Since these two values are equal, $A_0^k$ is tight and lethal, and therefore perfect.
 \end{proof}
@@ -460,7 +456,7 @@ Since these two values are equal, $A_0^k$ is tight and lethal, and therefore per
 \end{subfigure} \hfill%
 \begin{subfigure}{0.2915\textwidth}
 \includegraphics[width=\textwidth]{figures/7/6x12x3_L2_numbered_heatmap.pdf}
-\caption{Timesteps to infect $L_2$.}
+\caption{Time steps to infect $L_2$.}
 \label{fig:6x12x3_timesteps}
 \end{subfigure}
 \caption{}
@@ -469,17 +465,17 @@ Since these two values are equal, $A_0^k$ is tight and lethal, and therefore per
 
 \begin{con}
 \label{con:3x6xodd}
-All $(a,6,3)$ grids $G$ with $a \equiv 1 \pmod 2$ and $a \geq 5$ are perfect. 
+All tuples $(a,6,3)$ with $a \equiv 1 \pmod 2$ and $a \geq 5$ are perfect. 
 \end{con}
 
 \begin{proof}
-Let $G=(2k+3,6,3)$ be a grid such that $k \geq 1$, and let $X_1, \dots, X_{k}$ be the repeated components of $G$ in the $x$-direction. Denote the union of these components by $X^k$. Let $A_t^k \subseteq V(G)$ be the set of infectious vertices in $G$ at time $t$, and suppose that each $X_i$ contains the same pattern of infected vertices (see Figure \ref{fig:6x11x3}). We show that $A_0^k$ is lethal and perfect. 
+Let $G=G(2k+3,6,3)$ be a grid such that $k \geq 1$, and let $X_1, \dots, X_{k}$ be the repeated regions of $G$ in the $x$-direction. Denote the union of these components by $X^k$. Let $A_t^k \subseteq V(G)$ be the set of infected vertices in $G$ at time $t$, and suppose that each $X_i$ contains the same pattern of infected vertices (see Figure \ref{fig:6x11x3}). We show that $A_0^k$ is lethal and perfect. 
 
-Let $L_1$, $L_2$ and $L_3$ be the top, middle and bottom levels of $G$, respectively. Consider $L_2$ at $t=1$ (see Figure \ref{fig:6x11x3}). Observe that all vertices in $X^k \cap L_2$ (with the exception of the one labeled ``X") are infected by Lemma \ref{lem:2_neighbor_levels}, due to adjacent infected vertices in $L_1$ and$L_3$. 
+Let $L_1$, $L_2$ and $L_3$ be the top, middle and bottom levels of $G$, respectively. Consider $L_2$ at $t=1$ (see Figure \ref{fig:6x11x3}). Observe that all vertices in $X^k \cap L_2$ (with the exception of the one labeled ``X") are infected by Lemma \ref{lem:2_neighbor_levels}, due to adjacent infected vertices in $L_1$ and $L_3$. 
 
-Consider these observations in the context of $G$. Figure \ref{fig:6x11x3_timesteps} shows that it takes 5 additional time-steps to fully infect $L_2$. Since $L_1$ and $L_3$ contain lethal sets under the 2-neighbor process, by Lemma \ref{lem:2_neighbor_levels}, the remaining healthy vertices in these levels become infected. We therefore conclude that $A_0^k$ is lethal on $G$ under the 3-neighbor process.
+Consider these observations in the context of $G$. Figure \ref{fig:6x11x3_timesteps} shows that it takes 5 additional time steps to fully infect $L_2$. Since $L_1$ and $L_3$ contain lethal sets under the 2-neighbor process, by Lemma \ref{lem:2_neighbor_levels}, the remaining healthy vertices in these levels become infected. We therefore conclude that $A_0^k$ is lethal on $G$ under the 3-neighbor process.
 
-To prove that $A_0^k$ is perfect, observe that for $i \in [k]$, each $X_i$ contains 6 infected vertices. Of the remaining vertices in $G$, 15 are infected. Therefore, $|A_0| = 6k+15$. The surface area bound for $G=(2k+3,6,3)$ is given by
+To prove that $A_0^k$ is perfect, observe that for $i \in [k]$, each $X_i$ contains 6 infected vertices. Of the remaining vertices in $G$, 15 are infected. Therefore, $|A_0| = 6k+15$. The surface area bound for $G(2k+3,6,3)$ is given by
 $$\frac{(2k+3)(6) + (6)(3) + (3)(2k+3)}{3} = \frac{18k + 45}{3} = 6k+15.$$
 Since these two values are equal, $A_0^k$ is tight and lethal, and therefore perfect.
 \end{proof}
@@ -490,13 +486,13 @@ Since these two values are equal, $A_0^k$ is tight and lethal, and therefore per
 \begin{subfigure}[t]{0.65\textwidth}
 \centering
 \includegraphics[width=\textwidth]{figures/7/6x11x3.pdf}
-\caption{A lethal set on $(6,11,3)$, $t=0$ and $t=1$.}
+\caption{A lethal set on $G(6,11,3)$, $t=0$ and $t=1$.}
 \label{fig:6x11x3}	
 \end{subfigure} \hfill%
 \begin{subfigure}[t]{0.2915\textwidth}
 \centering
 \includegraphics[width=\textwidth]{figures/7/6x11x3_L2_numbered_heatmap.pdf}
-\caption{Timesteps to infect $L_2$.}
+\caption{Time steps to infect $L_2$.}
 \label{fig:6x11x3_timesteps}
 \end{subfigure}
 \caption{}

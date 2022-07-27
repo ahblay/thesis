@@ -45,18 +45,30 @@ Corollary \ref{cor:walls} provides a cleaner characterization of certain lethal 
 %Once found, each face in $M$ can itself be infected by this same recursive process. 
 In Chapter 7, we apply this idea to obtain an infinite family of three-dimensional grids from three orthogonal two-dimensional planes. However, we caution that the challenge of determining a ``good" union $M$ is non-trivial in general.
 
-The following corollary (taken as a particular instance of Corollary \ref{cor:walls}) will be useful in our discussion of lethal sets on three-dimensional grids $G(a_1,a_2,a_3)$. 
+%(taken as a particular instance of Corollary \ref{cor:walls})
+The following corollaries will be useful in our discussion of lethal sets on three-dimensional grids $G(a_1,a_2,a_3)$. 
 
 \begin{cor}
-\label{cor:three_walls}
-Let $G$ be the grid graph $G(a_1,a_2,a_3)$. If a set $A_0$ is lethal on $F_{1,1} \cup F_{2,1} \cup F_{3,1}$, then $A_0$ is lethal on $G$.
+\label{cor:three_walls_simple}
+Let $G$ be the grid graph $G(a_1,a_2,a_3)$. If a set $A_0$ is lethal on $F_{1,i} \cup F_{2,j} \cup F_{3,k}$, for $i \in \{1,a_1\}$, $j \in \{1,a_2\}$, $k \in \{1,a_3\}$, then $A_0$ is lethal on $G$.
 \end{cor}
 
 \begin{proof}
-By hypothesis, $A_0$ is lethal on $F_{1,1} \cup F_{2,1} \cup F_{3,1}$. Therefore, there exists some time $t$ for which $F_{1,1} \cup F_{2,1} \cup F_{3,1} \subseteq A_t$, and so $G[\overline{A_t}]$ satisfies the conditions of Lemma \ref{lem:walls}. We conclude that $A_0$ is lethal on $G$.
+By hypothesis, $A_0$ is lethal on $F_{1,i} \cup F_{2,j} \cup F_{3,k}$. Therefore, there exists some time $t$ for which $F_{1,i} \cup F_{2,j} \cup F_{3,k} \subseteq A_t$, and so $G[\overline{A_t}]$ satisfies the conditions of Lemma \ref{lem:walls}. We conclude that $A_0$ is lethal on $G$.
 \end{proof}
 
-In the case of three-dimensional grids, it is instructive to think of the perpendicular faces $M = F_{1,1} \cup F_{2,1} \cup F_{3,1}$ as an unfolded surface (see Figure \ref{fig:manifold_types}). We refer to $M$ as a manifold of $G$, and to this unfolded surface as a \emph{proper unfolding} of $M$. In Chapter 7, we examine other manifolds and their proper unfoldings. 
+\begin{cor}
+\label{cor:three_walls}
+Let $G$ be the grid graph $G(b_1,b_2,b_3)$. Let $b_1 = a_{1,1} + \dots + a_{1,k_1}$, $b_2 = a_{2,1} + \dots + a_{2,k_2}$, and $b_3 = a_{3,1} + \dots + a_{3,k_3}$. For $i \in [k_1]$ $($and $j \in [k_2]$, $\ell \in [k_3]$$)$, define $a_{1,0} = \emptyset$ $($resp. $a_{2,0}$ and $a_{3,0}$$)$ and let $S_{1,i} = [a_{1,i}] \setminus [a_{1,i-1}] \cup \{a_{1,i-1}\}$ $($resp. $S_{2,j}$ and $S_{3,\ell}$$)$. Let $G_{i,j,\ell}$ be the grid graph with vertex set
+$$V(G_{i,j,\ell}) = S_{1,i} \times S_{2,j} \times S_{3,\ell}$$
+and edges between adjacent vertices in each of the six cardinal directions. If each $G_{i,j,\ell}$ admits a lethal set $A_{i,j,\ell}$ on three orthogonal faces, then $A_0 = \cup A_{i,j,\ell}$ is lethal on $G$.
+\end{cor}
+
+\begin{proof}
+Observe that $V(G) = \cup V(G_{i,j,\ell})$, for $i \in [k_1]$, $j \in [k_2]$ and $\ell \in [k_3]$. By Corollary \ref{cor:three_walls_simple}, each $G_{i,j,\ell}$ admits a lethal set. Therefore, all vertices of $G$ must become infected, and so $A_0$ is lethal on $G$.
+\end{proof}
+
+In the case of three-dimensional grids, it is instructive to think of the union of perpendicular faces $M$ over all $G_{i,j,\ell}$ as an unfolded surface. An illustration of this for $G(a_1,a_2,a_3)$ is shown in Figure \ref{fig:manifold_types}. We refer to $M$ as a manifold of $G$, and to this unfolded surface as a \emph{proper unfolding} of $M$. In Chapter 6, we examine other manifolds and their proper unfoldings. 
 
 Since, by Corollary \ref{cor:walls}, any lethal set on $M$ is also lethal on $G$, it is often easier to identify lethal sets by examining these flattened unfolded structures. In fact, in the particular case of $M = F_{1,1} \cup F_{2,1} \cup F_{3,1}$, the surface area bound on $G(a_1,a_2,a_3)$ can be written in terms of the surface area bounds on flat, two-dimensional grids.
 
@@ -97,7 +109,7 @@ In the context of Figure \ref{fig:manifold_types}, this lemma tells us that a pe
 
 \section{3-neighbor percolation on two-dimensional grids}
 
-The above discussion suggests that an understanding of the behavior of 3-neighbor percolation on two-dimensional grids is of use in our investigation of 3-neighbor percolation on $G(a_1,a_2,a_3)$ grids. In Chapter 6 we examine the problem of 3-neighbor percolation on square two-dimensional grids, and answer a question posed by Benevides et alia regarding the value of $m([n]^2, 3)$. Here, we describe some of the structural properties of lethal sets on two-dimensional grids that will prove useful in that analysis. The following propositions are due to Benevides et al \cite{benevides}. 
+The above discussion suggests that an understanding of the behavior of 3-neighbor percolation on two-dimensional grids is of use in our investigation of 3-neighbor percolation on $G(a_1,a_2,a_3)$ grids. In Chapter 5 we examine the problem of 3-neighbor percolation on square two-dimensional grids, and answer a question posed by Benevides, Bermond, Lesfari and Nisse regarding the value of $m([n]^2, 3)$. Here, we describe some of the structural properties of lethal sets on two-dimensional grids that will prove useful in that analysis. The following propositions are due to Benevides et al \cite{benevides:2021}. 
 
 \begin{prop}
 \label{prop:corners}
