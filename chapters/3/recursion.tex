@@ -2,6 +2,8 @@
 
 In the previous chapter, we examined some structures in grids that, if present, immediately guarantee lethality. Most significantly, we proved that lethal sets on mutually orthogonal walls of a grid are lethal on the entire grid. In the following sections, we leverage this result to show that certain configurations of fully infected sub-grids (which we shall call blocks) will cause the larger grid to become infected. Furthermore, we show that, if each of these smaller blocks is infected with a minimum lethal set, then the composite larger brick will also be infected with a minimum lethal set (barring some divisibility considerations).
 
+\section{The Recursion}
+
 The proof of this claim makes use of the so-called \emph{modified bootstrap process} in $[n]^d$, studied by Holroyd in \cite{holroyd2006metastability} and \cite{holroyd2003sharp}. This is a strengthened variation of the problem introduced in Chapter 1, whereby vertices in the $[n]^d$ grid become infected if and only if they are adjacent to infected vertices along edges in each of the $d$ directions. For example, in the $[n]^2$ grid, a vertex that sees infection in one of both the North/South and East/West directions will itself become infected, whereas a vertex with infected neighbors only to the East and West will not. 
 
 In particular, the following lemma considers composite grids $[n]^d$ where each vertex $x = (x_1, \dots, x_d) \in [n]^d$ is itself a smaller block. We prove that lethal sets on these grids can be built from the smaller lethal sets on each component block. 
@@ -64,7 +66,7 @@ Similarly, suppose, without loss of generality, that $(a_{1,1}, a_{2,1}, a_{3,1}
 In both cases, we obtain an upper bound on $m(b_1, b_2, b_3, 3)$ matching the lower surface area bound. This completes the proof. 
 \end{proof}
 
-\section{Helpful building blocks}
+\section{Building Blocks}
 
 \begin{table}[]
 \centering

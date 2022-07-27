@@ -14,7 +14,7 @@ $$m(a_1,a_2,a_3,3) = \ceil*{\frac{a_1a_2 +a_2a_3+a_3a_1}{3}}.$$
 \end{conj}
 We anticipate that the process of lowering these bounds will require obtaining additional constructions, either through computational work or the generalization of those presented in this thesis. In particular, a proof of the existence of perfect sets for all grids of thickness 3 would have the immediate effect of reducing the bound on optimal sets to $a_1, a_2,a_3 \geq 8$. 
 
-We note that a similar result for $a_1, a_2,a_3 \geq 2$ is impossible. Lethal sets on grids of the form $[a_1] \times [2] \times [2]$ must contain $3a_1/2+O(1)$ vertices, as consecutive $[2]^2$ layers cannot harbor fewer than 3 infections. This differs significantly from the surface area bound of $\ceil{4a_1/3}$. It is not clear whether similar restrictions exist for other grids of thickness 2, and we do not claim to know which tuples $(a_1,a_2,a_3)$ admit perfect infections. 
+We note that a similar result for $a_1, a_2,a_3 \geq 2$ is impossible. Lethal sets on grids of the form $[a_1] \times [2] \times [2]$ must contain $3a_1/2+O(1)$ vertices, as consecutive $[2]^2$ layers cannot harbor fewer than 3 infections. This differs significantly from the surface area bound of $\ceil{4a_1/3}$. It is not clear whether similar restrictions exist for other grids of thickness 2, and we do not claim to know which tuples $(a_1,a_2,a_3)$ admit perfect infections. At present, the smallest divisibility case in which we were unable to determine a perfect lethal set is $[5] \times [17] \times [2]$. 
 
 The theorems of this thesis are restricted to the case of $d=r=3$; however, we speculate that similar results exist for all $d=r$. 
 
@@ -45,7 +45,39 @@ $$SA(G, 3) + 1 \leq m(G_3,3) \leq SA(G,3)+2.$$
 A natural problem is to determine if the smallest lethal set $G_3$ is always exactly one above the surface area bound on $G$.
 
 \begin{prob}
+\label{prob:torus}
 Determine $m(G_3,3)$.
+\end{prob}
+
+Our computer examples suggest that $m(G_3,3) = SA(G)+1$. However, unlike the construction given in Figure \ref{fig:torus}, these examples do not appear to result from any simple augmentation of the smaller grid $G$. We therefore anticipate that an entirely different proof strategy may be necessary.
+
+A further extension of Problem \ref{prob:torus} is to consider the Cartesian product of paths and cycles. Denote by $T_{n,i,j}$ the graph resulting from the Cartesian product of $i$ cycles $C_n$ and $j$ paths $P_n$. Note that $T_{n,0,d} = [n]^d$ and $T_{n,d,0} = \square_{i=1}^d C_n$. Recall that Przykucki and Shelton give $m(T_{n,0,d},d) = n^{d-1}$ \cite{przykucki:2019}. It would be interesting to determine the following:
+
+\begin{prob}
+\label{prob:cartesian_product}
+For all integers $i,j$ such that $i+j=d$, determine $m(T_{n,i,j},d)$.
+\end{prob}
+
+We proposed in the introduction that the slowest 3-neighbor percolating time on square two-dimensional grids is at least $T([n]^2, 3) \geq \tfrac{(n-1)^2}{2}$. It would be interesting to determine if this bound is tight, and extend the result to all rectangular grids. 
+
+\begin{prob}
+\label{prob:percolating_time}
+For $G=[a_1] \times [a_2]$, determine $T(G,3)$.
+\end{prob}
+
+With regard to Problem \ref{prob:percolating_time}, we make the following observation. Note that the subgraph $H$ induced by the complement of any lethal set $A_0$ on $[a_1] \times [a_2]$ must be acyclic (by Proposition \ref{prop:immune_regions}). Therefore, a natural upper bound on $T([a_1] \times [a_2],3)$ is given by 
+$$\max\{\text{diam}(C) \mid C \text{ is a component of } H \}.$$
+Since the diameter of a graph $G$ is equivalent to the length of the longest induced path in $G$, $T([a_1] \times [a_2],3)$ is bounded from above by the length of the longest induced path in $[a_1] \times [a_2]$. We note that this bound is not necessarily tight, as the complement of the longest induced path in $[a_1] \times [a_2]$ may not constitute a lethal set. With this is mind, we propose the following problem:
+
+\begin{prob}
+For $G=[a_1] \times [a_2]$, determine the length of the longest induced path in $G$.
+\end{prob}
+
+% Include the Schroeder number thing from Jon???
+Finally, in an 1991 paper by Shapiro and Stephens \cite{shapiro1991bootstrap}, it was shown that the number of optimal lethal sets in the $[n]^2$ grid under the modified bootstrap process is precisely equal to the $n$th Schr\"oder number \cite{oeis}. It would be interesting to determine whether a similar pattern exists in higher dimensions.
+
+\begin{prob}
+Determine the number of lethal sets of size $n^2$ under the modified bootstrap process in $[n]^3$.
 \end{prob}
 
 % Resolve the question of 3-neighbor percolation on the 2d grid
