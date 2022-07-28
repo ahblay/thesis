@@ -42,7 +42,7 @@ Let $A_0$ be a perfect lethal set on $G$ under $3$-neighbor percolation. Let $H$
 \begin{proof}
 By Proposition \ref{prop:immune_regions}, we have that each component of $H$ contains at most one border vertex. We show that each component of $H$ contains exactly one border vertex.
 
-By assumption, $H$ is a forest. Therefore, the number of components of $H$ is given by $|V(H)| - |E(H)$. Note that $|V(H)| = |V(G)| - |A_0|$. Since $A_0$ is perfect and lethal,
+By assumption, $H$ is a forest. Therefore, the number of components of $H$ is given by $|V(H)| - |E(H)|$. Note that $|V(H)| = |V(G)| - |A_0|$. Since $A_0$ is perfect and lethal,
 \begin{align*}
 |V(H)| &= a_1a_2 - \frac{1}{3}(a_1a_2+a_1+a_2) \\
 &= \frac{1}{3}(2a_1a_2-a_1-a_2).
@@ -95,7 +95,7 @@ This gives the following expression for $b$:
 \frac{a_1a_2+a_1+a_2}{3} - \frac{a_1+a_2}{2} - \frac{(a_1-1)(a_2-1)}{4} &= \frac{a_1a_2+a_1+a_2-3}{12} \label{eq:tile_bound_1} \\
 &= \frac{(\frac{a_1-1}{2})(\frac{a_2-1}{2}) + \frac{a_1-1}{2} + \frac{a_2-1}{2}}{3} \label{eq:tile_bound_2}.
 \end{align}
-Note that this is precisely the surface area bound for the $(\frac{a_1-1}{2}, \frac{a_2-1}{2}, 1)$ grid. Furthermore, since $a_1 \equiv a_2 \equiv 1 \pmod 6$ or $a_1 \equiv a_2 \equiv 3 \pmod 6$, all terms on the LHS of \ref{eq:tile_bound_1} are integral, and so the SA bound in \ref{eq:tile_bound_2} is tight.
+Note that this is precisely the surface area bound for the $(\frac{a_1-1}{2}, \frac{a_2-1}{2}, 1)$ grid. Furthermore, since $a_1 \equiv a_2 \equiv 1 \pmod 6$ or $a_1 \equiv a_2 \equiv 3 \pmod 6$, all terms on the LHS of Equation \ref{eq:tile_bound_1} are integral, and so the SA bound in Equation \ref{eq:tile_bound_2} is tight.
 
 \begin{figure}[]
 \centering
@@ -139,7 +139,7 @@ We are now prepared to prove that the blue tiles form a lethal set in $G'$.
 
 \begin{lem}
 \label{lem:blue_lethal}
-The set of blue tiles is lethal and perfect in $[(a_1-1)/2] \times [(a_2-1)/2]$ under 3-neighbor percolation.
+The set of blue tiles is lethal and perfect in $[\tfrac{a_1-1}{2}] \times [\tfrac{a_2-1}{2}]$ under 3-neighbor percolation.
 \end{lem}
 
 \begin{proof}
@@ -195,5 +195,5 @@ and therefore this construction is perfect.
 \label{fig:15x15x1}
 \end{figure} 
 
-Although the only two-dimensional grids that admit perfect lethal sets under 3-neighbor percolation are square grids of the form $[2^n-1]^2$, there is at least one family of two-dimensional grids that admits optimal lethal sets (i.e. meeting the rounded surface area bound). These sets are qualitatively different from the Purina construction: while Purina exhibits an almost recursive structure, the sets presented in Construction \ref{con:snake} rely on ``corridors," down which the infection spreads. The notion of ``corridors" is not new; constructions with much of the same character as these are given for non-Purina grids in \cite{benevides:2021}. We examine such grids in the following chapter, making particular note that of their use in our analysis of other infinite families of grids that admit perfect lethal sets. 
+Although the only two-dimensional grids that admit perfect lethal sets under 3-neighbor percolation are square grids of the form $[2^n-1]^2$, there is at least one family of two-dimensional grids that admits optimal lethal sets (i.e. meets the rounded surface area bound). These sets are qualitatively different from the Purina construction: while Purina exhibits an almost recursive structure, the sets presented in Construction \ref{con:snake} rely on ``corridors," down which the infection spreads. The notion of ``corridors" is not new; constructions with much of the same character as these are given for non-Purina grids in \cite{benevides:2021}. We examine such grids in the following chapter, making particular note of their use in our analysis of other infinite families of grids that admit perfect lethal sets. 
 

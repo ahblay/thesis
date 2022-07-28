@@ -4,7 +4,7 @@ While it is difficult to identify specific patterns across all lethal sets $A_0$
 
 \begin{defn}
 \label{defn:thickness}
-Let $a_1, \dots, a_d$ be integers such that $a_1 \geq \dots \geq a_d \geq 1$. We define $G(a_1, \dots, a_d)$ to be the grid graph $\prod_{i=1}^d [a_i]$. Furthermore, we refer to the smallest value $a_d$ as the \emph{thickness} of $G(a_1, \dots, a_d)$.
+Let $a_1, \dots, a_d$ be integers such that $a_1, \dots, a_d \geq 1$. We define $G(a_1, \dots, a_d)$ to be the grid graph $\prod_{i=1}^d [a_i]$. Furthermore, we refer to the smallest value $a_d$ as the \emph{thickness} of $G(a_1, \dots, a_d)$.
 \end{defn}
 %We remark that $G(a_1, \dots, a_d)$ admits an optimal lethal set if and only if all other tuples obtained by permuting the values $a_1, \dots, a_d$ admit optimal lethal sets.
 % We remark that this notation is the same as that used for the coordinates of a vertex, and make explicit note of this distinction when necessary. 
@@ -41,9 +41,9 @@ Since $A_0$ is lethal on $M$, there exists a time $t$ where $M \subseteq A_t$. T
 %Let $X, Y, Z$ be three mutually orthogonal faces of $G$. By hypothesis, $X \cup Y \cup Z \subseteq A_t$ for some time $t$. Therefore, the graph $H = G[\overline{A_t}]$ cannot contain a path between vertices on orthogonal faces of $G$. By lemma \ref{lem:walls}, $G$ percolates.
 \end{proof}
 
-Corollary \ref{cor:walls} provides a cleaner characterization of certain lethal sets on $d$-dimensional grids in terms of their $(d-1)$-dimensional planes, provided these planes are mutually orthogonal. Here, we return to the notion first introduced in Chapter 1 of the capacity of a lethal set to span a grid. In particular, we see that the set in Figure \ref{fig:two_infections_a} is comprised of lethal sets under the 2-neighbor bootstrap process on the two one-dimensional orthogonal planes $F_{1,1}$ and $F_{2,1}$ of $[10]^2$. In this regard, the problem of obtaining perfect $d$-neighbor lethal sets on $d$-dimensional grids is reduced to the problem of determining a ``good" union $M$ of mutually orthogonal $(d-1)$-dimensional planes. 
+Corollary \ref{cor:walls} gives a cleaner characterization of certain lethal sets on $d$-dimensional grids in terms of their $(d-1)$-dimensional planes, provided these planes are mutually orthogonal. Here, we return to the notion first introduced in Chapter 1 of the capacity of a lethal set to span a grid. In particular, we see that the set in Figure \ref{fig:two_infections_a} is comprised of lethal sets under the 2-neighbor bootstrap process on the two one-dimensional orthogonal planes $F_{1,1}$ and $F_{2,1}$ of $[10]^2$. In this regard, the problem of obtaining perfect $d$-neighbor lethal sets on $d$-dimensional grids is reduced to the problem of determining a ``good" union $M$ of mutually orthogonal $(d-1)$-dimensional planes. 
 %Once found, each face in $M$ can itself be infected by this same recursive process. 
-In Chapter 7, we apply this idea to obtain an infinite family of three-dimensional grids from three orthogonal two-dimensional planes. However, we caution that the challenge of determining a ``good" union $M$ is non-trivial in general.
+In Chapter 6, we apply this idea to obtain an infinite family of three-dimensional grids from three orthogonal two-dimensional planes. However, we caution that the challenge of determining a ``good" union $M$ is non-trivial in general.
 
 %(taken as a particular instance of Corollary \ref{cor:walls})
 The following corollaries will be useful in our discussion of lethal sets on three-dimensional grids $G(a_1,a_2,a_3)$. 
@@ -131,13 +131,13 @@ Assume for contradiction that $A_0 \cap \{u,v\} = \emptyset$. By Proposition \re
 
 \begin{prop}
 \label{prop:immune_regions}
-Let $A_0$ be a lethal set on $[a_1] \times [a_2]$ under 3-neighbor percolation. Let $H = V([a_1] \times [a_2]) \setminus A_0$. Then the subgraph induced by $H$ is acyclic and each component of $H$ contains at most one border vertex.
+Let $A_0$ be a lethal set on $[a_1] \times [a_2]$ under 3-neighbor percolation. Let $H = V([a_1] \times [a_2]) \setminus A_0$. Then the subgraph induced by $H$ is acyclic and each component of this subgraph contains at most one border vertex.
 \end{prop}
 
 \begin{proof}
-Suppose for contradiction that $C$ is a cycle in $H$. Let $v \in C$ be the first vertex of $C$ to become infected. Note that $v$ has two uninfected neighbors in $C$. Since $d(v) \leq 4$, $v$ cannot become infected, a contradiction.
+Suppose for contradiction that $C$ is a cycle in the subgraph induced by $H$. Let $v \in V(C)$ be the first vertex of $C$ to become infected. Note that $v$ has two uninfected neighbors in $C$. Since $d(v) \leq 4$, $v$ cannot become infected, a contradiction.
 
-Suppose $P$ is a path in $H$ with endpoints on the border. No vertex $v$ in $P$ can become infected, since $v$ has at most two neighbors outside of $P$.
+Suppose $P$ is a path in the subgraph induced by $H$ with endpoints on the border. No vertex $v$ in $V(P)$ can become infected, since $v$ has at most two neighbors outside of $P$.
 \end{proof}
 
 \begin{table}[]
@@ -170,7 +170,7 @@ Recall from Chapter 1 that a lethal initial infection $A_0$ is perfect if it con
 \begin{figure}[]
 \centering
 \includegraphics[width=\textwidth]{figures/2/visualizer}
-\caption{The visualization tool with a infected set.}
+\caption{The visualization tool with an infected set.}
 \label{fig:visualizer}
 \end{figure} 
 
@@ -182,7 +182,7 @@ In addition to the conceptual tools presented above, many of the results in this
 
 %e.g. they wish to examine the grid $[17] \times [23]$ under 3-neighbor percolation, and so select ``Grid" from the dropdown menu and choose 17 rows, 23 columns, 1 layer, and a threshold of 3 neighbors) This renders a grid of gray vertices. The user then selects those vertices that they wish to infect and, when satisfied, clicks ``Run percolation." This allows the user to step through the phases of infection
 
-The basic functionality of the visualizer allows a user to enter the parameters of their problem, select a set of initially infected vertices, and step through the percolation process by time-step. These options are made available to the user in a control panel, shown on the righthand side of Figure \ref{fig:visualizer}. The control panel features the following:
+The basic functionality of the visualizer allows a user to enter the parameters of their problem, select a set of initially infected vertices, and step through the percolation process by time step. These options are made available to the user in a control panel, shown on the righthand side of Figure \ref{fig:visualizer}. The control panel features the following:
 \begin{itemize}
 \item A dropdown menu to choose between percolation on a grid, and percolation on a torus;
 \item Text boxes to enter the size of the grid (resp. torus);
@@ -194,15 +194,15 @@ The basic functionality of the visualizer allows a user to enter the parameters 
 \item A checkbox to reflect infected vertices;
 \item Buttons to upload/download an infected set as a text file.
 \end{itemize}
-We highlight the design and representation of grids as matrices of clickable vertices, the choice between grid and torus, the ``Improve percolation" button, the ability to view existing lethal sets as well as upload/download them, and the option to reflect the pattern of infected vertices. 
+We highlight the following: the design and representation of grids as matrices of clickable vertices, the choice between grid and torus, the ``Improve percolation" button, the ability to view existing lethal sets as well as upload/download them, and the option to reflect the pattern of infected vertices. 
 
-One of the challenges of visualizing the problem of bootstrap percolation arises from the fact that many grids are large and high-dimensional. This is perhaps the greatest limitation of the visualizer. The current iteration of the tool renders vertices as clickable regions in an HTML \texttt{canvas} element, which does not respond well to re-scaling. As a result, large grids contain very small vertices, which complicates the process of selecting an initial infection. Furthermore, \texttt{canvas} does not natively support 3-dimensional structures, and so 3-dimensional grids are simply rendered as a stack of their 2-dimensional layers. 
+One of the challenges of visualizing the problem of bootstrap percolation arises from the fact that many grids are large and of high dimension. This is perhaps the greatest limitation of the visualizer. The current iteration of the tool renders vertices as clickable regions in an HTML \texttt{canvas} element, which does not respond well to re-scaling. As a result, large grids contain very small vertices, which complicates the process of selecting an initial infection. Furthermore, \texttt{canvas} does not natively support three-dimensional structures, and so three-dimensional grids are simply rendered as a stack of their two-dimensional layers. 
 
 Users are able to select between percolation on a grid, and percolation on a torus. This choice does not impact the representation of the grid (resp. torus). However, when stepping through the phases of infection, vertices at the top of the grid are treated as neighbors of those on the bottom, and similarly for left and right. 
 
 In this chapter (and in Chapter 6) we saw (shall see) that certain patterns of infected vertices are always lethal. The fickleness of bootstrap percolation regularly precludes us from simply copying these patterns across all grids to obtain perfect lethal sets. However, sometimes these patterns can be augmented with additional infections. If a set $A_0$ is lethal and above the surface area bound, the ``Improve percolation" button attempts to remove non-essential infections. It does this by removing a random vertex $v$ from $A_0$ and checking if the resulting set is lethal. If it is, the new infection $A_0 \setminus \{v\}$ is rendered on the screen. 
 
-In pursuit of determining new perfect lethal sets, it is often helpful to examine and alter existing ones. Whenever a user clicks ``Run percolation" on a perfect lethal set, a text file containing the lethal configuration of vertices is stored in a database. This file is made accessible to all future users through the ``Show optimal sets" window. We hope that ongoing use of this tool will passively allow for the accumulation of a number of lethal sets in 2- and 3-dimensions. In addition to accessing known lethal sets via the ``Show optimal sets" button, users are able to upload sets from a local text file. These files must be configured as a sequence of X's and O's, with rows on new lines, and layers separated by a blank line. An example of this format can be obtained by creating an infected grid on the visualizer and selecting ``Download .txt". 
+In pursuit of determining new perfect lethal sets, it is often helpful to examine and alter existing ones. Whenever a user clicks ``Run percolation" on a perfect lethal set, a text file containing the lethal configuration of vertices is stored in a database. This file is made accessible to all future users through the ``Show optimal sets" window. We hope that ongoing use of this tool will passively allow for the accumulation of a number of lethal sets in two- and three-dimensions. In addition to accessing known lethal sets via the ``Show optimal sets" button, users are able to upload sets from a local text file. These files must be configured as a sequence of X's and O's, with rows on new lines, and layers separated by a blank line. An example of this format can be obtained by creating an infected grid on the visualizer and selecting ``Download .txt". 
 
 The ``Reflect top layer" checkbox is another resource designed to increase the efficiency of experimentally generating lethal sets. We have found in our research that certain grids, especially of the form $[a_1] \times [a_2] \times [2]$, have symmetric infections in their top and bottom layers. By choosing ``Reflect top layer", these symmetries are generated automatically. 
 
@@ -238,6 +238,8 @@ From a cosmetic perspective, the presentation of existing perfect lethal sets is
 % higher dimensions (could be HARD)
 
 % make the visualization tool into a puzzle game???
+
+In the following chapter, we present a useful technique for constructing perfect lethal sets on large grids from known lethal constructions. This idea will prove essential in our proof of Theorem \ref{thm:main_result}. 
 
 % COMMENT
 % COMMENT
