@@ -6,7 +6,7 @@ In the previous chapter, we examined some structures in grids that, if present, 
 
 The proof of this claim makes use of the so-called \emph{modified bootstrap process} in $[n]^d$, studied by Holroyd in \cite{holroyd2006metastability} and \cite{holroyd2003sharp}. This is a strengthened variation of the problem introduced in Chapter 1, whereby vertices in the $[n]^d$ grid become infected if and only if they are adjacent to infected vertices along edges in each of the $d$ directions. For example, in the $[n]^2$ grid, a vertex that sees infection in one of both the North/South and East/West directions will itself become infected, whereas a vertex with infected neighbors only to the East and West will not. 
 
-In particular, the following lemma considers composite grids $[n]^d$ where each vertex $x = (x_1, \dots, x_d) \in [n]^d$ is itself a smaller block. We prove that lethal sets on these grids can be built from the smaller lethal sets on each component block. 
+In particular, the following lemma considers composite grids $[n]^d$ where each vertex $\mathbf{x} = (x_1, \dots, x_d) \in [n]^d$ is itself a smaller block. We prove that lethal sets on these grids can be built from the smaller lethal sets on each component block. 
 % $[b_1] \times [b_2] \times \cdots \times [b_d]$ grid
 
 \begin{figure}[]
@@ -18,20 +18,20 @@ In particular, the following lemma considers composite grids $[n]^d$ where each 
 
 \begin{lem}
 \label{lem:recursion}
-For $n,d \geq 1$, let $A = (a_{i,j})$ be a $d \times n$ matrix of positive integers, and let $b_i = \sum_{j=1}^n a_{i,j}$, for $1 \leq i \leq d$. Let $S$ be a lethal set under the modified process on $[n]^d$, and for each vertex $\vec{x} = (x_1, \dots, x_v) \in S$, let $T_{\vec{x}}$ be a lethal set on $\prod_{i=1}^d [a_{i,x_i}]$ under $d$-neighbor percolation. Then
-$$m(b_1, \dots, b_d, d) \leq \sum_{\vec{x} \in S} |T_{\vec{x}}|.$$
+For $n,d \geq 1$, let $A = (a_{i,j})$ be a $d \times n$ matrix of positive integers, and let $b_i = \sum_{j=1}^n a_{i,j}$, for $1 \leq i \leq d$. Let $S$ be a lethal set under the modified process on $[n]^d$, and for each vertex $\mathbf{x} = (x_1, \dots, x_v) \in S$, let $T_{\mathbf{x}}$ be a lethal set on $\prod_{i=1}^d [a_{i,x_i}]$ under $d$-neighbor percolation. Then
+$$m(b_1, \dots, b_d, d) \leq \sum_{\mathbf{x} \in S} |T_{\mathbf{x}}|.$$
 \end{lem}
 
 \begin{proof}
-We imagine sub-dividing the $\prod_{i=1}^d [b_{i}]$ brick into smaller blocks by partitioning each of the $d$ axes into segments $a_{i,1}, a_{i,2}, \dots, a_{i,n}$, $1 \leq i \leq d$. Each block is given by a unique product of these segments, and represented by a vector $\vec{x} = (x_1, \dots, x_d) \in [n]^d$. Formally, for each such $\vec{x}$, let $G_{\vec{x}}$ be the block with vertex set
+We sub-divide the $\prod_{i=1}^d [b_{i}]$ brick into smaller blocks by partitioning each of the $d$ axes into segments $a_{i,1}, a_{i,2}, \dots, a_{i,n}$, $1 \leq i \leq d$. Each block is given by a unique product of these segments, and represented by a vector $\mathbf{x} = (x_1, \dots, x_d) \in [n]^d$. Formally, for each such $\mathbf{x}$, let $G_{\mathbf{x}}$ be the block with vertex set
 $$\prod_{i=1}^d \left\{1+ \sum_{j=1}^{x_i -1}a_{i,j}, \dots, \sum_{j=1}^{x_i}a_{i,j} \right\},$$
-and edges between vertices that differ by one in exactly one coordinate. Figure \ref{fig:recursion} illustrates the block $G_{\vec{x}}$ for $\vec{x} = (1,2,2) \in [2]^3$. Observe that $G_{\vec{x}}$ is isomorphic to $\prod_{i=1}^d [a_{i,x_i}]$.
+and edges between vertices that differ by one in exactly one coordinate. Figure \ref{fig:recursion} illustrates the block $G_{\mathbf{x}}$ for $\mathbf{x} = (1,2,2) \in [2]^3$. Observe that $G_{\mathbf{x}}$ is isomorphic to $\prod_{i=1}^d [a_{i,x_i}]$.
 
-For each $\vec{x} \in S$, let $A_{\vec{x}}$ be the vertices of $G_{\vec{x}}$ corresponding to the vertices of $T_{\vec{x}}$ under isomorphism from $\prod_{i=1}^d [a_{i,x_i}]$ to $G_{\vec{x}}$, and let $A_0 = \cup A_{\vec{x}}$. Observe that $|A_0| = \sum_{\vec{x} \in S} |T_{\vec{x}}|$. We show that $A_0$ is lethal on $\prod_{i=1}^d [b_{i}]$.
+For each $\mathbf{x} \in S$, let $A_{\mathbf{x}}$ be the vertices of $G_{\mathbf{x}}$ corresponding to the vertices of $T_{\mathbf{x}}$ under isomorphism from $\prod_{i=1}^d [a_{i,x_i}]$ to $G_{\mathbf{x}}$, and let $A_0 = \cup A_{\mathbf{x}}$. Observe that $|A_0| = \sum_{\mathbf{x} \in S} |T_{\mathbf{x}}|$. We show that $A_0$ is lethal on $\prod_{i=1}^d [b_{i}]$.
 
-By the definition of $T_{\vec{x}}$, for each $\vec{x} \in S$, $A_{\vec{x}}$ is lethal on $G_{\vec{x}}$. Imagine running the $d$-neighbor process until all blocks $G_{\vec{x}}$ are fully infected. We claim that this is sufficient to infect all remaining vertices of $\prod_{i=1}^d [b_{i}]$. Consider the remaining blocks $G_{\vec{x}}$, for $\vec{x} \in [n]^d \setminus S$. Since $S$ is lethal under the modified process, each $G_{\vec{x}}$ is adjacent to fully infected blocks in all $d$ directions. 
-%In particular, if we consider expanding out the faces of $G_{\vec{x}}$ towards these infected blocks, the resulting cube has $d$ fully infected faces that share a common corner. 
-By Corollary \ref{cor:three_walls}, this is sufficient to infect all the vertices of $G_{\vec{x}}$. Repeating this process on each uninfected region of $\prod_{i=1}^d [b_{i}]$ (as they are exposed under the modified process) ultimately results in all vertices becoming infected. This completes the proof. 
+By the definition of $T_{\mathbf{x}}$, for each $\mathbf{x} \in S$, $A_{\mathbf{x}}$ is lethal on $G_{\mathbf{x}}$. Run the $d$-neighbor process until all blocks $G_{\mathbf{x}}$ are fully infected. We claim that this is sufficient to infect all remaining vertices of $\prod_{i=1}^d [b_{i}]$. Consider the remaining blocks $G_{\mathbf{x}}$, for $\mathbf{x} \in [n]^d \setminus S$. Since $S$ is lethal under the modified process, at some point in the infection process each $G_{\mathbf{x}}$ is adjacent to fully infected blocks in all $d$ directions. 
+%In particular, if we consider expanding out the faces of $G_{\mathbf{x}}$ towards these infected blocks, the resulting cube has $d$ fully infected faces that share a common corner. 
+By Corollary \ref{cor:three_walls}, this is sufficient to infect all the vertices of $G_{\mathbf{x}}$. Repeating this process on each uninfected region of $\prod_{i=1}^d [b_{i}]$ (as they are exposed under the modified process) ultimately results in all vertices becoming infected. This completes the proof. 
 \end{proof}
 
 % Corollary that shows the recursion produces tight bounds on the size of lethal sets, IF all of the constituent blocks are divisibility cases
@@ -78,7 +78,7 @@ In both cases, we obtain an upper bound on $m(b_1, b_2, b_3, 3)$ matching the lo
 \begin{table}[]
 \centering
 \includegraphics[width=\textwidth]{tables/2/thickness_3.pdf}
-\caption{Thickness 3 constructions used in the proof of Theorem \ref{thm:main_result}. Blue, green and yellow cells represent infinite families of constructions. Red cells are individual constructions. Divisibility cases are white and non-divisibility cases are gray.}
+\caption{Thickness 3 constructions used in the proof of Theorem \ref{thm:main_result}. Blue, green and yellow cells represent infinite families of constructions. Divisibility cases are white and non-divisibility cases are gray.}
 \label{tab:integral_bounds_3}
 \end{table} 
 
@@ -90,7 +90,7 @@ In both cases, we obtain an upper bound on $m(b_1, b_2, b_3, 3)$ matching the lo
 \end{table}
 
 % Handle the divisibility cases, and note that certain augmentations to the recursion allow us to obtain non-divisible optimal grids, if we are cautious with regard to the pieces we use.
-Corollary \ref{cor:recursion} provides a prescriptive method for constructing optimal and perfect lethal sets recursively, provided the existence of sufficiently many small building blocks. In the following chapter, we use this technique to obtain perfect lethal sets on all $G(b_1,b_2,b_3)$ grids, for $b_1,b_2,b_3 \geq 5$, and optimal lethal sets on all $G(b_1,b_2,b_3)$ grids, for $b_1,b_2,b_3 \geq 11$. To facilitate this process, we first summarize some useful families of lethal sets (discussed in greater detail in Chapter 6 and illustrated in Tables \ref{tab:integral_bounds_2}, \ref{tab:integral_bounds_3}, and \ref{tab:integral_bounds_5}), as well as particular applications of Corollary \ref{cor:recursion} that hold for general grids. 
+Corollary \ref{cor:recursion} provides a prescriptive method for constructing optimal and perfect lethal sets recursively, provided the existence of sufficiently many small building blocks. In the following chapter, we use this technique to obtain perfect lethal sets on all $G(b_1,b_2,b_3)$ grids, for $b_1,b_2,b_3 \geq 5$, and optimal lethal sets on all $G(b_1,b_2,b_3)$ grids, for $b_1,b_2,b_3 \geq 11$. To facilitate this process, we first summarize some useful families of lethal sets, as well as particular applications of Corollary \ref{cor:recursion} that hold for general grids. We note that the existence of these families is predicated on a number of constructions, which are analyzed in greater detail in Chapter 6. A summary of the lethal sets obtained in Propositions \ref{prop:3x3xk} -- \ref{prop:purina} is illustrated in Tables \ref{tab:integral_bounds_2}, \ref{tab:integral_bounds_3}, and \ref{tab:integral_bounds_5})
 
 \begin{prop}
 \label{prop:3x3xk}
@@ -98,7 +98,16 @@ For all $k \geq 1$ such that $k \neq 2$, $(3,3,k)$ is perfect.
 \end{prop}
 
 \begin{proof}
-We obtain $(3,3,k)$ for $k \equiv 0 \pmod 2$ and $k > 2$ from Construction \ref{con:3x3xeven}, and $(3,3,k)$ for $k \equiv 1 \pmod 2$ and $k > 2$ from Construction \ref{con:3xaxb}. The case of $(3,3,1)$ is given in Benevides, and reproduced as Construction \ref{con:purina}.
+We obtain $(3,3,k)$ for $k \equiv 0 \pmod 2$ and $k > 2$ from Construction \ref{con:3x3xeven}, and $(3,3,k)$ for $k \equiv 1 \pmod 2$ and $k > 2$ from Construction \ref{con:3xaxb}. The case of $(3,3,1)$ is given in Benevides \cite{benevides:2021}, and reproduced as Construction \ref{con:purina}.
+\end{proof}
+
+\begin{prop}
+\label{prop:2x3xk_0}
+For all $k \equiv 0 \pmod 6$ such that $k>3$, $(k,2,3)$ is perfect.
+\end{prop}
+
+\begin{proof}
+We obtain $(k,2,3)$ for $k \equiv 0 \pmod 6$ and $k > 3$ from Construction \ref{con:3x2xa_mod6}. 
 \end{proof}
 
 \begin{prop}
@@ -135,15 +144,6 @@ For all $k \equiv 3 \pmod 6$, $(k,4,3)$ is perfect.
 
 \begin{proof}
 We obtain $(k,4,3)$ for $k \equiv 3 \pmod 6$ and $k \geq 9$ from Construction \ref{con:3x4xa}. The case of $(4,3,3)$ is given by Proposition \ref{prop:3x3xk}.
-\end{proof}
-
-\begin{prop}
-\label{prop:2x3xk_0}
-For all $k \equiv 0 \pmod 6$ such that $k>3$, $(k,2,3)$ is perfect.
-\end{prop}
-
-\begin{proof}
-We obtain $(k,2,3)$ for $k \equiv 0 \pmod 6$ and $k \geq 6$ from Construction \ref{con:3x2xa_mod6}. 
 \end{proof}
 
 \begin{prop}
