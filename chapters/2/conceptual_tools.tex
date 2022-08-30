@@ -11,11 +11,21 @@ Let $a_1, \dots, a_d$ be integers such that $a_1, \dots, a_d \geq 1$. We define 
 
 \section{The $d$-Walls Lemma}
 
-We begin with the following lemma, which articulates more clearly the notion of a lethal set ``spanning" a grid (as we saw in Figure \ref{fig:two_infections}).
+We begin with the following definition and lemma, which articulate more clearly the notion of a lethal set ``spanning" a grid (as we saw in Figure \ref{fig:two_infections}).
+
+\begin{defn}
+\label{defn:plane}
+Let $G = \prod_{i=1}^d [a_i]$ be a $d$-dimensional grid graph. For some $k \in [a_j]$, let $F_{j,k} = \prod_{i=1}^{j-1} [a_i] \times \{k\} \times \prod_{i=j+1}^{d} [a_i]$ be the $k$th \emph{plane} of $G$ in the $j$th dimension.
+\end{defn}
+
+\begin{defn}
+\label{defn:face}
+Let $G = \prod_{i=1}^d [a_i]$ be a $d$-dimensional grid graph, and for some $k \in [a_j]$, let $F_{j,k}$ be a plane of $G$. If $k = 1$ or $k=a_j$, we refer to $F_{j,k}$ as a \emph{face} of $G$.
+\end{defn}
 
 \begin{lem}
 \label{lem:walls}
-Let $A_0$ be an infected set on $G = \prod_{i=1}^d [a_i]$. Let $\overline{A_0} = V(G) \setminus A_0$, and let $H = G[\overline{A_0}]$ be the subgraph of $G$ induced by $\overline{A_0}$. For $1 \leq k \leq a_j$, let $F_{j,k} = \prod_{i=1}^{j-1} [a_i] \times \{k\} \times \prod_{i=j+1}^{d} [a_i]$ be the $k$th plane of $G$ in the $j$th dimension. If $H$ does not contain a path between $F_{j,1}$ and $F_{j,a_j}$, for all $1 \leq j \leq d$, then $A_0$ is lethal on $G$ under $d$-neighbor percolation.
+Let $A_0$ be an infected set on $G = \prod_{i=1}^d [a_i]$. Let $\overline{A_0} = V(G) \setminus A_0$, and let $H = G[\overline{A_0}]$ be the subgraph of $G$ induced by $\overline{A_0}$. If $H$ does not contain a path between $F_{j,1}$ and $F_{j,a_j}$, for all $1 \leq j \leq d$, then $A_0$ is lethal on $G$ under $d$-neighbor percolation.
 \end{lem}
 
 \begin{proof}
@@ -23,16 +33,21 @@ We proceed by induction on $|V(H)| = \prod_{i=1}^d a_i - |A_0|$. If $|V(H)| = 0$
 %Since $V(H) > 0$, there exists a $k_j < a_j$ such that $V(Y) \cap F_{j,k_j}$ is non-empty. 
 For each $j \in [d]$, let $x_j$ be the maximum value such that $V(Y) \cap F_{j,x_j}$ is non-empty. Note that such an $x_j$ must exist since $|V(H)| > 0$. 
 
-Consider the vertex $\vec{x} = (x_1, \dots, x_d) \in V(Y)$, and observe that 
+Consider the vertex $\mathbf{x} = (x_1, \dots, x_d) \in V(Y)$, and observe that 
 $$\left\{\bigcup_{j \in [d]} F_{j,x_j+1}\right\} \cap  V(Y) = \emptyset.$$
-In particular, note that $(x_1+1, x_2, \dots, x_d), \dots, (x_1, \dots, x_d+1) \in N_S(\vec{x})$. Therefore, $\vec{x}$ becomes infected. Furthermore, since $|V(H) \setminus \{\vec{x}\}| < |V(H)|$, the resulting graph percolates by induction. This completes the proof.
+In particular, note that $(x_1+1, x_2, \dots, x_d), \dots, (x_1, \dots, x_d+1) \in N_S(\mathbf{x})$. Therefore, $\mathbf{x}$ becomes infected. Furthermore, since $|V(H) \setminus \{\mathbf{x}\}| < |V(H)|$, the resulting graph percolates by induction. This completes the proof.
 \end{proof}
+
+\begin{defn}
+\label{defn:mutually_orthogonal}
+Let $G$ be the grid graph $\prod_{i=1}^d [a_i]$. For each $j \in [d]$, let $k_j \in [a_j]$ be some integer between $1$ and $a_j$, inclusive. We define 
+$$M = \bigcup_{j \in [d]} F_{j,k_j},$$
+and refer to $M$ as a \emph{union of mutually orthogonal planes} of $G$.
+\end{defn}
 
 \begin{cor}
 \label{cor:walls}
-Let $G$ be the grid graph $\prod_{i=1}^d [a_i]$. For each $j \in [d]$ and some $1 \leq k \leq a_j$, let 
-$$M = \bigcup_{j,k} F_{j,k}$$
-be a subset of the vertices of $G$ formed by the union of mutually orthogonal planes. If a set $A_0$ is lethal on $M$, then it is lethal on $G$. 
+Let $G$ be the grid graph $\prod_{i=1}^d [a_i]$ and let $M$ be a union of mutually orthogonal planes of $G$. If a set $A_0$ is lethal on $M$, then it is lethal on $G$. 
 %Let $G$ be the grid graph $(a,b,c)$. If a set $A$ is lethal on three mutually orthogonal faces of $G$, then $A$ is lethal on $G$.
 \end{cor}
 
@@ -50,25 +65,29 @@ The following corollaries will be useful in our discussion of lethal sets on thr
 
 \begin{cor}
 \label{cor:three_walls_simple}
-Let $G$ be the grid graph $G(a_1,a_2,a_3)$. If a set $A_0$ is lethal on $F_{1,i} \cup F_{2,j} \cup F_{3,k}$, for $i \in \{1,a_1\}$, $j \in \{1,a_2\}$, $k \in \{1,a_3\}$, then $A_0$ is lethal on $G$.
+Let $G$ be the grid graph $G(a_1,a_2,a_3)$. If a set $A_0$ is lethal on mutually orthogonal faces $F_{1,1} \cup F_{2,1} \cup F_{3,1}$ of $G$, then $A_0$ is lethal on $G$.
 \end{cor}
 
 \begin{proof}
-By hypothesis, $A_0$ is lethal on $F_{1,i} \cup F_{2,j} \cup F_{3,k}$. Therefore, there exists some time $t$ for which $F_{1,i} \cup F_{2,j} \cup F_{3,k} \subseteq A_t$, and so $G[\overline{A_t}]$ satisfies the conditions of Lemma \ref{lem:walls}. We conclude that $A_0$ is lethal on $G$.
+By hypothesis, $A_0$ is lethal on $F_{1,1} \cup F_{2,1} \cup F_{3,1}$. Therefore, there exists some time $t$ for which $F_{1,1} \cup F_{2,1} \cup F_{3,1} \subseteq A_t$, and so $G[\overline{A_t}]$ satisfies the conditions of Lemma \ref{lem:walls}. We conclude that $A_0$ is lethal on $G$.
 \end{proof}
 
 \begin{cor}
 \label{cor:three_walls}
-Let $G$ be the grid graph $G(b_1,b_2,b_3)$. Let $b_1 = a_{1,1} + \dots + a_{1,k_1}$, $b_2 = a_{2,1} + \dots + a_{2,k_2}$, and $b_3 = a_{3,1} + \dots + a_{3,k_3}$. For $i \in [k_1]$ $($and $j \in [k_2]$, $\ell \in [k_3]$$)$, define $a_{1,0} = \emptyset$ $($resp. $a_{2,0}$ and $a_{3,0}$$)$ and let $S_{1,i} = [a_{1,i}] \setminus [a_{1,i-1}] \cup \{a_{1,i-1}\}$ $($resp. $S_{2,j}$ and $S_{3,\ell}$$)$. Let $G_{i,j,\ell}$ be the grid graph with vertex set
-$$V(G_{i,j,\ell}) = S_{1,i} \times S_{2,j} \times S_{3,\ell}$$
-and edges between adjacent vertices in each of the six cardinal directions. If each $G_{i,j,\ell}$ admits a lethal set $A_{i,j,\ell}$ on three orthogonal faces, then $A_0 = \cup A_{i,j,\ell}$ is lethal on $G$.
+%Let $G$ be the grid graph $G(b_1,b_2,b_3)$. Let $b_1 = a_{1,1} + \dots + a_{1,k_1}$, $b_2 = a_{2,1} + \dots + a_{2,k_2}$, and $b_3 = a_{3,1} + \dots + a_{3,k_3}$. For $i \in [k_1]$ $($and $j \in [k_2]$, $\ell \in [k_3]$$)$, define $a_{1,0} = \emptyset$ $($resp. $a_{2,0}$ and $a_{3,0}$$)$ and let $S_{1,i} = [a_{1,i}] \setminus [a_{1,i-1}] \cup \{a_{1,i-1}\}$ $($resp. $S_{2,j}$ and $S_{3,\ell}$$)$. Let $G_{i,j,\ell}$ be the grid graph with vertex set
+%$$V(G_{i,j,\ell}) = S_{1,i} \times S_{2,j} \times S_{3,\ell}$$
+%and edges between adjacent vertices in each of the six cardinal directions. If each $G_{i,j,\ell}$ admits a lethal set $A_{i,j,\ell}$ on three orthogonal faces, then $A_0 = \cup A_{i,j,\ell}$ is lethal on $G$.
+Let $G$ be the grid graph $G(b_1,b_2,b_3)$, where $b_1, \dots , b_d \ge 2$. Let $M$ be a subset of $V(G)$ such that every component of $G[\overline{M}]$ is a grid $G(a_1,\dots, a_d)$ such that $a_j < b_j$, for all $j \in [d]$. Then, if a set $A_0$ is lethal in $G[M]$, then it is lethal in $G$.
 \end{cor}
 
 \begin{proof}
-Observe that $V(G) = \cup V(G_{i,j,\ell})$, for $i \in [k_1]$, $j \in [k_2]$ and $\ell \in [k_3]$. By Corollary \ref{cor:three_walls_simple}, each $G_{i,j,\ell}$ admits a lethal set. Therefore, all vertices of $G$ must become infected, and so $A_0$ is lethal on $G$.
+%Observe that $V(G) = \cup V(G_{i,j,\ell})$, for $i \in [k_1]$, $j \in [k_2]$ and $\ell \in [k_3]$. By Corollary \ref{cor:three_walls_simple}, each $G_{i,j,\ell}$ admits a lethal set. Therefore, all vertices of $G$ must become infected, and so $A_0$ is lethal on $G$.
+Suppose $A_0$ is lethal in $G[M]$ and consider some component $C=G(a_1,\dots, a_d)$. Let $F_{j,a_j+1}$ be a plane of $G$ flanking the face of $C$ in the $j$th dimension. Observe that 
+$$\left \{\bigcup_{j \in [d]} F_{j,a_j+1} \right \} \cap M$$
+is a union of mutually orthogonal planes in the graph $G(a_1+1,\dots, a_d+1)$. Since $A_0$ is lethal in $G[M]$, by Corollary \ref{cor:walls}, $A_0$ is lethal in $C$. This holds for all components of $G[\overline{M}]$, and so we conclude that $A_0$ is lethal in $G$.
 \end{proof}
 
-In the case of three-dimensional grids, it is instructive to think of the union of perpendicular faces $M$ over all $G_{i,j,\ell}$ as an unfolded surface. An illustration of this for $G(a_1,a_2,a_3)$ is shown in Figure \ref{fig:manifold_types}. We refer to $M$ as a manifold of $G$, and to this unfolded surface as a \emph{proper unfolding} of $M$. In Chapter 6, we examine other manifolds and their proper unfoldings. 
+In the case of three-dimensional grids $G$, it is instructive to think of ``unfolding" planes of $G$ into two-dimensional surfaces. An illustration of this for $G(a_1,a_2,a_3)$ is shown in Figure \ref{fig:manifold_types}. We refer to these planes of $G$ as \emph{manifolds}, and to the unfolded surfaces as \emph{unfoldings}. If a manifold $M$ satisfies the conditions of Corollary \ref{cor:three_walls}, then we say that an unfolding of $M$ is \emph{proper}. In Chapter 6, we examine other manifolds and their proper unfoldings. 
 
 Since, by Corollary \ref{cor:walls}, any lethal set on $M$ is also lethal on $G$, it is often easier to identify lethal sets by examining these flattened unfolded structures. In fact, in the particular case of $M = F_{1,1} \cup F_{2,1} \cup F_{3,1}$, the surface area bound on $G(a_1,a_2,a_3)$ can be written in terms of the surface area bounds on flat, two-dimensional grids.
 
