@@ -112,27 +112,33 @@ All white tiles have their $A_0$-vertex in the bottom left corner.
 \end{prop}
 
 \begin{proof}
-For contradiction, suppose that there exists a white tile $T_0$ with one infected vertex in the upper right. By Proposition \ref{prop:one_border_vertex}, there exists a path in $G[\overline{A_0}]$ from $T_0 \setminus A_0$ to the border. We consider the sequence of white tiles $T_0, \dots, T_n$ containing this path. 
+For contradiction, suppose that there exists a white tile $T_0$ with one infected vertex in the upper right. By Proposition \ref{prop:one_border_vertex}, there exists a path $w_1\dots w_k$ in $G[\overline{A_0}]$ from $T_0 \setminus A_0$ to the border. We consider the sequence of tiles $T_0, \dots, T_n$ containing this path. Note that if $w_k$ is in the top or right face of $G$, then it is not contained in any tile in this sequence.
+
+We claim that $T_n$ contains an infected vertex in the bottom-left corner. Recall that $w_k$ must be odd. Therefore, if $w_k$ is in the bottom or left face of $G$, then it must lie in either the top-left or bottom-right corner of $T_n$. This implies $T_n$ must have an infected vertex in the bottom-left; otherwise, $T_n$ would contain adjacent uninfected vertices on the border of $G$. Now suppose that $w_k$ is in the top or right face of $G$. In this case, $T_n$ contains $w_{k-1}$. However, since $w_{k-1}$ is adjacent to $w_k$ by definition, $w_{k-1}$ must be even and so must be the top-right vertex of $T_n$. Since $w_{k-1} \notin A_0$, this implies that $T_n$ cannot have an infected vertex in the top-right. Furthermore, since every tile must contain at least one infected vertex, $T_n$ must contain an infected vertex in the bottom-left corner.
 
 %Consider two consecutive tiles $T_i, T_{i+1}$ in this sequence. Note that $T_i$ and $T_{i+1}$ cannot be diagonally adjacent, as such a configuration creates a 4-cycle in $G[\overline{A_0}]$ (see Figure \ref{fig:tile_cycle}). 
 
-Observe that, by Proposition \ref{prop:alternating_border}, $T_n$ has its infected vertex in the bottom left corner. Therefore, since $T_0$ contains an infection in the top right by assumption, there exist consecutive tiles $T_i, T_{i+1}$ such that $T_i$ has an infection in the top right, and $T_{i+1}$ has an infection in the bottom left. Note that $T_i$ and $T_{i+1}$ cannot be diagonally adjacent, as such a configuration creates a 4-cycle in $G[\overline{A_0}]$ (see Figure \ref{fig:tile_cycle}).
+Therefore, since $T_0$ contains an infection in the top right by assumption, there exist consecutive tiles $T_i, T_{i+1}$ such that $T_i$ has an infection in the top right, and $T_{i+1}$ has an infection in the bottom left. Observe that $T_{i+1}$ cannot be to the right (or above) $T_i$, as shown in Figure \ref{fig:tile_cases}. We therefore assume that $T_{i+1}$ is to the left of (or below) $T_i$ (note that these cases are symmetric). Figure  \ref{fig:tile_cases} shows that if $T_{i+1}$ is white, then this configuration creates a 4-cycle. Therefore, $T_{i+1}$ must be blue. Note that the bottom-right vertex of $T_{i+1}$ is in $w_1 \dots w_k$. Denote this vertex as $w_v$.
 
-We consider two cases. If $T_{i+1}$ is below or to the left of $T_i$, we obtain a 4-cycle. On the other hand, if $T_{i+1}$ is above or to the right of $T_i$, there is no path in $G[\overline{A_0}]$ between them (see Figure \ref{fig:tile_cases}). We therefore conclude that $T_0$ must have an infected vertex in the bottom left.
+We have two possibilities: either $w_v$ is on the bottom face of $G$, or there exists a vertex $w_{v+1} \in w_1 \dots w_k$ that is adjacent to $w_v$. Note that the first case is not possible, as it implies that $w_{v-1}$ is also on the bottom face of $G$, violating Proposition \ref{prop:alternating_border}. Therefore, there must exist a vertex $w_{v+1} \in w_1 \dots w_k$ that is adjacent to $w_v$. However, this implies the configuration of tiles shown in Figure \ref{fig:tile_cycle}, which gives a 4-cycle. This final contradiction completes the proof that all white tiles must have their $A_0$-vertex in the bottom left corner.
+
+%Note that $T_i$ and $T_{i+1}$ cannot exist in a diagonal configuration (as shown in Figure \ref{fig:tile_cycle}), as such a configuration creates a 4-cycle in $G[\overline{A_0}]$.
+
+%We consider two cases. If $T_{i+1}$ is below or to the left of $T_i$, we obtain a 4-cycle. On the other hand, if $T_{i+1}$ is above or to the right of $T_i$, there is no path in $G[\overline{A_0}]$ between them (see Figure \ref{fig:tile_cases}). We therefore conclude that $T_0$ must have an infected vertex in the bottom left.
 \end{proof}
-
-\begin{figure}[]
-\centering
-\includegraphics[width=0.15\textwidth]{figures/6/tile_cycle.pdf}
-\caption{Diagonal white tiles and the resulting 4-cycle.}
-\label{fig:tile_cycle}
-\end{figure} 
 
 \begin{figure}[]
 \centering
 \includegraphics[width=0.5\textwidth]{figures/6/tile_cases.pdf}
 \caption{Possible configurations of adjacent white tiles.}
 \label{fig:tile_cases}
+\end{figure} 
+
+\begin{figure}[]
+\centering
+\includegraphics[width=0.15\textwidth]{figures/6/tile_cycle.pdf}
+\caption{A 4-cycle resulting from the only possible configuration of $T_i$ and $T_{i+1}$.}
+\label{fig:tile_cycle}
 \end{figure} 
 
 We are now prepared to prove that the blue tiles form a lethal set in $G'$.
