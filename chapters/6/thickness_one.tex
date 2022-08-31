@@ -2,7 +2,7 @@
 
 While results from the previous chapters resolve the question of $m(a_1,a_2,a_3,3)$ for $a_1, a_2 , a_3 \geq 11$, our constructions for smaller grids remain incomplete. Nevertheless, computer examples seem to suggest that most grids of minimum size at least 2 are optimal. Grids of thickness 1 tell a different story. In this chapter, we prove that the only perfect grids in thickness 1 are those of the form $[2^n-1]^2$. This answers a question posed by Benevides, Bermond, Lesfari and Nisse in \cite{benevides:2021}.
 
-The broad structure of the proof is as follows: Let $A_0$ be a perfect lethal set on the grid $G(a_1, a_2, 1)$. We show that the structure of $A_0$ guarantees both that $a_1,a_2$ are odd, and that there exists a perfect lethal set on the smaller grid $G(\frac{a_1-1}{2}, \frac{a_2-1}{2}, 1)$. Repeated applications of this process of reduction guarantee the existence of a perfect lethal set on the grid $G(a_0, 1,1)$. Since the only such grid that admits a perfect lethal set is $G(1,1,1)$, we are forced to conclude that $a_1 = a_2 = 2^k-1$ for some $k > 0$. 
+The broad structure of the proof is as follows: Let $A_0$ be a perfect lethal set on the grid $G(a_1, a_2, 1)$. We show that the structure of $A_0$ guarantees both that $a_1,a_2$ are odd, and that there exists a perfect lethal set on the smaller grid $G(\frac{a_1-1}{2}, \frac{a_2-1}{2}, 1)$. Repeated applications of this process of reduction guarantee the existence of a perfect lethal set on the grid $G(a_0, 1,1)$, for some $a_0 \ge 1$. Since the only such grid that admits a perfect lethal set is $G(1,1,1)$, we are forced to conclude that $a_1 = a_2 = 2^k-1$ for some $k > 0$. 
 
 \section{Preliminaries}
 For the remainder of the chapter, let $G = [a_1] \times [a_2]$. Recall that every perfect lethal set matches the surface area bound. In particular,
@@ -63,10 +63,10 @@ The number of components of $H$ is given by
 As there are exactly $a_1 + a_2 - 2$ border vertices in $H$, each component must contain exactly one border vertex.
 \end{proof}
 
-Consider a labeling of the vertices of $G$ by their coordinates, starting at $(1,1)$ in the lower left and ranging to $(a_1,a_2)$ in the upper right. Refer to a vertex $(x,y)$ as ``even" or ``odd" depending on the parity of $x+y$. If a set $S \subseteq V(G)$ contains all vertices of the same parity, call $S$ monochromatic. The following lemma leverages the prior propositions to prove that any perfect lethal set on $G$ must be monochromatic.
+Consider the coordinates of the vertices of $G$, starting at $(1,1)$ in the lower left and ranging to $(a_1,a_2)$ in the upper right. Refer to a vertex $(x,y)$ as ``even" or ``odd" depending on the parity of $x+y$. If a set $S \subseteq V(G)$ contains all vertices of the same parity, call $S$ monochromatic. The following lemma leverages the prior propositions to prove that any perfect lethal set on $G$ must be monochromatic.
 
 \begin{lem}
-Let $A_0$ be a perfect lethal set on $G$. Then $A_0$ is monochromatic with respect to the proper $2$-coloring of $G$.
+Let $A_0$ be a perfect lethal set on $G$. Then $A_0$ is monochromatic.
 \end{lem}
 
 \begin{proof}
@@ -84,8 +84,9 @@ Let $H$ be a graph with vertices $V(H) = V(G)$ and edges $uv$ if and only if $u$
 
 \section{Reduction}
 Using propositions from the prior section, we show that it is possible to obtain a perfect lethal set on the smaller grid $G' = G(\frac{a_1-1}{2}, \frac{a_2-1}{2}, 1)$ obtained from $G$. Let the vertices of $G'$ be $2 \times 2$ tiles of $G$ given by
-$$\{(2x-1,2y-1),(2x-1,2y),(2x,2y-1),(2x,2y) \mid (x,y) \in [1, \tfrac{a_1-1}{2}] \times [1, \tfrac{a_2-1}{2}]\},$$
-with adjacencies between tiles that differ by one in each of the cardinal directions. Note that Proposition \ref{prop:odd_by_odd} ensures that $|V(G')|$ is an integer. Furthermore, observe that for any tile $T_{x,y} \in V(G')$, $|A_0 \cap T_{x,y}| \in \{1,2\}$. This follows from the fact that $A_0$ is an independent set, and $G[\overline{A_0}]$ is acyclic. For all $T_{x,y} \in V(G')$, color $T_{x,y}$ blue if $|A_0 \cap T_{x,y}| = 2$, and white otherwise. Let $b$ and $w$ be the number of blue and white tiles in $V(G')$, respectively. We determine $b$ by solving the following system of equations:
+$$T_{x,y} = \{2x-1,2x\} \times \{2y-1, 2y\},$$
+%$$\{(2x-1,2y-1),(2x-1,2y),(2x,2y-1),(2x,2y) \mid (x,y) \in [1, \tfrac{a_1-1}{2}] \times [1, \tfrac{a_2-1}{2}]\},$$
+for $(x,y) \in [1, \tfrac{a_1-1}{2}] \times [1, \tfrac{a_2-1}{2}]$, and with adjacencies between tiles that differ by one in each of the cardinal directions. Note that Proposition \ref{prop:odd_by_odd} ensures that $|V(G')|$ is an integer. Furthermore, observe that for any tile $T_{x,y} \in V(G')$, $|A_0 \cap T_{x,y}| \in \{1,2\}$. This follows from the fact that $A_0$ is an independent set, and $G[\overline{A_0}]$ is acyclic. For all $T_{x,y} \in V(G')$, color $T_{x,y}$ blue if $|A_0 \cap T_{x,y}| = 2$, and white otherwise. Let $b$ and $w$ be the number of blue and white tiles in $V(G')$, respectively. We determine $b$ by solving the following system of equations:
 \begin{align*}
 b + w &= \frac{(a_1-1)(a_2-1)}{4} \\
 2b + w &= \frac{a_1a_2+a_1+a_2}{3} - \frac{a_1+a_2}{2}.
@@ -95,7 +96,7 @@ This gives the following expression for $b$:
 \frac{a_1a_2+a_1+a_2}{3} - \frac{a_1+a_2}{2} - \frac{(a_1-1)(a_2-1)}{4} &= \frac{a_1a_2+a_1+a_2-3}{12} \label{eq:tile_bound_1} \\
 &= \frac{(\frac{a_1-1}{2})(\frac{a_2-1}{2}) + \frac{a_1-1}{2} + \frac{a_2-1}{2}}{3} \label{eq:tile_bound_2}.
 \end{align}
-Note that this is precisely the surface area bound for the $(\frac{a_1-1}{2}, \frac{a_2-1}{2}, 1)$ grid. Furthermore, since $a_1 \equiv a_2 \equiv 1 \pmod 6$ or $a_1 \equiv a_2 \equiv 3 \pmod 6$, all terms on the LHS of Equation \ref{eq:tile_bound_1} are integral, and so the SA bound in Equation \ref{eq:tile_bound_2} is tight.
+Note that this is precisely the surface area bound for the $(\frac{a_1-1}{2}, \frac{a_2-1}{2}, 1)$ grid. %Furthermore, since $a_1 \equiv a_2 \equiv 1 \pmod 6$ or $a_1 \equiv a_2 \equiv 3 \pmod 6$, all terms on the LHS of Equation \ref{eq:tile_bound_1} are integral, and so the SA bound in Equation \ref{eq:tile_bound_2} is tight.
 
 \begin{figure}[]
 \centering
@@ -165,7 +166,7 @@ For necessity, we show that any cycle or border-to-border path in the white tile
 
 %Proposition \ref{prop:odd_by_odd} mandates that all perfect lethal sets on $[a_1] \times [a_2]$ be odd-by-odd.
 
-We have shown that the existence of a perfect lethal set on $[a_1] \times [a_2]$ implies the existence of a perfect lethal set on $[(a_1-1)/2] \times [(a_2-1)/2)]$. Suppose, without loss of generality, that $a_1 \geq a_2$. Then, by Proposition \ref{prop:odd_by_odd}, it must be the case that $a_2 = 2^{k}-1$ for some $k> 0$. By repeated applications of Lemma \ref{lem:blue_lethal}, we ultimately obtain a grid $[a_0] \times [1]$ that admits a perfect lethal set. Clearly, the only such grid is the single vertex. Therefore, it must follow that $a_1 = a_2 = 2^k-1$. We conclude that the only two-dimensional grids that admit perfect lethal sets under 3-neighbor percolation are square grids of the form $[2^n-1]^2$. Furthermore, this process fixes the location of infected vertices in a particular configuration. This configuration is published in Benevides et al \cite{benevides:2021}, and reproduced below.
+We have shown that the existence of a perfect lethal set on $[a_1] \times [a_2]$ implies the existence of a perfect lethal set on $[(a_1-1)/2] \times [(a_2-1)/2)]$. Suppose, without loss of generality, that $a_1 \geq a_2$. Then, by Proposition \ref{prop:odd_by_odd}, it must be the case that $a_2 = 2^{k}-1$ for some $k> 0$. By repeated applications of Lemma \ref{lem:blue_lethal}, we ultimately obtain a grid $[a_0] \times [1]$, for some $a_0 \ge 1$, that admits a perfect lethal set. Clearly, the only such grid is the single vertex. Therefore, it must follow that $a_1 = a_2 = 2^k-1$. We conclude that the only two-dimensional grids that admit perfect lethal sets under 3-neighbor percolation are square grids of the form $[2^n-1]^2$. Furthermore, this process fixes the location of infected vertices in a particular configuration. This configuration is published in Benevides et al \cite{benevides:2021}, and reproduced below.
 
 \section{Purina}
 

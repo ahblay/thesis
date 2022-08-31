@@ -130,7 +130,7 @@ Let us take a moment to examine the issue of integrality in the perimeter bound.
 \label{fig:sa_construction_2d}
 \end{figure} 
 
-We can further generalize in the case where $r=2$. In 2006, Balogh and Bollob\'as \cite{balogh:2006} proved the following general form of Theorem \ref{thm:perimeter_rects} for all $d$-dimensional hypercubes $(a_1, \dots, a_d)$, $a_i \geq 1$:
+We can further generalize in the case where $r=2$. In 2006, Balogh and Bollob\'as \cite{balogh:2006} proved the following general form of Theorem \ref{thm:perimeter_rects} for all $d$-dimensional grids $(a_1, \dots, a_d)$, $a_i \geq 1$:
 
 \begin{thm}[Balogh and Bollob\'as]
 \label{thm:complete_r_2}
@@ -173,7 +173,7 @@ The first three cases follow from Theorem 1 of \cite{benevides:2021} and the obs
 This result resolves the question of the minimum lethal set for two dimensional square grids. For the more general case of rectangular grids, the problem remains unsolved. However, our experimentation suggests that nearly all grids $[a_1] \times [a_2]$ for $a_1,a_2 > 2$ fall within a constant factor of the bound given in Theorem \ref{thm:sa_bound}, below.
 %However, we are able to achieve an upper bound of $m(a,b,3) \leq \ceil{\frac{ab+a+b+6}{3}}$ and a lower bound (described below) of $m(a,b,3) \geq \ceil{\frac{ab+a+b}{3}}$, for all $a,b > 1$. Further discussion of these results can be found in Chapter 6.
 
-One significant and well-known result for 3-neighbor percolation on two- and three-dimensional grids is the following lower bound, taken as a three-dimensional analogue of the perimeter bound. This result is referenced frequently throughout this document, and referred to interchangeably as the \emph{surface area} or \emph{SA bound}. We shall use the shorthand notation $SA(G)$ to refer to the surface area bound of a grid $G$. We prove the statement in full generality, while noting that we only make use of the case where $d=3$. We also note that, like the perimeter bound, the following proof belongs to bootstrap percolation folklore. While it appears to have been first published in 1997 by Balogh and Pete \cite{balogh1998random}, variations also appear in \cite{bollobas2006coffee,pete:1997,pete1997make}.
+One significant and well-known result for $d$-neighbor percolation on $d$-dimensional grids is the following lower bound, taken as a $d$-dimensional analog of the perimeter bound. This result is referenced frequently throughout this document, and referred to interchangeably as the \emph{surface area} or \emph{SA bound}. We shall use the shorthand notation $SA(G)$ to refer to the surface area bound of a grid $G$. We prove the statement in full generality, while noting that we only make use of the case where $d=3$. We also note that, like the perimeter bound, the following proof belongs to bootstrap percolation folklore. While it appears to have been first published in 1997 by Balogh and Pete \cite{balogh1998random}, variations also appear in \cite{bollobas2006coffee,pete:1997,pete1997make}.
 
 \begin{thm}
 \label{thm:sa_bound}
@@ -319,7 +319,7 @@ Interestingly, this time is not achieved with minimum lethal sets (lethal sets o
 
 The fact that minimum lethal sets do not always percolate slowest holds for grids $[n]^2$ under 3-neighbor percolation, where $n=2^k-1$. In Chapter 5, we prove that $m([n]^2,3) = \frac{n^2+2n}{3}$ for $n=2^k-1$, and show that this is achieved for exactly one lethal configuration of vertices $A_0$. It is easy to see that $A_0$ percolates in time $(n-1)/2$ and so, if $|A_0| = \frac{n^2+2n}{3}$, then $T([n]^2,3) = \frac{n-1}{2}$ (see Figure \ref{fig:fast}). By removing the restriction on $|A_0|$, we are able to improve this to $T([n]^2,3) \geq (n-1)(n-1)/2$ (see Figure \ref{fig:slow}). It is not clear whether this lower bound is best possible; further discussion can be found in Chapter 7. 
 
-In 2018, Hartarsky investigated maximum $r$-neighbor percolation time on $d$-dimensional hypercubes, for $r \ge 3$ \cite{hartarsky2017maximal}. In particular, they determined the following value of $T([2]^d, r)$, up to a factor of $\log d$:
+In 2018, Hartarsky investigated maximum $r$-neighbor percolation time on $d$-dimensional hypercubes, for $r \ge 3$ \cite{hartarsky2017maximal}. In particular, they determined the following value of $T([2]^d, r)$, up to a polylogarithmic factor:
 
 \begin{thm}[Hartarsky]
 \label{thm:snakeinabox}

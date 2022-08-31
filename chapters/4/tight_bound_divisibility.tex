@@ -1,4 +1,4 @@
-\chapter{A Tight Bound on Grids of Size $\geq$ 5}
+\chapter{Grids with Side Length at Least Five}
 
 Recall from Definition \ref{defn:thickness} that $G(a_1,a_2,a_3)$ represents the $[a_1] \times [a_2] \times [a_3]$ grid $G$, and that $\min\{a_1,a_2,a_3\}$ is the thickness of $G$. For example, the tuple $G(5,3,3)$ represents the thickness 3 grid $[5] \times [3] \times [3]$. In the following lemmas, we use the notation $(a_1,a_2,a_3)+(x_1,x_2,x_3) = (a_1+x_1, a_2+x_2, a_3+x_3)$ to represent an instance of Corollary \ref{cor:recursion} on the $3 \times 2$ matrix $A$:
 $$A =
@@ -13,7 +13,7 @@ For example, the expression $(5,3,3) + (3,3,3)$ indicates an application of Coro
 We shall call a thickness \emph{complete} if it can be shown that all divisibility cases in that thickness admit perfect lethal sets. In this section, we demonstrate that thickness 5, thickness 6 and thickness 7 are all complete. As these belong to the residue classes 2, 0, and 1 modulo 3, respectively, we then use Lemma \ref{lem:plus_333} to show that all larger grids are also complete. 
 
 \section{Completeness of Thickness 5}
-We show that all divisibility cases for grids of thickness 5 admit perfect lethal sets. Observe that divisibility cases for thickness 5 consist of grids $G(x,y,5)$ where $x$ and $y$ are in residue classes $\{0,2,3,5\}$ modulo 6 (see Table \ref{fig:thickness_5_cases}). We separate these divisibility cases into the following four categories and show that each category is complete:
+We show that all divisibility cases for grids of thickness 5 admit perfect lethal sets. Observe that divisibility cases for thickness 5 consist of grids $G(x,y,5)$ where $x$ and $y$ are in residue classes $\{0,2,3,5\}$ modulo 6 (see Table \ref{fig:thickness_5_cases}). We separate these divisibility cases into the following four cases and show that each case is complete:
 
 \begin{enumerate}
 \item $G(x,5,5)$ for $x \in \{2,5\} \pmod 6$ and $x \geq 5$;
@@ -96,7 +96,7 @@ By Lemmas \ref{lem:thickness_5_case_1}, \ref{lem:thickness_5_case_2}, \ref{lem:t
 \end{proof}
 
 \section{Completeness of Thickness 6}
-We show that all divisibility cases for grids of thickness 6 admit perfect lethal sets. Observe that divisibility cases for thickness 6 consist of grids $G(x,y,6)$ where, without loss of generality, $x$ is in residue classes $\{0,3\}$ modulo 6, and $y$ is either even or odd (see Table \ref{fig:thickness_6_cases}). We separate these divisibility cases into the following four categories and show that each category is complete:
+We show that all divisibility cases for grids of thickness 6 admit perfect lethal sets. Observe that divisibility cases for thickness 6 consist of grids $G(x,y,6)$ where, without loss of generality, $x$ is in residue classes $\{0,3\}$ modulo 6, and $y$ is either even or odd (see Table \ref{fig:thickness_6_cases}). We separate these divisibility cases into the following four cases and show that each case is complete:
 
 \begin{enumerate}
 \item $G(x,y,6)$ for $x \equiv 0 \pmod 6$, $y \equiv 0 \pmod 2$, and $x,y \geq 6$;
@@ -182,12 +182,12 @@ All divisibility cases for thickness 6 are grids $G(x,y,6)$ such that at least o
 
 \section{Completeness of Thickness 7}
 
-We show that all divisibility cases for grids of thickness 7 admit perfect lethal sets. Observe that divisibility cases for thickness 7 consist of grids $G(x,y,7)$ for $x,y$ in residue classes $\{0,1,3,4\}$ modulo 6 (see Table \ref{fig:thickness_7_cases}). We separate these divisibility cases into the following four categories and show that each category is complete:
+We show that all divisibility cases for grids of thickness 7 admit perfect lethal sets. Observe that divisibility cases for thickness 7 consist of grids $G(x,y,7)$ for $x,y$ in residue classes $\{0,1,3,4\}$ modulo 6 (see Table \ref{fig:thickness_7_cases}). We separate these divisibility cases into the following four cases and show that each case is complete:
 \begin{enumerate}
-\item $G(x,y,7)$ for $x,y \in \{1,4\}$, $x \equiv y \pmod 6$, and $x,y \geq 7$;
-\item $G(x,y,7)$ for $x,y \in \{1,4\}$, $x \not\equiv y \pmod 6$, and $x,y \geq 7$;
-\item $G(x,y,7)$ for $x,y \in \{0,3\}$, $x \equiv y \pmod 6$, and $x,y \geq 7$;
-\item $G(x,y,7)$ for $x,y \in \{0,3\}$, $x \not\equiv y \pmod 6$, and $x,y \geq 7$.
+\item $G(x,y,7)$ for $x,y \in \{1\} \pmod 3$, $x \equiv y \pmod 6$, and $x,y \geq 7$;
+\item $G(x,y,7)$ for $x,y \in \{1\} \pmod 3$, $x \not\equiv y \pmod 6$, and $x,y \geq 7$;
+\item $G(x,y,7)$ for $x,y \in \{0\} \pmod 3$, $x \equiv y \pmod 6$, and $x,y \geq 7$;
+\item $G(x,y,7)$ for $x,y \in \{0\} \pmod 3$, $x \not\equiv y \pmod 6$, and $x,y \geq 7$.
 \end{enumerate}
 
 \begin{table}[]
@@ -207,7 +207,7 @@ Consider $(a,b,2) + (8,5,5)$ for $a,b \in \{2,5\} \pmod 6$, $a \not\equiv b \pmo
 
 By Corollary \ref{cor:recursion}, we must show that $(a,b,2), (a,5,5), (8,b,5), (8,5,2)$ are all perfect. By Proposition \ref{prop:thickness_2_2d_family}, $(a,b,2)$ and $(8,5,2)$ are perfect. By Lemma \ref{lem:thickness_5_complete}, $(a,5,5)$ and $(8,b,5)$ are perfect. 
 
-To obtain $(a,7,7)$, for $a \equiv 1 \pmod 6$, we consider $(4,4,4) + (a-4,3,3)$. By Corollary \ref{cor:recursion}, we must show that $(4,4,4), (4,3,3), (a-4,4,3), (a-4,3,4)$ are all perfect. We obtain $(4,4,4)$ from $(2,2,2)+(2,2,2)$. By Theorem \ref{thm:hypercubes}, we have that $(2,2,2)$ is perfect. Proposition \ref{prop:3x3xk} gives $(4,3,3)$. Since $a-4 \equiv 3 \pmod 6$, we obtain $(a-4,4,3)$ from Proposition \ref{prop:thickness_3_width_4}.
+To obtain $(a,7,7)$, for $a \equiv 1 \pmod 6$ and $a \ge 7$, we consider $(4,4,4) + (a-4,3,3)$. By Corollary \ref{cor:recursion}, we must show that $(4,4,4), (4,3,3), (a-4,4,3), (a-4,3,4)$ are all perfect. By Theorem \ref{thm:hypercubes}, we have that $(2,2,2)$ and $(4,4,4)$ are perfect. Proposition \ref{prop:3x3xk} gives $(4,3,3)$. Since $a-4 \equiv 3 \pmod 6$, we obtain $(a-4,4,3)$ from Proposition \ref{prop:thickness_3_width_4}.
 
 To obtain $(10,10,7)$, consider $(5,5,5) + (5,5,2)$. By Corollary \ref{cor:recursion}, we must show that $(5,5,5), (5,5,2), (5,5,2), (5,5,5)$ are all perfect. Lemma \ref{lem:thickness_5_complete} gives us $(5,5,5)$, and Construction \ref{con:5x5x2} gives us $(5,5,2)$. We conclude that all grids in Case 1 admit perfect lethal sets. 
 \end{proof}
@@ -264,7 +264,7 @@ We are now in a position to prove Theorem \ref{thm:main_result}. We first state 
 
 \begin{cor}
 \label{cor:divisibility_complete}
-Let $G(a_1,a_2,a_3)$ be a divisibility case, for $a_1, a_2, a_3 \geq 5$. Then $G(a_1,a_2,a_3)$ admits a perfect lethal set.
+Let $G(a_1,a_2,a_3)$ be a divisibility case, for $a_1, a_2, a_3 \geq 5$. Then $(a_1,a_2,a_3)$ is perfect.
 \end{cor}
 
 \begin{proof}
@@ -290,7 +290,7 @@ Let $G(a_1,a_2,a_3)$ be any grid such that $a_1, a_2, a_3 \geq 5$. If $(a_1,a_2,
 By Corollary \ref{cor:recursion}, we must show that $(a_1,3b_2,3b_3), (3b_1,a_2,3b_3), (3b_1,3b_2,a_3)$ are all perfect. Since $3b_1 \equiv 3b_2 \equiv 3b_3 \equiv 0 \pmod 3$, each of these grids is divisible. Furthermore, each grid has minimum thickness 5 and so, by Corollary \ref{cor:divisibility_complete}, each grid is perfect.
 \end{proof}
 
-Let $(r_1,r_2,r_3)$ be the tuple of residues of $(a_1,a_2,a_3)$ modulo 3. Given an optimal grid $G(a_1,a_2,a_3)$, Lemma \ref{lem:multiples_of_3} says that all other grids of size at least $G(a_1+6,a_2+6,a_3+6)$ with the same $(r_1,r_2,r_3)$ are optimal. Therefore, by obtaining optimal lethal sets on the smallest grids for each residue tuple $(r_1,r_2,r_3)$, we are able to obtain a lower bound on the size of all optimal grids under 3-neighbor percolation (see Table \ref{tab:residues}).
+Let $(r_1,r_2,r_3)$ be the tuple of residues of $(a_1,a_2,a_3)$ modulo 3. Given an optimal grid $G(a_1,a_2,a_3)$ such that $a_1,a_2,a_3 \ge 5$, Lemma \ref{lem:multiples_of_3} says that all other grids of size at least $G(a_1+6,a_2+6,a_3+6)$ with the same $(r_1,r_2,r_3)$ are optimal. Therefore, by obtaining optimal lethal sets on the smallest grids for each residue tuple $(r_1,r_2,r_3)$, we are able to obtain a lower bound on the size of all optimal grids under 3-neighbor percolation (see Table \ref{tab:residues}).
 
 \begin{table}[]
 \centering
@@ -316,7 +316,7 @@ Let $(r_1,r_2,r_3)$ be the tuple of residues of $(a_1,a_2,a_3)$ modulo 3. Given 
 \begin{proof}[Proof of Theorem \ref{thm:main_result}]
 Let $(a_1,a_2,a_3)$ be such that $a_1, a_2, a_3 \geq 11$. Observe that each $a_i$ can be written as $3b_i + r_i$, for $b_i \geq 2$ and some $r_i \in \{5,6,7\}$. We therefore have that $(a_1,a_2,a_3) = (r_1,r_2,r_3) + (3b_1,3b_2,3b_3)$, for $r_1,r_2,r_3 \in \{5,6,7\}$. By Lemma \ref{lem:multiples_of_3}, $(a_1,a_2,a_3)$ is optimal if $(r_1,r_2,r_3)$ is optimal. 
 
-Corollary \ref{cor:divisibility_complete} gives us the optimality of divisibility cases. Therefore, we need only consider non-divisible grids $G(r_1,r_2,r_3)$. In particular, we must show that $(6,5,5)$, $(7,5,5)$, $(7,6,5)$, $(7,7,5)$ and $(7,7,6)$ are all optimal. We obtain $(7,7,6)$ from $(4,4,3) + (3,3,3)$. By Lemma \ref{lem:plus_333}, $(7,7,6)$ is optimal. Constructions for $(6,5,5)$, $(7,5,5)$, $(7,6,5)$, $(7,7,5)$ are given in Appendix A.
+Corollary \ref{cor:divisibility_complete} gives us the optimality of divisibility cases. Therefore, we need only consider non-divisible grids $G(r_1,r_2,r_3)$. In particular, we must show that $(6,5,5)$, $(7,5,5)$, $(7,6,5)$, $(7,7,5)$ and $(7,7,6)$ are all optimal. We obtain $(7,7,6)$ from $(4,4,3) + (3,3,3)$. The construction for $(4,4,3)$ is given in Construction \ref{con:4x4x3}. By Lemma \ref{lem:plus_333}, $(7,7,6)$ is optimal. Constructions for $(6,5,5)$, $(7,5,5)$, $(7,6,5)$, $(7,7,5)$ are given in Appendix A.
 
 Since each of the non-divisibility grids $G(r_1,r_2,r_3)$ admits an optimal lethal set, we conclude that all grids $G(a_1,a_2,a_3)$ where $a_1, a_2, a_3 \geq 11$ are optimal.
 \end{proof}

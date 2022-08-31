@@ -155,16 +155,16 @@
 Consider infecting a subset $A_0 \subseteq V(G)$ of the vertices of a graph $G$. Let an uninfected vertex $v \in V(G)$ become infected if $|N_G(v) \cap A_0| \geq r$, for some integer $r$. Define $A_t = A_{t-1} \cup \{v \in V(G) : |N_G(v) \cap A_{t-1}| \geq r \},$ and say that the set $A_0$ is \emph{lethal} under $r$-neighbor percolation if there exists a $t$ such that $A_t = V(G)$. For a graph $G$, let $m(G,r)$ be the size of the smallest lethal set in $G$ under $r$-neighbor percolation. 
 
 The problem of determining $m(G,r)$ has been extensively studied for grids $G$ of various dimensions. We define 
-$$m\left (\prod_{i=1}^d [a_i], r\right ) = m(a_1, \dots, a_d, r)$$
+$$m(a_1, \dots, a_d, r) = m\left (\prod_{i=1}^d [a_i], r\right )$$
 for ease of notation. Famously, a lower bound of $m(a_1, \dots, a_d, d) \geq \frac{\sum_{j=1}^d \prod_{i \neq j} a_i}{d}$ is given by a beautiful argument regarding the high-dimensional ``surface area" of $G = [a_1] \times \dots \times [a_d]$. While exact values of $m(G,r)$ are known in some specific cases, general results are difficult to come by.
 
-In this thesis, we introduce a novel technique for viewing $d$-neighbor lethal sets on $d$-dimensional grids in terms of lethal sets in $(d-1)$ dimensions. We also provide a strategy for recursively building up large lethal sets from existing small constructions. Using these techniques, we determine the exact size of all lethal sets under 3-neighbor percolation in three-dimensional grids $[a_1] \times [a_2] \times [a_3]$, for $a_1,a_2,a_3 \geq 11$. 
+In this thesis, we introduce a novel technique for viewing $3$-neighbor lethal sets on three-dimensional grids in terms of lethal sets in two dimensions. We also provide a strategy for recursively building up large lethal sets from existing small constructions. Using these techniques, we determine the exact size of all lethal sets under 3-neighbor percolation in three-dimensional grids $[a_1] \times [a_2] \times [a_3]$, for $a_1,a_2,a_3 \geq 11$. 
 
-The problem of determining $m([n] \times [n],3)$ is discussed by Benevides, Bermond, Lesfari and Nisse in \cite{benevides:2021}. The authors determine the exact value of $m([n] \times [n],3)$ for even $n$, and show that, for odd $n$,
-$$\ceil*{\frac{n^2+2n}{3}} \leq m([n] \times [n],3) \leq \ceil*{\frac{n^2+2n}{3}} + 1.$$
-We prove that $m([n] \times [n],3) = \ceil*{\frac{n^2+2n}{3}}$ if and only if $n = 2^k-1$, for some $k >0$.
+The problem of determining $m(n,n,3)$ is discussed by Benevides, Bermond, Lesfari and Nisse in \cite{benevides:2021}. The authors determine the exact value of $m(n,n,3)$ for even $n$, and show that, for odd $n$,
+$$\ceil*{\frac{n^2+2n}{3}} \leq m(n,n,3) \leq \ceil*{\frac{n^2+2n}{3}} + 1.$$
+We prove that $m(n,n,3) = \ceil*{\frac{n^2+2n}{3}}$ if and only if $n = 2^k-1$, for some $k >0$.
 
-Finally, we prove that for $a_1,a_2,a_3 \geq 12$, bounds on the minimum lethal set on the the torus $G = C_{a_1} \square C_{a_2} \square C_{a_3}$ are given by
+Finally, we provide a construction to prove that for $a_1,a_2,a_3 \geq 12$, bounds on the minimum lethal set on the the torus $G = C_{a_1} \square C_{a_2} \square C_{a_3}$ are given by
 $$2 \le m(G,3) - \frac{a_1a_2 + a_2a_3 + a_3a_1 -2(a_1+a_2+a_3)}{3} \le 3.$$
 \end{abstract}
 

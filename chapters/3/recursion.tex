@@ -98,7 +98,7 @@ For all $k \geq 1$ such that $k \neq 2$, $(3,3,k)$ is perfect.
 \end{prop}
 
 \begin{proof}
-We obtain $(3,3,k)$ for $k \equiv 0 \pmod 2$ and $k > 2$ from Construction \ref{con:3x3xeven}, and $(3,3,k)$ for $k \equiv 1 \pmod 2$ and $k > 2$ from Construction \ref{con:3xaxb}. The case of $(3,3,1)$ is given in Benevides \cite{benevides:2021}, and reproduced as Construction \ref{con:purina}.
+We obtain $(3,3,k)$ for $k \equiv 0 \pmod 2$ and $k > 2$ from Construction \ref{con:3x3xeven}, and $(3,3,k)$ for $k \equiv 1 \pmod 2$ and $k > 2$ from Construction \ref{con:3xaxb}. The case of $(3,3,1)$ is given in Benevides et al. \cite{benevides:2021}, and reproduced as Construction \ref{con:purina}.
 \end{proof}
 
 \begin{prop}
@@ -130,7 +130,7 @@ We obtain such tuples from Construction \ref{con:3xaxb}.
 
 \begin{prop}
 \label{prop:thickness_2_2d_family}
-For all $k,l \in \{0,2,3,5\} \pmod 6$ such that $k \not\equiv l \pmod 6$ and $k,l > 2$, $(k,l,2)$ is perfect.
+For all $k,l \in \{0,2,3,5\} \pmod 6$ such that $k \not\equiv l \pmod 6$, $k \equiv l \pmod 3$, and $k,l > 2$, $(k,l,2)$ is perfect.
 \end{prop}
 
 \begin{proof}
@@ -173,8 +173,8 @@ Suppose $(b_1, b_2, b_3)$ is optimal and $b_1,b_2,b_3 \neq 2$. Then $(b_1+3, b_2
 
 \begin{proof}
 By Proposition \ref{prop:3x3xk}, each of $(b_1,3,3), (3,b_2,3),(3,3,b_3)$ is perfect. Therefore, by Corollary \ref{cor:recursion}, 
-$$m(b_1+3, b_2+3, b_3+3, 3) = m(b_1,b_2,b_3,3) + m(b_1,3,3,3) + m(3,b_2,3,3) + m(3,3,b_3,3),$$
-and so $(b_1+3, b_2+3, b_3+3)$ is optimal.
+%$$m(b_1+3, b_2+3, b_3+3, 3) = m(b_1,b_2,b_3,3) + m(b_1,3,3,3) + m(3,b_2,3,3) + m(3,3,b_3,3),$$
+$(b_1+3, b_2+3, b_3+3)$ is optimal.
 \end{proof}
 
 \begin{lem}
@@ -184,8 +184,8 @@ Suppose $(b_1, b_2, b_3)$ is optimal, $b_1,b_2 \geq 2$, and $b_3 \neq 2$. Then $
 
 \begin{proof}
 By assumption, $(b_1,b_2,b_3)$ is optimal. Both of $(b_1,3,6)$ and $(3,b_2,6)$ are perfect by Proposition \ref{prop:3x6xk}. By Proposition \ref{prop:3x3xk}, $(3,3,b_3)$ is perfect. Therefore, by Corollary \ref{cor:recursion}, 
-$$m(b_1+3, b_2+3, b_3+6, 3) = m(b_1,b_2,b_3,3) + m(b_1,3,6,3) + m(3,b_2,6,3) + m(3,3,b_3,3),$$
-and so $(b_1+3, b_2+3, b_3+6)$ is optimal.
+%$$m(b_1+3, b_2+3, b_3+6, 3) = m(b_1,b_2,b_3,3) + m(b_1,3,6,3) + m(3,b_2,6,3) + m(3,3,b_3,3),$$
+$(b_1+3, b_2+3, b_3+6)$ is optimal.
 \end{proof}
 
 In the following chapter, we shall see that the existence of the perfect lethal sets on the families of grids presented above, coupled with Corollary \ref{cor:recursion}, is enough to prove Theorem \ref{thm:main_result}. Speaking analogically, Propositions \ref{prop:3x3xk} -- \ref{prop:purina} (and the individual constructions in Appendix A) are the atomic pieces required to generate all molecular lethal sets. It should be noted that the atomic constructions used in this thesis are in no way special; there is likely a simpler combination of constructed lethal sets that also generates all grids $G(a_1,a_2,a_3)$, for $a_1,a_2,a_3 \geq 11$. These are simply the constructions that we were able to obtain. It would be interesting to determine, in general, the smallest number of constructed lethal sets required to build all other lethal sets in $d$-dimensional grids using Corollary \ref{cor:recursion}. 
